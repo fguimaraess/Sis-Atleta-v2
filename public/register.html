@@ -9,7 +9,7 @@
 
   <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
   <script src="js/firebase.js" charset="utf-8"></script>
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
   <!-- Compiled and minified CSS -->
@@ -34,23 +34,23 @@
               <div class="row">
                 <div class="input-field col s6">
                   <i class="material-icons prefix">account_circle</i>
-                  <input id="name" type="text" class="validate">
-                  <label for="name">Nome</label>
+                  <input id="name-field" type="text" class="validate">
+                  <label for="name-field">Nome</label>
                 </div>
                 <div class="input-field col s6">
                   <i class="material-icons prefix">email</i>
-                  <input type="text" id="email" class="validate">
-                  <label for="email">E-mail</label>
+                  <input type="text" id="email-field" class="validate">
+                  <label for="email-field">E-mail</label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-field col s6"> <i class="material-icons prefix">location_city</i>
-                  <input id="cidade" type="text" class="validate">
-                  <label for="cidade">Cidade</label>
+                  <input id="cidade-field" type="text" class="validate">
+                  <label for="cidade-field">Cidade</label>
                 </div>
-                <div class="input-field col s6"> <i class="material-icons prefix">flag</i>
-                  <select>
+                <div class="input-field col s6" > <i class="material-icons prefix">flag</i>
+                  <select id="estado-field">
                     <option value="" selected></option>
                     <option value="1">Acre - AC</option>
                     <option value="2">Alagoas - AL</option>
@@ -80,20 +80,20 @@
                     <option value="26">Sergipe - SE</option>
                     <option value="27">Tocantins - TO</option>
                   </select>
-                  <label for="estado">Estado</label>
+                  <label for="estado-field">Estado</label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-field col s6">
                   <i class="material-icons prefix">lock_outline</i>
-                  <input type="text" id="password" class="validate">
-                  <label for="password">Senha</label>
+                  <input type="password" id="password-field" class="validate">
+                  <label for="password-field">Senha</label>
                 </div>
                 <div class="input-field col s6">
                   <i class="material-icons prefix">lock</i>
-                  <input type="text" id="verify_pwd" class="validate">
-                  <label for="verify_pwd">Confirme sua senha</label>
+                  <input type="password" id="verify-pwd-field" class="validate">
+                  <label for="verify-pwd-field">Confirme sua senha</label>
                 </div>
               </div>
 
@@ -104,7 +104,7 @@
 
         </div>
         <div class="card-action">
-          <a href="#" class="black-text">Cadastrar</a>
+          <a href="#" class="black-text"id="cadastrar-btn">Cadastrar</a>
           <a href="#" class="black-text" id="voltar-btn">Voltar</a>
         </div>
       </div>
