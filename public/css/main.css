@@ -1,5 +1,6 @@
 body{
-  background-color: #1c823c;
+  background: url("../img/campo-futebol.jpg") no-repeat fixed;
+  background-size: cover;
 }
 
 .login-card{
