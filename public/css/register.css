@@ -1,0 +1,10 @@
+body{
+  background: url("../img/campo-futebol.jpg") no-repeat fixed;
+  background-size: cover;
+}
+
+.login-card{
+  padding-left: 20% !important;
+  padding-right: 20% !important;
+  padding-top: 10% !important;
+}
