@@ -5,3 +5,8 @@ var page = {
 page.voltarBtn.addEventListener('click', function () {
   window.location = '/';
 });
+
+
+$(document).ready(function() {
+   $('select').material_select();
+ });
