@@ -1,0 +1,22 @@
+{
+  "name": "Money-Tracker-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "node-sass scss/ -o public/css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "dev": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.7",
+    "concurrently": "^3.2.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "node-sass": "^4.5.0",
+    "nodemon": "^1.11.0"
+  }
+}
