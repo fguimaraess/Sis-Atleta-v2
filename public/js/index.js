@@ -10,6 +10,9 @@ page.loginBtn.addEventListener('click', function() {
 
 
   var user = firebase.auth().signInWithEmailAndPassword(page.emailField.value, page.passwordField.value)
+    .then(function(){
+      window.location = "/dashboard.html";
+    })
     .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;

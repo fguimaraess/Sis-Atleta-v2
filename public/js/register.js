@@ -45,6 +45,9 @@ function registraUsuario() {
       .then(function(user){
         saveUserDetails(user);
       })
+      .then(function () {
+        window.location = '/dashboard.html';
+      })
       .catch(function(error) {
         handleCadstroErro(error);
       });
