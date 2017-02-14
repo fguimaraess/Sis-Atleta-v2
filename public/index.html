@@ -23,7 +23,7 @@
 <body>
   <div class="row">
     <div class="col s12 login-card">
-      <div class="card">
+      <div class="card z-depth-7">
         <div class="card-content">
 
           <div class="row">
@@ -43,6 +43,11 @@
                           <label for="password">Senha</label>
                       </div>
                   </div>
+                  <div class="row">
+                    <div class="col s12 right-align">
+                      <span>Esqueceu sua senha? Clique<a href="#forgot-btn" class="green-text"> aqui</a>!</span>
+                    </div>
+                  </div>
               </form>
           </div>
 
@@ -50,9 +55,8 @@
         <div class="card-action">
             <a href="#" class="black-text" id="login-btn">Login</a>
             <a href="#" class="black-text" id="register-btn">Cadastre-se</a>
-          
-          <!--Modal Reset de Senha -->
-           <a class="waves-effect waves-light btn" href="#forgot-btn">Esqueceu sua senha?</a>
+
+            <!--Modal Reset de Senha -->
             <div id="forgot-btn" class="modal">
                 <div class="modal-content">
                     <h4>Esqueceu sua senha?</h4>
@@ -64,6 +68,7 @@
                       </div>
                 </div>
             <div class="modal-footer" id="reset-btn"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Enviar</a> </div>
+
             </div>
         </div>
       </div>

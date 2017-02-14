@@ -43,7 +43,7 @@ function getUsuario(email) {
     snapshot.val().forEach(function(usuario) {
 
       if (usuario.email == email) {
-        usuarioDatabase = usuario;
+        return usuario;
       }
 
     });
@@ -60,7 +60,7 @@ $(document).ready(function(){
 page.resetBtn.addEventListener('click', function(){
     var auth = firebase.auth();
     var emailAddress = page.resetEmailField.value;
-    
+
     auth.sendPasswordResetEmail(emailAddress).then(function(){
         alert("Email enviado");
     }, function(error){
