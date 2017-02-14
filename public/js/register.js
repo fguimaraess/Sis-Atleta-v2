@@ -6,7 +6,8 @@ var page = {
   senhaField: document.querySelector('#password-field'),
   senhaCheckField: document.querySelector('#verify-pwd-field'),
   registrarBtn: document.querySelector('#cadastrar-btn'),
-  voltarBtn: document.querySelector('#voltar-btn')
+  voltarBtn: document.querySelector('#voltar-btn'),
+  database: firebase.database()
 }
 
 function checkSenha(){
@@ -15,11 +16,11 @@ function checkSenha(){
 
 function saveUserDetails(usuario){
   console.log('nome: ', page.nameField.value);
-  console.log('cidade: ', page.cidadeField.value)
-  console.log('estado: ', page.estadoField.selectedIndex);;
+  console.log('cidade: ', page.cidadeField.value);
+  console.log('estado: ', page.estadoField.selectedIndex);
   firebase.database().ref('users/' + usuario.uid).set({
     username: page.nameField.value,
-    email: usuario.email,
+    email: page.emailField.value,
     cidade: page.cidadeField.value,
     estado: page.estadoField.value
   });

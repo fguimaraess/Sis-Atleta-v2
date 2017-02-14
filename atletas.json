@@ -1,0 +1,10 @@
+{
+    atletas: [
+        "nome" : "Felipe",
+        "idade" : 24,
+        "categoria" : "Profissional",
+        "clube" : "",
+        "cidade" : "São Gonçalo",
+        "pais" : "Brasil"
+    ]
+}
