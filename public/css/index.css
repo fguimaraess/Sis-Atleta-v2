@@ -8,3 +8,8 @@ body{
   padding-right: 30% !important;
   padding-top: 10% !important;
 }
+
+.modal .modal-content{
+    padding-left: 25% !important;
+    padding-right: 25% !important;
+}

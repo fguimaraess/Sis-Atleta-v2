@@ -1,6 +1,8 @@
 var page = {
   loginBtn: document.querySelector('#login-btn'),
   registerBtn: document.querySelector('#register-btn'),
+  resetBtn: document.querySelector('#reset-btn'),
+  resetEmailField: document.querySelector('#resetemail-field'),
   emailField: document.querySelector('#email-field'),
   passwordField: document.querySelector('#password-field'),
   database: firebase.database()
@@ -17,7 +19,7 @@ page.loginBtn.addEventListener('click', function() {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      if (errorCode === 'auth/wrong-password') {
+      if (errorCode == 'auth/wrong-password') {
         alert('Wrong password.');
       } else {
         alert(errorMessage);
@@ -26,8 +28,6 @@ page.loginBtn.addEventListener('click', function() {
     });
 
     var user = firebase.auth().currentUser;
-
-    alert(user.email);
 });
 
 page.registerBtn.addEventListener('click', function() {
@@ -50,5 +50,21 @@ function getUsuario(email) {
     return usuarioDatabase;
 
   })
-
 }
+
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+
+page.resetBtn.addEventListener('click', function(){
+    var auth = firebase.auth();
+    var emailAddress = page.resetEmailField.value;
+    
+    auth.sendPasswordResetEmail(emailAddress).then(function(){
+        alert("Email enviado");
+    }, function(error){
+        var errorEmail = erro.message;
+        alert(errorEmail);
+    });
+});
