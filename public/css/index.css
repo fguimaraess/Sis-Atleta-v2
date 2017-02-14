@@ -1,5 +1,5 @@
 body{
-  background: url("../img/campo-futebol.jpg") no-repeat fixed;
+  background: url("../img/bw-sport.jpg") no-repeat fixed;
   background-size: cover;
 }
 
@@ -15,14 +15,11 @@ body{
 }
 
 a.waves-effect{
-    
+
     background-color: #9e9e9e !important;
 }
 
 a.modal-action.modal-close.waves-effect.waves-green.btn-flat{
     color: white !important;
-    display: 
+    display:
 }
-
-
-
