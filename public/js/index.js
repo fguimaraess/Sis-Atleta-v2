@@ -57,14 +57,31 @@ $(document).ready(function(){
     $('.modal').modal();
   });
 
+
 page.resetBtn.addEventListener('click', function(){
-    var auth = firebase.auth();
     var emailAddress = page.resetEmailField.value;
 
+    if(page.resetEmailField.value.length < 3)
+        alert("Por favor, digite um e-mail válido");
+    var auth = firebase.auth();
     auth.sendPasswordResetEmail(emailAddress).then(function(){
-        alert("Email enviado");
+        alert("O e-mail foi enviado para " + page.resetEmailField.value);
     }, function(error){
         var errorEmail = erro.message;
         alert(errorEmail);
     });
+});
+
+//Press enter to Login
+page.emailField.addEventListener('keyup', function(event){
+   event.preventDefault();
+    if(event.keyCode == 13)
+        page.loginBtn.click();
+});
+
+//Press enter to Send email
+page.resetEmailField.addEventListener('keyup', function(event){
+    event.preventDefault();
+    if(event.keyCode == 13)
+        page.resetBtn.click();
 });

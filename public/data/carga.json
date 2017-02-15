@@ -1,11 +1,15 @@
 {
-    "usuarios": [{
+    "users": [{
             "email": "felipeemg@gmail.com",
-            "senha": 1234
+            "cidade": "Niterói",
+            "estado": 19,
+            "usename": "Felipe"
         },
         {
-            "email": "luizcunha3@gmail.com",
-            "senha": "lsnrct"
+            "email": "felipeemg@gmail.com",
+            "cidade": "Niterói",
+            "estado": 19,
+            "username": "Luiz"
         }
     ]
 }

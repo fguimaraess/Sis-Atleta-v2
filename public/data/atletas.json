@@ -1,10 +1,37 @@
 {
-    atletas: [
-        "nome" : "Felipe",
-        "idade" : 24,
-        "categoria" : "Profissional",
-        "clube" : "",
-        "cidade" : "São Gonçalo",
-        "pais" : "Brasil"
+    "atletas": [{
+        "nome": "Felipe",
+        "sobrenome": "Guimarães",
+        "posicao": "Zagueiro",
+        "idade": 24,
+        "categoria": "Profissional",
+        "clube": "Liverpool",
+        "cidade": "São Gonçalo",
+        "pais": "Brasil",
+        "foto": ""
+    },{
+        "nome": "Luiz",
+        "sobrenome": "Cunha",
+        "posicao": "Goleiro",
+        "idade": 24,
+        "categoria": "Profissional",
+        "clube": "",
+        "cidade": "São Gonçalo",
+        "pais": "Brasil",
+        "foto": ""
+    }],
+
+    "users": [{
+            "email": "felipeemg@gmail.com",
+            "cidade": "Niterói",
+            "estado": 19,
+            "usename": "Felipe"
+        },
+        {
+            "email": "felipeemg@gmail.com",
+            "cidade": "Niterói",
+            "estado": 19,
+            "username": "Luiz"
+        }
     ]
 }
