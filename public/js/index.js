@@ -72,8 +72,9 @@ page.resetBtn.addEventListener('click', function(){
     });
 });
 
+
 //Press enter to Login
-page.emailField.addEventListener('keyup', function(event){
+page.passwordField.addEventListener('keyup', function(event){
    event.preventDefault();
     if(event.keyCode == 13)
         page.loginBtn.click();

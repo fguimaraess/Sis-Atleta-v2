@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "sis-atleta-4a38f"
+    "default": "sis-atleta-4a38f",
+    "sis-atleta": "sis-atleta-4a38f"
   }
 }
