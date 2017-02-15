@@ -5,6 +5,8 @@ Idade: int obg
 Cidade de Nasc: txt obg
 Pais: txt obg
 Posicao: txt obg
+Clube: txt N obg
+Foto: N obg
 Categoria: lista de valores obg {CHUPETINHA
 FRALDINHA
 PRE-MIRIM
