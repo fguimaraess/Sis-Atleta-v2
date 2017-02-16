@@ -1,29 +1,5 @@
 {
-    "atletas": [{
-        "nome": "Felipe"
-        , "sobrenome": "Guimarães"
-        , "posicao": "Zagueiro"
-        , "idade": 24
-        , "categoria": "Profissional"
-        , "clube": "Liverpool"
-        , "cidade": "São Gonçalo"
-        , "pais": "Brasil"
-        , "foto": ""
-    }]
-    , "users": [{
-            "email": "felipeemg@gmail.com"
-            , "cidade": "Niterói"
-            , "estado": 19
-            , "usename": "Felipe"
-        }
-        , {
-            "email": "felipeemg@gmail.com"
-            , "cidade": "Niterói"
-            , "estado": 19
-            , "username": "Luiz"
-        }
-    ]
-    , "jogos": [{
+    "jogos": [{
         "melhorJogador": "Felipe",
         "campeonato" : "Cariocão",
         "clube1": [{
@@ -68,3 +44,4 @@
         }]
     }]
 }
+

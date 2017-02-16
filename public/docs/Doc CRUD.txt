@@ -16,15 +16,18 @@ JUVENIL
 PROFISSIONAL
 MASTER}
 
----AtletaJogo
+---Jogos
+golsfeitosClube1: obg
+golsfeitosClube2: obg
+Melhor jogador da partida: getAtletas obg
+Campeonato: getCampeonatos obg
 NomeAtleta: txt obg
-Clube: getClubes obg
-Gols: int obg
+Gols (feitos e sofridos): int obg
 Cruzamentos (certos: e errados): int obg
 Dribles (certos e errados): int obg
 Assistencias: int obg
 Desarmes: int obg
-Bloqueio: int obg
+Falta (feita e sofrida): int obg
 Rebatida: int obg
 PassesCertos: int obg
 PassesErrados: int obg
@@ -35,10 +38,6 @@ NomeClube: txt obg
 Atletas: getAtletas obg
 
 
----Jogos
-Placar: getClube1 x getClube 2 obg
-Melhor jogador da partida: getAtletas obg
-Campeonato: getCampeonatos obg
 
 ---Campeonato
 NomeCampeonato: txt obg
