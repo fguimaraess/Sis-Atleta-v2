@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +21,38 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/css/dashboard.css">
 </head>
+
 <body>
-    <h1>Em Construção</h1>
+  <h1>Em Construção</h1>
   <button type="submit" id="novo-atleta">Insert de atleta</button><br>
   <a href="/"><h3>Voltar</h3></a>
+  <div class="side-bar">
+    <button id="show-atletas">Atletas</button>
+  </div>
+  <div class="container">
+    <div class="view-atletas" hidden>
+      <table>
+        <colunas>
+          <coluna>Nome</coluna>
+        </colunas>
+        <linha id="linha-atleta-template" hidden>
+          <emento class="nome-atleta-coluna">#TEMPLATE NOME#</emento>
+        </linha>
+        <linhas id="linhas-atleta">
+
+        </linhas>
+      </table>
+    </div>
+    <div class="view-clubes" hidden>
+      <!-- tabela com os clubes e tals -->
+    </div>
+    <div class="view-jogos" hidden>
+      <!-- Outra tabela boladona -->
+    </div>
+  </div>
 </body>
 <footer>
-    <script src="js/atleta.js" charset="utf-8"></script>
+  <script src="js/atleta.js" charset="utf-8"></script>
 </footer>
+
 </html>

@@ -1,6 +1,8 @@
 var page = {
   database: firebase.database(),
   databaseRef: '/atletas/',
+  linhasAtleta: //peguei la o id linha atleta
+  templateLinha: //mandinga pra pegar o templatelinha
   nomeAtleta: "Felipe",
   sobrenomeAtleta: "Guimarães",
   posicao: "Atacante",
@@ -13,60 +15,82 @@ var page = {
   atletaBtn: document.querySelector('#novo-atleta')
 }
 
+function preencheTabelaAtletas() {
+  var atletas = getAtletas();
+  linhasAtleta.innerHTML = "";
+  var linhaNova;
+  atletas.forEach(function (atleta) {
+    linhaNova = templateLinha.cloneNode()
+    linhaNova.removeHidden;
+    linhaNova.querySelector('.nome-atle....').text = atleta.nome;
+    /*
+    depois que preencher todo mundo
+    */
+    linhasAtleta.addChild(linhaNova);
+  });
+}
+
 function getAtletas() {
+  var atletas = [];
+
   page.database.ref(page.databaseRef).once('value').then(function(snapshot) {
-    snapshot.val().forEach(function() {
-      console.log(page.nomeAtleta);
+    console.log(snapshot.val());
+    snapshot.val().forEach(function(atleta) {
+      var idAtleta = 1 //gambiarra pra pegar o id
+      atleta.id = idAtleta;
+      atletas.push(atleta);
     });
+    return atletas;
   })
 }
 
 function getAtletasById(idAtleta) {
+
   return page.database.ref('/atletas/').once('value').then(function(snapshot) {
     snapshot.val().idAtleta;
   })
 }
 
-function getAtletasByNome(nomeAtleta) {
+function getAtletasByNome() {
   page.database.ref('/atletas/').once('value').then(function(snapshot) {
-    snapshot.val().forEach(function(nomeAtleta) {
-
+    snapshot.val().forEach(function(atleta) {
+      console.log(atleta);
     });
-  })
-}
-
-function novoAtleta() {
-  page.database.ref('atletas/').push().set({
-    nomeAtleta: "Felipe",
-    sobrenomeAtleta: "Guimarães",
-    posicao: "Atacante",
-    idade: 24,
-    categoria: "Profissional",
-    clube: "",
-    cidade: "São Gonçalo",
-    pais: "Brasil",
-    foto: "url('campo-futebol.jpg')"
   });
 }
 
-function editarAtleta( /*idAtleta*/ ) {
+function salvaModal() {
   var atleta = {
-    nomeAtleta: "Marquinho",
-    sobrenomeAtleta: "Calazans",
-    posicao: "Atacante",
-    idade: 20,
-    categoria: "Profissional",
-    clube: "",
-    cidade: "São Gonçalo",
-    pais: "Brasil",
-    foto: "url('campo-futebol.jpg')"
-  }
-  var updates = {};
-  updates['/atletas/' + /*idAtleta*/ ] = atleta;
-  return page.database.ref().update(updates);
+    nome: page.nomeField.textContent,
+    sobrenome: page.sobrenomeField.textContent
+  };
+  novoAtleta(atleta);
 }
 
-function excluirAtleta( /*idAtleta*/ ) {
-  page.database.ref('atletas/' + /*idAtleta*/ ).remove();
+function salvaAlteracoes(atleta) {
+  atleta.nome = page.nomeField.textContent;
+  atleta.sobrenome = page.sobrenomeField.textContent;
+  .
+  .
+  .
+
+  editarAtleta(atleta);
+
 }
-page.atletaBtn.addEventListener('click', novo);
+
+function novoAtleta(atleta) {
+  page.database.ref(page.databaseRef).push().set(atleta);
+}
+
+function editarAtleta(atleta) {
+  page.database.ref().update(atleta);
+}
+
+function excluirAtleta(atleta) {
+  page.database.ref('atletas/' + atleta.id).remove();
+}
+page.atletaBtn.addEventListener('click', getAtletasByNome);
+
+page.abreListaAtleta(){
+
+}
