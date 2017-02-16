@@ -1,5 +1,6 @@
 var page = {
   database: firebase.database(),
+  databaseRef: '/atletas/',
   nomeAtleta: "Felipe",
   sobrenomeAtleta: "Guimarães",
   posicao: "Atacante",
@@ -13,7 +14,7 @@ var page = {
 }
 
 function getAtletas() {
-  page.database.ref('/atletas/').once('value').then(function(snapshot) {
+  page.database.ref(page.databaseRef).once('value').then(function(snapshot) {
     snapshot.val().forEach(function() {
       console.log(page.nomeAtleta);
     });
