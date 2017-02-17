@@ -1,4 +1,8 @@
 body{
-  background-image: url('../img/Dashboa.gif') no-repeat fixed;
+  background-image: url('../img/bw-sport.jpg') no-repeat fixed;
   background-size: cover;
+}
+
+.btn, .btn-large{
+    background-color: green;
 }

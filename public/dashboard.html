@@ -2,63 +2,129 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-
-  <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
-  <script src="js/firebase.js" charset="utf-8"></script>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="/css/dashboard.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+    <script src="js/firebase.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css"> </head>
 
 <body>
-  <div class="container">
-    <div class="view-atletas">
-      <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-      <table class="bordered reponsive-table">
-        <thead>
-          <tr>
-            <th hidden>id</th>
-            <th>Nome</th>
-            <th>Posição</th>
-            <th>Idade</th>
-            <th>Clube</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td hidden>12345</td>
-            <td>Luiz</td>
-            <td>Goleiro</td>
-            <td>24</td>
-            <td>Improvável F.C.</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container">
+        <div class="view-atletas">
+            <table class="bordered reponsive-table">
+                <thead>
+                    <tr>
+                        <th hidden>id</th>
+                        <th>Nome</th>
+                        <th>Posição</th>
+                        <th>Idade</th>
+                        <th>Clube</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td hidden>12345</td>
+                        <td>Luiz</td>
+                        <td>Goleiro</td>
+                        <td>24</td>
+                        <td>Improvável F.C.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p> <a class="btn-floating btn-large waves-effect waves-light green" href="#modal1"><i class="material-icons">add</i></a>
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Adicionar Novo Atleta</h4>
+                        <p>Preencha os campos abaixo</p>
+                        <!-- Formulário Novo Atleta -->
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="nome-field" type=text class=validate>
+                                        <label for="nome-field">Nome do Atleta</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input type="text" id="sobrenome-field" type=text class="validate">
+                                        <label for="sobrenome-field">Sobrenome</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input type="text" id="posicao-field" class="validate">
+                                        <label for="posicao-field">Posição</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input type="text" id="idade-field" class="validate">
+                                        <label for="idade-field">Idade</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <select id="categoria-field">
+                                            <option value="" disable selected>-</option>
+                                            <option value="1">Chupetinha</option>
+                                            <option value="2">Fraldinha</option>
+                                            <option value="3">Pré-Mirim</option>
+                                            <option value="4">Mirim</option>
+                                            <option value="5">Infantil</option>
+                                            <option value="6">Juvenil</option>
+                                            <option value="7">Profissional</option>
+                                            <option value="8">Master</option>
+                                        </select>
+                                        <label for=categoria-field>Categoria</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input type="text" id="clube-field" class="validate">
+                                        <label for="clube-field">Clube</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input type="text" id="cidade-field" class="validate">
+                                        <label for="cidade-field">Cidade de Nascimento</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input type="text" id="pais-field" class="validate">
+                                        <label for="pais-field">País</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="file-path-wrapper input-field input-field col s6">
+                                        <input id="foto-field" placeholder="Adicionar Foto" type="text" class="file-path validade"> </div>
+                                    <div class="file-field input-field input-field col s12">
+                                        <div class="btn"> <span>Procurar</span>
+                                            <input type="file"> </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="salvar-btn"> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="salvar-btn">Salvar</a>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="cancelar-btn">Cancelar</a></div>
+                </div>
+        </div>
+        <!-- NAO MEXE DAQUI PRA BAIXO -->
+        <div class="view-clubes" hidden>
+            <!-- tabela com os clubes e tals -->
+        </div>
+        <div class="view-jogos" hidden>
+            <!-- Outra tabela boladona -->
+        </div>
     </div>
-    <!-- NAO MEXE DAQUI PRA BAIXO -->
-    <div class="view-clubes" hidden>
-      <!-- tabela com os clubes e tals -->
-    </div>
-    <div class="view-jogos" hidden>
-      <!-- Outra tabela boladona -->
-    </div>
-  </div>
 </body>
 <footer>
-  <script src="js/atleta.js" charset="utf-8"></script>
-  <!-- <script src="js/jogo.js" charset="utf-8"></script> -->
+    <script src="js/atleta.js" charset="utf-8"></script>
+    <script src="js/dashboard.js" charset="utf-8"></script>
+    <!-- <script src="js/jogo.js" charset="utf-8"></script> -->
 </footer>
 
 </html>

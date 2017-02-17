@@ -1,44 +1,41 @@
 var page = {
   database: firebase.database(),
-  databaseRef: 'atletas/',
+  databaseRef: '/atletas/',
   linhasAtleta: 'a', //VER C LUIZ
   templateLinha: 'b', //VER C LUIZ
-  nomeField: "Felipe",
-  sobrenomeField: "Guimarães",
-  posicaoField: "Atacante",
-  idadeField: 24,
-  categoriaField: "Profissional",
-  clubeField: "",
-  cidadeField: "São Gonçalo",
-  paisField: "Brasil",
-  fotoField: "url('campo-futebol.jpg')",
-  atletaBtn: document.querySelector('#novo-atleta')
+  nomeField: document.querySelector('#nome-field'),
+  sobrenomeField: document.querySelector('#sobrenome-field'),
+  posicaoField: document.querySelector('#posicao-field'),
+  idadeField: document.querySelector('#idade-field'),
+  categoriaField: document.querySelector('#categoria-field'),
+  clubeField: document.querySelector('#clube-field'),
+  cidadeField: document.querySelector('#cidade-field'),
+  paisField: document.querySelector('#pais-field'),
+  fotoField: document.querySelector('#foto-field'),
+  atletaBtn: document.querySelector('#salvar-btn')
 }
 
 function novoAtleta(atleta) {
-  page.database.ref('/atletas/').push(atleta);
+  page.database.ref(page.databaseRef).push(atleta);
 }
 
 //OK
 function criaAtleta() {
   var atleta = {
-    nome: page.nomeAtleta,
-    sobrenome: page.sobrenomeField,
-    posicao: page.posicaoField,
-    idade: page.idadeField,
-    categoria: page.categoriaField,
-    clube: page.clubeField,
-    cidade: page.cidadeField,
-    pais: page.paisField,
-    foto: page.fotoField,
+    nome: page.nomeField.value,
+    sobrenome: page.sobrenomeField.value,
+    posicao: page.posicaoField.value,
+    idade: page.idadeField.value,
+    categoria: page.categoriaField.value,
+    clube: page.clubeField.value,
+    cidade: page.cidadeField.value,
+    pais: page.paisField.value,
+    foto: page.fotoField.value,
   }
   novoAtleta(atleta);
 }
 
-page.atletaBtn.addEventListener('click', function () {
-  var atleta = {nome: "Luiz"};
-  getAtletas();
-});
+page.atletaBtn.addEventListener('click', criaAtleta);
 
 //OK
 function getAtletasByNome(mozao) {
