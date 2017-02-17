@@ -2,7 +2,23 @@ body{
   background-image: url('../img/bw-sport.jpg') no-repeat fixed;
   background-size: cover;
 }
+.navbar{
+    background-color: lightseagreen;
+    color:white;
+    font-family: sans-serif;
+    font-size: 20px;
+}
 
-.btn, .btn-large{
-    background-color: green;
+a.btn-floating{
+    align-content: center !important;
+    align-self: center !important;
+    align-items: center !important;
+}
+
+.navigation{
+
+}
+
+.content-page{
+    
 }
