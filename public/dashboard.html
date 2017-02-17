@@ -23,26 +23,31 @@
 </head>
 
 <body>
-  <h1>Em Construção</h1>
-  <button type="submit" id="novo-atleta">Insert de atleta</button><br>
-  <a href="/"><h3>Voltar</h3></a>
-  <div class="side-bar">
-    <button id="show-atletas">Atletas</button>
-  </div>
   <div class="container">
-    <div class="view-atletas" hidden>
-      <table>
-        <colunas>
-          <coluna>Nome</coluna>
-        </colunas>
-        <linha id="linha-atleta-template" hidden>
-          <emento class="nome-atleta-coluna">#TEMPLATE NOME#</emento>
-        </linha>
-        <linhas id="linhas-atleta">
-
-        </linhas>
+    <div class="view-atletas">
+      <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+      <table class="bordered reponsive-table">
+        <thead>
+          <tr>
+            <th hidden>id</th>
+            <th>Nome</th>
+            <th>Posição</th>
+            <th>Idade</th>
+            <th>Clube</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td hidden>12345</td>
+            <td>Luiz</td>
+            <td>Goleiro</td>
+            <td>24</td>
+            <td>Improvável F.C.</td>
+          </tr>
+        </tbody>
       </table>
     </div>
+    <!-- NAO MEXE DAQUI PRA BAIXO -->
     <div class="view-clubes" hidden>
       <!-- tabela com os clubes e tals -->
     </div>
@@ -52,8 +57,8 @@
   </div>
 </body>
 <footer>
-  <!--<script src="js/atleta.js" charset="utf-8"></script>-->
-  <script src="js/jogo.js" charset="utf-8"></script>
+  <script src="js/atleta.js" charset="utf-8"></script>
+  <!-- <script src="js/jogo.js" charset="utf-8"></script> -->
 </footer>
 
 </html>
