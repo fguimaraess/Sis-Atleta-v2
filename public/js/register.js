@@ -28,7 +28,7 @@ function saveUserDetails(usuario){
 
 
 
-function handleCadstroErro(error){
+function handleCadastroErro(error){
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -50,7 +50,7 @@ function registraUsuario() {
         window.location = '/dashboard.html';
       })
       .catch(function(error) {
-        handleCadstroErro(error);
+        handleCadastroErro(error);
       });
   } else {
     console.log('senhas diferentes');

@@ -14,7 +14,9 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/css/dashboard.css"> </head>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="js/sweetalert.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/sweetalert.css"> </head>
 
 <body>
     <!--Navbar-->
@@ -48,7 +50,7 @@
                         </tbody>
                     </table>
                     <p>
-                    <div class="right-align"><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a></div>
+                        <div class="right-align"><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a></div>
                         <div id="modal-addatleta" class="modal">
                             <div class="modal-content">
                                 <h4>Adicionar Novo Atleta</h4>
@@ -58,27 +60,27 @@
                                     <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="nome-field" type=text class=validate>
-                                                <label for="nome-field">Nome do Atleta</label>
+                                                <input id="nomeatleta-field" type=text class=validate>
+                                                <label for="nomeatleta-field">Nome do Atleta</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" id="sobrenome-field" type=text class="validate">
-                                                <label for="sobrenome-field">Sobrenome</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" id="posicao-field" class="validate">
-                                                <label for="posicao-field">Posição</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" id="idade-field" class="validate">
-                                                <label for="idade-field">Idade</label>
+                                                <input type="text" id="sobrenomeatleta-field" type=text class="validate">
+                                                <label for="sobrenomeatleta-field">Sobrenome</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <select id="categoria-field">
+                                                <input type="text" id="posicaoatleta-field" class="validate">
+                                                <label for="posicaoatleta-field">Posição</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" id="idadeatleta-field" class="validate">
+                                                <label for="idadeatleta-field">Idade</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <select id="categoriaatleta-field">
                                                     <option value="" disable selected>-</option>
                                                     <option value="1">Chupetinha</option>
                                                     <option value="2">Fraldinha</option>
@@ -89,26 +91,26 @@
                                                     <option value="7">Profissional</option>
                                                     <option value="8">Master</option>
                                                 </select>
-                                                <label for=categoria-field>Categoria</label>
+                                                <label for=categoriaatleta-field>Categoria</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" id="clube-field" class="validate">
-                                                <label for="clube-field">Clube</label>
+                                                <input type="text" id="clubeatleta-field" class="validate">
+                                                <label for="clubeatleta-field">Clube</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input type="text" id="cidade-field" class="validate">
-                                                <label for="cidade-field">Cidade de Nascimento</label>
+                                                <input type="text" id="cidadeatleta-field" class="validate">
+                                                <label for="cidadeatleta-field">Cidade de Nascimento</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" id="pais-field" class="validate">
-                                                <label for="pais-field">País</label>
+                                                <input type="text" id="paisatleta-field" class="validate">
+                                                <label for="paisatleta-field">País</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="file-path-wrapper input-field input-field col s6">
-                                                <input id="foto-field" placeholder="Adicionar Foto" type="text" class="file-path validade"> </div>
+                                                <input id="fotoatleta-field" placeholder="Adicionar Foto" type="text" class="file-path validade"> </div>
                                             <div class="file-field input-field input-field col s12">
                                                 <div class="btn"> <span>Procurar</span>
                                                     <input type="file"> </div>
@@ -178,7 +180,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="modal-footer" id="salvar-clube-btn"> <a href="#!" id="salvar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="cancelar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a> </div>
+                            <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="cancelar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a> </div>
                         </div>
                 </div>
                 <div class="view-jogos" hidden>

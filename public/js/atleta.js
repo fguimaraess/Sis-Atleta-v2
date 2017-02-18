@@ -3,15 +3,15 @@ var page = {
     , databaseRef: '/atletas/'
     , linhasAtleta: 'a', //VER C LUIZ
     templateLinha: 'b', //VER C LUIZ
-    nomeField: document.querySelector('#nome-field')
-    , sobrenomeField: document.querySelector('#sobrenome-field')
-    , posicaoField: document.querySelector('#posicao-field')
-    , idadeField: document.querySelector('#idade-field')
-    , categoriaField: document.querySelector('#categoria-field')
-    , clubeField: document.querySelector('#clube-field')
-    , cidadeField: document.querySelector('#cidade-field')
-    , paisField: document.querySelector('#pais-field')
-    , fotoField: document.querySelector('#foto-field')
+    nomeField: document.querySelector('#nomeatleta-field')
+    , sobrenomeField: document.querySelector('#sobrenomeatleta-field')
+    , posicaoField: document.querySelector('#posicaoatleta-field')
+    , idadeField: document.querySelector('#idadeatleta-field')
+    , categoriaField: document.querySelector('#categoriaatleta-field')
+    , clubeField: document.querySelector('#clubeatleta-field')
+    , cidadeField: document.querySelector('#cidadeatleta-field')
+    , paisField: document.querySelector('#paisatleta-field')
+    , fotoField: document.querySelector('#fotoatleta-field')
     , atletaBtn: document.querySelector('#salvar-atleta-btn')
     , dashboardAtleta: document.querySelector('#atletas-menu')
 }
@@ -31,9 +31,8 @@ function criaAtleta() {
         , cidade: page.cidadeField.value
         , pais: page.paisField.value
         , foto: page.fotoField.value
-    , }
+    }
     novoAtleta(atleta);
-    alert("Atleta cadastrado com sucesso!");
 }
 page.atletaBtn.addEventListener('click', criaAtleta);
 //OK
