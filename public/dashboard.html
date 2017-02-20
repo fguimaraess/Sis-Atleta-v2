@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Dashboard</title>
     <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
     <script src="js/firebase.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -49,146 +49,162 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p>
-                        <div class="right-align"><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a></div>
-                        <div id="modal-addatleta" class="modal">
-                            <div class="modal-content">
-                                <h4>Adicionar Novo Atleta</h4>
-                                <p>Preencha os campos abaixo</p>
-                                <!-- Formulário Novo Atleta -->
-                                <div class="row">
-                                    <form class="col s12">
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input id="nomeatleta-field" type=text class=validate>
-                                                <label for="nomeatleta-field">Nome do Atleta</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" id="sobrenomeatleta-field" type=text class="validate">
-                                                <label for="sobrenomeatleta-field">Sobrenome</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" id="posicaoatleta-field" class="validate">
-                                                <label for="posicaoatleta-field">Posição</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" id="idadeatleta-field" class="validate">
-                                                <label for="idadeatleta-field">Idade</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <select id="categoriaatleta-field">
-                                                    <option value="" disable selected>-</option>
-                                                    <option value="1">Chupetinha</option>
-                                                    <option value="2">Fraldinha</option>
-                                                    <option value="3">Pré-Mirim</option>
-                                                    <option value="4">Mirim</option>
-                                                    <option value="5">Infantil</option>
-                                                    <option value="6">Juvenil</option>
-                                                    <option value="7">Profissional</option>
-                                                    <option value="8">Master</option>
-                                                </select>
-                                                <label for=categoriaatleta-field>Categoria</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" id="clubeatleta-field" class="validate">
-                                                <label for="clubeatleta-field">Clube</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" id="cidadeatleta-field" class="validate">
-                                                <label for="cidadeatleta-field">Cidade de Nascimento</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" id="paisatleta-field" class="validate">
-                                                <label for="paisatleta-field">País</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="file-path-wrapper input-field input-field col s6">
-                                                <input id="fotoatleta-field" placeholder="Adicionar Foto" type="text" class="file-path validade"> </div>
-                                            <div class="file-field input-field input-field col s12">
-                                                <div class="btn"> <span>Procurar</span>
-                                                    <input type="file"> </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer"> <a href="#!" id="salvar-atleta-btn" class=" modal-action modal-close waves-effect waves-green btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="cancelar-btn">Cancelar</a></div>
-                        </div>
-                </div>
-                <!-- NAO MEXE DAQUI PRA BAIXO -->
-                <div class="view-clubes">Div de Clubes
-                    <!-- tabela com os clubes e tals -->
-                    <table class="bordered reponsive-table">
-                        <thead>
-                            <tr>
-                                <th data-field="id" hidden>Id</th>
-                                <th data-field="nome-clube">Nome</th>
-                                <th data-field="sigla-clube">Sigla</th>
-                                <th data-field="atletas-clube">Atletas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td hidden>12345</td>
-                                <td>Improvável F.C</td>
-                                <td>IMP</td>
-                                <td><a href="#modal-veratletas">Ver Atletas</a></td>
-                                <!-- Modal Ver Atletas -->
-                                <div id="modal-veratletas" class="modal">
-                                    <div class="modal-content">
-                                        <h4>Atletas do Clube</h4>
-                                        <p>Lista de Atletas</p>
-                                        <!-- GetAtletasByClube -->
-                                    </div>
-                                    <div class="modal-footer"> <a href="#modal-addatleta-clube" class="modal-action modal-close waves-effect waves-green btn-flat">Adicionar Atleta</a> </div>
-                                    <div class="modal-footer"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
-                                </div>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!--Modal para Add Atleta no Clube-->
-                    <div id="modal-addatleta-clube" class="modal">
+                <p>
+                    <div class="right-align"><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a></div>
+                    <div id="modal-addatleta" class="modal">
                         <div class="modal-content">
-                            <h4>Buscar Atletas</h4> </div>
-                    </div>
-                    <p>
-                        <div class="right-align"><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
-                        <!-- Modal Add Clube-->
-                        <div id="modal-addclube" class="modal">
-                            <div class="modal-content">
-                                <h4>Adicionar Clube</h4>
-                                <p>Preencha os campos abaixo</p>
-                                <div class="row">
-                                    <form class="col s12">
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" id="nome-clube-field" class="validate">
-                                                <label for="nome-clube-field">Nome</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" id="sigla-clube-field" class="validate">
-                                                <label for="sigla-clube-field">Sigla</label>
-                                            </div>
+                            <h4>Adicionar Novo Atleta</h4>
+                            <p>Preencha os campos abaixo</p>
+                            <!-- Formulário Novo Atleta -->
+                            <div class="row">
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input id="nomeatleta-field" type="text" class="validate">
+                                            <label for="nomeatleta-field">Nome do Atleta</label>
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="input-field col s6">
+                                            <input type="text" id="sobrenomeatleta-field" class="validate">
+                                            <label for="sobrenomeatleta-field">Sobrenome</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input type="text" id="posicaoatleta-field" class="validate">
+                                            <label for="posicaoatleta-field">Posição</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input type="text" id="idadeatleta-field" class="validate">
+                                            <label for="idadeatleta-field">Idade</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <select id="categoriaatleta-field">
+                                                <option value="" disable selected>-</option>
+                                                <option value="1">Chupetinha</option>
+                                                <option value="2">Fraldinha</option>
+                                                <option value="3">Pré-Mirim</option>
+                                                <option value="4">Mirim</option>
+                                                <option value="5">Infantil</option>
+                                                <option value="6">Juvenil</option>
+                                                <option value="7">Profissional</option>
+                                                <option value="8">Master</option>
+                                            </select>
+                                            <label for=categoriaatleta-field>Categoria</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input type="text" id="clubeatleta-field" class="validate">
+                                            <label for="clubeatleta-field">Clube</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input type="text" id="cidadeatleta-field" class="validate">
+                                            <label for="cidadeatleta-field">Cidade de Nascimento</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input type="text" id="paisatleta-field" class="validate">
+                                            <label for="paisatleta-field">País</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="file-path-wrapper input-field input-field col s6">
+                                            <input id="fotoatleta-field" placeholder="Adicionar Foto" type="text" class="file-path validate">
+                                            </div>
+                                        <div class="file-field input-field input-field col s12">
+                                            <div class="btn"> <span>Procurar</span>
+                                                <input type="file"> </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="cancelar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a> </div>
+                                   
+                                    <div class="modal-footer"><a href="#!" id="salvar-atleta-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Salvar</a> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="cancelar-btn">Cancelar</a></div>
+                            </div>
                         </div>
                 </div>
-                <div class="view-jogos" hidden>
-                    <!-- Outra tabela boladona -->
-                </div>
+                        <!-- NAO MEXE DAQUI PRA BAIXO -->
+                        <div class="view-clubes">Div de Clubes
+                            <!-- tabela com os clubes e tals -->
+                            <table class="bordered reponsive-table">
+                                <thead>
+                                    <tr>
+                                        <th data-field="id" hidden>Id</th>
+                                        <th data-field="nome-clube">Nome</th>
+                                        <th data-field="sigla-clube">Sigla</th>
+                                        <th data-field="atletas-clube">Atletas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td hidden>12345</td>
+                                        <td>Improvável F.C</td>
+                                        <td>IMP</td>
+                                        <td><a href="#modal-veratletas">Ver Atletas</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- Modal Ver Atletas -->
+                            <div id="modal-veratletas" class="modal">
+                                <div class="modal-content">
+                                    <h4>Atletas do Clube</h4>
+                                    <p>Lista de Atletas</p>
+                                    <div class="row">
+                                        <!-- GetAtletasByClube -->
+                                        <table class="bordered responsive-table">
+                                            <thead>
+                                                <tr>
+                                                    <th data-field="id" hidden>ID</th>
+                                                    <th data-field="nome-atleta">Nome</th>
+                                                    <th data-field="idade-atleta">Idade</th>
+                                                    <th data-field="posicao-atleta">Posição</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td hidden>0001</td>
+                                                    <td>Felipe</td>
+                                                    <td>24</td>
+                                                    <td>Meio-Campo</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" id="fechar-lista"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
+                            </div>
+                            <p>
+                                <div class="right-align"><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
+                                <!-- Modal Add Clube-->
+                                <div id="modal-addclube" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Adicionar Clube</h4>
+                                        <p>Preencha os campos abaixo</p>
+                                        <div class="row">
+                                            <form class="col s12">
+                                                <div class="row">
+                                                    <div class="input-field col s6">
+                                                        <input type="text" id="nome-clube-field" class="validate">
+                                                        <label for="nome-clube-field">Nome</label>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <input type="text" id="sigla-clube-field" class="validate">
+                                                        <label for="sigla-clube-field">Sigla</label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="cancelar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a> </div>
+                                </div>
+                        </div>
+                        <div class="view-jogos" hidden>
+                            <!-- Outra tabela boladona -->
+                        </div>
+                    </div>
             </div>
         </div>
-    </div>
 </body>
 <footer>
     <script src="js/atleta.js" charset="utf-8"></script>

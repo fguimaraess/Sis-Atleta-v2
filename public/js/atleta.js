@@ -1,6 +1,6 @@
 var page = {
     database: firebase.database()
-    , databaseRef: '/atletas/'
+    , dataRefAtleta: '/atletas/'
     , linhasAtleta: 'a', //VER C LUIZ
     templateLinha: 'b', //VER C LUIZ
     nomeField: document.querySelector('#nomeatleta-field')
@@ -17,7 +17,7 @@ var page = {
 }
 
 function novoAtleta(atleta) {
-    page.database.ref(page.databaseRef).push(atleta);
+    page.database.ref(page.dataRefAtleta).push(atleta);
 }
 //OK
 function criaAtleta() {
@@ -38,7 +38,7 @@ page.atletaBtn.addEventListener('click', criaAtleta);
 //OK
 function getAtletasByNome(mozao) {
     var atletas = [];
-    page.database.ref(page.databaseRef).once('value').then(function (snapshot) {
+    page.database.ref(page.dataRefAtleta).once('value').then(function (snapshot) {
         snapshot.forEach(function (atletaRef) {
             if (mozao.nome == atletaRef.val().nome) {
                 var tempAtleta = atletaRef.val();
@@ -52,7 +52,7 @@ function getAtletasByNome(mozao) {
 //OK
 function getAtletas() {
     var atletas = [];
-    page.database.ref(page.databaseRef).once('value').then(function (snapshot) {
+    page.database.ref(page.dataRefAtleta).once('value').then(function (snapshot) {
         snapshot.forEach(function (atleta) {
             var tempAtleta = atleta.val();
             tempAtleta.uid = atleta.key;
@@ -79,7 +79,7 @@ function preencheTabelaAtletas() {
 
 function getAtletas() {
     var atletas = [];
-    page.database.ref(page.databaseRef).once('value').then(function (snapshot) {
+    page.database.ref(page.dataRefAtleta).once('value').then(function (snapshot) {
         console.log(snapshot.val());
         snapshot.forEach(function (atleta) {
             var idAtleta = 1 //gambiarra pra pegar o id
