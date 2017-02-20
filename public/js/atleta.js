@@ -1,21 +1,4 @@
 var page = {
-<<<<<<< HEAD
-    database: firebase.database()
-    , dataRefAtleta: '/atletas/'
-    , linhasAtleta: 'a', //VER C LUIZ
-    templateLinha: 'b', //VER C LUIZ
-    nomeField: document.querySelector('#nomeatleta-field')
-    , sobrenomeField: document.querySelector('#sobrenomeatleta-field')
-    , posicaoField: document.querySelector('#posicaoatleta-field')
-    , idadeField: document.querySelector('#idadeatleta-field')
-    , categoriaField: document.querySelector('#categoriaatleta-field')
-    , clubeField: document.querySelector('#clubeatleta-field')
-    , cidadeField: document.querySelector('#cidadeatleta-field')
-    , paisField: document.querySelector('#paisatleta-field')
-    , fotoField: document.querySelector('#fotoatleta-field')
-    , atletaBtn: document.querySelector('#salvar-atleta-btn')
-    , dashboardAtleta: document.querySelector('#atletas-menu')
-=======
   database: firebase.database(),
   databaseRef: '/atletas/',
   linhasAtleta: 'a', //VER C LUIZ
@@ -32,7 +15,6 @@ var page = {
   atletaBtn: document.querySelector('#salvar-atleta-btn'),
   dashboardAtleta: document.querySelector('#atletas-menu'),
   relatoriosSideBtn: document.querySelector('#relatorios-menu')
->>>>>>> master
 }
 
 
@@ -40,12 +22,9 @@ var page = {
 page.relatoriosSideBtn.addEventListener('click', function(){
   swal("oier");
 })
+
 function novoAtleta(atleta) {
-<<<<<<< HEAD
-    page.database.ref(page.dataRefAtleta).push(atleta);
-=======
   page.database.ref(page.databaseRef).push(atleta);
->>>>>>> master
 }
 //OK
 function criaAtleta() {
@@ -65,18 +44,6 @@ function criaAtleta() {
 page.atletaBtn.addEventListener('click', criaAtleta);
 //OK
 function getAtletasByNome(mozao) {
-<<<<<<< HEAD
-    var atletas = [];
-    page.database.ref(page.dataRefAtleta).once('value').then(function (snapshot) {
-        snapshot.forEach(function (atletaRef) {
-            if (mozao.nome == atletaRef.val().nome) {
-                var tempAtleta = atletaRef.val();
-                tempAtleta.uid = atletaRef.key;
-                atletas.push(tempAtleta);
-            }
-        });
-        console.log(atletas);
-=======
   var atletas = [];
   page.database.ref(page.databaseRef).once('value').then(function(snapshot) {
     snapshot.forEach(function(atletaRef) {
@@ -85,30 +52,18 @@ function getAtletasByNome(mozao) {
         tempAtleta.uid = atletaRef.key;
         atletas.push(tempAtleta);
       }
->>>>>>> master
     });
     console.log(atletas);
   });
 }
 //OK
 function getAtletas() {
-<<<<<<< HEAD
-    var atletas = [];
-    page.database.ref(page.dataRefAtleta).once('value').then(function (snapshot) {
-        snapshot.forEach(function (atleta) {
-            var tempAtleta = atleta.val();
-            tempAtleta.uid = atleta.key;
-            atletas.push(tempAtleta);
-        });
-        console.log(atletas);
-=======
   var atletas = [];
   page.database.ref(page.databaseRef).once('value').then(function(snapshot) {
     snapshot.forEach(function(atleta) {
       var tempAtleta = atleta.val();
       tempAtleta.uid = atleta.key;
       atletas.push(tempAtleta);
->>>>>>> master
     });
     console.log(atletas);
   });
@@ -130,18 +85,6 @@ function preencheTabelaAtletas() {
 }
 
 function getAtletas() {
-<<<<<<< HEAD
-    var atletas = [];
-    page.database.ref(page.dataRefAtleta).once('value').then(function (snapshot) {
-        console.log(snapshot.val());
-        snapshot.forEach(function (atleta) {
-            var idAtleta = 1 //gambiarra pra pegar o id
-            atleta.id = idAtleta;
-            atletas.push(atleta);
-        });
-        return atletas;
-    })
-=======
   var atletas = [];
   page.database.ref(page.databaseRef).once('value').then(function(snapshot) {
     console.log(snapshot.val());
@@ -151,8 +94,7 @@ function getAtletas() {
       atletas.push(atleta);
     });
     return atletas;
-  })
->>>>>>> master
+  });
 }
 
 function getAtletasById(idAtleta) {
