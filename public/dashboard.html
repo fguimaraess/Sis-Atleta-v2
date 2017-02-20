@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Dashboard</title>
     <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
     <script src="js/firebase.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -59,7 +59,7 @@
                                 <form class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input id="nomeatleta-field" type="text" class=validate>
+                                            <input id="nomeatleta-field" type="text" class=validate required>
                                             <label for="nomeatleta-field">Nome do Atleta</label>
                                         </div>
                                         <div class="input-field col s6">
@@ -117,7 +117,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="modal-footer"> <a href="#!" id="salvar-atleta-btn" class=" modal-action modal-close waves-effect waves-green btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="cancelar-btn">Cancelar</a></div>
+                            <div class="modal-footer"> <a href="#!" id="salvar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-atleta-btn">Fechar</a></div>
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="cancelar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a> </div>
+                        <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                     </div>
                 </div>
                 <div class="view-jogos" hidden>

@@ -1,19 +1,19 @@
-var page = {
+var pageClube = {
     database: firebase.database()
     , databaseRef: '/clubes/'
     , nomeClubeField: document.querySelector('#nome-clube-field')
     , siglaClubeField: document.querySelector('#sigla-clube-field')
     , salvarBtn: document.querySelector('#salvar-clube-btn')
 }
-page.salvarBtn.addEventListener('click', criarClube);
+pageClube.salvarBtn.addEventListener('click', criarClube);
 
 function criarClube() {
     var clube = {
-        nomeclube: page.nomeClubeField.value
-        , siglaclube: page.siglaClubeField.value
+        nomeclube: pageClube.nomeClubeField.value
+        , siglaclube: pageClube.siglaClubeField.value
     }
-    if (page.nomeClubeField.value.length == "" || page.siglaClubeField.value.length == "") {
-        alert("O nome e a sigla devem ser preenchidos!");
+    if (pageClube.nomeClubeField.value.length == "" || pageClube.siglaClubeField.value.length == "") {
+        swal("Aviso!", "O nome e a sigla devem ser preenchidos!");
     }
     else {
         novoClube(clube);
@@ -21,9 +21,9 @@ function criarClube() {
 }
 
 function novoClube(clube) {
-    page.database.ref(page.databaseRef).push(clube).then(function () {
-        swal("Clube cadastrado com sucesso!", "O clube " + page.nomeClubeField.value + " foi adicionado.", "success");
+    pageClube.database.ref(pageClube.databaseRef).push(clube).then(function () {
+        swal("Clube cadastrado com sucesso!", "O clube " + pageClube.nomeClubeField.value + " foi adicionado.", "success");
     }).catch(function (error) {
-        swal("Erro...", "O clube " + page.nomeClubeField.value + " não foi adicionado.", "error");
+        swal("Erro...", "O clube " + pageClube.nomeClubeField.value + " não foi adicionado.", "error");
     });
 }
