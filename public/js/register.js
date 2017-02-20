@@ -33,9 +33,9 @@ function handleCadastroErro(error){
   var errorCode = error.code;
   var errorMessage = error.message;
   if (errorCode == 'auth/weak-password') {
-    alert('The password is too weak.');
+    swal('The password is too weak.');
   } else {
-    alert(errorMessage);
+    swal(errorMessage);
   }
   console.log(error);
 }
