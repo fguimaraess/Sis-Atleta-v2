@@ -26,6 +26,7 @@ pageAtleta.relatoriosSideBtn.addEventListener('click', function(){
 function novoAtleta(atleta) {
   pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(function(){
       swal("Atleta cadastrado com sucesso!", "O atleta " +pageAtleta.nomeField.value + " foi adicionado.", "success");
+      $('#modal-addatleta').modal('close');
   }).catch(function(error){
            swal("Erro...", "O atleta " +pageAtleta.nomeField.value + " não foi adicionado.", "error");
            });

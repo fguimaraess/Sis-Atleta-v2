@@ -23,6 +23,7 @@ function criarClube() {
 function novoClube(clube) {
     pageClube.database.ref(pageClube.databaseRef).push(clube).then(function () {
         swal("Clube cadastrado com sucesso!", "O clube " + pageClube.nomeClubeField.value + " foi adicionado.", "success");
+        $('#modal-addclube').modal('close');
     }).catch(function (error) {
         swal("Erro...", "O clube " + pageClube.nomeClubeField.value + " não foi adicionado.", "error");
     });

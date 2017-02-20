@@ -61,6 +61,7 @@ page.resetBtn.addEventListener('click', function () {
     var auth = firebase.auth();
     auth.sendPasswordResetEmail(emailAddress).then(function () {
         swal("E-mail enviado com sucesso!", "O e-mail foi enviado para " + page.resetEmailField.value, "success");
+        $('#forgot-btn').modal('close');;
     }, function (error) {
         var errorEmail = erro.message;
         swal(errorEmail);
