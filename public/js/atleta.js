@@ -1,8 +1,8 @@
 var pageAtleta = {
   database: firebase.database(),
   databaseRef: '/atletas/',
-  linhasAtleta: 'a', //VER C LUIZ
-  templateLinha: 'b', //VER C LUIZ
+  linhasAtleta: document.querySelector('#linhas-atleta'), //VER C LUIZ
+  templateLinha: document.querySelector('#template-linha'), //VER C LUIZ
   nomeField: document.querySelector('#nomeatleta-field'),
   sobrenomeField: document.querySelector('#sobrenomeatleta-field'),
   posicaoField: document.querySelector('#posicaoatleta-field'),
@@ -13,15 +13,53 @@ var pageAtleta = {
   paisField: document.querySelector('#paisatleta-field'),
   fotoField: document.querySelector('#fotoatleta-field'),
   atletaBtn: document.querySelector('#salvar-atleta-btn'),
-  atletasSideBtn: document.querySelector('#atletas-menu'),
   divAtletas: document.querySelector('#view-atletas'),
-  relatoriosSideBtn: document.querySelector('#relatorios-menu')
+  tableAtletas: document.querySelector('#table-atletas')
+}
+window.addEventListener('load', getAtletas);
+
+
+function getAtletas(){
+    atletas = [];
+pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function(snapshot){
+    snapshot.forEach(function (atletaRef){
+        var tempAtleta = atletaRef.val();
+        tempAtleta.uid = atletaRef.key;
+        atletas.push(tempAtleta);
+        preencheTabelaAtletas(tempAtleta);    
+});
+});
+}
+
+function preencheTabelaAtletas(atleta) {
+var table = $(pageAtleta.tableAtletas).DataTable();
+        table.row.add(
+        [
+            atleta.uid,
+            atleta.nome,
+            atleta.posicao,
+            atleta.idade,
+            atleta.clube
+        ]).draw();
+table.column(0).visible(false);
 }
 
 
-pageAtleta.relatoriosSideBtn.addEventListener('click', function(){
-  swal("Ops...", "Menu de Relatórios em desenvolvimento");
+function listaatletas(){
+    var atletas = [];
+pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function(snapshot){
+    snapshot.forEach(function (atletaRef){
+        var tempAtleta = atletaRef.val();
+        tempAtleta.uid = atletaRef.key;
+        atletas.push(tempAtleta);
+        
 })
+    criarLinha(atletas);
+})
+}
+
+
+
 
 function novoAtleta(atleta) {
   pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(function(){
@@ -52,7 +90,7 @@ function criaAtleta() {
   novoAtleta(atleta);
   }
 }
-pageAtleta.atletaBtn.addEventListener('click', criaAtleta);
+//pageAtleta.atletaBtn.addEventListener('click', criaAtleta);
 //OK
 function getAtletasByNome(mozao) {
   var atletas = [];
@@ -68,7 +106,7 @@ function getAtletasByNome(mozao) {
   });
 }
 //OK
-function getAtletas() {
+function getAtletasAntiga() {
   var atletas = [];
   pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function(snapshot) {
     snapshot.forEach(function(atleta) {
@@ -77,36 +115,10 @@ function getAtletas() {
       atletas.push(tempAtleta);
     });
     console.log(atletas);
+      return atletas;
   });
 }
 
-function preencheTabelaAtletas() {
-  var atletas = getAtletas();
-  linhasAtleta.innerHTML = "";
-  var linhaNova;
-  atletas.forEach(function(atleta) {
-    linhaNova = templateLinha.cloneNode()
-    linhaNova.removeHidden;
-    linhaNova.querySelector('.nome-atle....').text = atleta.nome;
-    /*
-    depois que preencher todo mundo
-    */
-    linhasAtleta.addChild(linhaNova);
-  });
-}
-
-function getAtletas() {
-  var atletas = [];
-  pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function(snapshot) {
-    console.log(snapshot.val());
-    snapshot.forEach(function(atleta) {
-      var idAtleta = 1 //gambiarra pra pegar o id
-      atleta.id = idAtleta;
-      atletas.push(atleta);
-    });
-    return atletas;
-  });
-}
 
 function getAtletasById(idAtleta) {
   return pageAtleta.database.ref('/atletas/').once('value').then(function(snapshot) {
@@ -141,3 +153,17 @@ function excluirAtleta(atleta) {
 // pageAtleta.abreListaAtleta() {
 //
 // }
+
+//function criarLinha(atleta) -- Funciona sem DataTable
+//{
+    //      var html = '';
+//      html += '<tr id="linhas-atleta">';
+//      html += '<td hidden>'+tempAtleta.uid+'</td>';
+//      html += '<td>'+tempAtleta.nome+'</td>';
+//      html += '<td>'+tempAtleta.posicao+'</td>';
+//      html += '<td>'+tempAtleta.idade+'</td>';
+//      html += '<td>'+tempAtleta.clube+'</td>';
+//      html += '</tr>';
+
+//      $('#body-atleta').append(html);
+//}

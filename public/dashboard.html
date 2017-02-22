@@ -18,6 +18,11 @@
     <script src="js/sweetalert.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="css/sweetalert.css"> </head>
 
+        
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>    
+
 <body>
     <!--Navbar-->
     <div class="row center-align navbar"> Sis-Atleta </div>
@@ -29,23 +34,23 @@
         <div class="col s12 m8 19 content-page">
             <div class="container">
                 <div class="view-atletas"> Div de Atletas
-                    <table class="bordered reponsive-table">
+                    <table class="bordered responsive-table" id="table-atletas" cellspacing="0" width="100%">
                         <thead>
-                            <tr>
-                                <th hidden>Id</th>
+                            <tr id="template-linha">
+                                <th>Id</th>
                                 <th>Nome</th>
                                 <th>Posição</th>
                                 <th>Idade</th>
                                 <th>Clube</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td hidden>12345</td>
-                                <td>Luiz</td>
-                                <td>Goleiro</td>
-                                <td>24</td>
-                                <td>Improvável F.C.</td>
+                        <tbody id="body-atleta">
+                            <tr id="linhas-atleta" >
+                                <td data-field="id-atleta" hidden>12345</td>
+                                <td data-field="nome-atleta" hidden>Felipe</td>
+                                <td data-field="posicao" hidden>Coringa</td>
+                                <td data-field="idade" hidden="">24</td>
+                                <td data-field="clube-atleta" hidden>Improvável</td>
                             </tr>
                         </tbody>
                     </table>
@@ -125,7 +130,7 @@
                 <!-- NAO MEXE DAQUI PRA BAIXO -->
                 <div class="view-clubes">Div de Clubes
                     <!-- tabela com os clubes e tals -->
-                    <table class="bordered reponsive-table">
+                    <table class="display" id="table-clubes" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th data-field="id" hidden>Id</th>
@@ -196,7 +201,14 @@
                         <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                     </div>
                 </div>
-                <div class="view-jogos" hidden>
+                <div class="view-jogos" hidden>Div de Jogos
+                   <table class="bordered responsive-table" id="table-jogos" cellspacing="0" width="100%">
+                    <thead>
+                                    <tr>
+                                       <th data-field ="name">Name</th>
+                                        </tr>
+                                </thead>
+                    </table>
                     <!-- Outra tabela boladona -->
                 </div>
             </div>

@@ -2,6 +2,7 @@
   "name": "Sis-Atleta",
   "version": "1.0.0",
   "description": "",
+    "private":"true",
   "main": "index.js",
   "scripts": {
     "build-css": "node-sass scss/ -o public/css",

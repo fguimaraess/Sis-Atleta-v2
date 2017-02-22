@@ -2,6 +2,7 @@
     "jogos": [{
         "melhorJogador": "Felipe",
         "campeonato" : "Cariocão",
+        "data_jogo" : "21/02/2017",
         "clube1": [{
             "nome": "idFluminense",
             "gols" : "3",
