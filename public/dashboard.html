@@ -10,18 +10,18 @@
     <script src="js/firebase.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/css/dashboard.css">
     <script src="js/sweetalert.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="css/sweetalert.css"> </head>
-
-        
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
- 
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>    
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
+    
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+    
 
 <body>
     <!--Navbar-->
@@ -33,11 +33,11 @@
         </div>
         <div class="col s12 m8 19 content-page">
             <div class="container">
-                <div class="view-atletas"> Div de Atletas
-                    <table class="bordered responsive-table" id="table-atletas" cellspacing="0" width="100%">
+                <div class="view-atletas">Atletas
+                    <table class="display" id="table-atletas">
                         <thead>
                             <tr id="template-linha">
-                                <th>Id</th>
+                                <th hidden>Id</th>
                                 <th>Nome</th>
                                 <th>Posição</th>
                                 <th>Idade</th>
@@ -45,13 +45,14 @@
                             </tr>
                         </thead>
                         <tbody id="body-atleta">
-                            <tr id="linhas-atleta" >
-                                <td data-field="id-atleta" hidden>12345</td>
-                                <td data-field="nome-atleta" hidden>Felipe</td>
-                                <td data-field="posicao" hidden>Coringa</td>
-                                <td data-field="idade" hidden="">24</td>
-                                <td data-field="clube-atleta" hidden>Improvável</td>
-                            </tr>
+                            <!--ModeloLinha
+                               <tr id="linhas-atleta">
+                                <td data-field="id-atleta" hidden></td>
+                                <td data-field="nome-atleta" hidden></td>
+                                <td data-field="posicao" hidden></td>
+                                <td data-field="idade" hidden=""></td>
+                                <td data-field="clube-atleta" hidden></td>
+                            </tr>-->
                         </tbody>
                     </table>
                     <div class="right-align"><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a></div>
@@ -66,7 +67,6 @@
                                         <div class="input-field col s6">
                                             <input id="nomeatleta-field" type="text" class="validate">
                                             <label for="nomeatleta-field">Nome do Atleta *</label>
-                                            
                                         </div>
                                         <div class="input-field col s6">
                                             <input type="text" id="sobrenomeatleta-field" class="validate">
@@ -85,14 +85,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <select id="categoriaatleta-field">
+                                            <select id="categoriaatleta-field" class="material-select">
                                                 <option value="0" selected>-</option>
-                                                <option value="1">Chupetinha</option>
-                                                <option value="2">Fraldinha</option>
-                                                <option value="3">Pré-Mirim</option>
-                                                <option value="4">Mirim</option>
-                                                <option value="5">Infantil</option>
-                                                <option value="6">Juvenil</option>
+                                                <option value="Chupetinha">Chupetinha</option>
+                                                <option value="Fraldinha">Fraldinha</option>
+                                                <option value="Pré-Mirim">Pré-Mirim</option>
+                                                <option value="Mirim">Mirim</option>
+                                                <option value="Infantil">Infantil</option>
+                                                <option value="Juvenil">Juvenil</option>
                                                 <option value="7">Profissional</option>
                                                 <option value="8">Master</option>
                                             </select>
@@ -128,9 +128,9 @@
                     </div>
                 </div>
                 <!-- NAO MEXE DAQUI PRA BAIXO -->
-                <div class="view-clubes">Div de Clubes
+                <div class="view-clubes">Clubes
                     <!-- tabela com os clubes e tals -->
-                    <table class="display" id="table-clubes" cellspacing="0" width="100%">
+                    <table class="display" id="table-clubes">
                         <thead>
                             <tr>
                                 <th data-field="id" hidden>Id</th>
@@ -201,13 +201,13 @@
                         <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                     </div>
                 </div>
-                <div class="view-jogos" hidden>Div de Jogos
-                   <table class="bordered responsive-table" id="table-jogos" cellspacing="0" width="100%">
-                    <thead>
-                                    <tr>
-                                       <th data-field ="name">Name</th>
-                                        </tr>
-                                </thead>
+                <div class="view-jogos" hidden>Jogos
+                    <table class="bordered responsive-table" id="table-jogos">
+                        <thead>
+                            <tr>
+                                <th data-field="name">Name</th>
+                            </tr>
+                        </thead>
                     </table>
                     <!-- Outra tabela boladona -->
                 </div>

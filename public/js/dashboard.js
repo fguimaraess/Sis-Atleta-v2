@@ -12,25 +12,13 @@ $(document).ready(function(){
     $('.modal').modal();
   });
 
+
 $(document).ready(function() {
     $('select').material_select();
   });
 
+
 //Iniciar DataTable
-$(document).ready(function() {
-    $('#table-atletas').DataTable({
-        "language": {
-            "url": "../data/PT.json"
-        },
-        "paging":   true,
-        "ordering": false,
-        "info":     false,
-        "searching": false
-    });
-});
-
-
-
 $(document).ready(function() {
     $('#table-clubes').DataTable({
         "language": {
