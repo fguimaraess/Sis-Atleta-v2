@@ -19,6 +19,9 @@
     <script src="js/sweetalert.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
     
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
+    
+    
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
     
@@ -54,8 +57,12 @@
                                 <td data-field="clube-atleta" hidden></td>
                             </tr>-->
                         </tbody>
-                    </table>
-                    <div class="right-align"><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a></div>
+                    </table><p>
+                    <div class="right-align">
+                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editatleta"><i class="material-icons">mode_edit</i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a>
+                    </div>
+                    <!--MODAL ADICIONAR ATLETA-->
                     <div id="modal-addatleta" class="modal">
                         <div class="modal-content">
                             <h4>Adicionar Novo Atleta</h4>
@@ -123,11 +130,86 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="modal-footer"> <a href="#!" id="salvar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-atleta-btn">Fechar</a></div>
+                            <div class="modal-footer"><a href="#!" id="salvar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-atleta-btn">Fechar</a></div>
                         </div>
                     </div>
                 </div>
-                <!-- NAO MEXE DAQUI PRA BAIXO -->
+                
+                    <!-- MODAL EDITAR ATLETA -->
+                    <div id="modal-editatleta" class="modal">
+                            <div class="modal-content">
+                                <h4>Editar Dados do Atleta</h4>
+                                <p>Preencha os campos abaixo</p>
+                                <!-- Formulário Editar Atleta -->
+                                <div class="row">
+                                    <form class="col s12" action="#">
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input placeholder="" id="edit-nomeatleta-field" type="text" class="validate">
+                                                <label for="edit-nomeatleta-field">Nome</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input placeholder="" type="text" id="edit-sobrenomeatleta-field" class="validate">
+                                                <label for="edit-sobrenomeatleta-field">Sobrenome</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input placeholder="" type="text" id="edit-posicaoatleta-field" class="validate">
+                                                <label for="edit-posicaoatleta-field">Posição</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input placeholder="" type="text" id="edit-idadeatleta-field" class="validate">
+                                                <label for="edit-idadeatleta-field">Idade</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <select id="edit-categoriaatleta-field" class="material-select">
+                                                    <option value="0" selected>-</option>
+                                                    <option value="Chupetinha">Chupetinha</option>
+                                                    <option value="Fraldinha">Fraldinha</option>
+                                                    <option value="Pré-Mirim">Pré-Mirim</option>
+                                                    <option value="Mirim">Mirim</option>
+                                                    <option value="Infantil">Infantil</option>
+                                                    <option value="Juvenil">Juvenil</option>
+                                                    <option value="7">Profissional</option>
+                                                    <option value="8">Master</option>
+                                                </select>
+                                                <label for=edit-categoriaatleta-field>Categoria</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input placeholder="" type="text" id="edit-clubeatleta-field" class="validate">
+                                                <label for="edit-clubeatleta-field">Clube</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input placeholder="" type="text" id="edit-cidadeatleta-field" class="validate">
+                                                <label for="edit-cidadeatleta-field">Cidade</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input placeholder="" type="text" id="edit-paisatleta-field" class="validate">
+                                                <label for="edit-paisatleta-field">País</label>
+                                            </div>
+                                        </div>
+                                        <div class="row col s12">
+                                            <div class="file-field input-field">
+                                                <div class="btn"> <span>Alterar Foto</span>
+                                                    <input type="file" id="edit-fotoatleta-field"> </div>
+                                                <div class="row col s12">
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text"> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer"> <a href="#!" id="editar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-editatleta-btn">Fechar</a></div>
+                            </div>
+                        </div>
+                
+                <!-- DIV DE CLUBES -->
                 <div class="view-clubes">Clubes
                     <!-- tabela com os clubes e tals -->
                     <table class="display" id="table-clubes">
@@ -176,8 +258,10 @@
                             </table>
                         </div>
                         <div class="modal-footer"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
-                    </div>
-                    <div class="right-align"><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
+                    </div><p>
+                    <div class="right-align">
+                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
                     <!-- Modal Add Clube-->
                     <div id="modal-addclube" class="modal">
                         <div class="modal-content">

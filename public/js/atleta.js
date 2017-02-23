@@ -14,10 +14,55 @@ var pageAtleta = {
   fotoField: document.querySelector('#fotoatleta-field'),
   atletaBtn: document.querySelector('#salvar-atleta-btn'),
   divAtletas: document.querySelector('#view-atletas'),
-  tableAtletas: document.querySelector('#table-atletas')
+  tableAtletas: document.querySelector('#table-atletas'),
+  modalEditBtn: document.querySelector('#modal-editatleta'),
+  editNomeField: document.querySelector('#edit-nomeatleta-field'),
+  editSobrenomeField: document.querySelector('#edit-sobrenomeatleta-field'),
+  editPosicaoField: document.querySelector('#edit-posicaoatleta-field'),
+  editIdadeField: document.querySelector('#edit-idadeatleta-field'),
+  editCategoriaField: document.querySelector('#edit-categoriaatleta-field'),
+  editClubeField: document.querySelector('#edit-clubeatleta-field'),
+  editCidadeField: document.querySelector('#edit-cidadeatleta-field'),
+  editPaisField: document.querySelector('#edit-paisatleta-field'),
+  editFotoField: document.querySelector('#edit-fotoatleta-field'),
+  editatletaBtn: document.querySelector('#edit-atleta-btn')
 }
 window.addEventListener('load', getAtletas);
 pageAtleta.atletaBtn.addEventListener('click', criaAtleta);
+window.addEventListener('load', getLinha);
+
+ function abreModal(idLinha)
+    {
+        var atleta=[];
+        pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function(snapshot){
+        snapshot.forEach(function (atletaRef){
+            var tempAtleta = atletaRef.val();
+            tempAtleta.uid = atletaRef.key;
+            atleta.push(tempAtleta);
+            if(idLinha == tempAtleta.uid){
+                pageAtleta.editNomeField.value = tempAtleta.nome;
+                pageAtleta.editSobrenomeField.value = tempAtleta.sobrenome;
+                pageAtleta.editPosicaoField.value = tempAtleta.posicao;
+                pageAtleta.editIdadeField.value = tempAtleta.idade;
+                pageAtleta.editCategoriaField.value = tempAtleta.categoria;
+                pageAtleta.editClubeField.value = tempAtleta.clube;
+                pageAtleta.editCidadeField.value = tempAtleta.cidade;
+                pageAtleta.editPaisField.value = tempAtleta.pais;
+                pageAtleta.editFotoField.value = tempAtleta.foto;
+            }
+    });        
+    });
+    }
+
+function getLinha(){
+    var table = $('#table-atletas').DataTable();
+        $('#table-atletas tbody').on('click', 'tr', function(){
+        var data = table.row(this).data();
+        var idLinha = table.row(this).data()[0];
+        abreModal(idLinha);
+    });
+}
+
 
 function getAtletas(){
     atletas = [];
@@ -28,7 +73,7 @@ pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function(snap
         atletas.push(tempAtleta);
         preencheTabelaAtletas(tempAtleta);    
 });
-});
+})
 }
 
 function preencheTabelaAtletas(atleta) {
@@ -129,13 +174,15 @@ $(document).ready(function() {
         "paging":   true,
         "ordering": true,
         "info":     true,
-        "searching": true
-    },
-      $('#table-atletas tbody').on('click', 'tr', function () {
-        var data = table.row(this).data();
-        alert( 'You clicked on '+data[1]+'\'s row' );
-    })
-    )});
+        "searching": true,
+    select: true
+    });
+    });
+                                              //,
+     // $('#table-atletas tbody').on('click', 'td', function () {
+        //var data = table.cell(this).data();
+      //  alert( 'Você clicou em '+data );
+    //})
 
 //function criarLinha(atleta) -- Funciona sem DataTable
 //{

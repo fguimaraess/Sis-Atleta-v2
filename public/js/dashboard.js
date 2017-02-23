@@ -18,6 +18,7 @@ $(document).ready(function() {
   });
 
 
+
 //Iniciar DataTable
 $(document).ready(function() {
     $('#table-clubes').DataTable({
