@@ -25,20 +25,39 @@ var pageAtleta = {
   editCidadeField: document.querySelector('#edit-cidadeatleta-field'),
   editPaisField: document.querySelector('#edit-paisatleta-field'),
   editFotoField: document.querySelector('#edit-fotoatleta-field'),
-  editatletaBtn: document.querySelector('#edit-atleta-btn')
+  editatletaBtn: document.querySelector('#edit-atleta-btn'),
+  salvarEdicaoBtn: document.querySelector('#editar-atleta-btn')
 }
 window.addEventListener('load', getAtletas);
 pageAtleta.atletaBtn.addEventListener('click', criaAtleta);
-window.addEventListener('load', getLinha);
+pageAtleta.tableAtletas.addEventListener('click', getLinha);
+//pageAtleta.editatletaBtn.addEventListener('click', abreModal);
+pageAtleta.salvarEdicaoBtn.addEventListener('click', getLinha);
+
+function salvarAlteracoes(tempAtleta)
+{
+    tempAtleta.nome = pageAtleta.editNomeField.value;
+    tempAtleta.sobrenome = pageAtleta.editSobrenomeField.value;
+    tempAtleta.posicao = pageAtleta.editPosicaoField.value;
+    tempAtleta.idade = pageAtleta.editIdadeField.value;
+    tempAtleta.categoria = pageAtleta.editCategoriaField.value;
+    tempAtleta.clube = pageAtleta.editClubeField.value;
+    tempAtleta.cidade = pageAtleta.editCidadeField.value;
+    tempAtleta.pais = pageAtleta.editPaisField.value;
+    tempAtleta.foto = pageAtleta.editFotoField.value;
+    
+    pageAtleta.database.ref(pageAtleta.databaseRef+'/'+tempAtleta.uid).update(tempAtleta);
+}
 
  function abreModal(idLinha)
     {
-        var atleta=[];
+        
+        var atletas=[];
         pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function(snapshot){
         snapshot.forEach(function (atletaRef){
             var tempAtleta = atletaRef.val();
             tempAtleta.uid = atletaRef.key;
-            atleta.push(tempAtleta);
+            atletas.push(tempAtleta); //Cria um novo objeto na árvore Firebase
             if(idLinha == tempAtleta.uid){
                 pageAtleta.editNomeField.value = tempAtleta.nome;
                 pageAtleta.editSobrenomeField.value = tempAtleta.sobrenome;
@@ -49,15 +68,17 @@ window.addEventListener('load', getLinha);
                 pageAtleta.editCidadeField.value = tempAtleta.cidade;
                 pageAtleta.editPaisField.value = tempAtleta.pais;
                 pageAtleta.editFotoField.value = tempAtleta.foto;
+                
+                salvarAlteracoes(tempAtleta);
             }
-    });        
+    });
     });
     }
 
 function getLinha(){
     var table = $('#table-atletas').DataTable();
         $('#table-atletas tbody').on('click', 'tr', function(){
-        var data = table.row(this).data();
+        //var data = table.row(this).data();
         var idLinha = table.row(this).data()[0];
         abreModal(idLinha);
     });
