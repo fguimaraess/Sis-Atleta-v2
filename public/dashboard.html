@@ -18,13 +18,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script src="js/sweetalert.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
-    
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
-    
-    
-    <link rel="stylesheet" href="/css/dashboard.css">
-</head>
-    
+    <link rel="stylesheet" href="/css/dashboard.css"> </head>
 
 <body>
     <!--Navbar-->
@@ -45,6 +40,7 @@
                                 <th>Posição</th>
                                 <th>Idade</th>
                                 <th>Clube</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody id="body-atleta">
@@ -57,115 +53,40 @@
                                 <td data-field="clube-atleta" hidden></td>
                             </tr>-->
                         </tbody>
-                    </table><p>
-                    <div class="right-align">
-                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editatleta"><i class="material-icons">mode_edit</i></a>
-                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a>
-                    </div>
-                    <!--MODAL ADICIONAR ATLETA-->
-                    <div id="modal-addatleta" class="modal">
-                        <div class="modal-content">
-                            <h4>Adicionar Novo Atleta</h4>
-                            <p>Preencha os campos abaixo</p>
-                            <!-- Formulário Novo Atleta -->
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s6">
-                                            <input id="nomeatleta-field" type="text" class="validate">
-                                            <label for="nomeatleta-field">Nome do Atleta *</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input type="text" id="sobrenomeatleta-field" class="validate">
-                                            <label for="sobrenomeatleta-field">Sobrenome *</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s6">
-                                            <input type="text" id="posicaoatleta-field" class="validate">
-                                            <label for="posicaoatleta-field">Posição *</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input type="text" id="idadeatleta-field" class="validate">
-                                            <label for="idadeatleta-field">Idade *</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s6">
-                                            <select id="categoriaatleta-field" class="material-select">
-                                                <option value="0" selected>-</option>
-                                                <option value="Chupetinha">Chupetinha</option>
-                                                <option value="Fraldinha">Fraldinha</option>
-                                                <option value="Pré-Mirim">Pré-Mirim</option>
-                                                <option value="Mirim">Mirim</option>
-                                                <option value="Infantil">Infantil</option>
-                                                <option value="Juvenil">Juvenil</option>
-                                                <option value="7">Profissional</option>
-                                                <option value="8">Master</option>
-                                            </select>
-                                            <label for=categoriaatleta-field>Categoria *</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input type="text" id="clubeatleta-field" class="validate">
-                                            <label for="clubeatleta-field">Clube</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s6">
-                                            <input type="text" id="cidadeatleta-field" class="validate">
-                                            <label for="cidadeatleta-field">Cidade de Nascimento *</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input type="text" id="paisatleta-field" class="validate">
-                                            <label for="paisatleta-field">País *</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="file-path-wrapper input-field input-field col s6">
-                                            <input id="fotoatleta-field" placeholder="Adicionar Foto" type="text" class="file-path validate"> </div>
-                                        <div class="file-field input-field input-field col s12">
-                                            <div class="btn"> <span>Procurar</span>
-                                                <input type="file"> </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer"><a href="#!" id="salvar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-atleta-btn">Fechar</a></div>
-                        </div>
-                    </div>
-                </div>
-                
-                    <!-- MODAL EDITAR ATLETA -->
-                    <div id="modal-editatleta" class="modal">
+                    </table>
+                    <p>
+                        <div class="right-align"> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editatleta"><i class="material-icons">mode_edit</i></a> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a> </div>
+                        <!--MODAL ADICIONAR ATLETA-->
+                        <div id="modal-addatleta" class="modal">
                             <div class="modal-content">
-                                <h4>Editar Dados do Atleta</h4>
+                                <h4>Adicionar Novo Atleta</h4>
                                 <p>Preencha os campos abaixo</p>
-                                <!-- Formulário Editar Atleta -->
+                                <!-- Formulário Novo Atleta -->
                                 <div class="row">
-                                    <form class="col s12" action="#">
+                                    <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input placeholder="" id="edit-nomeatleta-field" type="text" class="validate">
-                                                <label for="edit-nomeatleta-field">Nome</label>
+                                                <input id="nomeatleta-field" type="text" class="validate">
+                                                <label for="nomeatleta-field">Nome do Atleta *</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input placeholder="" type="text" id="edit-sobrenomeatleta-field" class="validate">
-                                                <label for="edit-sobrenomeatleta-field">Sobrenome</label>
+                                                <input type="text" id="sobrenomeatleta-field" class="validate">
+                                                <label for="sobrenomeatleta-field">Sobrenome *</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input placeholder="" type="text" id="edit-posicaoatleta-field" class="validate">
-                                                <label for="edit-posicaoatleta-field">Posição</label>
+                                                <input type="text" id="posicaoatleta-field" class="validate">
+                                                <label for="posicaoatleta-field">Posição *</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input placeholder="" type="text" id="edit-idadeatleta-field" class="validate">
-                                                <label for="edit-idadeatleta-field">Idade</label>
+                                                <input type="text" id="idadeatleta-field" class="validate">
+                                                <label for="idadeatleta-field">Idade *</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <select id="edit-categoriaatleta-field" class="material-select">
+                                                <select id="categoriaatleta-field" class="material-select">
                                                     <option value="0" selected>-</option>
                                                     <option value="Chupetinha">Chupetinha</option>
                                                     <option value="Fraldinha">Fraldinha</option>
@@ -173,42 +94,115 @@
                                                     <option value="Mirim">Mirim</option>
                                                     <option value="Infantil">Infantil</option>
                                                     <option value="Juvenil">Juvenil</option>
-                                                    <option value="7">Profissional</option>
-                                                    <option value="8">Master</option>
+                                                    <option value="Profissional">Profissional</option>
+                                                    <option value="Master">Master</option>
                                                 </select>
-                                                <label for=edit-categoriaatleta-field>Categoria</label>
+                                                <label for=categoriaatleta-field>Categoria *</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input placeholder="" type="text" id="edit-clubeatleta-field" class="validate">
-                                                <label for="edit-clubeatleta-field">Clube</label>
+                                                <input type="text" id="clubeatleta-field" class="validate">
+                                                <label for="clubeatleta-field">Clube</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input placeholder="" type="text" id="edit-cidadeatleta-field" class="validate">
-                                                <label for="edit-cidadeatleta-field">Cidade</label>
+                                                <input type="text" id="cidadeatleta-field" class="validate">
+                                                <label for="cidadeatleta-field">Cidade de Nascimento *</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input placeholder="" type="text" id="edit-paisatleta-field" class="validate">
-                                                <label for="edit-paisatleta-field">País</label>
+                                                <input type="text" id="paisatleta-field" class="validate">
+                                                <label for="paisatleta-field">País *</label>
                                             </div>
                                         </div>
                                         <div class="row col s12">
+                                            <progress value="0" max="100" id="uploader"></progress>
+                                            <br>
+                                            <input type="file" value="Procurar Foto" id="fileButton">
+                                            <br>
+                                            <br>
                                             <div class="file-field input-field">
-                                                <div class="btn"> <span>Alterar Foto</span>
-                                                    <input type="file" id="edit-fotoatleta-field"> </div>
-                                                <div class="row col s12">
-                                                    <div class="file-path-wrapper">
-                                                        <input class="file-path validate" type="text"> </div>
-                                                </div>
+                                                <div class="btn"> <span id="btn-foto">Carregar Foto</span> </div>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="modal-footer"> <a href="#!" id="editar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-editatleta-btn">Fechar</a></div>
+                                <div class="modal-footer"><a href="#!" id="salvar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-atleta-btn">Fechar</a></div>
                             </div>
                         </div>
-                
+                </div>
+                <!-- MODAL EDITAR ATLETA -->
+                <div id="modal-editatleta" class="modal">
+                    <div class="modal-content">
+                        <h4>Editar Dados do Atleta</h4>
+                        <p>Preencha os campos abaixo</p>
+                        <!-- Formulário Editar Atleta -->
+                        <div class="row">
+                            <form class="col s12" action="#">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input placeholder="" id="edit-nomeatleta-field" type="text" class="validate">
+                                        <label for="edit-nomeatleta-field">Nome</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input placeholder="" type="text" id="edit-sobrenomeatleta-field" class="validate">
+                                        <label for="edit-sobrenomeatleta-field">Sobrenome</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input placeholder="" type="text" id="edit-posicaoatleta-field" class="validate">
+                                        <label for="edit-posicaoatleta-field">Posição</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input placeholder="" type="text" id="edit-idadeatleta-field" class="validate">
+                                        <label for="edit-idadeatleta-field">Idade</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <select id="edit-categoriaatleta-field" class="material-select">
+                                            <option value="0" selected>-</option>
+                                            <option value="Chupetinha">Chupetinha</option>
+                                            <option value="Fraldinha">Fraldinha</option>
+                                            <option value="Pré-Mirim">Pré-Mirim</option>
+                                            <option value="Mirim">Mirim</option>
+                                            <option value="Infantil">Infantil</option>
+                                            <option value="Juvenil">Juvenil</option>
+                                            <option value="Profissional">Profissional</option>
+                                            <option value="Master">Master</option>
+                                        </select>
+                                        <label for=edit-categoriaatleta-field>Categoria</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input placeholder="" type="text" id="edit-clubeatleta-field" class="validate">
+                                        <label for="edit-clubeatleta-field">Clube</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input placeholder="" type="text" id="edit-cidadeatleta-field" class="validate">
+                                        <label for="edit-cidadeatleta-field">Cidade</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input placeholder="" type="text" id="edit-paisatleta-field" class="validate">
+                                        <label for="edit-paisatleta-field">País</label>
+                                    </div>
+                                </div>
+                                <div class="row col s12">
+                                    <div class="file-field input-field">
+                                        <div class="btn"> <span>Alterar Foto</span>
+                                            <input type="file" id="edit-fotoatleta-field"> </div>
+                                        <div class="row col s12">
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer"> <a href="#!" id="editar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-editatleta-btn">Fechar</a></div>
+                    </div>
+                </div>
                 <!-- DIV DE CLUBES -->
                 <div class="view-clubes">Clubes
                     <!-- tabela com os clubes e tals -->
@@ -258,32 +252,31 @@
                             </table>
                         </div>
                         <div class="modal-footer"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
-                    </div><p>
-                    <div class="right-align">
-                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a>
-                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
-                    <!-- Modal Add Clube-->
-                    <div id="modal-addclube" class="modal">
-                        <div class="modal-content">
-                            <h4>Adicionar Clube</h4>
-                            <p>Preencha os campos abaixo</p>
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s6">
-                                            <input type="text" id="nome-clube-field" class="validate">
-                                            <label for="nome-clube-field">Nome *</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input type="text" id="sigla-clube-field" class="validate">
-                                            <label for="sigla-clube-field">Sigla *</label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                     </div>
+                    <p>
+                        <div class="right-align"> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
+                        <!-- Modal Add Clube-->
+                        <div id="modal-addclube" class="modal">
+                            <div class="modal-content">
+                                <h4>Adicionar Clube</h4>
+                                <p>Preencha os campos abaixo</p>
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="text" id="nome-clube-field" class="validate">
+                                                <label for="nome-clube-field">Nome *</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" id="sigla-clube-field" class="validate">
+                                                <label for="sigla-clube-field">Sigla *</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
+                        </div>
                 </div>
                 <div class="view-jogos" hidden>Jogos
                     <table class="bordered responsive-table" id="table-jogos">
