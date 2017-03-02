@@ -23,15 +23,25 @@
 
 <body>
     <!--Navbar-->
-    <div class="row center-align navbar"> Sis-Atleta </div>
+    <!-- <div class="row center-align navbar"> Sis-Atleta </div> -->
+    <nav>
+      <div class="nav-wrapper teal lighten-2"><a href="#" class="brand-logo" >Sis-Atleta</a></div>
+    </nav>
     <!--Layout-->
-    <div class="row">
-        <div class="col s1 m2 13 navigation">
-            <div class="collection"> <a href="#!" class="collection-item active" id="dasboard-menu">Dashboard</a> <a href="#!" class="collection-item" id="atletas-menu">Atletas</a> <a href="#!" class="collection-item" id="campeonatos-menu">Campeonatos</a> <a href="#!" class="collection-item" id="clubes-menu">Clubes</a> <a href="#!" class="collection-item" id="jogos-menu">Jogos</a> <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a> </div>
+    <div class="row" style="padding-top: 30px;">
+        <div class="col s3 navigation">
+            <div class="collection">
+              <a href="#!" class="collection-item" id="dasboard-menu">Dashboard</a>
+              <a href="#!" class="collection-item active" id="atletas-menu">Atletas</a>
+              <a href="#!" class="collection-item" id="campeonatos-menu">Campeonatos</a>
+              <a href="#!" class="collection-item" id="clubes-menu">Clubes</a>
+              <a href="#!" class="collection-item" id="jogos-menu">Jogos</a>
+              <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a>
+           </div>
         </div>
-        <div class="col s12 m8 19 content-page">
-            <div class="container">
-                <div class="view-atletas">Atletas
+        <div class="col s9 content-page">
+            <div class="">
+                <div class="view-atletas">
                     <table class="display" id="table-atletas">
                         <thead>
                             <tr id="template-linha">
@@ -44,14 +54,6 @@
                             </tr>
                         </thead>
                         <tbody id="body-atleta">
-                            <!--ModeloLinha
-                               <tr id="linhas-atleta">
-                                <td data-field="id-atleta" hidden></td>
-                                <td data-field="nome-atleta" hidden></td>
-                                <td data-field="posicao" hidden></td>
-                                <td data-field="idade" hidden=""></td>
-                                <td data-field="clube-atleta" hidden></td>
-                            </tr>-->
                         </tbody>
                     </table>
                     <p>
@@ -204,7 +206,7 @@
                     </div>
                 </div>
                 <!-- DIV DE CLUBES -->
-                <div class="view-clubes">Clubes
+                <div class="view-clubes" hidden>
                     <!-- tabela com os clubes e tals -->
                     <table class="display" id="table-clubes">
                         <thead>
