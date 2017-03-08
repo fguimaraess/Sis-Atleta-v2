@@ -17,8 +17,6 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script src="js/sweetalert.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
     <link rel="stylesheet" href="/css/dashboard.css"> </head>
 
 <body>
@@ -57,7 +55,9 @@
                         </tbody>
                     </table>
                     <p>
-                        <div class="right-align"> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editatleta"><i class="material-icons">mode_edit</i></a> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a> </div>
+                       <div class="right-align">
+                        <!-- Botão de Edição ao lado do Add
+                         <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editatleta"><i class="material-icons">mode_edit</i></a>--> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a> </div>
                         <!--MODAL ADICIONAR ATLETA-->
                         <div id="modal-addatleta" class="modal">
                             <div class="modal-content">
@@ -128,16 +128,16 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="modal-footer"><a href="#!" id="salvar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-atleta-btn">Fechar</a></div>
+                                <div class="modal-footer"><a href="#!" id="salvar-atleta-btn" class="modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-atleta-btn">Fechar</a></div>
                             </div>
                         </div>
                 </div>
-                <!-- MODAL EDITAR ATLETA -->
+                <!-- MODAL EDITAR ATLETA
                 <div id="modal-editatleta" class="modal">
                     <div class="modal-content">
                         <h4>Editar Dados do Atleta</h4>
                         <p>Preencha os campos abaixo</p>
-                        <!-- Formulário Editar Atleta -->
+                        <!-- Formulário Editar Atleta 
                         <div class="row">
                             <form class="col s12" action="#">
                                 <div class="row">
@@ -203,7 +203,7 @@
                             </form>
                         </div>
                         <div class="modal-footer"> <a href="#!" id="editar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-editatleta-btn">Fechar</a></div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- DIV DE CLUBES -->
                 <div class="view-clubes" hidden>

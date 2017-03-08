@@ -32,10 +32,13 @@ var pageAtleta = {
     , btnCarregarFoto: document.querySelector('#btn-foto')
 }
 window.addEventListener('load', getAtletas);
+
+
 pageAtleta.atletaBtn.addEventListener('click', criaAtleta);
 pageAtleta.tableAtletas.addEventListener('click', getLinha);
 //pageAtleta.editatletaBtn.addEventListener('click', abreModal);
-pageAtleta.salvarEdicaoBtn.addEventListener('click', getLinha);
+//pageAtleta.salvarEdicaoBtn.addEventListener('click', getLinha);
+
 pageAtleta.fileButton.addEventListener('change', function (e) {
     //Pega o arquivo
     var file = e.target.files[0];
@@ -90,13 +93,35 @@ function abreModal(idLinha) {
     });
 }
 
+//$(document).ready(function () {
+//
+//         document.querySelector('.jogador').addEventListener('click', function () {
+//        console.log(document.querySelector('.jogador'));
+//                     this.parent().parent().uid;
+//    });
+//    });
+
+//GetLinha + Criar Linha + GetAtletas
 function getLinha() {
-    var table = $('#table-atletas').DataTable();
-    $('#table-atletas tbody').on('click', 'tr', function () {
-        //var data = table.row(this).data();
-        var idLinha = table.row(this).data()[0];
-        abreModal(idLinha);
+    $('#table-atletas a').on('click', function(){
+        var idLinha = $(this).closest('tr').attr('id');
+        console.log(idLinha);
+        return idLinha;
     });
+}
+
+function preencheTabela(tempAtleta) //Funciona sem DataTable
+{
+    var html = '';
+    html += '<tr id="' + tempAtleta.uid + '">';
+    //html += '<td hidden>' + tempAtleta.uid + '</td>';
+    html += '<td><a href="#">' + tempAtleta.nome + '</a></td>';
+    html += '<td>' + tempAtleta.posicao + '</td>';
+    html += '<td>' + tempAtleta.idade + '</td>';
+    html += '<td>' + tempAtleta.clube + '</td>';
+    html += '<td><a href="#modal-addatleta" id="btn-editar-atleta"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a href="#" id="btn-excluir-atleta"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
+    html += '</tr>';
+    $('#body-atleta').append(html);
 }
 
 function getAtletas() {
@@ -106,25 +131,13 @@ function getAtletas() {
             var tempAtleta = atletaRef.val();
             tempAtleta.uid = atletaRef.key;
             atletas.push(tempAtleta);
-            preencheTabelaAtletas(tempAtleta);
+            preencheTabela(tempAtleta);
         });
     })
 }
 
-function preencheTabelaAtletas(atleta) {
-    var table = $(pageAtleta.tableAtletas).DataTable();
-    table.row.add(
-        [
-            atleta.uid
-            , atleta.nome
-            , atleta.posicao
-            , atleta.idade
-            , atleta.clube
-            , ""
-        ]).draw();
-    table.column(0).visible(false);
-}
 
+//Criar Atleta
 function novoAtleta(atleta) {
     pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(function () {
         swal({
@@ -142,6 +155,7 @@ function novoAtleta(atleta) {
 }
 //OK
 function criaAtleta() {
+    $('#modal-addatleta').modal('open');
     var atleta = {
             nome: pageAtleta.nomeField.value
             , sobrenome: pageAtleta.sobrenomeField.value
@@ -192,36 +206,40 @@ function editarAtleta(atleta) {
 function excluirAtleta(atleta) {
     pageAtleta.database.ref('atletas/' + atleta.id).remove();
 }
+
+
+//Utilizando DataTable
+//function preencheTabelaAtletas(atleta) {
+//    var table = $(pageAtleta.tableAtletas).DataTable();
+//    table.row.add(
+//        [
+//            atleta.uid
+//            , atleta.nome
+//            , atleta.posicao
+//            , atleta.idade
+//            , atleta.clube
+//            , ""
+//        ]).draw();
+//    table.column(0).visible(false);
+//}
 // pageAtleta.abreListaAtleta() {
 //
 // }
-//Inicializar Tabela + getLinhas
-$(document).ready(function () {
-    var table = $('#table-atletas').DataTable({
-        "language": {
-            "url": "../data/PT.json"
-        }
-        , "paging": true
-        , "ordering": true
-        , "info": true
-        , "searching": true
-        , select: true
-        , "columnDefs": [{
-            "data": null
-            , "targets": -1
-            , "defaultContent": '<a class="btm-floating waves-effect waves-light lightseagreen" id="btn-editar-atleta"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a class="btm-floating waves-effect waves-light lightseagreen" id="btn-excluir-atleta"><i class="material-icons"><i class="material-icons">remove_circle</i>'
-        }]
-    });
-});
-//function criarLinha(atleta) -- Funciona sem DataTable
-//{
-//      var html = '';
-//      html += '<tr id="linhas-atleta">';
-//      html += '<td hidden>'+tempAtleta.uid+'</td>';
-//      html += '<td>'+tempAtleta.nome+'</td>';
-//      html += '<td>'+tempAtleta.posicao+'</td>';
-//      html += '<td>'+tempAtleta.idade+'</td>';
-//      html += '<td>'+tempAtleta.clube+'</td>';
-//      html += '</tr>';
-//      $('#body-atleta').append(html);
-//}
+//Inicializar Tabela + getLinhas **Exclui o doc.ready do datatable e scriptsrc no dashboard.html
+//$(document).ready(function () {
+//    var table = $('#table-atletas').DataTable({
+//        "language": {
+//            "url": "../data/PT.json"
+//        }
+//        , "paging": true
+//        , "ordering": true
+//        , "info": true
+//        , "searching": true
+//        , select: true
+//        , "columnDefs": [{
+//            "data": null
+//            , "targets": -1
+//            , "defaultContent": '<a href=# class="btm-floating waves-effect waves-light lightseagreen" id="btn-editar-atleta"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a href=# class="btm-floating waves-effect waves-light lightseagreen" id="btn-excluir-atleta"><i class="material-icons"><i class="material-icons">remove_circle</i>'
+//        }]
+//    });
+//});
