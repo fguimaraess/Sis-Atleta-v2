@@ -30,6 +30,7 @@ var pageAtleta = {
     , uploader: document.querySelector('#uploader')
     , fileButton: document.querySelector('#fileButton')
     , btnCarregarFoto: document.querySelector('#btn-foto')
+    , btnEditarAtleta: document.querySelector('#btn-editar-atleta')
 }
 window.addEventListener('load', getAtletas);
 
@@ -58,19 +59,19 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
 });
 
 function salvarAlteracoes(tempAtleta) {
-    tempAtleta.nome = pageAtleta.editNomeField.value;
-    tempAtleta.sobrenome = pageAtleta.editSobrenomeField.value;
-    tempAtleta.posicao = pageAtleta.editPosicaoField.value;
-    tempAtleta.idade = pageAtleta.editIdadeField.value;
-    tempAtleta.categoria = pageAtleta.editCategoriaField.value;
-    tempAtleta.clube = pageAtleta.editClubeField.value;
-    tempAtleta.cidade = pageAtleta.editCidadeField.value;
-    tempAtleta.pais = pageAtleta.editPaisField.value;
-    tempAtleta.foto = file;
+    tempAtleta.nome = pageAtleta.nomeField.value;
+    tempAtleta.sobrenome = pageAtleta.sobrenomeField.value;
+    tempAtleta.posicao = pageAtleta.posicaoField.value;
+    tempAtleta.idade = pageAtleta.idadeField.value;
+    tempAtleta.categoria = pageAtleta.categoriaField.value;
+    tempAtleta.clube = pageAtleta.clubeField.value;
+    tempAtleta.cidade = pageAtleta.cidadeField.value;
+    tempAtleta.pais = pageAtleta.paisField.value;
+    //tempAtleta.foto = file;
     pageAtleta.database.ref(pageAtleta.databaseRef + '/' + tempAtleta.uid).update(tempAtleta);
 }
 
-function abreModal(idLinha) {
+function modalEdit(idLinha) {
     var atletas = [];
     pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (atletaRef) {
@@ -78,35 +79,28 @@ function abreModal(idLinha) {
             tempAtleta.uid = atletaRef.key;
             atletas.push(tempAtleta); //Cria um novo objeto na árvore Firebase
             if (idLinha == tempAtleta.uid) {
-                pageAtleta.editNomeField.value = tempAtleta.nome;
-                pageAtleta.editSobrenomeField.value = tempAtleta.sobrenome;
-                pageAtleta.editPosicaoField.value = tempAtleta.posicao;
-                pageAtleta.editIdadeField.value = tempAtleta.idade;
-                pageAtleta.editCategoriaField.value = tempAtleta.categoria;
-                pageAtleta.editClubeField.value = tempAtleta.clube;
-                pageAtleta.editCidadeField.value = tempAtleta.cidade;
-                pageAtleta.editPaisField.value = tempAtleta.pais;
-                pageAtleta.editFotoField.value = tempAtleta.foto;
+                pageAtleta.nomeField.value = tempAtleta.nome;
+                pageAtleta.sobrenomeField.value = tempAtleta.sobrenome;
+                pageAtleta.posicaoField.value = tempAtleta.posicao;
+                pageAtleta.idadeField.value = tempAtleta.idade;
+                pageAtleta.categoriaField.value = tempAtleta.categoria;
+                pageAtleta.clubeField.value = tempAtleta.clube;
+                pageAtleta.cidadeField.value = tempAtleta.cidade;
+                pageAtleta.paisField.value = tempAtleta.pais;
+                //pageAtleta.fotoField.value = tempAtleta.foto;
                 salvarAlteracoes(tempAtleta);
             }
         });
     });
 }
 
-//$(document).ready(function () {
-//
-//         document.querySelector('.jogador').addEventListener('click', function () {
-//        console.log(document.querySelector('.jogador'));
-//                     this.parent().parent().uid;
-//    });
-//    });
 
 //GetLinha + Criar Linha + GetAtletas
 function getLinha() {
     $('#table-atletas a').on('click', function(){
         var idLinha = $(this).closest('tr').attr('id');
         console.log(idLinha);
-        return idLinha;
+        modalEdit(idLinha);
     });
 }
 
@@ -119,7 +113,7 @@ function preencheTabela(tempAtleta) //Funciona sem DataTable
     html += '<td>' + tempAtleta.posicao + '</td>';
     html += '<td>' + tempAtleta.idade + '</td>';
     html += '<td>' + tempAtleta.clube + '</td>';
-    html += '<td><a href="#modal-addatleta" id="btn-editar-atleta"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a href="#" id="btn-excluir-atleta"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
+    html += '<td><a href="#modal-addatleta" class="jogador" id="btn-editar-atleta"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a href="#" id="btn-excluir-atleta"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
     html += '</tr>';
     $('#body-atleta').append(html);
 }
