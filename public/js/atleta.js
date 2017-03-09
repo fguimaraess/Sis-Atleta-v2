@@ -1,9 +1,11 @@
 var pageAtleta = {
+    atletas: [],
     database: firebase.database()
     , databaseRef: '/atletas/'
     , linhasAtleta: document.querySelector('#linhas-atleta'), //VER C LUIZ
     templateLinha: document.querySelector('#template-linha'), //VER C LUIZ
-    nomeField: document.querySelector('#nomeatleta-field')
+    nomeField: document.querySelector('#nomeatleta-field'),
+    idAtletaField: document.querySelector('#idAtleta')
     , sobrenomeField: document.querySelector('#sobrenomeatleta-field')
     , posicaoField: document.querySelector('#posicaoatleta-field')
     , idadeField: document.querySelector('#idadeatleta-field')
@@ -15,25 +17,52 @@ var pageAtleta = {
     , atletaBtn: document.querySelector('#salvar-atleta-btn')
     , divAtletas: document.querySelector('#view-atletas')
     , tableAtletas: document.querySelector('#table-atletas')
-    , modalEditBtn: document.querySelector('#modal-editatleta')
-    , editNomeField: document.querySelector('#edit-nomeatleta-field')
-    , editSobrenomeField: document.querySelector('#edit-sobrenomeatleta-field')
-    , editPosicaoField: document.querySelector('#edit-posicaoatleta-field')
-    , editIdadeField: document.querySelector('#edit-idadeatleta-field')
-    , editCategoriaField: document.querySelector('#edit-categoriaatleta-field')
-    , editClubeField: document.querySelector('#edit-clubeatleta-field')
-    , editCidadeField: document.querySelector('#edit-cidadeatleta-field')
-    , editPaisField: document.querySelector('#edit-paisatleta-field')
-    , editFotoField: document.querySelector('#edit-fotoatleta-field')
-    , editatletaBtn: document.querySelector('#edit-atleta-btn')
-    , salvarEdicaoBtn: document.querySelector('#editar-atleta-btn')
     , uploader: document.querySelector('#uploader')
     , fileButton: document.querySelector('#fileButton')
     , btnCarregarFoto: document.querySelector('#btn-foto')
     , btnEditarAtleta: document.querySelector('#btn-editar-atleta')
 }
+
+
+
+
+
+function getAtletas() {
+    pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {
+        snapshot.forEach(function (atletaRef) {
+            var tempAtleta = atletaRef.val();
+            tempAtleta.uid = atletaRef.key;
+            pageAtleta.atletas[atletaRef.key] = (tempAtleta);
+            preencheTabela(tempAtleta);
+        });
+    })
+}
+
+function novoAtleta(atleta) {
+  pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(swal("", "Atleta criado com sucesso", "success"));
+}
+
+function abreModalAtleta(idAtleta){
+  console.log();
+  atletaSel = pageAtleta.atletas[idAtleta]
+  pageAtleta.idAtletaField.value = atletaSel.uid;
+  pageAtleta.nomeField.value = atletaSel.nome;
+  pageAtleta.sobrenomeField.value = atletaSel.sobrenome;
+  pageAtleta.posicaoField.value = atletaSel.posicao;
+  pageAtleta.idadeField.value = atletaSel.idade;
+  pageAtleta.categoriaField.value;
+  pageAtleta.clubeField.value;
+  pageAtleta.cidadeField.value;
+  pageAtleta.paisField.value;
+  $('#modal-addatleta').modal('open');
+}
+
 window.addEventListener('load', getAtletas);
+
 pageAtleta.atletaBtn.addEventListener('click', criaAtleta);
+
+
+
 pageAtleta.tableAtletas.addEventListener('click', getLinha);
 //pageAtleta.editatletaBtn.addEventListener('click', abreModal);
 //pageAtleta.salvarEdicaoBtn.addEventListener('click', getLinha);
@@ -104,51 +133,23 @@ function getLinha() {
     });
 }
 
-function preencheTabela(tempAtleta) //Funciona sem DataTable
+function preencheTabela(tempAtleta)
 {
     var html = '';
     html += '<tr id="' + tempAtleta.uid + '">';
-    //html += '<td hidden>' + tempAtleta.uid + '</td>';
     html += '<td><a href="#">' + tempAtleta.nome + '</a></td>';
     html += '<td>' + tempAtleta.posicao + '</td>';
     html += '<td>' + tempAtleta.idade + '</td>';
     html += '<td>' + tempAtleta.clube + '</td>';
-    html += '<td><a href="#modal-addatleta" class="jogador" id="btn-editar-atleta"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a href="#" id="btn-excluir-atleta"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
+    html += '<td><a onclick="abreModalAtleta(\''+ tempAtleta.uid +'\')" href="#" class="editar-jogador"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a href="#" id="btn-excluir-atleta"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
     html += '</tr>';
     $('#body-atleta').append(html);
+
 }
 
-function getAtletas() {
-    atletas = [];
-    pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {
-        snapshot.forEach(function (atletaRef) {
-            var tempAtleta = atletaRef.val();
-            tempAtleta.uid = atletaRef.key;
-            atletas.push(tempAtleta);
-            preencheTabela(tempAtleta);
-        });
-    })
-}
-//Criar Atleta
-function novoAtleta(atleta) {
-    if (atleta.uid == "") {
-        pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(function () {
-            swal({
-                title: "Atleta cadastrado com sucesso!"
-                , text: "O atleta " + pageAtleta.nomeField.value + " foi adicionado."
-                , type: "success"
-                , timer: 50000
-                , showConfirmButton: true
-            }, function () {
-                window.location.reload()
-            });
-        }).catch(function (error) {
-            swal("Erro...", "O atleta " + pageAtleta.nomeField.value + " não foi adicionado.", "error");
-        });
-    } else {
-        salvarAlteracoes(atleta);
-    }
-}
+
+
+
 //OK
 function criaAtleta() {
     $('#modal-addatleta').modal('open');
@@ -189,38 +190,3 @@ function getAtletasByNome(mozao) {
 function excluirAtleta(atleta) {
     pageAtleta.database.ref('atletas/' + atleta.id).remove();
 }
-//Utilizando DataTable
-//function preencheTabelaAtletas(atleta) {
-//    var table = $(pageAtleta.tableAtletas).DataTable();
-//    table.row.add(
-//        [
-//            atleta.uid
-//            , atleta.nome
-//            , atleta.posicao
-//            , atleta.idade
-//            , atleta.clube
-//            , ""
-//        ]).draw();
-//    table.column(0).visible(false);
-//}
-// pageAtleta.abreListaAtleta() {
-//
-// }
-//Inicializar Tabela + getLinhas **Exclui o doc.ready do datatable e scriptsrc no dashboard.html
-//$(document).ready(function () {
-//    var table = $('#table-atletas').DataTable({
-//        "language": {
-//            "url": "../data/PT.json"
-//        }
-//        , "paging": true
-//        , "ordering": true
-//        , "info": true
-//        , "searching": true
-//        , select: true
-//        , "columnDefs": [{
-//            "data": null
-//            , "targets": -1
-//            , "defaultContent": '<a href=# class="btm-floating waves-effect waves-light lightseagreen" id="btn-editar-atleta"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a href=# class="btm-floating waves-effect waves-light lightseagreen" id="btn-excluir-atleta"><i class="material-icons"><i class="material-icons">remove_circle</i>'
-//        }]
-//    });
-//});
