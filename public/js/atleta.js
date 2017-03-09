@@ -85,7 +85,12 @@ function modalEdit(idLinha) {
                 pageAtleta.cidadeField.value = tempAtleta.cidade;
                 pageAtleta.paisField.value = tempAtleta.pais;
                 //pageAtleta.fotoField.value = tempAtleta.foto;
-                salvarAlteracoes(tempAtleta);
+                if (tempAtleta.uid == "") {
+                    novoAtleta(tempAtleta);
+                }
+                else {
+                    salvarAlteracoes(tempAtleta);
+                }
             }
         });
     });
@@ -126,19 +131,23 @@ function getAtletas() {
 }
 //Criar Atleta
 function novoAtleta(atleta) {
-    pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(function () {
-        swal({
-            title: "Atleta cadastrado com sucesso!"
-            , text: "O atleta " + pageAtleta.nomeField.value + " foi adicionado."
-            , type: "success"
-            , timer: 50000
-            , showConfirmButton: true
-        }, function () {
-            window.location.reload()
+    if (atleta.uid == "") {
+        pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(function () {
+            swal({
+                title: "Atleta cadastrado com sucesso!"
+                , text: "O atleta " + pageAtleta.nomeField.value + " foi adicionado."
+                , type: "success"
+                , timer: 50000
+                , showConfirmButton: true
+            }, function () {
+                window.location.reload()
+            });
+        }).catch(function (error) {
+            swal("Erro...", "O atleta " + pageAtleta.nomeField.value + " não foi adicionado.", "error");
         });
-    }).catch(function (error) {
-        swal("Erro...", "O atleta " + pageAtleta.nomeField.value + " não foi adicionado.", "error");
-    });
+    } else {
+        salvarAlteracoes(atleta);
+    }
 }
 //OK
 function criaAtleta() {
