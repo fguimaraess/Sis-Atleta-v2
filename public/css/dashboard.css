@@ -31,7 +31,3 @@ span.select-item{
 a#btn-editar-atleta, a#btn-excluir-atleta {
     color: lightseagreen;
 }
-
-.row-clicked{
-    background-color: gray;
-}

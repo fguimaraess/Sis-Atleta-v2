@@ -33,13 +33,10 @@ var pageAtleta = {
     , btnEditarAtleta: document.querySelector('#btn-editar-atleta')
 }
 window.addEventListener('load', getAtletas);
-
-
 pageAtleta.atletaBtn.addEventListener('click', criaAtleta);
 pageAtleta.tableAtletas.addEventListener('click', getLinha);
 //pageAtleta.editatletaBtn.addEventListener('click', abreModal);
 //pageAtleta.salvarEdicaoBtn.addEventListener('click', getLinha);
-
 pageAtleta.fileButton.addEventListener('change', function (e) {
     //Pega o arquivo
     var file = e.target.files[0];
@@ -93,11 +90,9 @@ function modalEdit(idLinha) {
         });
     });
 }
-
-
 //GetLinha + Criar Linha + GetAtletas
 function getLinha() {
-    $('#table-atletas a').on('click', function(){
+    $('#table-atletas a').on('click', function () {
         var idLinha = $(this).closest('tr').attr('id');
         console.log(idLinha);
         modalEdit(idLinha);
@@ -129,8 +124,6 @@ function getAtletas() {
         });
     })
 }
-
-
 //Criar Atleta
 function novoAtleta(atleta) {
     pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(function () {
@@ -159,7 +152,7 @@ function criaAtleta() {
             , clube: pageAtleta.clubeField.value
             , cidade: pageAtleta.cidadeField.value
             , pais: pageAtleta.paisField.value
-            , foto: pageAtleta.fotoField.value
+                //            , foto: pageAtleta.fotoField.value
         }
         //Obrigatoriedade dos campos
     if (atleta.nome == "" || atleta.sobrenome == "" || atleta.posicao == "" || atleta.idade == "" || atleta.categoria == "" || atleta.cidade == "" || atleta.pais == "") {
@@ -184,24 +177,9 @@ function getAtletasByNome(mozao) {
     });
 }
 
-function salvaAlteracoes(atleta) {
-    atleta.nome = pageAtleta.nomeField.textContent;
-    atleta.sobrenome = pageAtleta.sobrenomeField.textContent;
-    // .
-    // .
-    // .
-    editarAtleta(atleta);
-}
-
-function editarAtleta(atleta) {
-    pageAtleta.database.ref().update(atleta);
-}
-
 function excluirAtleta(atleta) {
     pageAtleta.database.ref('atletas/' + atleta.id).remove();
 }
-
-
 //Utilizando DataTable
 //function preencheTabelaAtletas(atleta) {
 //    var table = $(pageAtleta.tableAtletas).DataTable();

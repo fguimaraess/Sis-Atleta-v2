@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
+    <link rel="shortcut icon" href="img/favicon.ico" />
     <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
     <script src="js/firebase.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -23,19 +24,12 @@
     <!--Navbar-->
     <!-- <div class="row center-align navbar"> Sis-Atleta </div> -->
     <nav>
-      <div class="nav-wrapper teal lighten-2"><a href="#" class="brand-logo" >Sis-Atleta</a></div>
+        <div class="nav-wrapper teal lighten-2"><a href="#" class="brand-logo">Sis-Atleta</a></div>
     </nav>
     <!--Layout-->
     <div class="row" style="padding-top: 30px;">
         <div class="col s3 navigation">
-            <div class="collection">
-              <a href="#!" class="collection-item" id="dashboard-menu">Dashboard</a>
-              <a href="#!" class="collection-item active" id="atletas-menu">Atletas</a>
-              <a href="#!" class="collection-item" id="campeonatos-menu">Campeonatos</a>
-              <a href="#!" class="collection-item" id="clubes-menu">Clubes</a>
-              <a href="#!" class="collection-item" id="jogos-menu">Jogos</a>
-              <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a>
-           </div>
+            <div class="collection"> <a href="#!" class="collection-item" id="dashboard-menu">Dashboard</a> <a href="#!" class="collection-item active" id="atletas-menu">Atletas</a> <a href="#!" class="collection-item" id="campeonatos-menu">Campeonatos</a> <a href="#!" class="collection-item" id="clubes-menu">Clubes</a> <a href="#!" class="collection-item" id="jogos-menu">Jogos</a> <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a> </div>
         </div>
         <div class="col s9 content-page">
             <div class="">
@@ -51,16 +45,14 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="body-atleta">
-                        </tbody>
+                        <tbody id="body-atleta"> </tbody>
                     </table>
                     <p>
-                       <div class="right-align">
-                        <!-- Botão de Edição ao lado do Add
-                         <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editatleta"><i class="material-icons">mode_edit</i></a>--> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a> </div>
+                        <div class="right-align">
+                            <!-- Botão de Edição ao lado do Add
+                         <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editatleta"><i class="material-icons">mode_edit</i></a>--><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addatleta"><i class="material-icons">add</i></a> </div>
                         <!--MODAL ADICIONAR ATLETA-->
                         <div id="modal-addatleta" class="modal">
-                           
                             <div class="modal-content">
                                 <h4>Adicionar Novo Atleta</h4>
                                 <p>Preencha os campos abaixo</p>
@@ -204,95 +196,94 @@
                             </form>
                         </div>
                         <div class="modal-footer"> <a href="#!" id="editar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-editatleta-btn">Fechar</a></div>
-                    </div> -->
-                </div>
-                <!-- DIV DE CLUBES -->
-                <div class="view-clubes" hidden>
-                    <!-- tabela com os clubes e tals -->
-                    <table class="display" id="table-clubes">
-                        <thead>
-                            <tr>
-                                <th data-field="id" hidden>Id</th>
-                                <th data-field="nome-clube">Nome</th>
-                                <th data-field="sigla-clube">Sigla</th>
-                                <th data-field="atletas-clube">Atletas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td hidden>12345</td>
-                                <td>Improvável F.C</td>
-                                <td>IMP</td>
-                                <td><a href="#modal-veratletas">Ver Atletas</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- Modal Ver Atletas -->
-                    <div id="modal-veratletas" class="modal">
-                        <div class="modal-content">
-                            <h4>Atletas do Clube</h4>
-                            <p>Lista de Atletas</p>
-                            <!-- GetAtletasByClube -->
-                            <table class="bordered responsive-table">
-                                <thead>
-                                    <tr>
-                                        <th data-field="id" hidden>Id</th>
-                                        <th data-field="nome-atleta">Nome</th>
-                                        <th data-field="idade-atleta">Idade</th>
-                                        <th data-field="posicao-atleta">Posição</th>
-                                        <th data-field="categoria-atleta">Categoria</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td hidden>0001</td>
-                                        <td>Felipe</td>
-                                        <td>24</td>
-                                        <td>Meio-Campo</td>
-                                        <td>Profissional</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
+                    </div> --></div>
+            <!-- DIV DE CLUBES -->
+            <div class="view-clubes" hidden>
+                <!-- tabela com os clubes e tals -->
+                <table class="display" id="table-clubes">
+                    <thead>
+                        <tr>
+                            <th data-field="id" hidden>Id</th>
+                            <th data-field="nome-clube">Nome</th>
+                            <th data-field="sigla-clube">Sigla</th>
+                            <th data-field="atletas-clube">Atletas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td hidden>12345</td>
+                            <td>Improvável F.C</td>
+                            <td>IMP</td>
+                            <td><a href="#modal-veratletas">Ver Atletas</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Modal Ver Atletas -->
+                <div id="modal-veratletas" class="modal">
+                    <div class="modal-content">
+                        <h4>Atletas do Clube</h4>
+                        <p>Lista de Atletas</p>
+                        <!-- GetAtletasByClube -->
+                        <table class="bordered responsive-table">
+                            <thead>
+                                <tr>
+                                    <th data-field="id" hidden>Id</th>
+                                    <th data-field="nome-atleta">Nome</th>
+                                    <th data-field="idade-atleta">Idade</th>
+                                    <th data-field="posicao-atleta">Posição</th>
+                                    <th data-field="categoria-atleta">Categoria</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td hidden>0001</td>
+                                    <td>Felipe</td>
+                                    <td>24</td>
+                                    <td>Meio-Campo</td>
+                                    <td>Profissional</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <p>
-                        <div class="right-align"> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
-                        <!-- Modal Add Clube-->
-                        <div id="modal-addclube" class="modal">
-                            <div class="modal-content">
-                                <h4>Adicionar Clube</h4>
-                                <p>Preencha os campos abaixo</p>
-                                <div class="row">
-                                    <form class="col s12">
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" id="nome-clube-field" class="validate">
-                                                <label for="nome-clube-field">Nome *</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" id="sigla-clube-field" class="validate">
-                                                <label for="sigla-clube-field">Sigla *</label>
-                                            </div>
+                    <div class="modal-footer"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
+                </div>
+                <p>
+                    <div class="right-align"> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
+                    <!-- Modal Add Clube-->
+                    <div id="modal-addclube" class="modal">
+                        <div class="modal-content">
+                            <h4>Adicionar Clube</h4>
+                            <p>Preencha os campos abaixo</p>
+                            <div class="row">
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input type="text" id="nome-clube-field" class="validate">
+                                            <label for="nome-clube-field">Nome *</label>
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="input-field col s6">
+                                            <input type="text" id="sigla-clube-field" class="validate">
+                                            <label for="sigla-clube-field">Sigla *</label>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                         </div>
-                </div>
-                <div class="view-jogos" hidden>Jogos
-                    <table class="bordered responsive-table" id="table-jogos">
-                        <thead>
-                            <tr>
-                                <th data-field="name">Name</th>
-                            </tr>
-                        </thead>
-                    </table>
-                    <!-- Outra tabela boladona -->
-                </div>
+                        <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
+                    </div>
+            </div>
+            <div class="view-jogos" hidden>Jogos
+                <table class="bordered responsive-table" id="table-jogos">
+                    <thead>
+                        <tr>
+                            <th data-field="name">Name</th>
+                        </tr>
+                    </thead>
+                </table>
+                <!-- Outra tabela boladona -->
             </div>
         </div>
+    </div>
     </div>
     <footer>
         <script src="js/atleta.js" charset="utf-8"></script>
