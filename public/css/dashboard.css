@@ -28,6 +28,6 @@ span.select-item{
     display: none !important;
 }
 
-a#btn-editar-atleta, a#btn-excluir-atleta {
+a.editar-jogador, a.excluir-jogador {
     color: lightseagreen;
 }
