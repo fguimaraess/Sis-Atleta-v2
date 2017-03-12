@@ -29,11 +29,14 @@
     <!--Layout-->
     <div class="row" style="padding-top: 30px;">
         <div class="col s3 navigation">
-            <div class="collection"> <a href="#!" class="collection-item" id="dashboard-menu">Dashboard</a> <a href="#!" class="collection-item active" id="atletas-menu">Atletas</a> <a href="#!" class="collection-item" id="campeonatos-menu">Campeonatos</a> <a href="#!" class="collection-item" id="clubes-menu">Clubes</a> <a href="#!" class="collection-item" id="jogos-menu">Jogos</a> <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a> </div>
+            <div class="collection"> <a href="#!" class="collection-item active" id="dashboard-menu">Dashboard</a> <a href="#!" class="collection-item" id="atletas-menu">Atletas</a> <a href="#!" class="collection-item" id="campeonatos-menu">Campeonatos</a> <a href="#!" class="collection-item" id="clubes-menu">Clubes</a> <a href="#!" class="collection-item" id="jogos-menu">Jogos</a> <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a> </div>
         </div>
         <div class="col s9 content-page">
+          <div class="dash">
+           Seja bem vindo ao Sis-Atleta.
+           Um sistema feito para analistas de desempenho com o pensamento de facilitar o seu trabalho.</div>
             <div class="">
-                <div class="view-atletas">
+                <div class="view-atletas" hidden>
                     <table class="display" id="table-atletas">
                         <thead>
                             <tr id="template-linha">
@@ -199,7 +202,7 @@
                         <div class="modal-footer"> <a href="#!" id="editar-atleta-btn" class=" modal-action waves-green waves-effect btn-flat">Salvar</a> <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="fechar-editatleta-btn">Fechar</a></div>
                     </div> --></div>
             <!-- DIV DE CLUBES -->
-            <div class="view-clubes" hidden>
+            <div class="view-clubes" style="display:none">
                 <!-- tabela com os clubes e tals -->
                 <table class="display" id="table-clubes">
                     <thead>

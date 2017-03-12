@@ -26,3 +26,22 @@ $(document).ready(function () {
 $(document).ready(function () {
     Materialize.updateTextFields();
 });
+
+$(document).ready(function () {
+   $(pageBtn.atletasSideBtn).click(function(){
+   $('.view-atletas').toggle();
+   $('.view-clubes').hide();
+       $('.dash').hide();
+});
+});
+
+$(document).ready(function () {
+  $(pageBtn.clubesSideBtn).click(function(){
+   $('.view-clubes').toggle();
+      $('.view-atletas').hide();
+      $('.dash').hide();
+});
+});
+
+
+
