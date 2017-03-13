@@ -109,7 +109,7 @@ function salvarAlteracoes(tempAtleta) {
     tempAtleta.pais = pageAtleta.paisField.value;
     //tempAtleta.foto = file;
     pageAtleta.database.ref(pageAtleta.databaseRef + '/' + tempAtleta.uid).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
-    preencheTabela2(tempAtleta);
+    preencheTabela(tempAtleta);
 }
 
 function novoAtleta(atleta) {

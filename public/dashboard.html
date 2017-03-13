@@ -33,7 +33,6 @@
         </div>
         <div class="col s9 content-page">
           <div class="dash"><p>
-                                                                    
              Sis-Atleta é um software esportivo, usado nas sessões de treinamento, análise de desempenho e estudos táticos. De forma simples, você pode incluir os dados dos atletas para que seja feita uma análise completa. O sistema possui uma interface intuitiva e amigável, fazendo com que o uso seja de fácil aprendizado, prático e eficiente.&nbsp;
             <ul>
                 <li>- Acesse em qualquer lugar;</li>
@@ -213,21 +212,21 @@
                 <!-- tabela com os clubes e tals -->
                 <table class="display" id="table-clubes">
                     <thead>
-                        <tr>
+                        <tr id="template-linha-clube">
                             <th data-field="id" hidden>Id</th>
                             <th data-field="nome-clube">Nome</th>
                             <th data-field="sigla-clube">Sigla</th>
                             <th data-field="atletas-clube">Atletas</th>
+                            <th data-field="atletas-acoes">Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody id="body-clube"> </tbody>
+                        <!--<tr>
                             <td hidden>12345</td>
                             <td>Improvável F.C</td>
                             <td>IMP</td>
                             <td><a href="#modal-veratletas">Ver Atletas</a></td>
-                        </tr>
-                    </tbody>
+                        </tr>-->
                 </table>
                 <!-- Modal Ver Atletas -->
                 <div id="modal-veratletas" class="modal">
@@ -245,24 +244,26 @@
                                     <th data-field="categoria-atleta">Categoria</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="body-atletas-clube"> </tbody>
+                               <!-- <tr>
                                     <td hidden>0001</td>
                                     <td>Felipe</td>
                                     <td>24</td>
                                     <td>Meio-Campo</td>
                                     <td>Profissional</td>
                                 </tr>
-                            </tbody>
+                            </tbody>-->
                         </table>
                     </div>
                     <div class="modal-footer"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                 </div>
                 <p>
-                    <div class="right-align"> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
+                    <div class="right-align"> <!--<a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> -->
+                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
                     <!-- Modal Add Clube-->
                     <div id="modal-addclube" class="modal">
                         <div class="modal-content">
+                           <div id="idClube" hidden>ID</div>
                             <h4>Adicionar Clube</h4>
                             <p>Preencha os campos abaixo</p>
                             <div class="row">
