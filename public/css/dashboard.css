@@ -31,3 +31,22 @@ span.select-item{
 a.editar-jogador, a.excluir-jogador {
     color: lightseagreen;
 }
+
+.dash {
+    text-align: justify;
+    padding-left: 0.8em;
+    font-family: "Lucida Sans Unicode";
+    font-size: 11pt;
+    line-height: 18pt;
+    color: #000000;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}

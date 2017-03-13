@@ -1,4 +1,5 @@
 var pageBtn = {
+    dashboardSideBtn: document.querySelector('#dashboard-menu'),
     atletasSideBtn: document.querySelector('#atletas-menu')
     , clubesSideBtn: document.querySelector('#clubes-menu')
     , relatoriosSideBtn: document.querySelector('#relatorios-menu')
@@ -26,22 +27,24 @@ $(document).ready(function () {
 $(document).ready(function () {
     Materialize.updateTextFields();
 });
-
 $(document).ready(function () {
-   $(pageBtn.atletasSideBtn).click(function(){
-   $('.view-atletas').toggle();
-   $('.view-clubes').hide();
-       $('.dash').hide();
+    $(pageBtn.dashboardSideBtn).click(function () {
+        $('.dash').toggle();
+        $('.view-atletas').hide();
+        $('.view-clubes').hide();
+    });
 });
-});
-
 $(document).ready(function () {
-  $(pageBtn.clubesSideBtn).click(function(){
-   $('.view-clubes').toggle();
-      $('.view-atletas').hide();
-      $('.dash').hide();
+    $(pageBtn.atletasSideBtn).click(function () {
+        $('.view-atletas').toggle();
+        $('.view-clubes').hide();
+        $('.dash').hide();
+    });
 });
+$(document).ready(function () {
+    $(pageBtn.clubesSideBtn).click(function () {
+        $('.view-clubes').toggle();
+        $('.view-atletas').hide();
+        $('.dash').hide();
+    });
 });
-
-
-
