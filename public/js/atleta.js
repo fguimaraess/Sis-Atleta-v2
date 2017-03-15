@@ -137,7 +137,7 @@ function getAtletas() {
 function preencheTabela(tempAtleta) {
     var html = '';
     html += '<tr id="' + tempAtleta.uid + '">';
-    html += '<td><a href="#">' + tempAtleta.nome + '</a></td>';
+    html += '<td>' + tempAtleta.nome + '</a></td>';
     html += '<td>' + tempAtleta.posicao + '</td>';
     html += '<td>' + tempAtleta.idade + '</td>';
     html += '<td>' + tempAtleta.clube + '</td>';

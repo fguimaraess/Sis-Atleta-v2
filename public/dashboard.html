@@ -32,15 +32,15 @@
             <div class="collection"> <a href="#!" class="collection-item active" id="dashboard-menu">Dashboard</a> <a href="#!" class="collection-item" id="atletas-menu">Atletas</a> <a href="#!" class="collection-item" id="clubes-menu">Clubes</a> <a href="#!" class="collection-item" id="jogos-menu">Jogos</a> <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a> </div>
         </div>
         <div class="col s9 content-page">
-          <div class="dash"><p>
-             Sis-Atleta é um software esportivo, usado nas sessões de treinamento, análise de desempenho e estudos táticos. De forma simples, você pode incluir os dados dos atletas para que seja feita uma análise completa. O sistema possui uma interface intuitiva e amigável, fazendo com que o uso seja de fácil aprendizado, prático e eficiente.&nbsp;
-            <ul>
-                <li>- Acesse em qualquer lugar;</li>
-                <li>- Fácil de usar;</li>
-                <li>- Melhore a sua comunicação com os atletas e membros da comissão técnica;</li>
-                <li>- Ideal para uso em palestras, aulas e treinamentos;</li>
-            </ul>
-           </div>
+            <div class="dash">
+                <p> Sis-Atleta é um software esportivo, usado nas sessões de treinamento, análise de desempenho e estudos táticos. De forma simples, você pode incluir os dados dos atletas para que seja feita uma análise completa. O sistema possui uma interface intuitiva e amigável, fazendo com que o uso seja de fácil aprendizado, prático e eficiente.&nbsp;
+                    <ul>
+                        <li>- Acesse em qualquer lugar;</li>
+                        <li>- Fácil de usar;</li>
+                        <li>- Melhore a sua comunicação com os atletas e membros da comissão técnica;</li>
+                        <li>- Ideal para uso em palestras, aulas e treinamentos;</li>
+                    </ul>
+            </div>
             <div class="">
                 <div class="view-atletas" hidden>
                     <table class="display" id="table-atletas">
@@ -83,23 +83,22 @@
                                             <div class="input-field col s6">
                                                 <!--<input type="text" id="posicaoatleta-field" class="validate" placeholder="">-->
                                                 <select id="posicaoatleta-field" class="material-select">
-                                                    <option value= "0">-</option>
-                                                    <option value= "Goleiro">Goleiro</option>
-                                                    <option value= "Lateral Direito">Lateral Direito</option>
-                                                    <option value= "Zagueiro">Zagueiro</option>
-                                                    <option value= "Líbero">Líbero</option>
-                                                    <option value= "Lateral Esquerdo">Lateral Esquerdo</option>
-                                                    <option value= "Volante">Volante</option>
-                                                    <option value= "Meia Direita">Meia Direita</option>
-                                                    <option value= "Meia Ofensivo">Meia Ofensivo</option>
-                                                    <option value= "Meia Central">Meia Central</option>
-                                                    <option value= "Meia Esquerda">Meia Esquerda</option>
-                                                    <option value= "Ponta Direita">Ponta Direita</option>
-                                                    <option value= "Centroavante">Centroavante</option>
-                                                    <option value= "Ponta Esquerda">Ponta Esquerda</option>
+                                                    <option value="0">-</option>
+                                                    <option value="Goleiro">Goleiro</option>
+                                                    <option value="Lateral Direito">Lateral Direito</option>
+                                                    <option value="Zagueiro">Zagueiro</option>
+                                                    <option value="Líbero">Líbero</option>
+                                                    <option value="Lateral Esquerdo">Lateral Esquerdo</option>
+                                                    <option value="Volante">Volante</option>
+                                                    <option value="Meia Direita">Meia Direita</option>
+                                                    <option value="Meia Ofensivo">Meia Ofensivo</option>
+                                                    <option value="Meia Central">Meia Central</option>
+                                                    <option value="Meia Esquerda">Meia Esquerda</option>
+                                                    <option value="Ponta Direita">Ponta Direita</option>
+                                                    <option value="Centroavante">Centroavante</option>
+                                                    <option value="Ponta Esquerda">Ponta Esquerda</option>
                                                 </select>
                                                 <label for="posicaoatleta-field">Posição *</label>
-                                                
                                             </div>
                                             <div class="input-field col s6">
                                                 <input type="text" id="idadeatleta-field" class="validate" placeholder="">
@@ -238,7 +237,7 @@
                         </tr>
                     </thead>
                     <tbody id="body-clube"> </tbody>
-                        <!--<tr>
+                    <!--<tr>
                             <td hidden>12345</td>
                             <td>Improvável F.C</td>
                             <td>IMP</td>
@@ -262,7 +261,7 @@
                                 </tr>
                             </thead>
                             <tbody id="body-atletas-clube"> </tbody>
-                               <!-- <tr>
+                            <!-- <tr>
                                     <td hidden>0001</td>
                                     <td>Felipe</td>
                                     <td>24</td>
@@ -275,12 +274,12 @@
                     <div class="modal-footer"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                 </div>
                 <p>
-                    <div class="right-align"> <!--<a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> -->
-                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube" id="addClubeBtn"><i class="material-icons">add</i></a></div>
+                    <div class="right-align">
+                        <!--<a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> --><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube" id="addClubeBtn"><i class="material-icons">add</i></a></div>
                     <!-- Modal Add Clube-->
                     <div id="modal-addclube" class="modal">
                         <div class="modal-content">
-                           <div id="idClube" hidden>ID</div>
+                            <div id="idClube" hidden>ID</div>
                             <h4>Adicionar Clube</h4>
                             <p>Preencha os campos abaixo</p>
                             <div class="row">

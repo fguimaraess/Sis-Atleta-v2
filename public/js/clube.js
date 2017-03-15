@@ -29,7 +29,6 @@ function abreModalClube(idClube) {
 pageClube.addClubeBtn.addEventListener('click', function () {
     abreModalClube(null);
 })
-
 pageClube.clubeBtn.addEventListener('click', function () {
     var tempClube = {
         nomeclube: pageClube.nomeClubeField.value
@@ -58,8 +57,8 @@ function salvarAlteracoesClube(tempClube) {
 
 function novoClube(clube) {
     pageClube.database.ref(pageClube.databaseRef).push(clube).then(swal("", "Clube criado com sucesso", "success"));
-        preencheTabelaClube(clube);
-    }
+    preencheTabelaClube(clube);
+}
 
 function excluirClube(idClube) {
     pageClube.database.ref(pageClube.databaseRef + idClube).remove().then(swal("", "Clube removido com sucesso", "success"));
@@ -68,7 +67,7 @@ function excluirClube(idClube) {
 function preencheTabelaClube(tempClube) {
     var html = '';
     html += '<tr id="' + tempClube.uid + '">';
-    html += '<td><a href="#">' + tempClube.nomeclube + '</a></td>';
+    html += '<td>' + tempClube.nomeclube + '</a></td>';
     html += '<td>' + tempClube.siglaclube + '</td>';
     html += '<td><a onclick="getAtletasByClube(\'' + tempClube.uid + '\')" href="#" class=ver-atletas>Ver Atletas</a></td>';
     html += '<td><a onclick="abreModalClube(\'' + tempClube.uid + '\')" href="#" class="editar-clube"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a onclick="excluirClube(\'' + tempClube.uid + '\' )" href="#" class="excluir-clube"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
