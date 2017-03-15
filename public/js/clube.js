@@ -26,6 +26,7 @@ function abreModalClube(idClube) {
     }
     $('#modal-addclube').modal('open');
 }
+
 pageClube.addClubeBtn.addEventListener('click', function () {
     abreModalClube(null);
 })

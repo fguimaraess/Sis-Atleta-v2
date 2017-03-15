@@ -1,9 +1,27 @@
 var pageBtn = {
-    dashboardSideBtn: document.querySelector('#dashboard-menu'),
-    atletasSideBtn: document.querySelector('#atletas-menu')
+    dashboardSideBtn: document.querySelector('#dashboard-menu')
+    , atletasSideBtn: document.querySelector('#atletas-menu')
     , clubesSideBtn: document.querySelector('#clubes-menu')
     , relatoriosSideBtn: document.querySelector('#relatorios-menu')
+    , logoutBtn: document.querySelector('#btn-logout')
 }
+pageBtn.logoutBtn.addEventListener('click', function () {
+    swal({
+        title: "Deseja sair?"
+        , type: "warning"
+        , showCancelButton: true
+        , cancelButtonText: "Cancelar"
+        , confirmButtonText: "Sim, desejo sair"
+        , closeOnConfirm: false
+    }, function () {
+        swal("", "Logout efetuado com sucesso", "success");
+        firebase.auth().signOut().then(function () {
+            window.location = "/index.html";
+        }, function (error) {
+            alert(error);
+        });
+    });
+})
 pageBtn.relatoriosSideBtn.addEventListener('click', function () {
     swal("Ops...", "Menu de Relatórios em desenvolvimento");
 })
@@ -17,6 +35,7 @@ $(document).ready(function () {
         $('#view-clubes').toggle();
     });
 });
+$(".dropdown-button").dropdown();
 $(document).ready(function () {
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();

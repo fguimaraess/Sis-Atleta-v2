@@ -10,6 +10,10 @@ body {
     font-size: 20px;
 }
 
+nav .brand-logo {
+    padding-left: 2%;
+}
+
 a.btn-floating {
     align-content: center !important;
     align-self: center !important;

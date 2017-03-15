@@ -10,10 +10,9 @@ var page = {
 page.loginBtn.addEventListener('click', function () {
     var user = firebase.auth().signInWithEmailAndPassword(page.emailField.value, page.passwordField.value).then(function () {
         swal({
-            title: "Acesso liberado!"
+            title: "Sis-Atleta"
             , text: "Você será direcionado para a página principal"
             , type: "success"
-            , timer: 50000
             , showConfirmButton: true
         }, function () {
             window.location = "/dashboard.html";
