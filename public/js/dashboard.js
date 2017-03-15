@@ -22,7 +22,8 @@ $(document).ready(function () {
     $('.modal').modal();
 });
 $(document).ready(function () {
-    $('select').material_select();
+    $('#posicaoatleta-field').material_select();
+    $('#categoriaatleta-field').material_select();
 });
 $(document).ready(function () {
     Materialize.updateTextFields();

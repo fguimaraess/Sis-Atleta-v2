@@ -83,7 +83,7 @@
                                             <div class="input-field col s6">
                                                 <!--<input type="text" id="posicaoatleta-field" class="validate" placeholder="">-->
                                                 <select id="posicaoatleta-field" class="material-select">
-                                                    <option value= "0" selected>-</option>
+                                                    <option value= "0">-</option>
                                                     <option value= "Goleiro">Goleiro</option>
                                                     <option value= "Lateral Direito">Lateral Direito</option>
                                                     <option value= "Zagueiro">Zagueiro</option>
@@ -109,7 +109,7 @@
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <select id="categoriaatleta-field" class="material-select">
-                                                    <option value="0" selected>-</option>
+                                                    <option value="0">-</option>
                                                     <option value="Chupetinha">Chupetinha</option>
                                                     <option value="Fraldinha">Fraldinha</option>
                                                     <option value="Pré-Mirim">Pré-Mirim</option>
@@ -276,7 +276,7 @@
                 </div>
                 <p>
                     <div class="right-align"> <!--<a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> -->
-                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube"><i class="material-icons">add</i></a></div>
+                    <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-addclube" id="addClubeBtn"><i class="material-icons">add</i></a></div>
                     <!-- Modal Add Clube-->
                     <div id="modal-addclube" class="modal">
                         <div class="modal-content">
@@ -287,12 +287,12 @@
                                 <form class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input type="text" id="nome-clube-field" class="validate">
-                                            <label for="nome-clube-field">Nome *</label>
+                                            <input type="text" id="nome-clube-field" class="validate" placeholder="">
+                                            <label class="active" for="nome-clube-field">Nome *</label>
                                         </div>
                                         <div class="input-field col s6">
-                                            <input type="text" id="sigla-clube-field" class="validate">
-                                            <label for="sigla-clube-field">Sigla *</label>
+                                            <input type="text" id="sigla-clube-field" class="validate" placeholder="">
+                                            <label class="active" for="sigla-clube-field">Sigla *</label>
                                         </div>
                                     </div>
                                 </form>

@@ -145,8 +145,6 @@ function preencheTabela(tempAtleta) {
     html += '</tr>';
     $('#body-atleta').append(html);
 }
-
-
 //OK
 function getAtletasByNome(mozao) {
     var atletas = [];
