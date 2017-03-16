@@ -98,7 +98,7 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
 });
 
 function salvarAlteracoes(tempAtleta) {
-    tempAtleta.uid = pageAtleta.idAtletaField.value;
+    //tempAtleta.uid = pageAtleta.idAtletaField.value;
     tempAtleta.nome = pageAtleta.nomeField.value;
     tempAtleta.sobrenome = pageAtleta.sobrenomeField.value;
     tempAtleta.posicao = pageAtleta.posicaoField.value;
@@ -108,7 +108,7 @@ function salvarAlteracoes(tempAtleta) {
     tempAtleta.cidade = pageAtleta.cidadeField.value;
     tempAtleta.pais = pageAtleta.paisField.value;
     //tempAtleta.foto = file;
-    pageAtleta.database.ref(pageAtleta.databaseRef + '/' + tempAtleta.uid).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
+    pageAtleta.database.ref(pageAtleta.databaseRef + '/' + pageAtleta.idAtletaField.value).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
     preencheTabela(tempAtleta);
 }
 
@@ -137,7 +137,7 @@ function getAtletas() {
 function preencheTabela(tempAtleta) {
     var html = '';
     html += '<tr id="' + tempAtleta.uid + '">';
-    html += '<td>' + tempAtleta.nome + '</a></td>';
+    html += '<td>' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
     html += '<td>' + tempAtleta.posicao + '</td>';
     html += '<td>' + tempAtleta.idade + '</td>';
     html += '<td>' + tempAtleta.clube + '</td>';

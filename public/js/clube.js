@@ -49,10 +49,10 @@ pageClube.clubeBtn.addEventListener('click', function () {
 })
 
 function salvarAlteracoesClube(tempClube) {
-    tempClube.uid = pageClube.idClubeField.value;
+    //tempClube.uid = pageClube.idClubeField.value; --Não salvar o UID no banco
     tempClube.nomeclube = pageClube.nomeClubeField.value;
     tempClube.siglaclube = pageClube.siglaClubeField.value;
-    pageClube.database.ref(pageClube.databaseRef + '/' + tempClube.uid).update(tempClube).then(swal("", "Clube atualizado com sucesso", "success"));
+    pageClube.database.ref(pageClube.databaseRef + '/' + pageClube.idClubeField.value).update(tempClube).then(swal("", "Clube atualizado com sucesso", "success"));
     preencheTabelaClube(tempClube);
 }
 
