@@ -25,26 +25,13 @@ var pageAtleta = {
     , idAtletasLista: []
 }
 
-function setSelectedIndex(id, valsearch)
-{
-    for (i=o; i<id.options.length; i++)
-        {
-            if (id.options[i].value == valsearch)
-                {
-                    id.options[i].selected = true;
-                }
-        }
-    return;
-}
-
 function abreModalAtleta(idAtleta) {
     if (idAtleta) {
         atletaSel = pageAtleta.atletas[idAtleta]
         pageAtleta.idAtletaField.value = atletaSel.uid;
         pageAtleta.nomeField.value = atletaSel.nome;
         pageAtleta.sobrenomeField.value = atletaSel.sobrenome;
-        pageAtleta.posicaoField.value = setSelectedIndex('#posicaoatleta-field', atletaSel.posicao);
-        //pageAtleta.posicaoField.value = atletaSel.posicao;
+        pageAtleta.posicaoField.value = atletaSel.posicao;
         pageAtleta.idadeField.value = atletaSel.idade;
         pageAtleta.categoriaField.value = atletaSel.categoria;
         pageAtleta.clubeField.value = atletaSel.clube;
