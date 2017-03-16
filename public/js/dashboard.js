@@ -5,6 +5,14 @@ var pageBtn = {
     , relatoriosSideBtn: document.querySelector('#relatorios-menu')
     , logoutBtn: document.querySelector('#btn-logout')
 }
+
+window.addEventListener('load', function () {
+    var user = firebase.auth().currentUser;
+    if (!user) {
+        window.location.replace('/index.html');
+    }
+});
+
 pageBtn.logoutBtn.addEventListener('click', function () {
     swal({
         title: "Deseja sair?"
