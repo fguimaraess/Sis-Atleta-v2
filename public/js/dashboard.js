@@ -8,9 +8,12 @@ var pageBtn = {
 
 window.addEventListener('load', function () {
     var user = firebase.auth().currentUser;
-    if (!user) {
-        window.location.replace('/index.html');
-    }
+    firebase.auth().onAuthStateChanged(function(user) {
+    //user.reauthenticate(credential).then(function(){
+        if (!user) {
+        window.location = '/index.html';
+    }    
+});
 });
 
 pageBtn.logoutBtn.addEventListener('click', function () {
@@ -22,14 +25,15 @@ pageBtn.logoutBtn.addEventListener('click', function () {
         , confirmButtonText: "Sim, desejo sair"
         , closeOnConfirm: false
     }, function () {
-        swal("", "Logout efetuado com sucesso", "success");
+        //swal("", "Logout efetuado com sucesso", "success");
         firebase.auth().signOut().then(function () {
             window.location = "/index.html";
         }, function (error) {
             alert(error);
         });
     });
-})
+});
+    
 pageBtn.relatoriosSideBtn.addEventListener('click', function () {
     swal("Ops...", "Menu de Relatórios em desenvolvimento");
 })

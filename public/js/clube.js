@@ -63,6 +63,7 @@ function novoClube(clube) {
 
 function excluirClube(idClube) {
     pageClube.database.ref(pageClube.databaseRef + idClube).remove().then(swal("", "Clube removido com sucesso", "success"));
+    preencheTabelaClube();
 }
 
 function preencheTabelaClube(tempClube) {
@@ -89,7 +90,7 @@ function getClubes() {
 
 function getAtletasByClube(idClube) {
     $('#modal-veratletas').modal('open');
-    var atletas = [];
+    var validador = false;
     pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (clubeRef) {
             var tempClube = clubeRef.val();
@@ -99,7 +100,6 @@ function getAtletasByClube(idClube) {
                 pageClube.database.ref(pageClube.databaseAtletas).once('value').then(function (snapshot) {
                     snapshot.forEach(function (atletaRef) {
                         var tempAtletaClube = atletaRef.val();
-                        //pageClube.atletas[atletaRef] = tempAtletaClube;
                         if (tempClube.nomeclube == tempAtletaClube.clube) {
                             html = '';
                             html += '<tr id="' + tempAtletaClube.uid + '">';

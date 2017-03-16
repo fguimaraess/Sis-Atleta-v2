@@ -5,7 +5,8 @@ var page = {
     , resetEmailField: document.querySelector('#resetemail-field')
     , emailField: document.querySelector('#email-field')
     , passwordField: document.querySelector('#password-field')
-    , database: firebase.database()
+    , database: firebase.database(),
+    userLogado: null
 }
 page.loginBtn.addEventListener('click', function () {
     var user = firebase.auth().signInWithEmailAndPassword(page.emailField.value, page.passwordField.value).then(function () {
@@ -15,7 +16,14 @@ page.loginBtn.addEventListener('click', function () {
             , type: "success"
             , showConfirmButton: true
         }, function () {
-            window.location = "/dashboard.html";
+            firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+               window.location = "/dashboard.html";
+             } else {
+               window.location = "/index.html";
+             }
+}           );
+            
         });
     }).catch(function (error) {
         // Handle Errors here.
