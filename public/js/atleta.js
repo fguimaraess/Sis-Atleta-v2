@@ -31,9 +31,11 @@ function abreModalAtleta(idAtleta) {
         pageAtleta.idAtletaField.value = atletaSel.uid;
         pageAtleta.nomeField.value = atletaSel.nome;
         pageAtleta.sobrenomeField.value = atletaSel.sobrenome;
-        pageAtleta.posicaoField.value = atletaSel.posicao;
+        $(pageAtleta.posicaoField).val(atletaSel.posicao);
+        $(pageAtleta.posicaoField).material_select();
         pageAtleta.idadeField.value = atletaSel.idade;
-        pageAtleta.categoriaField.value = atletaSel.categoria;
+        $(pageAtleta.categoriaField).val(atletaSel.categoria);
+        $(pageAtleta.categoriaField).material_select();
         pageAtleta.clubeField.value = atletaSel.clube;
         pageAtleta.cidadeField.value = atletaSel.cidade;
         pageAtleta.paisField.value = atletaSel.pais;
@@ -70,7 +72,7 @@ pageAtleta.atletaBtn.addEventListener('click', function () {
     }
     else {
         if (pageAtleta.idAtletaField.value) {
-            salvarAlteracoes(tempAtleta)
+            salvarAlteracoes(tempAtleta);
         }
         else {
             novoAtleta(tempAtleta);
@@ -99,6 +101,7 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
 
 function salvarAlteracoes(tempAtleta) {
     //tempAtleta.uid = pageAtleta.idAtletaField.value;
+    idAtleta = pageAtleta.idAtletaField.value;
     tempAtleta.nome = pageAtleta.nomeField.value;
     tempAtleta.sobrenome = pageAtleta.sobrenomeField.value;
     tempAtleta.posicao = pageAtleta.posicaoField.value;
@@ -108,8 +111,8 @@ function salvarAlteracoes(tempAtleta) {
     tempAtleta.cidade = pageAtleta.cidadeField.value;
     tempAtleta.pais = pageAtleta.paisField.value;
     //tempAtleta.foto = file;
-    pageAtleta.database.ref(pageAtleta.databaseRef + '/' + pageAtleta.idAtletaField.value).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
-    preencheTabela(tempAtleta);
+    pageAtleta.database.ref(pageAtleta.databaseRef + '/' + idAtleta).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
+    preencheTabela(tempAtleta, idAtleta);
 }
 
 function novoAtleta(atleta) {
@@ -134,7 +137,7 @@ function getAtletas() {
     })
 }
 
-function preencheTabela(tempAtleta) {
+function preencheTabela(tempAtleta, idAtleta) {
     var html = '';
     html += '<tr id="' + tempAtleta.uid + '">';
     html += '<td>' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
