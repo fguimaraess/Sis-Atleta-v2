@@ -130,10 +130,16 @@ function salvarAlteracoes(tempAtleta) {
 }
 
 function novoAtleta(atleta) {
-    var idAtletaNovo = pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(swal("", "Atleta criado com sucesso", "success"));
-    console.log(idAtletaNovo);
-    atleta.uid = idAtletaNovo.name();
-    preencheTabela(atleta);
+    var idAtletaNovo = pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta)
+    .then(function(atletaRef){
+        atleta.uid = atletaRef.key;
+    })
+    .then(swal("", "Atleta criado com sucesso", "success"))
+    .then(
+        preencheTabela(atleta)
+    );
+    
+    
 }
 
 function excluirAtleta(idAtleta) {
