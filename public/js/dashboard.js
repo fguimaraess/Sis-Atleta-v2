@@ -68,6 +68,7 @@ $(document).ready(function () {
 });
 $(document).ready(function () {
     $(pageBtn.atletasSideBtn).click(function () {
+        getAtletas();
         $('.view-atletas').toggle();
         $('.view-clubes').hide();
         $('.dash').hide();

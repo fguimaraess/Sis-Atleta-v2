@@ -23,7 +23,20 @@ var pageAtleta = {
     , btnEditarAtleta: document.querySelector('#btn-editar-atleta')
     , addAtletaBtn: document.querySelector('#addAtletaBtn')
     , idAtletasLista: []
+    
 }
+
+document.querySelector('#testeAtletaJS').addEventListener('click', function(){
+
+    pageAtleta.tableAtletas.querySelector('#-KeoOMl2KO-2gGGsYyz1').innerHTML = '';
+    /*jogadoresNaTela.forEach(function(jogadorHtml){
+        if(jogadorHtml.id == '-KeoOMl2KO-2gGGsYyz1'){
+            jogadorHtml.querySelector('.nomeJogadorTabela').innerHTML = 'ET-VALDO';
+        }
+        
+    })*/
+
+});
 
 function abreModalAtleta(idAtleta) {
     if (idAtleta) {
@@ -100,7 +113,6 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
 });
 
 function salvarAlteracoes(tempAtleta) {
-    //tempAtleta.uid = pageAtleta.idAtletaField.value;
     idAtleta = pageAtleta.idAtletaField.value;
     tempAtleta.nome = pageAtleta.nomeField.value;
     tempAtleta.sobrenome = pageAtleta.sobrenomeField.value;
@@ -110,18 +122,22 @@ function salvarAlteracoes(tempAtleta) {
     tempAtleta.clube = pageAtleta.clubeField.value;
     tempAtleta.cidade = pageAtleta.cidadeField.value;
     tempAtleta.pais = pageAtleta.paisField.value;
-    //tempAtleta.foto = file;
     pageAtleta.database.ref(pageAtleta.databaseRef + '/' + idAtleta).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
-    preencheTabela(tempAtleta, idAtleta);
+    
 }
 
 function novoAtleta(atleta) {
-    pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(swal("", "Atleta criado com sucesso", "success"));
+    var idAtletaNovo = pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(swal("", "Atleta criado com sucesso", "success"));
+    console.log(idAtletaNovo);
+    atleta.uid = idAtletaNovo.name();
     preencheTabela(atleta);
 }
 
 function excluirAtleta(idAtleta) {
-    pageAtleta.database.ref(pageAtleta.databaseRef + idAtleta).remove().then(swal("", "Atleta removido com sucesso", "success"));
+    
+    pageAtleta.database.ref(pageAtleta.databaseRef + idAtleta).remove()
+        .then(pageAtleta.tableAtletas.querySelector('#' + idAtleta).innerHTML = '')
+        .then(swal("", "Atleta removido com sucesso", "success"));
 }
 
 function getAtletas() {
@@ -130,17 +146,22 @@ function getAtletas() {
             var tempAtleta = atletaRef.val();
             tempAtleta.uid = atletaRef.key;
             pageAtleta.atletas[atletaRef.key] = (tempAtleta);
-            //Esquema dos IDs dos Atletas
-            pageAtleta.idAtletasLista = tempAtleta.uid;
             preencheTabela(tempAtleta);
         });
     })
 }
 
-function preencheTabela(tempAtleta, idAtleta) {
+function preencheTabela(tempAtleta) {
+   /* var jogadoresNaTela = document.querySelectorAll('.idDosAtletas');
+    jogadoresNaTela.forEach(function(jogadorHtml){
+        if(tempAtleta.uid == jogadorHtml.id){
+            jogadorHtml
+        }
+    }); */
+
     var html = '';
-    html += '<tr id="' + tempAtleta.uid + '">';
-    html += '<td>' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
+    html += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
+    html += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
     html += '<td>' + tempAtleta.posicao + '</td>';
     html += '<td>' + tempAtleta.idade + '</td>';
     html += '<td>' + tempAtleta.clube + '</td>';
@@ -148,12 +169,12 @@ function preencheTabela(tempAtleta, idAtleta) {
     html += '</tr>';
     $('#body-atleta').append(html);
 }
-//OK
-function getAtletasByNome(mozao) {
+//NOK
+function getAtletasByNome(nome) {
     var atletas = [];
     pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (atletaRef) {
-            if (mozao.nome == atletaRef.val().nome) {
+            if (nome == atletaRef.val().nome) {
                 var tempAtleta = atletaRef.val();
                 tempAtleta.uid = atletaRef.key;
                 atletas.push(tempAtleta);
