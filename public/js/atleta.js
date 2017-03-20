@@ -133,11 +133,10 @@ function novoAtleta(atleta) {
     var idAtletaNovo = pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta)
     .then(function(atletaRef){
         atleta.uid = atletaRef.key;
+        preencheTabela(atleta);
     })
     .then(swal("", "Atleta criado com sucesso", "success"))
-    .then(
-        preencheTabela(atleta)
-    );
+  
     
     
 }
