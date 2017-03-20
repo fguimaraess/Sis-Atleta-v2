@@ -33,50 +33,49 @@ pageBtn.logoutBtn.addEventListener('click', function () {
         });
     });
 });
-    
+$(".dropdown-button").dropdown();
+
+$(document).ready(function () {
 pageBtn.relatoriosSideBtn.addEventListener('click', function () {
     swal("Ops...", "Menu de Relatórios em desenvolvimento");
-})
-$(document).ready(function () {
+});
+
     $(pageBtn.atletasSideBtn).click(function () {
         $('#view-atletas').toggle();
     });
-});
-$(document).ready(function () {
+
+
     $('#clubes-menu').click(function () {
         $('#view-clubes').toggle();
     });
-});
-$(".dropdown-button").dropdown();
-$(document).ready(function () {
+
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
-});
-$(document).ready(function () {
+
+
     $('#posicaoatleta-field').material_select();
     $('#categoriaatleta-field').material_select();
-});
-$(document).ready(function () {
+
+
     Materialize.updateTextFields();
-});
-$(document).ready(function () {
+
+
     $(pageBtn.dashboardSideBtn).click(function () {
-        $('.dash').toggle();
+        $('.dash').show();
         $('.view-atletas').hide();
         $('.view-clubes').hide();
     });
-});
-$(document).ready(function () {
+
     $(pageBtn.atletasSideBtn).click(function () {
-        getAtletas();
-        $('.view-atletas').toggle();
+        //getAtletas();
+        $('.view-atletas').show();
         $('.view-clubes').hide();
         $('.dash').hide();
     });
-});
-$(document).ready(function () {
+
+
     $(pageBtn.clubesSideBtn).click(function () {
-        $('.view-clubes').toggle();
+        $('.view-clubes').show();
         $('.view-atletas').hide();
         $('.dash').hide();
     });
