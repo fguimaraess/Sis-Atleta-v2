@@ -25,14 +25,7 @@ var pageAtleta = {
 }
 
 document.querySelector('#testeAtletaJS').addEventListener('click', function(){
-
-    pageAtleta.tableAtletas.querySelector('#-KeoOMl2KO-2gGGsYyz1').innerHTML = '';
-    /*jogadoresNaTela.forEach(function(jogadorHtml){
-        if(jogadorHtml.id == '-KeoOMl2KO-2gGGsYyz1'){
-            jogadorHtml.querySelector('.nomeJogadorTabela').innerHTML = 'ET-VALDO';
-        }
-        
-    })*/
+    getAtletas();
 
 });
 
@@ -124,12 +117,14 @@ function salvarAlteracoes(tempAtleta) {
     tempAtleta.pais = pageAtleta.paisField.value;
     pageAtleta.database.ref(pageAtleta.databaseRef + '/' + idAtleta).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
     
-    var jogadoresNaTabela = document.querySelectorAll(".idDosAtletas");
-    jogadoresNaTabela.forEach(function(jogadorHtml){
-       if(jogadorHtml.id == tempAtleta.uid)
-           {
-               jogadorHtml.querySelector('.idadeJogadorTabela').innerHTML = 'UE';
-           }
+    var jogadoresNaTela = document.querySelectorAll('.idDosAtletas');
+    jogadoresNaTela.forEach(function(jogadorHtml){
+        if(jogadorHtml.id == idAtleta){
+            jogadorHtml.querySelector('.nomeJogadorTabela').innerHTML = tempAtleta.nome + " " + tempAtleta.sobrenome;
+            jogadorHtml.querySelector('.posicaoJogadorTabela').innerHTML = tempAtleta.posicao;
+            jogadorHtml.querySelector('.idadeJogadorTabela').innerHTML = tempAtleta.idade;
+            jogadorHtml.querySelector('.clubeJogadorTabela').innerHTML = tempAtleta.clube;
+        }
     });
     
 }

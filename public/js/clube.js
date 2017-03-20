@@ -8,7 +8,8 @@ var pageClube = {
     , siglaClubeField: document.querySelector('#sigla-clube-field')
     , idClubeField: document.querySelector('#idClube')
     , clubeBtn: document.querySelector('#salvar-clube-btn')
-    , addClubeBtn: document.querySelector('#addClubeBtn')
+    , addClubeBtn: document.querySelector('#addClubeBtn'),
+    tableClubes: document.querySelector('#table-clubes')
 }
 window.addEventListener('load', getClubes);
 
@@ -41,36 +42,47 @@ pageClube.clubeBtn.addEventListener('click', function () {
     else {
         if (pageClube.idClubeField.value) {
             salvarAlteracoesClube(tempClube);
+            $('#modal-addclube').modal('close');
         }
         else {
             novoClube(tempClube);
+            $('#modal-addclube').modal('close');
         }
     }
 })
 
 function salvarAlteracoesClube(tempClube) {
-    //tempClube.uid = pageClube.idClubeField.value; --Não salvar o UID no banco
+    idClube = pageClube.idClubeField.value;
     tempClube.nomeclube = pageClube.nomeClubeField.value;
     tempClube.siglaclube = pageClube.siglaClubeField.value;
     pageClube.database.ref(pageClube.databaseRef + '/' + pageClube.idClubeField.value).update(tempClube).then(swal("", "Clube atualizado com sucesso", "success"));
-    preencheTabelaClube(tempClube);
+    
+    var clubesNaTela = document.querySelectorAll('.idDosClubes');
+    clubesNaTela.forEach(function(clubeHtml){
+        if(clubeHtml.id == idClube)
+            {
+                clubeHtml.querySelector('.nomeClubeTabela').innerHTML = pageClube.nomeClubeField.value;
+                clubeHtml.querySelector('.siglaClubeTabela').innerHTML = pageClube.siglaClubeField.value;
+            }
+    })
 }
 
 function novoClube(clube) {
-    pageClube.database.ref(pageClube.databaseRef).push(clube).then(swal("", "Clube criado com sucesso", "success"));
+    var idClubeNovo = pageClube.database.ref(pageClube.databaseRef).push(clube).then(swal("", "Clube criado com sucesso", "success"));
+    //clube.uid = idClubeNovo.name();
     preencheTabelaClube(clube);
 }
 
 function excluirClube(idClube) {
     pageClube.database.ref(pageClube.databaseRef + idClube).remove().then(swal("", "Clube removido com sucesso", "success"));
-    preencheTabelaClube();
+    pageClube.tableClubes.querySelector('#'+idClube).innerHTML = '';
 }
 
 function preencheTabelaClube(tempClube) {
     var html = '';
-    html += '<tr id="' + tempClube.uid + '">';
-    html += '<td>' + tempClube.nomeclube + '</a></td>';
-    html += '<td>' + tempClube.siglaclube + '</td>';
+    html += '<tr class="idDosClubes" id="' + tempClube.uid + '">';
+    html += '<td class="nomeClubeTabela">' + tempClube.nomeclube + '</a></td>';
+    html += '<td class="siglaClubeTabela">' + tempClube.siglaclube + '</td>';
     html += '<td><a onclick="getAtletasByClube(\'' + tempClube.uid + '\')" href="#" class=ver-atletas>Ver Atletas</a></td>';
     html += '<td><a onclick="abreModalClube(\'' + tempClube.uid + '\')" href="#" class="editar-clube"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a onclick="excluirClube(\'' + tempClube.uid + '\' )" href="#" class="excluir-clube"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
     html += '</tr>';
