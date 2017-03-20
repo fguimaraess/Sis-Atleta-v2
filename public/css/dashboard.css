@@ -32,7 +32,7 @@ span.select-item{
     display: none !important;
 }
 
-a.editar-jogador, a.excluir-jogador {
+a.editar-jogador, a.excluir-jogador, a.editar-clube, a.excluir-clube {
     color: lightseagreen;
 }
 

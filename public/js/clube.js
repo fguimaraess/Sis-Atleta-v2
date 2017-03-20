@@ -68,9 +68,12 @@ function salvarAlteracoesClube(tempClube) {
 }
 
 function novoClube(clube) {
-    var idClubeNovo = pageClube.database.ref(pageClube.databaseRef).push(clube).then(swal("", "Clube criado com sucesso", "success"));
-    //clube.uid = idClubeNovo.name();
-    preencheTabelaClube(clube);
+    var idClubeNovo = pageClube.database.ref(pageClube.databaseRef).push(clube)
+    .then(function(clubeRef){
+        clube.uid = clubeRef.key;
+        preencheTabelaClube(clube);
+    })
+    .then(swal("", "Clube criado com sucesso", "success"));
 }
 
 function excluirClube(idClube) {

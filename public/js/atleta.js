@@ -79,9 +79,11 @@ pageAtleta.atletaBtn.addEventListener('click', function () {
     else {
         if (pageAtleta.idAtletaField.value) {
             salvarAlteracoes(tempAtleta);
+            $('#modal-addatleta').modal('close');
         }
         else {
             novoAtleta(tempAtleta);
+            $('#modal-addatleta').modal('close');
         }
     }
 })
@@ -136,9 +138,6 @@ function novoAtleta(atleta) {
         preencheTabela(atleta);
     })
     .then(swal("", "Atleta criado com sucesso", "success"))
-  
-    
-    
 }
 
 function excluirAtleta(idAtleta) {
