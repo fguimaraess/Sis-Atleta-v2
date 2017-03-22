@@ -135,6 +135,7 @@ function novoAtleta(atleta) {
     var idAtletaNovo = pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta)
     .then(function(atletaRef){
         atleta.uid = atletaRef.key;
+        pageAtleta.atletas[atletaRef.key] = (atleta);
         preencheTabela(atleta);
     })
     .then(swal("", "Atleta criado com sucesso", "success"))
@@ -165,7 +166,7 @@ function preencheTabela(tempAtleta) {
             jogadorHtml
         }
     }); */
-            var html = '';
+    var html = '';
     html += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
     html += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
