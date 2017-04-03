@@ -6,9 +6,9 @@ var pageJogo = {
     , databaseAtletas: '/atletas/'
     , tableAtletasAdd: document.querySelector('#table-card-jogo')
 }
+pageJogo.addJogoBtn.addEventListener('click', getAtletasCard);
 
-function addAtletaJogo(idAtleta)
-{
+function addAtletaJogo(idAtleta) {
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
     html += '<td><a onclick="removeAtletaJogo(\'' + tempAtleta.uid + '\')" href="#" class="remove-jogador"><i class="material-icons">remove</i></a></td>'
@@ -17,21 +17,9 @@ function addAtletaJogo(idAtleta)
     html += '<td><a onclick="estatisticasAtleta(\'' + tempAtleta.uid + '\')" href="#" class="editar-dados-jogador"><i class="material-icons">mode_edit</i></a>';
     html += '</tr>';
     $('#table-card-atletas-jogo').append(html);
-    
 }
 
-function getAtletas() {
-    pageJogo.database.ref(pageJogo.databaseAtletas).once('value').then(function (snapshot) {
-        snapshot.forEach(function (atletaRef) {
-            var tempAtleta = atletaRef.val();
-            tempAtleta.uid = atletaRef.key;
-            pageAtleta.atletas[atletaRef.key] = (tempAtleta);
-            preencheTabela(tempAtleta);
-        });
-    })
-}
-
-function preencheTabela(tempAtleta) {
+function preencheTabelaCard(tempAtleta) {
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
     html += '<td><a onclick="addAtletaJogo(\'' + tempAtleta.uid + '\')" href="#" class="add-jogador"><i class="material-icons">add</i></a></td>'
@@ -42,13 +30,13 @@ function preencheTabela(tempAtleta) {
     $('#body-card').innerHTML = '';
 }
 
-function getAtletas() {
-    pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {
+function getAtletasCard() {
+    pageJogo.database.ref(pageJogo.databaseAtletas).once('value').then(function (snapshot) {
         snapshot.forEach(function (atletaRef) {
             var tempAtleta = atletaRef.val();
             tempAtleta.uid = atletaRef.key;
             pageAtleta.atletas[atletaRef.key] = (tempAtleta);
-            preencheTabela(tempAtleta);
+            preencheTabelaCard(tempAtleta);
         });
     })
 }
