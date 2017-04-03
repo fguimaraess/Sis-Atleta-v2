@@ -54,3 +54,7 @@ ul, menu, dir {
     -webkit-margin-end: 0px;
     -webkit-padding-start: 40px;
 }
+
+.card .card-action a {
+    color: lightseagreen;
+}

@@ -156,10 +156,10 @@
                             </div>
                         </div>
                 </div>
-                </div>
+            </div>
             <!-- DIV DE CLUBES -->
             <div class="view-clubes" style="display:none">
-                <!-- tabela com os clubes e tals -->
+                <!-- tabela com os clubes -->
                 <table class="display" id="table-clubes">
                     <thead>
                         <tr id="template-linha-clube">
@@ -234,24 +234,126 @@
                         <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                     </div>
             </div>
-            <div class="view-jogos" hidden>Jogos
+            <!-- DIV DE JOGOS -->
+            <div class="view-jogos" style="display:none">
                 <table class="bordered responsive-table" id="table-jogos">
                     <thead>
                         <tr>
-                            <th data-field="name">Name</th>
-                        </tr>
+                            <tr id="template-linha-jogo">
+                                <th data-field="id" hidden>Id</th>
+                                <th data-field="data-jogo">Data</th>
+                                <th data-field="clube1">Clube</th>
+                                <th data-field="clube2">Visitante</th>
+                                <th data-field="campeonato">Campeonato</th>
+                                <th data-field="jogos-acoes">Ações</th>
+                            </tr>
                     </thead>
+                    <tbody id="body-jogos"> </tbody>
                 </table>
-                <!-- Outra tabela boladona -->
+                <p>
+                    <div class="right-align"> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#" id="addJogoBtn"><i class="material-icons">add</i></a></div>
+                    <!-- Card de Jogos -->
+                    <div class="row" id="cardJogo" hidden>
+                        <div class="col s12 m7">
+                            <div class="card-panel large">
+                                <div class="card-content">
+                                    <div class="row"> Novo Jogo </div>
+                                    <div class="row">
+                                        <form class="col s12">
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input type="date" class="datepicker" placeholder="">
+                                                    <label class="active" for="data-jogo-field">Data *</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input type="text" id="campeonato-field" class="validate" placeholder="">
+                                                    <label for="campeonato-field">Campeonato *</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <input type="text" id="melhor-jogador-field" class="validate" placeholder="">
+                                                    <label for="melhor-jogador-field">Melhor Jogador*</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <select id="clube1-field">
+                                                        <option value="clube1">Clube1</option>
+                                                    </select>
+                                                    <label for="clube1-field">Clube da Casa *</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input type="text" id="gols-clube1-field" class="validate" placeholder="">
+                                                    <label for="gols-clube1-field">Gols *</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <select>
+                                                        <option value="clube2">Clube2</option>
+                                                    </select>
+                                                    <label for="clube2-field">Clube Visitante *</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input type="text" id="gols-clube2-field" class="validate" placeholder="">
+                                                    <label for="gols-clube2-field">Gols *</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <table id="table-card-jogo">
+                                                    <thead>
+                                                        <tr>
+                                                            <th hidden>ID</th>
+                                                            <th>
+                                                                <input type="checkbox">
+                                                                <label for=""></label>
+                                                            </th>
+                                                            <th>Nome</th>
+                                                            <th>Posição</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="body-card"> </tbody> Adicionar Atletas</table>
+                                            </div>
+                                        </form>
+                                        <div class="card-action" id="voltarCardJogo"> <a href="#">Salvar</a> <a href="#" id="voltarCardJogo">Fechar</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="cardAtletas" hidden>
+                            <div class="col s12 m5">
+                                <div class="card-panel large">
+                                    <div class="card-content">
+                                        <div class="row"> Atletas Adicionados </div>
+                                        <table id="table-card-atletas-jogo">
+                                            <thead>
+                                                <tr>
+                                                    <th hidden>ID</th>
+                                                    <th>
+                                                        <input type="checkbox">
+                                                        <label for=""></label>
+                                                    </th>
+                                                    <th>Nome</th>
+                                                    <th>Posição</th>
+                                                    <th>Estatísticas</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="body-card"> </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
     <footer>
-        
         <script src="js/atleta.js" charset="utf-8"></script>
         <script src="js/clube.js" charset="utf-8"></script>
+        <script src="js/jogo.js" charset="utf-8"></script>
         <script src="js/dashboard.js" charset="utf-8"></script>
-        <!-- <script src="js/jogo.js" charset="utf-8"></script> -->
     </footer>
 </body>
 
