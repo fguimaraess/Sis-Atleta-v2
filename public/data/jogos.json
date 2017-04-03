@@ -3,46 +3,20 @@
         "melhorJogador": "Felipe",
         "campeonato" : "Cariocão",
         "data_jogo" : "21/02/2017",
+		"golsClube1" : "3"
         "clube1": [{
             "nome": "idFluminense",
-            "gols" : "3",
             "atletas": [{
                 "atleta1": "idFelipe",
                 "golfeito":"2",
                 "golsofrido": "0",
-                "lancamentoCerto" : "5",
-                "lancamentoErrado" : "2",
-                "dribleCerto" : "8",
-                "dribleErrado" : "2",
                 "assistencia" : "1",
-                "desarmeCerto" : "0",
-                "faltafeita": "1",
-                "faltasofrida" : "5",
-                "rebatida" : "0",
-                "passeCerto" : "38",
-                "passeErrado": "15"
+               "cartaoAmarelo": "15",
+			   "cartaoVermelho": "15"
             }]
 }],
-        "clube2": [{
-            "nome": "idFlamengo",
-            "gols" : "0",
-            "atletas": [{
-                "atleta1": "idLuiz",
-                "golfeito":"0",
-                "golsofrido": "3",
-                "lancamentoCerto" : "6",
-                "lancamentoErrado" : "3",
-                "dribleCerto" : "0",
-                "dribleErrado" : "0",
-                "assistencia" : "0",
-                "desarmeCerto" : "1",
-                "faltafeita": "1",
-                "faltasofrida" : "5",
-                "rebatida" : "3",
-                "passeCerto" : "38",
-                "passeErrado": "15"
-            }]
-        }]
+        "clube2" : "Visitante",
+		"golsClube2" : "0"
     }]
 }
 

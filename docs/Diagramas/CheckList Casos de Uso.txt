@@ -1,0 +1,10 @@
+Casos de Uso;
+Realizar Login	OK
+Cadastrar Usuário	OK
+Reset de Senha	OK
+Cadastrar Atleta	OK
+Cadastrar Clube	OK
+Cadastrar Jogo	OK
+Gerenciar Atleta	OK
+Gerenciar Clube	OK
+Gerenciar Jogo	OK
