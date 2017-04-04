@@ -9,7 +9,8 @@ var pageClube = {
     , idClubeField: document.querySelector('#idClube')
     , clubeBtn: document.querySelector('#salvar-clube-btn')
     , addClubeBtn: document.querySelector('#addClubeBtn'),
-    tableClubes: document.querySelector('#table-clubes')
+    tableClubes: document.querySelector('#table-clubes'),
+    bodyAtletasClube: document.querySelector('#body-atletas-clube')
 }
 window.addEventListener('load', getClubes);
 
@@ -106,7 +107,13 @@ function getClubes() {
 
 function getAtletasByClube(idClube) {
     $('#modal-veratletas').modal('open');
-    var validador = false;
+    
+    var atletasClube = document.querySelectorAll('.idDosAtletasClube');
+    atletasClube.forEach(function(atletaClubeHtml){
+    pageClube.bodyAtletasClube.innerHTML = '';                               
+                                   })
+    
+    
     pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (clubeRef) {
             var tempClube = clubeRef.val();
@@ -118,7 +125,7 @@ function getAtletasByClube(idClube) {
                         var tempAtletaClube = atletaRef.val();
                         if (tempClube.nomeclube == tempAtletaClube.clube) {
                             html = '';
-                            html += '<tr id="' + tempAtletaClube.uid + '">';
+                            html += '<tr class="idDosAtletasClube" id="' + tempAtletaClube.uid + '">';
                             html += '<td>' + tempAtletaClube.nome + '</td>';
                             html += '<td>' + tempAtletaClube.idade + '</td>';
                             html += '<td>' + tempAtletaClube.posicao + '</td>';

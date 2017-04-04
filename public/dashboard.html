@@ -241,8 +241,8 @@
                             <tr id="template-linha-jogo">
                                 <th data-field="id" hidden>Id</th>
                                 <th data-field="data-jogo">Data</th>
-                                <th data-field="clube1">Clube</th>
-                                <th data-field="clube2">Visitante</th>
+                                <th data-field="clube1">Meu Clube</th>
+                                <th data-field="clube2">Clube Adversário</th>
                                 <th data-field="campeonato">Campeonato</th>
                                 <th data-field="jogos-acoes">Ações</th>
                             </tr>
@@ -278,9 +278,9 @@
                                             <div class="row">
                                                 <div class="input-field col s6">
                                                     <select id="clube1-field">
-                                                        <option value="clube1">Clube1</option>
+                                                        <option value="clube1" id="clube1">Clube1</option>
                                                     </select>
-                                                    <label for="clube1-field">Clube da Casa *</label>
+                                                    <label for="clube1-field">Meu Clube *</label>
                                                 </div>
                                                 <div class="input-field col s6">
                                                     <input type="text" id="gols-clube1-field" class="validate" placeholder="">
@@ -292,7 +292,7 @@
                                                     <select>
                                                         <option value="clube2">Clube2</option>
                                                     </select>
-                                                    <label for="clube2-field">Clube Visitante *</label>
+                                                    <label for="clube2-field">Clube Adversário *</label>
                                                 </div>
                                                 <div class="input-field col s6">
                                                     <input type="text" id="gols-clube2-field" class="validate" placeholder="">
@@ -338,7 +338,7 @@
                                                     <th>Estatísticas</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="body-card"> </tbody>
+                                            <tbody id="body-card-jogo"> </tbody>
                                         </table>
                                     </div>
                                 </div>

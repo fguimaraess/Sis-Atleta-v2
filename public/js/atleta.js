@@ -21,14 +21,12 @@ var pageAtleta = {
     , fileButton: document.querySelector('#fileButton')
     , btnCarregarFoto: document.querySelector('#btn-foto')
     , btnEditarAtleta: document.querySelector('#btn-editar-atleta')
-    , addAtletaBtn: document.querySelector('#addAtletaBtn')
+    , addAtletaBtn: document.querySelector('#addAtletaBtn'),
+    bodyAtleta: document.querySelector('#body-atleta')
 }
-
 window.addEventListener('load', getAtletas);
-
-document.querySelector('#testeAtletaJS').addEventListener('click', function(){
+document.querySelector('#testeAtletaJS').addEventListener('click', function () {
     getAtletas();
-
 });
 
 function abreModalAtleta(idAtleta) {
@@ -65,32 +63,31 @@ pageAtleta.addAtletaBtn.addEventListener('click', function () {
     abreModalAtleta(null);
 })
 pageAtleta.atletaBtn.addEventListener('click', function () {
-    var tempAtleta = {
-        nome: pageAtleta.nomeField.value
-        , sobrenome: pageAtleta.sobrenomeField.value
-        , posicao: pageAtleta.posicaoField.value
-        , idade: pageAtleta.idadeField.value
-        , categoria: pageAtleta.categoriaField.value
-        , clube: pageAtleta.clubeField.value
-        , cidade: pageAtleta.cidadeField.value
-        , pais: pageAtleta.paisField.value
-    }
-    if (tempAtleta.nome == "" || tempAtleta.sobrenome == "" || tempAtleta.posicao == "" || tempAtleta.idade == "" || tempAtleta.categoria == "" || tempAtleta.cidade == "" || tempAtleta.pais == "") {
-        swal("Ainda não...", "Preencha os dados do atleta.", "error");
-    }
-    else {
-        if (pageAtleta.idAtletaField.value) {
-            salvarAlteracoes(tempAtleta);
-            $('#modal-addatleta').modal('close');
+        var tempAtleta = {
+            nome: pageAtleta.nomeField.value
+            , sobrenome: pageAtleta.sobrenomeField.value
+            , posicao: pageAtleta.posicaoField.value
+            , idade: pageAtleta.idadeField.value
+            , categoria: pageAtleta.categoriaField.value
+            , clube: pageAtleta.clubeField.value
+            , cidade: pageAtleta.cidadeField.value
+            , pais: pageAtleta.paisField.value
+        }
+        if (tempAtleta.nome == "" || tempAtleta.sobrenome == "" || tempAtleta.posicao == "" || tempAtleta.idade == "" || tempAtleta.categoria == "" || tempAtleta.cidade == "" || tempAtleta.pais == "") {
+            swal("Ainda não...", "Preencha os dados do atleta.", "error");
         }
         else {
-            novoAtleta(tempAtleta);
-            $('#modal-addatleta').modal('close');
+            if (pageAtleta.idAtletaField.value) {
+                salvarAlteracoes(tempAtleta);
+                $('#modal-addatleta').modal('close');
+            }
+            else {
+                novoAtleta(tempAtleta);
+                $('#modal-addatleta').modal('close');
+            }
         }
-    }
-})
-
-//pageAtleta.tableAtletas.addEventListener('click', getLinha);
+    })
+    //pageAtleta.tableAtletas.addEventListener('click', getLinha);
 pageAtleta.fileButton.addEventListener('change', function (e) {
     //Pega o arquivo
     var file = e.target.files[0];
@@ -120,37 +117,35 @@ function salvarAlteracoes(tempAtleta) {
     tempAtleta.cidade = pageAtleta.cidadeField.value;
     tempAtleta.pais = pageAtleta.paisField.value;
     pageAtleta.database.ref(pageAtleta.databaseRef + '/' + idAtleta).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
-    
     var jogadoresNaTela = document.querySelectorAll('.idDosAtletas');
-    jogadoresNaTela.forEach(function(jogadorHtml){
-        if(jogadorHtml.id == idAtleta){
+    jogadoresNaTela.forEach(function (jogadorHtml) {
+        if (jogadorHtml.id == idAtleta) {
             jogadorHtml.querySelector('.nomeJogadorTabela').innerHTML = tempAtleta.nome + " " + tempAtleta.sobrenome;
             jogadorHtml.querySelector('.posicaoJogadorTabela').innerHTML = tempAtleta.posicao;
             jogadorHtml.querySelector('.idadeJogadorTabela').innerHTML = tempAtleta.idade;
             jogadorHtml.querySelector('.clubeJogadorTabela').innerHTML = tempAtleta.clube;
         }
     });
-    
 }
 
 function novoAtleta(atleta) {
-    var idAtletaNovo = pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta)
-    .then(function(atletaRef){
+    var idAtletaNovo = pageAtleta.database.ref(pageAtleta.databaseRef).push(atleta).then(function (atletaRef) {
         atleta.uid = atletaRef.key;
         pageAtleta.atletas[atletaRef.key] = (atleta);
         preencheTabela(atleta);
-    })
-    .then(swal("", "Atleta criado com sucesso", "success"))
+    }).then(swal("", "Atleta criado com sucesso", "success"))
 }
 
 function excluirAtleta(idAtleta) {
-    
-    pageAtleta.database.ref(pageAtleta.databaseRef + idAtleta).remove()
-        .then(pageAtleta.tableAtletas.querySelector('#' + idAtleta).innerHTML = '')
-        .then(swal("", "Atleta removido com sucesso", "success"));
+    pageAtleta.database.ref(pageAtleta.databaseRef + idAtleta).remove().then(pageAtleta.tableAtletas.querySelector('#' + idAtleta).innerHTML = '').then(swal("", "Atleta removido com sucesso", "success"));
 }
 
 function getAtletas() {
+  
+    var atletasNaTela = document.querySelectorAll('.idDosAtletas');
+    atletasNaTela.forEach(function (atletaHtml) {
+        pageJogo.bodyAtleta.innerHTML = '';
+    })
     pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (atletaRef) {
             var tempAtleta = atletaRef.val();
@@ -162,7 +157,6 @@ function getAtletas() {
 }
 
 function preencheTabela(tempAtleta) {
-   
     var htmlAtleta = '';
     htmlAtleta += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
     htmlAtleta += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
@@ -171,7 +165,7 @@ function preencheTabela(tempAtleta) {
     htmlAtleta += '<td class="clubeJogadorTabela">' + tempAtleta.clube + '</td>';
     htmlAtleta += '<td><a onclick="abreModalAtleta(\'' + tempAtleta.uid + '\')" href="#" class="editar-jogador"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a onclick="excluirAtleta(\'' + tempAtleta.uid + '\' )" href="#" class="excluir-jogador"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
     htmlAtleta += '</tr>';
-    $('#body-atleta').append(htmlAtleta);        
+    $('#body-atleta').append(htmlAtleta);
 }
 //NOK
 function getAtletasByNome(nome) {
