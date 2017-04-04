@@ -7,3 +7,4 @@ var config = {
   messagingSenderId: "661403184654"
 };
 firebase.initializeApp(config);
+var storage = firebase.storage();

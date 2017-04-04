@@ -8,7 +8,9 @@ var pageJogo = {
 }
 pageJogo.addJogoBtn.addEventListener('click', getAtletasCard);
 
-function addAtletaJogo(idAtleta) {
+function addAtletaJogo(tempAtleta) 
+{
+    console.log(tempAtleta);
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
     html += '<td><a onclick="removeAtletaJogo(\'' + tempAtleta.uid + '\')" href="#" class="remove-jogador"><i class="material-icons">remove</i></a></td>'
@@ -22,7 +24,7 @@ function addAtletaJogo(idAtleta) {
 function preencheTabelaCard(tempAtleta) {
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
-    html += '<td><a onclick="addAtletaJogo(\'' + tempAtleta.uid + '\')" href="#" class="add-jogador"><i class="material-icons">add</i></a></td>'
+    html += '<td><a onclick="addAtletaJogo(\'' + tempAtleta + '\')" href="#" class="add-jogador"><i class="material-icons">add</i></a></td>'
     html += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
     html += '</tr>';
