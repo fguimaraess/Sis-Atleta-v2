@@ -4,21 +4,19 @@ var pageBtn = {
     , clubesSideBtn: document.querySelector('#clubes-menu')
     , jogosSideBtn: document.querySelector('#jogos-menu')
     , relatoriosSideBtn: document.querySelector('#relatorios-menu')
-    , logoutBtn: document.querySelector('#btn-logout'),
-    cardJogoBtn: document.querySelector('#addJogoBtn'),
-    voltarJogoBtn: document.querySelector('#voltarCardJogo')
+    , logoutBtn: document.querySelector('#btn-logout')
+    , cardJogoBtn: document.querySelector('#addJogoBtn')
+    , voltarJogoBtn: document.querySelector('#voltarCardJogo')
 }
-
 window.addEventListener('load', function () {
     var user = firebase.auth().currentUser;
-    firebase.auth().onAuthStateChanged(function(user) {
-    //user.reauthenticate(credential).then(function(){
+    firebase.auth().onAuthStateChanged(function (user) {
+        //user.reauthenticate(credential).then(function(){
         if (!user) {
-        window.location = '/index.html';
-    }    
+            window.location = '/index.html';
+        }
+    });
 });
-});
-
 pageBtn.logoutBtn.addEventListener('click', function () {
     swal({
         title: "Deseja sair?"
@@ -37,46 +35,32 @@ pageBtn.logoutBtn.addEventListener('click', function () {
     });
 });
 $(".dropdown-button").dropdown();
-
 $(document).ready(function () {
-pageBtn.relatoriosSideBtn.addEventListener('click', function () {
-    swal("Ops...", "Menu de Relatórios em desenvolvimento");
-});
+    pageBtn.relatoriosSideBtn.addEventListener('click', function () {
+        swal("Ops...", "Menu de Relatórios em desenvolvimento");
+    });
     
     $('select').material_select();
     
     $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-  });
-
-    $(pageBtn.atletasSideBtn).click(function () {
-        $('#view-atletas').toggle();
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
     });
-
-
-    $('#clubes-menu').click(function () {
-        $('#view-clubes').toggle();
-    });
-
+    
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
-
-
+    
     $('#posicaoatleta-field').material_select();
+    
     $('#categoriaatleta-field').material_select();
-
-
     Materialize.updateTextFields();
-
-
+    
     $(pageBtn.dashboardSideBtn).click(function () {
         $('.dash').show();
         $('.view-atletas').hide();
         $('.view-clubes').hide();
         $('.view-jogos').hide();
     });
-
     $(pageBtn.atletasSideBtn).click(function () {
         //getAtletas();
         $('.view-atletas').show();
@@ -84,30 +68,25 @@ pageBtn.relatoriosSideBtn.addEventListener('click', function () {
         $('.view-jogos').hide();
         $('.dash').hide();
     });
-
-
     $(pageBtn.clubesSideBtn).click(function () {
         $('.view-clubes').show();
         $('.view-atletas').hide();
         $('.view-jogos').hide();
         $('.dash').hide();
     });
-    
-    $(pageBtn.jogosSideBtn).click(function(){
+    $(pageBtn.jogosSideBtn).click(function () {
         $('.view-jogos').show();
         $('.view-clubes').hide();
         $('.view-atletas').hide();
         $('.dash').hide();
     });
-    
-    $(pageBtn.cardJogoBtn).click(function(){
+    $(pageBtn.cardJogoBtn).click(function () {
         $('#cardJogo').show();
         $('#cardAtletas').show();
         $('#table-jogos').hide();
         $('#addJogoBtn').hide();
     });
-    
-    $(pageBtn.voltarJogoBtn).click(function(){
+    $(pageBtn.voltarJogoBtn).click(function () {
         $('.view-jogos').show();
         $('#table-jogos').show();
         $('#addJogoBtn').show();

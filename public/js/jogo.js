@@ -1,5 +1,6 @@
 var pageJogo = {
-    atletas: []
+    atletas: [],
+    atletasJogo: []
     , clubes: []
     , database: firebase.database()
     , databaseRef: '/jogos/'
@@ -10,11 +11,23 @@ var pageJogo = {
     , tableAtletasCard: document.querySelector('#body-card')
     , tableAtletasAdicionados: document.querySelector('#body-card-jogo')
     , clube1Field1: document.querySelector('#clube1-field')
-    , clube1Field2: document.querySelector('#clube2-field')
+    , clube1Field2: document.querySelector('#clube2-field'),
+    golField: document.querySelector('#gol-field'),
+    assistenciaField: document.querySelector('#assistencia-field'),
+    cartaoAmareloField: document.querySelector('#cartaoamarelo-field'),
+    cartaoVermelhoField: document.querySelector('#cartaovermelho-field'),
+    minutosJogadosField: document.querySelector('#minutos-field'),
+    idAtletaField: document.querySelector('#idAtleta'),
+    salvarDadosBtn: document.querySelector('#salvar-dados-btn'),
+    salvarJogoBtn: document.querySelector('#salvar-card')
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
     getClubesCard();
 });
+
+pageJogo.salvarDadosBtn.addEventListener('click', function(){
+    console.log(pageJogo.atletasJogo);
+})
 
 function removeAtletaJogo(idAtleta) {
     tempAtleta = pageJogo.tableAtletasAdicionados.querySelector('#'+idAtleta);
@@ -46,8 +59,30 @@ function addAtletaJogo(idAtleta) {
 
 function estatisticasAtleta(idAtleta)
 {
-    atletaSel = pageJogo.atletas[idAtleta]
+    atletaSel = pageJogo.atletas[idAtleta];
+    var html = atletaSel.nome;
+    $('#nomeAtleta').append(html);
+    $('#modalAtletaJogo').modal('open');
     
+        
+        
+    
+    var tempAtletaJogo = {
+        uid: atletaSel.uid,
+        gol: pageJogo.golField.value,
+        assistencia: pageJogo.assistenciaField.value,
+        cartaoamarelo: pageJogo.cartaoAmareloField.value,
+        cartaovermelho: pageJogo.cartaoVermelhoField.value,
+        minutosjogados: pageJogo.minutosJogadosField.value    
+    }
+    if(tempAtletaJogo.gol == "")
+        {
+            swal("Aviso!", "Todos os campos devem ser preenchidos!");
+        } else
+            {
+                $('#modalAtletaJogo').modal('close');
+            }
+    pageJogo.atletasJogo[idAtleta] = (tempAtletaJogo);
 }
 
 function preencheTabelaCard(tempAtleta) {

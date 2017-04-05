@@ -58,3 +58,13 @@ ul, menu, dir {
 .card .card-action a {
     color: lightseagreen;
 }
+
+a#salvar-card, a#voltarCardJogo {
+    text-transform: uppercase !important;
+    margin-right: 24px;
+    color: lightseagreen;
+}
+
+a.add-jogador, a.remove-jogador, a.editar-dados-jogador{
+    color: lightseagreen;
+}
