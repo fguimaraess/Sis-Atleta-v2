@@ -1,18 +1,18 @@
 var pageJogo = {
-    atletas: [],
-    clubes: []
+    atletas: []
+    , clubes: []
     , database: firebase.database()
     , databaseRef: '/jogos/'
     , addAtletaJogoBtn: document.querySelector('#addAtletaJogoBtn')
     , addJogoBtn: document.querySelector('#addJogoBtn')
-    , databaseAtletas: '/atletas/',
-    databaseClubes: '/clubes/'
+    , databaseAtletas: '/atletas/'
+    , databaseClubes: '/clubes/'
     , tableAtletasCard: document.querySelector('#table-card-jogo')
-    , tableAtletasAdicionados: document.querySelector('#table-card-atletas-jogo'),
-    clube1Field1: document.querySelector('#clube1-field'),
-    clube1Field2: document.querySelector('#clube2-field')
+    , tableAtletasAdicionados: document.querySelector('#table-card-atletas-jogo')
+    , clube1Field1: document.querySelector('#clube1-field')
+    , clube1Field2: document.querySelector('#clube2-field')
 }
-pageJogo.addJogoBtn.addEventListener('click', function(){
+pageJogo.addJogoBtn.addEventListener('click', function () {
     //getAtletasCard();
     getClubesCard();
 });
@@ -57,14 +57,14 @@ function getAtletasCard(tempClube) {
     atletasNaTela.forEach(function (atletaHtml) {
         pageJogo.tableAtletasCard.innerHTML = '';
     })
-  pageJogo.database.ref(pageClube.databaseAtletas).once('value').then(function (snapshot) {
-                    snapshot.forEach(function (atletaRef) {
-                        var tempAtletaClube = atletaRef.val();
-                        if (tempClube.nomeclube == tempAtletaClube.clube) {
-                            preencheTabelaCard(tempAtletaClube);
-                        }
-                    });
-                });
+    pageJogo.database.ref(pageClube.databaseAtletas).once('value').then(function (snapshot) {
+        snapshot.forEach(function (atletaRef) {
+            var tempAtletaClube = atletaRef.val();
+            if (tempClube == tempAtletaClube.clube) {
+                preencheTabelaCard(tempAtletaClube);
+            }
+        });
+    });
 }
 
 function getClubesCard() {
@@ -78,7 +78,13 @@ function getClubesCard() {
     })
 }
 
-function preencheSelectedClube(tempClube){
+function showClubeSelecionado() {
+    var clube1 = $('#clube1-field').val();
+    getAtletasCard(clube1);
+}
+$('select').change(showClubeSelecionado);
+
+function preencheSelectedClube(tempClube) {
     var newOption = document.createElement("option");
     var newOption2 = document.createElement("option");
     newOption.value = tempClube.nomeclube;
@@ -87,6 +93,6 @@ function preencheSelectedClube(tempClube){
     newOption2.innerHTML = tempClube.nomeclube;
     pageJogo.clube1Field1.options.add(newOption);
     pageJogo.clube1Field2.options.add(newOption2);
-    getAtletasCard(tempClube);
+    showClubeSelecionado();
     $('select').material_select();
 }
