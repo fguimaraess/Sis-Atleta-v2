@@ -7,18 +7,19 @@ var pageJogo = {
     , addJogoBtn: document.querySelector('#addJogoBtn')
     , databaseAtletas: '/atletas/'
     , databaseClubes: '/clubes/'
-    , tableAtletasCard: document.querySelector('#table-card-jogo')
-    , tableAtletasAdicionados: document.querySelector('#table-card-atletas-jogo')
+    , tableAtletasCard: document.querySelector('#body-card')
+    , tableAtletasAdicionados: document.querySelector('#body-card-jogo')
     , clube1Field1: document.querySelector('#clube1-field')
     , clube1Field2: document.querySelector('#clube2-field')
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
-    //getAtletasCard();
     getClubesCard();
 });
 
 function removeAtletaJogo(idAtleta) {
-    pageJogo.tableAtletasAdicionados.querySelector('#' + idAtleta).innerHTML = '';
+    tempAtleta = pageJogo.tableAtletasAdicionados.querySelector('#'+idAtleta);
+    pageJogo.tableAtletasAdicionados.removeChild(tempAtleta);
+    
     atletaSel = pageJogo.atletas[idAtleta]
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
@@ -26,20 +27,27 @@ function removeAtletaJogo(idAtleta) {
     html += '<td class="nomeJogadorTabela">' + atletaSel.nome + " " + atletaSel.sobrenome + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + atletaSel.posicao + '</td>';
     html += '</tr>';
-    $('#table-card-jogo').append(html);
+    $('#body-card').append(html);
 }
 
 function addAtletaJogo(idAtleta) {
-    pageJogo.tableAtletasCard.querySelector('#' + idAtleta).innerHTML = '';
+    tempAtleta = pageJogo.tableAtletasCard.querySelector('#'+idAtleta);
+    pageJogo.tableAtletasCard.removeChild(tempAtleta);
     atletaSel = pageJogo.atletas[idAtleta]
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
-    html += '<td><a onclick="removeAtletaJogo(\'' + atletaSel.uid + '\')" href="#" class="remove-jogador"><i class="material-icons">remove</i></a></td>'
+    html += '<td><a onclick="removeAtletaJogo(\'' + idAtleta + '\')" href="#" class="remove-jogador"><i class="material-icons">remove</i></a></td>'
     html += '<td class="nomeJogadorTabela">' + atletaSel.nome + " " + atletaSel.sobrenome + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + atletaSel.posicao + '</td>';
     html += '<td><a onclick="estatisticasAtleta(\'' + atletaSel.uid + '\')" href="#" class="editar-dados-jogador"><i class="material-icons">mode_edit</i></a>';
     html += '</tr>';
-    $('#table-card-atletas-jogo').append(html);
+    $('#body-card-jogo').append(html);
+}
+
+function estatisticasAtleta(idAtleta)
+{
+    atletaSel = pageJogo.atletas[idAtleta]
+    
 }
 
 function preencheTabelaCard(tempAtleta) {
@@ -49,7 +57,7 @@ function preencheTabelaCard(tempAtleta) {
     html += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
     html += '</tr>';
-    $('#table-card-jogo').append(html);
+    $('#body-card').append(html);
 }
 
 function getAtletasCard(tempClube) {
@@ -60,6 +68,8 @@ function getAtletasCard(tempClube) {
     pageJogo.database.ref(pageClube.databaseAtletas).once('value').then(function (snapshot) {
         snapshot.forEach(function (atletaRef) {
             var tempAtletaClube = atletaRef.val();
+            tempAtletaClube.uid = atletaRef.key;
+            pageJogo.atletas[atletaRef.key] = (tempAtletaClube);
             if (tempClube == tempAtletaClube.clube) {
                 preencheTabelaCard(tempAtletaClube);
             }
