@@ -23,10 +23,10 @@ var pageJogo = {
     dataField: document.querySelector('#datajogo-field'),
     campeonatoField: document.querySelector('#campeonato-field'),
     melhorJogadorField: document.querySelector('#melhor-jogador-field'),
-    meuClube: document.querySelector('#clube1-field'),
-    golsMeuClube: document.querySelector('#gols-clube1-field'),
-    clubeAdversario: document.querySelector('#clube2-field'),
-    golsClubeAdversario: document.querySelector('#gols-clube2-field')
+    meuClubeField: document.querySelector('#clube1-field'),
+    golsMeuClubeField: document.querySelector('#gols-clube1-field'),
+    clubeAdversarioField: document.querySelector('#clube2-field'),
+    golsClubeAdversarioField: document.querySelector('#gols-clube2-field')
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
     getClubesCard();
@@ -36,7 +36,6 @@ pageJogo.addJogoBtn.addEventListener('click', function () {
 function removeAtletaJogo(idAtleta) {
     tempAtleta = pageJogo.tableAtletasAdicionados.querySelector('#'+idAtleta);
     pageJogo.tableAtletasAdicionados.removeChild(tempAtleta);
-    
     atletaSel = pageJogo.atletas[idAtleta]
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
@@ -96,7 +95,13 @@ pageJogo.salvarDadosBtn.addEventListener('click', function(){
 
 pageJogo.salvarJogoBtn.addEventListener('click', function(){
     var tempJogo = {
-            //data: 
+            data: pageJogo.dataField.value,
+            campeonato: pageJogo.campeonatoField.value,
+            melhorjogador: pageJogo.melhorJogadorField.value,
+            meuclube: pageJogo.meuClubeField.value,
+            golsmeuclube: pageJogo.golsMeuClubeField.value,
+            clubeadversario: pageJogo.clubeAdversarioField.value,
+            golsclubeadversario: pageJogo.golsClubeAdversarioField.value
         }
 });
 
@@ -142,7 +147,7 @@ function showClubeSelecionado() {
     var clube1 = $('#clube1-field').val();
     getAtletasCard(clube1);
 }
-$('select').change(showClubeSelecionado);
+$('#clube1-field').change(showClubeSelecionado);
 
 function preencheSelectedClube(tempClube) {
     var newOption = document.createElement("option");
@@ -151,8 +156,8 @@ function preencheSelectedClube(tempClube) {
     newOption.innerHTML = tempClube.nomeclube;
     newOption2.value = tempClube.nomeclube;
     newOption2.innerHTML = tempClube.nomeclube;
-    pageJogo.clube1Field1.options.add(newOption);
-    pageJogo.clube1Field2.options.add(newOption2);
+    pageJogo.meuClubeField.options.add(newOption);
+    pageJogo.clubeAdversarioField.options.add(newOption2);
     showClubeSelecionado();
     $('select').material_select();
 }
