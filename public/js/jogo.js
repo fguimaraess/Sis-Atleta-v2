@@ -89,7 +89,9 @@ pageJogo.salvarDadosBtn.addEventListener('click', function(){
     }
     else{
      $('#modalAtletaJogo').modal('close');
-    console.log(tempAtletaJogo);
+        
+        pageJogo.atletasJogo[tempAtletaJogo.uid] = tempAtletaJogo;
+        //console.log(pageJogo.atletasJogo);
     }
 })
 
@@ -101,8 +103,11 @@ pageJogo.salvarJogoBtn.addEventListener('click', function(){
             meuclube: pageJogo.meuClubeField.value,
             golsmeuclube: pageJogo.golsMeuClubeField.value,
             clubeadversario: pageJogo.clubeAdversarioField.value,
-            golsclubeadversario: pageJogo.golsClubeAdversarioField.value
+            golsclubeadversario: pageJogo.golsClubeAdversarioField.value,
+            atletasTempJogo: pageJogo.atletasJogo
         }
+    //atletasTempJogo = pageJogo.atletasJogo;
+    console.log(tempJogo);
 });
 
 function preencheTabelaCard(tempAtleta) {
