@@ -25,7 +25,7 @@ var pageAtleta = {
     bodyAtleta: document.querySelector('#body-atleta'),
     atletasSideBtn: document.querySelector('#atletas-menu')
 }
-window.addEventListener('load', getAtletas);
+//window.addEventListener('load', getAtletas);
 pageAtleta.atletasSideBtn.addEventListener('click', getAtletas);
 document.querySelector('#testeAtletaJS').addEventListener('click', function () {
     getAtletas();

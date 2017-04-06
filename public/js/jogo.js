@@ -67,6 +67,7 @@ function estatisticasAtleta(idAtleta)
     var html = atletaSel.nome;
     $('#nomeAtleta').append(html);
     $('#modalAtletaJogo').modal('open');
+        pageJogo.idAtletaField.value = idAtleta;
         pageJogo.golField.value = null;
         pageJogo.assistenciaField.value = null;
         pageJogo.cartaoAmareloField.value = null;
@@ -76,7 +77,7 @@ function estatisticasAtleta(idAtleta)
 
 pageJogo.salvarDadosBtn.addEventListener('click', function(){
     var tempAtletaJogo = {
-        uid: idAtleta,
+        uid: pageJogo.idAtletaField.value,
         gol: pageJogo.golField.value,
         assistencia: pageJogo.assistenciaField.value,
         cartaoamarelo: pageJogo.cartaoAmareloField.value,
@@ -114,7 +115,7 @@ function getAtletasCard(tempClube) {
     atletasNaTela.forEach(function (atletaHtml) {
         pageJogo.tableAtletasCard.innerHTML = '';
     })
-    pageJogo.database.ref(pageClube.databaseAtletas).once('value').then(function (snapshot) {
+    pageJogo.database.ref(pageJogo.databaseAtletas).once('value').then(function (snapshot) {
         snapshot.forEach(function (atletaRef) {
             var tempAtletaClube = atletaRef.val();
             tempAtletaClube.uid = atletaRef.key;
