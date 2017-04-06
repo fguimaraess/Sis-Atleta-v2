@@ -10,9 +10,11 @@ var pageClube = {
     , clubeBtn: document.querySelector('#salvar-clube-btn')
     , addClubeBtn: document.querySelector('#addClubeBtn'),
     tableClubes: document.querySelector('#table-clubes'),
-    bodyAtletasClube: document.querySelector('#body-atletas-clube')
+    bodyAtletasClube: document.querySelector('#body-atletas-clube'),
+    clubesSideBtn: document.querySelector('#clubes-menu')
 }
-window.addEventListener('load', getClubes);
+//window.addEventListener('load', getClubes);
+pageClube.clubesSideBtn.addEventListener('click', getClubes);
 
 function abreModalClube(idClube) {
     if (idClube) {
@@ -84,6 +86,7 @@ function excluirClube(idClube) {
 }
 
 function preencheTabelaClube(tempClube) {
+    
     var html = '';
     html += '<tr class="idDosClubes" id="' + tempClube.uid + '">';
     html += '<td class="nomeClubeTabela">' + tempClube.nomeclube + '</a></td>';
@@ -95,7 +98,10 @@ function preencheTabelaClube(tempClube) {
 }
 
 function getClubes() {
-    pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
+  var clubesNaTela = document.querySelectorAll('.idDosClubes');
+    clubesNaTela.forEach(function(clubeHtml){
+        pageClube.tableClubes.querySelector('#body-clube').innerHTML = '';
+    });  pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (clubeRef) {
             var tempClube = clubeRef.val();
             tempClube.uid = clubeRef.key;

@@ -22,9 +22,11 @@ var pageAtleta = {
     , btnCarregarFoto: document.querySelector('#btn-foto')
     , btnEditarAtleta: document.querySelector('#btn-editar-atleta')
     , addAtletaBtn: document.querySelector('#addAtletaBtn'),
-    bodyAtleta: document.querySelector('#body-atleta')
+    bodyAtleta: document.querySelector('#body-atleta'),
+    atletasSideBtn: document.querySelector('#atletas-menu')
 }
 window.addEventListener('load', getAtletas);
+pageAtleta.atletasSideBtn.addEventListener('click', getAtletas);
 document.querySelector('#testeAtletaJS').addEventListener('click', function () {
     getAtletas();
 });
@@ -144,7 +146,7 @@ function getAtletas() {
   
     var atletasNaTela = document.querySelectorAll('.idDosAtletas');
     atletasNaTela.forEach(function (atletaHtml) {
-        pageJogo.bodyAtleta.innerHTML = '';
+        pageAtleta.tableAtletas.querySelector('#body-atleta').innerHTML = '';
     })
     pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (atletaRef) {
