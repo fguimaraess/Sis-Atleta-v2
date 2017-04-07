@@ -38,7 +38,7 @@ page.loginBtn.addEventListener('click', function () {
         else {
             alert(errorMessage);
         }
-        console.log(error);
+        //console.log(error);
     });
     var user = firebase.auth().currentUser;
 });
