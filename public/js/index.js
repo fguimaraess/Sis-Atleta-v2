@@ -1,29 +1,29 @@
 var page = {
-    loginBtn: document.querySelector('#login-btn')
-    , registerBtn: document.querySelector('#register-btn')
-    , resetBtn: document.querySelector('#reset-btn')
-    , resetEmailField: document.querySelector('#resetemail-field')
-    , emailField: document.querySelector('#email-field')
-    , passwordField: document.querySelector('#password-field')
-    , database: firebase.database(),
+    loginBtn: document.querySelector('#login-btn'),
+    registerBtn: document.querySelector('#register-btn'),
+    resetBtn: document.querySelector('#reset-btn'),
+    resetEmailField: document.querySelector('#resetemail-field'),
+    emailField: document.querySelector('#email-field'),
+    passwordField: document.querySelector('#password-field'),
+    database: firebase.database(),
     userLogado: null
 }
 page.loginBtn.addEventListener('click', function () {
     var user = firebase.auth().signInWithEmailAndPassword(page.emailField.value, page.passwordField.value).then(function () {
         swal({
-            title: "Sis-Atleta"
-            , text: "Você será direcionado para a página principal"
-            , type: "success"
-            , showConfirmButton: true
+            title: "Sis-Atleta",
+            text: "Você será direcionado para a página principal",
+            type: "success",
+            showConfirmButton: true
         }, function () {
-            firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-               window.location = "/dashboard.html";
-             } else {
-               window.location = "/index.html";
-             }
-}           );
-            
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    window.location = "/dashboard.html";
+                } else {
+                    window.location = "/index.html";
+                }
+            });
+
         });
     }).catch(function (error) {
         // Handle Errors here.
@@ -31,11 +31,9 @@ page.loginBtn.addEventListener('click', function () {
         var errorMessage = error.message;
         if (errorCode == 'auth/wrong-password') {
             swal('Erro', 'Senha incorreta.', 'error');
-        }
-        else if (errorCode == 'auth/user-not-found') {
+        } else if (errorCode == 'auth/user-not-found') {
             swal('Erro', 'Usuário não encontrado', 'error');
-        }
-        else {
+        } else {
             alert(errorMessage);
         }
         //console.log(error);

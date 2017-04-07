@@ -1,31 +1,31 @@
 var pageAtleta = {
-        atletas: []
-        , database: firebase.database()
-        , databaseRef: '/atletas/'
-        , linhasAtleta: document.querySelector('#linhas-atleta'), //VER C LUIZ
-        templateLinha: document.querySelector('#template-linha'), //VER C LUIZ
-        nomeField: document.querySelector('#nomeatleta-field')
-        , idAtletaField: document.querySelector('#idAtleta')
-        , sobrenomeField: document.querySelector('#sobrenomeatleta-field')
-        , posicaoField: document.querySelector('#posicaoatleta-field')
-        , idadeField: document.querySelector('#idadeatleta-field')
-        , categoriaField: document.querySelector('#categoriaatleta-field')
-        , clubeField: document.querySelector('#clubeatleta-field')
-        , cidadeField: document.querySelector('#cidadeatleta-field')
-        , paisField: document.querySelector('#paisatleta-field')
-        , fotoField: document.querySelector('#fotoatleta-field')
-        , atletaBtn: document.querySelector('#salvar-atleta-btn')
-        , divAtletas: document.querySelector('#view-atletas')
-        , tableAtletas: document.querySelector('#table-atletas')
-        , uploader: document.querySelector('#uploader')
-        , fileButton: document.querySelector('#fileButton')
-        , btnCarregarFoto: document.querySelector('#btn-foto')
-        , btnEditarAtleta: document.querySelector('#btn-editar-atleta')
-        , addAtletaBtn: document.querySelector('#addAtletaBtn')
-        , bodyAtleta: document.querySelector('#body-atleta')
-        , atletasSideBtn: document.querySelector('#atletas-menu')
-    }
-    //window.addEventListener('load', getAtletas);
+    atletas: [],
+    database: firebase.database(),
+    databaseRef: '/atletas/',
+    linhasAtleta: document.querySelector('#linhas-atleta'), //VER C LUIZ
+    templateLinha: document.querySelector('#template-linha'), //VER C LUIZ
+    nomeField: document.querySelector('#nomeatleta-field'),
+    idAtletaField: document.querySelector('#idAtleta'),
+    sobrenomeField: document.querySelector('#sobrenomeatleta-field'),
+    posicaoField: document.querySelector('#posicaoatleta-field'),
+    idadeField: document.querySelector('#idadeatleta-field'),
+    categoriaField: document.querySelector('#categoriaatleta-field'),
+    clubeField: document.querySelector('#clubeatleta-field'),
+    cidadeField: document.querySelector('#cidadeatleta-field'),
+    paisField: document.querySelector('#paisatleta-field'),
+    fotoField: document.querySelector('#fotoatleta-field'),
+    atletaBtn: document.querySelector('#salvar-atleta-btn'),
+    divAtletas: document.querySelector('#view-atletas'),
+    tableAtletas: document.querySelector('#table-atletas'),
+    uploader: document.querySelector('#uploader'),
+    fileButton: document.querySelector('#fileButton'),
+    btnCarregarFoto: document.querySelector('#btn-foto'),
+    btnEditarAtleta: document.querySelector('#btn-editar-atleta'),
+    addAtletaBtn: document.querySelector('#addAtletaBtn'),
+    bodyAtleta: document.querySelector('#body-atleta'),
+    atletasSideBtn: document.querySelector('#atletas-menu')
+}
+//window.addEventListener('load', getAtletas);
 pageAtleta.atletasSideBtn.addEventListener('click', getAtletas);
 
 function abreModalAtleta(idAtleta) {
@@ -42,8 +42,7 @@ function abreModalAtleta(idAtleta) {
         pageAtleta.clubeField.value = atletaSel.clube;
         pageAtleta.cidadeField.value = atletaSel.cidade;
         pageAtleta.paisField.value = atletaSel.pais;
-    }
-    else {
+    } else {
         pageAtleta.idAtletaField.value = null;
         pageAtleta.nomeField.value = null;
         pageAtleta.sobrenomeField.value = null;
@@ -62,31 +61,29 @@ pageAtleta.addAtletaBtn.addEventListener('click', function () {
     abreModalAtleta(null);
 })
 pageAtleta.atletaBtn.addEventListener('click', function () {
-        var tempAtleta = {
-            nome: pageAtleta.nomeField.value
-            , sobrenome: pageAtleta.sobrenomeField.value
-            , posicao: pageAtleta.posicaoField.value
-            , idade: pageAtleta.idadeField.value
-            , categoria: pageAtleta.categoriaField.value
-            , clube: pageAtleta.clubeField.value
-            , cidade: pageAtleta.cidadeField.value
-            , pais: pageAtleta.paisField.value
+    var tempAtleta = {
+        nome: pageAtleta.nomeField.value,
+        sobrenome: pageAtleta.sobrenomeField.value,
+        posicao: pageAtleta.posicaoField.value,
+        idade: pageAtleta.idadeField.value,
+        categoria: pageAtleta.categoriaField.value,
+        clube: pageAtleta.clubeField.value,
+        cidade: pageAtleta.cidadeField.value,
+        pais: pageAtleta.paisField.value
+    }
+    if (tempAtleta.nome == "" || tempAtleta.sobrenome == "" || tempAtleta.posicao == "" || tempAtleta.idade == "" || tempAtleta.categoria == "" || tempAtleta.cidade == "" || tempAtleta.pais == "") {
+        swal("Ainda não...", "Preencha os dados do atleta.", "error");
+    } else {
+        if (pageAtleta.idAtletaField.value) {
+            salvarAlteracoes(tempAtleta);
+            $('#modal-addatleta').modal('close');
+        } else {
+            novoAtleta(tempAtleta);
+            $('#modal-addatleta').modal('close');
         }
-        if (tempAtleta.nome == "" || tempAtleta.sobrenome == "" || tempAtleta.posicao == "" || tempAtleta.idade == "" || tempAtleta.categoria == "" || tempAtleta.cidade == "" || tempAtleta.pais == "") {
-            swal("Ainda não...", "Preencha os dados do atleta.", "error");
-        }
-        else {
-            if (pageAtleta.idAtletaField.value) {
-                salvarAlteracoes(tempAtleta);
-                $('#modal-addatleta').modal('close');
-            }
-            else {
-                novoAtleta(tempAtleta);
-                $('#modal-addatleta').modal('close');
-            }
-        }
-    })
-    //pageAtleta.tableAtletas.addEventListener('click', getLinha);
+    }
+})
+//pageAtleta.tableAtletas.addEventListener('click', getLinha);
 pageAtleta.fileButton.addEventListener('change', function (e) {
     //Pega o arquivo
     var file = e.target.files[0];

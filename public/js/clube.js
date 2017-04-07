@@ -1,19 +1,19 @@
 var pageClube = {
-        clubes: []
-        , atletas: []
-        , database: firebase.database()
-        , databaseRef: '/clubes/'
-        , databaseAtletas: '/atletas/'
-        , nomeClubeField: document.querySelector('#nome-clube-field')
-        , siglaClubeField: document.querySelector('#sigla-clube-field')
-        , idClubeField: document.querySelector('#idClube')
-        , clubeBtn: document.querySelector('#salvar-clube-btn')
-        , addClubeBtn: document.querySelector('#addClubeBtn')
-        , tableClubes: document.querySelector('#table-clubes')
-        , bodyAtletasClube: document.querySelector('#body-atletas-clube')
-        , clubesSideBtn: document.querySelector('#clubes-menu')
-    }
-    //window.addEventListener('load', getClubes);
+    clubes: [],
+    atletas: [],
+    database: firebase.database(),
+    databaseRef: '/clubes/',
+    databaseAtletas: '/atletas/',
+    nomeClubeField: document.querySelector('#nome-clube-field'),
+    siglaClubeField: document.querySelector('#sigla-clube-field'),
+    idClubeField: document.querySelector('#idClube'),
+    clubeBtn: document.querySelector('#salvar-clube-btn'),
+    addClubeBtn: document.querySelector('#addClubeBtn'),
+    tableClubes: document.querySelector('#table-clubes'),
+    bodyAtletasClube: document.querySelector('#body-atletas-clube'),
+    clubesSideBtn: document.querySelector('#clubes-menu')
+}
+//window.addEventListener('load', getClubes);
 pageClube.clubesSideBtn.addEventListener('click', getClubes);
 
 function abreModalClube(idClube) {
@@ -22,8 +22,7 @@ function abreModalClube(idClube) {
         pageClube.idClubeField.value = clubeSel.uid;
         pageClube.nomeClubeField.value = clubeSel.nomeclube;
         pageClube.siglaClubeField.value = clubeSel.siglaclube;
-    }
-    else {
+    } else {
         pageClube.idClubeField.value = null;
         pageClube.nomeClubeField.value = null;
         pageClube.siglaClubeField.value = null;
@@ -35,18 +34,16 @@ pageClube.addClubeBtn.addEventListener('click', function () {
 })
 pageClube.clubeBtn.addEventListener('click', function () {
     var tempClube = {
-        nomeclube: pageClube.nomeClubeField.value
-        , siglaclube: pageClube.siglaClubeField.value
+        nomeclube: pageClube.nomeClubeField.value,
+        siglaclube: pageClube.siglaClubeField.value
     }
     if (tempClube.nomeclube == "" || tempClube.siglaclube == "") {
         swal("Aviso!", "O nome e a sigla devem ser preenchidos!");
-    }
-    else {
+    } else {
         if (pageClube.idClubeField.value) {
             salvarAlteracoesClube(tempClube);
             $('#modal-addclube').modal('close');
-        }
-        else {
+        } else {
             novoClube(tempClube);
             $('#modal-addclube').modal('close');
         }
