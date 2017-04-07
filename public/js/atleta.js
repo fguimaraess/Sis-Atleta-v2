@@ -27,9 +27,7 @@ var pageAtleta = {
 }
 //window.addEventListener('load', getAtletas);
 pageAtleta.atletasSideBtn.addEventListener('click', getAtletas);
-document.querySelector('#testeAtletaJS').addEventListener('click', function () {
-    getAtletas();
-});
+
 
 function abreModalAtleta(idAtleta) {
     if (idAtleta) {
@@ -145,7 +143,7 @@ function excluirAtleta(idAtleta) {
 function getAtletas() {
   
     var atletasNaTela = document.querySelectorAll('.idDosAtletas');
-    atletasNaTela.forEach(function (atletaHtml) {
+    atletasNaTela.forEach(function () {
         pageAtleta.tableAtletas.querySelector('#body-atleta').innerHTML = '';
     })
     pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {

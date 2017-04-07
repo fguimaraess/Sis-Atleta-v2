@@ -34,7 +34,7 @@
     <!--Layout-->
     <div class="row" style="padding-top: 30px;">
         <div class="col s3 navigation">
-            <div class="collection"> <a href="#!" class="collection-item active" id="dashboard-menu">Dashboard</a> <a href="#!" class="collection-item" id="atletas-menu">Atletas</a> <a href="#!" class="collection-item" id="clubes-menu">Clubes</a> <a href="#!" class="collection-item" id="jogos-menu">Jogos</a> <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a> <a href="#!" class="collection-item" id="testeAtletaJS">TESTE</a> </div>
+            <div class="collection"> <a href="#!" class="collection-item active" id="dashboard-menu">Dashboard</a> <a href="#!" class="collection-item" id="atletas-menu">Atletas</a> <a href="#!" class="collection-item" id="clubes-menu">Clubes</a> <a href="#!" class="collection-item" id="jogos-menu">Jogos</a> <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a> </div>
         </div>
         <div class="col s9 content-page">
             <div class="dash">
@@ -242,8 +242,10 @@
                                 <th data-field="id" hidden>Id</th>
                                 <th data-field="data-jogo">Data</th>
                                 <th data-field="clube1">Meu Clube</th>
+                                <th data-field="clube1">Placar</th>
                                 <th data-field="clube2">Clube Adversário</th>
                                 <th data-field="campeonato">Campeonato</th>
+                                <th data-field="campeonato">Local</th>
                                 <th data-field="jogos-acoes">Ações</th>
                             </tr>
                     </thead>
@@ -264,15 +266,21 @@
                                                     <input type="date" id="datajogo-field" class="datepicker" placeholder="">
                                                     <label class="active" for="data-jogo-field">Data *</label>
                                                 </div>
+                                                
                                                 <div class="input-field col s6">
-                                                    <input type="text" id="campeonato-field" class="validate" placeholder="">
-                                                    <label for="campeonato-field">Campeonato *</label>
+                                                    <input type="text" id="melhor-jogador-field" class="validate" placeholder="">
+                                                    <label for="melhor-jogador-field">Melhor Jogador*</label>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col s12">
-                                                    <input type="text" id="melhor-jogador-field" class="validate" placeholder="">
-                                                    <label for="melhor-jogador-field">Melhor Jogador*</label>
+                                            <div class="input-field col s6">
+                                                    <input type="text" id="campeonato-field" class="validate" placeholder="">
+                                                    <label for="campeonato-field">Campeonato *</label>
+                                                </div>
+                                            
+                                                <div class="input-field col s6">
+                                                    <input type="text" id="local-field" class="validate" placeholder="">
+                                                    <label for="local-field">Local *</label>
                                                 </div>
                                             </div>
                                             <div class="row">

@@ -65,6 +65,6 @@ a#salvar-card, a#voltarCardJogo {
     color: lightseagreen;
 }
 
-a.add-jogador, a.remove-jogador, a.editar-dados-jogador{
+a.add-jogador, a.remove-jogador, a.editar-dados-jogador, a.editar-jogo, a.excluir-jogo{
     color: lightseagreen;
 }

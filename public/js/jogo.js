@@ -1,13 +1,16 @@
 var pageJogo = {
     atletas: [],
     atletasJogo: []
+    , jogos: []
     , clubes: []
     , database: firebase.database()
     , databaseRef: '/jogos/'
+    , jogosSideBtn: document.querySelector('#jogos-menu')
     , addAtletaJogoBtn: document.querySelector('#addAtletaJogoBtn')
     , addJogoBtn: document.querySelector('#addJogoBtn')
     , databaseAtletas: '/atletas/'
     , databaseClubes: '/clubes/'
+    , tableJogos: document.querySelector('#table-jogos')
     , tableAtletasCard: document.querySelector('#body-card')
     , tableAtletasAdicionados: document.querySelector('#body-card-jogo')
     , clube1Field1: document.querySelector('#clube1-field')
@@ -26,12 +29,48 @@ var pageJogo = {
     meuClubeField: document.querySelector('#clube1-field'),
     golsMeuClubeField: document.querySelector('#gols-clube1-field'),
     clubeAdversarioField: document.querySelector('#clube2-field'),
-    golsClubeAdversarioField: document.querySelector('#gols-clube2-field')
+    golsClubeAdversarioField: document.querySelector('#gols-clube2-field'),
+    localField: document.querySelector('#local-field')
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
     getClubesCard();
 });
 
+pageJogo.jogosSideBtn.addEventListener('click', function(){
+     getJogos();
+});
+
+function getJogos()
+{
+   var jogosNaTela = document.querySelectorAll('.idDosJogos');
+    jogosNaTela.forEach(function(){
+        pageJogo.tableJogos.querySelector('#body-jogos').innerHTML = '';
+    });
+    pageJogo.database.ref(pageJogo.databaseRef).once('value').then(function(snapshot){
+        snapshot.forEach(function(jogoRef)
+        {
+            var tempJogo = jogoRef.val();
+            tempJogo.uid = jogoRef.key;
+            pageJogo.jogos[jogoRef.key] = (tempJogo);
+            preencheTabelaJogo(tempJogo);
+        });
+    })
+}
+
+function preencheTabelaJogo(tempJogo)
+{
+    var htmlJogo = '';
+    htmlJogo += '<tr class="idDosJogos" id="' + tempJogo.uid + '">';
+    htmlJogo += '<td class="dataJogoTabela">' + tempJogo.data;
+    htmlJogo += '<td class="meuClubeTabela">' + tempJogo.meuclube;
+    htmlJogo += '<td class="placarJogoTabela">' + tempJogo.golsmeuclube+ " x " + tempJogo.golsclubeadversario;
+    htmlJogo += '<td class="clubeAdversarioTabela">' + tempJogo.clubeadversario;
+    htmlJogo += '<td class="campeonatoTabela">' + tempJogo.campeonato;
+    htmlJogo += '<td class="localTabela">' + tempJogo.local;
+    htmlJogo += '<td><a onclick="abreCardJogo(\'' + tempJogo.uid + '\')" href="#" class="editar-jogo"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a onclick="excluirJogo(\'' + tempJogo.uid + '\' )" href="#" class="excluir-jogo"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
+    htmlJogo += '</tr>';
+    $('#body-jogos').append(htmlJogo);
+}
 
 function removeAtletaJogo(idAtleta) {
     tempAtleta = pageJogo.tableAtletasAdicionados.querySelector('#'+idAtleta);

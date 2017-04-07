@@ -99,9 +99,10 @@ function preencheTabelaClube(tempClube) {
 
 function getClubes() {
   var clubesNaTela = document.querySelectorAll('.idDosClubes');
-    clubesNaTela.forEach(function(clubeHtml){
+    clubesNaTela.forEach(function(){
         pageClube.tableClubes.querySelector('#body-clube').innerHTML = '';
-    });  pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
+    });
+    pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (clubeRef) {
             var tempClube = clubeRef.val();
             tempClube.uid = clubeRef.key;
