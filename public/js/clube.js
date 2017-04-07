@@ -1,19 +1,19 @@
 var pageClube = {
-    clubes: []
-    , atletas: []
-    , database: firebase.database()
-    , databaseRef: '/clubes/'
-    , databaseAtletas: '/atletas/'
-    , nomeClubeField: document.querySelector('#nome-clube-field')
-    , siglaClubeField: document.querySelector('#sigla-clube-field')
-    , idClubeField: document.querySelector('#idClube')
-    , clubeBtn: document.querySelector('#salvar-clube-btn')
-    , addClubeBtn: document.querySelector('#addClubeBtn'),
-    tableClubes: document.querySelector('#table-clubes'),
-    bodyAtletasClube: document.querySelector('#body-atletas-clube'),
-    clubesSideBtn: document.querySelector('#clubes-menu')
-}
-//window.addEventListener('load', getClubes);
+        clubes: []
+        , atletas: []
+        , database: firebase.database()
+        , databaseRef: '/clubes/'
+        , databaseAtletas: '/atletas/'
+        , nomeClubeField: document.querySelector('#nome-clube-field')
+        , siglaClubeField: document.querySelector('#sigla-clube-field')
+        , idClubeField: document.querySelector('#idClube')
+        , clubeBtn: document.querySelector('#salvar-clube-btn')
+        , addClubeBtn: document.querySelector('#addClubeBtn')
+        , tableClubes: document.querySelector('#table-clubes')
+        , bodyAtletasClube: document.querySelector('#body-atletas-clube')
+        , clubesSideBtn: document.querySelector('#clubes-menu')
+    }
+    //window.addEventListener('load', getClubes);
 pageClube.clubesSideBtn.addEventListener('click', getClubes);
 
 function abreModalClube(idClube) {
@@ -30,7 +30,6 @@ function abreModalClube(idClube) {
     }
     $('#modal-addclube').modal('open');
 }
-
 pageClube.addClubeBtn.addEventListener('click', function () {
     abreModalClube(null);
 })
@@ -59,34 +58,29 @@ function salvarAlteracoesClube(tempClube) {
     tempClube.nomeclube = pageClube.nomeClubeField.value;
     tempClube.siglaclube = pageClube.siglaClubeField.value;
     pageClube.database.ref(pageClube.databaseRef + '/' + pageClube.idClubeField.value).update(tempClube).then(swal("", "Clube atualizado com sucesso", "success"));
-    
     var clubesNaTela = document.querySelectorAll('.idDosClubes');
-    clubesNaTela.forEach(function(clubeHtml){
-        if(clubeHtml.id == idClube)
-            {
-                clubeHtml.querySelector('.nomeClubeTabela').innerHTML = pageClube.nomeClubeField.value;
-                clubeHtml.querySelector('.siglaClubeTabela').innerHTML = pageClube.siglaClubeField.value;
-            }
+    clubesNaTela.forEach(function (clubeHtml) {
+        if (clubeHtml.id == idClube) {
+            clubeHtml.querySelector('.nomeClubeTabela').innerHTML = pageClube.nomeClubeField.value;
+            clubeHtml.querySelector('.siglaClubeTabela').innerHTML = pageClube.siglaClubeField.value;
+        }
     })
 }
 
 function novoClube(clube) {
-    var idClubeNovo = pageClube.database.ref(pageClube.databaseRef).push(clube)
-    .then(function(clubeRef){
+    var idClubeNovo = pageClube.database.ref(pageClube.databaseRef).push(clube).then(function (clubeRef) {
         clube.uid = clubeRef.key;
         pageClube.clubes[clubeRef.key] = (clube);
         preencheTabelaClube(clube);
-    })
-    .then(swal("", "Clube criado com sucesso", "success"));
+    }).then(swal("", "Clube criado com sucesso", "success"));
 }
 
 function excluirClube(idClube) {
     pageClube.database.ref(pageClube.databaseRef + idClube).remove().then(swal("", "Clube removido com sucesso", "success"));
-    pageClube.tableClubes.querySelector('#'+idClube).innerHTML = '';
+    pageClube.tableClubes.querySelector('#' + idClube).innerHTML = '';
 }
 
 function preencheTabelaClube(tempClube) {
-    
     var html = '';
     html += '<tr class="idDosClubes" id="' + tempClube.uid + '">';
     html += '<td class="nomeClubeTabela">' + tempClube.nomeclube + '</a></td>';
@@ -98,8 +92,8 @@ function preencheTabelaClube(tempClube) {
 }
 
 function getClubes() {
-  var clubesNaTela = document.querySelectorAll('.idDosClubes');
-    clubesNaTela.forEach(function(){
+    var clubesNaTela = document.querySelectorAll('.idDosClubes');
+    clubesNaTela.forEach(function () {
         pageClube.tableClubes.querySelector('#body-clube').innerHTML = '';
     });
     pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
@@ -114,13 +108,10 @@ function getClubes() {
 
 function getAtletasByClube(idClube) {
     $('#modal-veratletas').modal('open');
-    
     var atletasClube = document.querySelectorAll('.idDosAtletasClube');
-    atletasClube.forEach(function(atletaClubeHtml){
-    pageClube.bodyAtletasClube.innerHTML = '';                               
-                                   })
-    
-    
+    atletasClube.forEach(function (atletaClubeHtml) {
+        pageClube.bodyAtletasClube.innerHTML = '';
+    })
     pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (clubeRef) {
             var tempClube = clubeRef.val();

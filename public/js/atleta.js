@@ -1,33 +1,32 @@
 var pageAtleta = {
-    atletas: []
-    , database: firebase.database()
-    , databaseRef: '/atletas/'
-    , linhasAtleta: document.querySelector('#linhas-atleta'), //VER C LUIZ
-    templateLinha: document.querySelector('#template-linha'), //VER C LUIZ
-    nomeField: document.querySelector('#nomeatleta-field')
-    , idAtletaField: document.querySelector('#idAtleta')
-    , sobrenomeField: document.querySelector('#sobrenomeatleta-field')
-    , posicaoField: document.querySelector('#posicaoatleta-field')
-    , idadeField: document.querySelector('#idadeatleta-field')
-    , categoriaField: document.querySelector('#categoriaatleta-field')
-    , clubeField: document.querySelector('#clubeatleta-field')
-    , cidadeField: document.querySelector('#cidadeatleta-field')
-    , paisField: document.querySelector('#paisatleta-field')
-    , fotoField: document.querySelector('#fotoatleta-field')
-    , atletaBtn: document.querySelector('#salvar-atleta-btn')
-    , divAtletas: document.querySelector('#view-atletas')
-    , tableAtletas: document.querySelector('#table-atletas')
-    , uploader: document.querySelector('#uploader')
-    , fileButton: document.querySelector('#fileButton')
-    , btnCarregarFoto: document.querySelector('#btn-foto')
-    , btnEditarAtleta: document.querySelector('#btn-editar-atleta')
-    , addAtletaBtn: document.querySelector('#addAtletaBtn'),
-    bodyAtleta: document.querySelector('#body-atleta'),
-    atletasSideBtn: document.querySelector('#atletas-menu')
-}
-//window.addEventListener('load', getAtletas);
+        atletas: []
+        , database: firebase.database()
+        , databaseRef: '/atletas/'
+        , linhasAtleta: document.querySelector('#linhas-atleta'), //VER C LUIZ
+        templateLinha: document.querySelector('#template-linha'), //VER C LUIZ
+        nomeField: document.querySelector('#nomeatleta-field')
+        , idAtletaField: document.querySelector('#idAtleta')
+        , sobrenomeField: document.querySelector('#sobrenomeatleta-field')
+        , posicaoField: document.querySelector('#posicaoatleta-field')
+        , idadeField: document.querySelector('#idadeatleta-field')
+        , categoriaField: document.querySelector('#categoriaatleta-field')
+        , clubeField: document.querySelector('#clubeatleta-field')
+        , cidadeField: document.querySelector('#cidadeatleta-field')
+        , paisField: document.querySelector('#paisatleta-field')
+        , fotoField: document.querySelector('#fotoatleta-field')
+        , atletaBtn: document.querySelector('#salvar-atleta-btn')
+        , divAtletas: document.querySelector('#view-atletas')
+        , tableAtletas: document.querySelector('#table-atletas')
+        , uploader: document.querySelector('#uploader')
+        , fileButton: document.querySelector('#fileButton')
+        , btnCarregarFoto: document.querySelector('#btn-foto')
+        , btnEditarAtleta: document.querySelector('#btn-editar-atleta')
+        , addAtletaBtn: document.querySelector('#addAtletaBtn')
+        , bodyAtleta: document.querySelector('#body-atleta')
+        , atletasSideBtn: document.querySelector('#atletas-menu')
+    }
+    //window.addEventListener('load', getAtletas);
 pageAtleta.atletasSideBtn.addEventListener('click', getAtletas);
-
 
 function abreModalAtleta(idAtleta) {
     if (idAtleta) {
@@ -141,7 +140,6 @@ function excluirAtleta(idAtleta) {
 }
 
 function getAtletas() {
-  
     var atletasNaTela = document.querySelectorAll('.idDosAtletas');
     atletasNaTela.forEach(function () {
         pageAtleta.tableAtletas.querySelector('#body-atleta').innerHTML = '';
