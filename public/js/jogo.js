@@ -87,6 +87,10 @@ function abreCardJogo(idJogo) {
     }
 }
 
+function novoJogo(jogo){
+    pageJogo.database.ref(pageJogo.databaseRef).push(jogo);
+}
+
 function excluirJogo(idJogo) {
     pageJogo.tableJogos.querySelector('#' + idJogo).innerHTML = '';
 }
@@ -192,6 +196,7 @@ pageJogo.salvarJogoBtn.addEventListener('click', function () {
     }
     //atletasTempJogo = pageJogo.atletasJogo;
     console.log(tempJogo);
+    novoJogo(tempJogo);
 });
 
 function preencheTabelaCard(tempAtleta) {
