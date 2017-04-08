@@ -34,7 +34,7 @@ var pageJogo = {
 }
 
 pageJogo.addJogoBtn.addEventListener('click', function () {
-    abreCardJogo(null);
+    dJogo(null);
 
 });
 pageJogo.jogosSideBtn.addEventListener('click', function () {
@@ -43,7 +43,6 @@ pageJogo.jogosSideBtn.addEventListener('click', function () {
 });
 
 function abreCardJogo(idJogo) {
-    console.log(idJogo);
     $('#cardJogo').show();
     $('#cardAtletas').show();
     $('#table-jogos').hide();
@@ -62,14 +61,15 @@ function abreCardJogo(idJogo) {
         $(pageJogo.clubeAdversarioField).material_select();
         pageJogo.golsClubeAdversarioField.value = jogoSel.golsclubeadversario;
 
-        /*var atletasSel = [];
-        atletasSel = pageJogo.atletas[atletasTempJogo];
+        var atletasDoClube = separaAtletasQueJogaram(sortAtletas(pageAtleta.atletas, jogoSel.meuclube),jogoSel.atletasTempJogo)
+        for(var key in atletasDoClube){
+            preencheTabelaCard(atletasDoClube[key])
+        }
+        for(var key in jogoSel.atletasTempJogo){
+            addAtletaJogo(key)
+        }
         
-        pageJogo.golField.value = atletasSel.gol;
-        pageJogo.assistenciaField.value = atletasSel.assistencia;
-        pageJogo.cartaoAmareloField.value = atletasSel.cartaoamarelo;
-        pageJogo.cartaoVermelhoField.value = atletasSel.cartaovermelho;
-        pageJogo.minutosJogadosField.value = atletasSel.minutos;*/
+
     } else {
         pageJogo.dataField.value = null;
         pageJogo.localField.value = null;
@@ -85,6 +85,23 @@ function abreCardJogo(idJogo) {
         pageJogo.cartaoVermelhoField.value = null;
         pageJogo.minutosJogadosField.value = null;
     }
+}
+function separaAtletasQueJogaram(atletasClube, atletasPartida){
+    var atletasFiltrados = atletasClube;
+    for(var key in atletasPartida){
+        delete atletasFiltrados[key];
+    }
+    return atletasFiltrados
+}
+function sortAtletas(atletas, clube){
+    var atletasFiltrados = []
+    for (var key in atletas) {
+        if(atletas[key].clube == clube){
+            atletasFiltrados[key] = atletas[key];
+        }
+    }
+    return atletasFiltrados;
+    
 }
 
 function novoJogo(jogo){
@@ -140,8 +157,10 @@ function removeAtletaJogo(idAtleta) {
 
 function addAtletaJogo(idAtleta) {
     tempAtleta = pageJogo.tableAtletasCard.querySelector('#' + idAtleta);
-    pageJogo.tableAtletasCard.removeChild(tempAtleta);
-    atletaSel = pageJogo.atletas[idAtleta]
+    if(tempAtleta){
+        pageJogo.tableAtletasCard.removeChild(tempAtleta);
+    }
+    atletaSel = pageAtleta.atletas[idAtleta]
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
     html += '<td><a onclick="removeAtletaJogo(\'' + idAtleta + '\')" href="#" class="remove-jogador"><i class="material-icons">remove</i></a></td>'
@@ -152,11 +171,20 @@ function addAtletaJogo(idAtleta) {
     $('#body-card-jogo').append(html);
 }
 
-function estatisticasAtleta(idAtleta) {
+function estatisticasAtleta(idAtleta, idJogo) {
     atletaSel = pageJogo.atletas[idAtleta];
     var html = atletaSel.nome;
-    $('#nomeAtleta').append(html);
+    document.querySelector('#nomeAtleta').innerHTML = html;
     $('#modalAtletaJogo').modal('open');
+    var participacaoAtletaJogo = pageJogo.jogos[idJogo].atletasTempJogo[idAtleta];
+    if(participacaoAtletaJogo){
+        pageJogo.idAtletaField.value = idAtleta;
+        pageJogo.golField.value = null;
+        pageJogo.assistenciaField.value = null;
+        pageJogo.cartaoAmareloField.value = null;
+        pageJogo.cartaoVermelhoField.value = null;
+        pageJogo.minutosJogadosField.value = null;
+    }
     pageJogo.idAtletaField.value = idAtleta;
     pageJogo.golField.value = null;
     pageJogo.assistenciaField.value = null;
