@@ -107,7 +107,7 @@ function getJogos() {
 }
 
 function preencheTabelaJogo(tempJogo) {
-    $(pageJogo.meuClubeField).change(showClubeSelecionado);
+    
     var htmlJogo = '';
     htmlJogo += '<tr class="idDosJogos" id="' + tempJogo.uid + '">';
     htmlJogo += '<td class="dataJogoTabela">' + tempJogo.data;
@@ -237,7 +237,7 @@ function showClubeSelecionado() {
     getAtletasCard(clube1);
 }
 
-
+$(pageJogo.meuClubeField).change(showClubeSelecionado);
 function preencheSelectedClube(tempClube) {
     var newOption = document.createElement("option");
     var newOption2 = document.createElement("option");
