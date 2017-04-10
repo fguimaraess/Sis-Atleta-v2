@@ -33,23 +33,29 @@ var pageJogo = {
     localField: document.querySelector('#local-field'),
     jogoAtual: -1
 }
-
 pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
-
 });
 pageJogo.jogosSideBtn.addEventListener('click', function () {
     getJogos();
-    getClubesCard();
 });
 
+
+
+
 function abreCardJogo(idJogo) {
-    pageJogo.jogoAtual = idJogo;
-    $('#cardJogo').show();
-    $('#cardAtletas').show();
-    $('#table-jogos').hide();
-    $('#addJogoBtn').hide();
-    if (idJogo) {
+        var atletasNaTela = document.querySelectorAll('.idDosAtletas');
+        atletasNaTela.forEach(function (atletaHtml) {
+        pageJogo.tableAtletasAdicionados.innerHTML = '';
+        pageJogo.tableAtletasCard.innerHTML = '';
+    });
+        pageJogo.jogoAtual = idJogo;
+        $('#cardJogo').show();
+        $('#cardAtletas').show();
+        $('#table-jogos').hide();
+        $('#addJogoBtn').hide();
+        getClubesCard();
+        if (idJogo) {
         jogoSel = pageJogo.jogos[idJogo]
         pageJogo.dataField.value = jogoSel.data;
         pageJogo.localField.value = jogoSel.local;
@@ -62,7 +68,6 @@ function abreCardJogo(idJogo) {
         $(pageJogo.clubeAdversarioField).val(jogoSel.clubeadversario);
         $(pageJogo.clubeAdversarioField).material_select();
         pageJogo.golsClubeAdversarioField.value = jogoSel.golsclubeadversario;
-
         var atletasDoClube = separaAtletasQueJogaram(sortAtletas(pageAtleta.atletas, jogoSel.meuclube),jogoSel.atletasTempJogo)
         for(var key in atletasDoClube){
             preencheTabelaCard(atletasDoClube[key])
@@ -70,16 +75,19 @@ function abreCardJogo(idJogo) {
         for(var key in jogoSel.atletasTempJogo){
             addAtletaJogo(key)
         }
-        
 
     } else {
+        
+        pageJogo.idJogo = null;
         pageJogo.dataField.value = null;
         pageJogo.localField.value = null;
         pageJogo.campeonatoField.value = null;
         pageJogo.melhorJogadorField.value = null;
-        pageJogo.meuClubeField.value = null;
+        $(pageJogo.meuClubeField).val();
+        $(pageJogo.meuClubeField).material_select();
         pageJogo.golsMeuClubeField.value = null;
-        pageJogo.clubeAdversarioField.value = null;
+        $(pageJogo.clubeAdversarioField).val();
+        $(pageJogo.clubeAdversarioField).material_select();
         pageJogo.golsClubeAdversarioField.value = null;
         pageJogo.golField.value = null;
         pageJogo.assistenciaField.value = null;
@@ -93,7 +101,7 @@ function separaAtletasQueJogaram(atletasClube, atletasPartida){
     for(var key in atletasPartida){
         delete atletasFiltrados[key];
     }
-    return atletasFiltrados
+    return atletasFiltrados;
 }
 function sortAtletas(atletas, clube){
     var atletasFiltrados = []
@@ -103,7 +111,6 @@ function sortAtletas(atletas, clube){
         }
     }
     return atletasFiltrados;
-    
 }
 
 function novoJogo(jogo){
@@ -158,10 +165,6 @@ function removeAtletaJogo(idAtleta) {
 
 
 function addAtletaJogo(idAtleta) {
-    //var atletasNaTela = document.querySelectorAll('.idDosAtletas');
-    //atletasNaTela.forEach(function (atletaHtml) {
-    //    pageJogo.tableAtletasAdicionados.innerHTML = '';
-    //});
     tempAtleta = pageJogo.tableAtletasCard.querySelector('#' + idAtleta);
     if(tempAtleta){
         pageJogo.tableAtletasCard.removeChild(tempAtleta);
@@ -256,39 +259,41 @@ function getAtletasCard(tempClube) {
     var atletasNaTela = document.querySelectorAll('.idDosAtletas');
     atletasNaTela.forEach(function (atletaHtml) {
         pageJogo.tableAtletasCard.innerHTML = '';
-    })
-    pageJogo.database.ref(pageJogo.databaseAtletas).once('value').then(function (snapshot) {
-        snapshot.forEach(function (atletaRef) {
-            var tempAtletaClube = atletaRef.val();
-            tempAtletaClube.uid = atletaRef.key;
-            pageJogo.atletas[atletaRef.key] = (tempAtletaClube);
-            if (tempClube == tempAtletaClube.clube) {
-                preencheTabelaCard(tempAtletaClube);
-            }
-        });
     });
+
+    var tempAtletaClube = pageAtleta.atletas;
+    for(var key in tempAtletaClube)
+    {
+        if (tempClube == tempAtletaClube[key].clube)
+        {
+            preencheTabelaCard(tempAtletaClube[key]);
+        }
+    }
 }
 
-function getClubesCard() {
-    pageJogo.database.ref(pageJogo.databaseClubes).once('value').then(function (snapshot) {
-        snapshot.forEach(function (clubeRef) {
-            var tempClube = clubeRef.val();
-            tempClube.uid = clubeRef.key;
-            pageJogo.clubes[clubeRef.key] = (tempClube);
-            preencheSelectedClube(tempClube);
-        });
-    })
-}
 
 function showClubeSelecionado() {
     var clube1 = $(pageJogo.meuClubeField).val();
     getAtletasCard(clube1);
 }
 
+
 $(pageJogo.meuClubeField).change(showClubeSelecionado);
+
+function getClubesCard(tempClube) {
+        $(pageJogo.meuClubeField).empty();
+        $(pageJogo.clubeAdversarioField).empty();
+         var tempClube = pageClube.clubes;
+         for (var key in tempClube)
+         {
+             preencheSelectedClube(tempClube[key]);
+         }
+}
+
 function preencheSelectedClube(tempClube) {
     var newOption = document.createElement("option");
     var newOption2 = document.createElement("option");
+    
     newOption.value = tempClube.nomeclube;
     newOption.innerHTML = tempClube.nomeclube;
     newOption2.value = tempClube.nomeclube;

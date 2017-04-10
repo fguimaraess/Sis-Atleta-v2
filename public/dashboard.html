@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
@@ -125,8 +126,11 @@
                                             <label for=categoriaatleta-field>Categoria *</label>
                                         </div>
                                         <div class="input-field col s6">
-                                            <input type="text" id="clubeatleta-field" class="validate" placeholder="">
-                                            <label for="clubeatleta-field">Clube</label>
+                                            <select id="clubeatleta-field">
+                                                <option value="clubeatleta-field">-</option>
+                                            </select>
+                                                <label for="clubeatleta-field">Clube *</label>
+                                            <!--<input type="text" id="clubeatleta-field" class="validate" placeholder="">-->
                                         </div>
                                     </div>
                                     <div class="row">
@@ -281,7 +285,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col s6">
+                                                <div class="input-field col s6 idDosClubesField">
                                                     <select id="clube1-field">
                                                         <option value="clube1">-</option>
                                                     </select>
@@ -394,8 +398,8 @@
         </div>
     </div>
     <footer>
-        <script src="js/atleta.js" charset="utf-8"></script>
         <script src="js/clube.js" charset="utf-8"></script>
+        <script src="js/atleta.js" charset="utf-8"></script>
         <script src="js/jogo.js" charset="utf-8"></script>
         <script src="js/dashboard.js" charset="utf-8"></script>
     </footer>

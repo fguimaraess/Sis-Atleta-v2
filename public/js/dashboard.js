@@ -78,6 +78,7 @@ $(document).ready(function () {
     $(pageBtn.jogosSideBtn).click(function () {
         $('.view-jogos').show();
         $('#table-jogos').show();
+        $('#addJogoBtn').show();
         $('#cardJogo').hide();
         $('#cardAtletas').hide();
         $('.view-clubes').hide();
