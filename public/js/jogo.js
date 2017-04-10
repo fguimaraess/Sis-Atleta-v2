@@ -32,7 +32,7 @@ var pageJogo = {
     clubeAdversarioField: document.querySelector('#clube2-field'),
     golsClubeAdversarioField: document.querySelector('#gols-clube2-field'),
     localField: document.querySelector('#local-field'),
-    jogoAtual: null
+    jogoAtual: -1
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
@@ -117,8 +117,8 @@ function novoJogo(jogo) {
 }
 
 function excluirJogo(idJogo) {
-    pageJogo.tableJogos.querySelector('#' + idJogo).innerHTML = '';
     pageJogo.database.ref(pageJogo.databaseRef + idJogo).remove().then(swal("", "Jogo removido com sucesso", "success"));
+    pageJogo.tableJogos.querySelector('#' + idJogo).innerHTML = '';
 }
 
 function salvarAlteracoesJogo(tempJogo) {
@@ -197,14 +197,16 @@ function addAtletaJogo(idAtleta) {
 
 
 function estatisticasAtleta(idAtleta, idJogo) {
-
+    var idAlternativo = null;
     atletaSel = pageAtleta.atletas[idAtleta];
     var html = atletaSel.nome;
     document.querySelector('#nomeAtleta').innerHTML = html;
     $('#modalAtletaJogo').modal('open');
-    console.log(idJogo);
-    var participacaoAtletaJogo = pageJogo.jogos[idJogo].atletasTempJogo[idAtleta];
-    if (participacaoAtletaJogo) {
+    var jogoAtual = pageJogo.jogos[idJogo];
+    
+    //var participacaoAtletaJogo = pageJogo.jogos[idJogo].atletasTempJogo[idAtleta];
+    if (idAlternativo != jogoAtual) {
+        participacaoAtletaJogo = pageJogo.jogos[idJogo].atletasTempJogo[idAtleta];
         pageJogo.idAtletaField.value = participacaoAtletaJogo.uid;
         pageJogo.golField.value = participacaoAtletaJogo.gol;
         pageJogo.assistenciaField.value = participacaoAtletaJogo.assistencia;
@@ -212,6 +214,7 @@ function estatisticasAtleta(idAtleta, idJogo) {
         pageJogo.cartaoVermelhoField.value = participacaoAtletaJogo.cartaovermelho;
         pageJogo.minutosJogadosField.value = participacaoAtletaJogo.minutosjogados;
     } else {
+        console.log(idAtleta)
         pageJogo.idAtletaField.value = idAtleta;
         pageJogo.golField.value = null;
         pageJogo.assistenciaField.value = null;
@@ -222,13 +225,15 @@ function estatisticasAtleta(idAtleta, idJogo) {
 }
 pageJogo.salvarDadosBtn.addEventListener('click', function () {
     var tempAtletaJogo = {
-        uid: pageJogo.idAtletaField,
+        uid: pageJogo.idAtletaField.value,
         gol: pageJogo.golField.value,
         assistencia: pageJogo.assistenciaField.value,
         cartaoamarelo: pageJogo.cartaoAmareloField.value,
         cartaovermelho: pageJogo.cartaoVermelhoField.value,
         minutosjogados: pageJogo.minutosJogadosField.value
     }
+    console.log(pageJogo.idJogoField.value);
+    
     if (pageJogo.idJogoField.value) {
         tempAtletaJogo.uid = pageJogo.idJogoField.value;
         if (tempAtletaJogo.gol == '' || tempAtletaJogo.assistencia == '' || tempAtletaJogo.cartaoamarelo == '' || tempAtletaJogo.cartaovermelho == '' || tempAtletaJogo.minutosjogados == '') {
@@ -238,8 +243,10 @@ pageJogo.salvarDadosBtn.addEventListener('click', function () {
             $('#modalAtletaJogo').modal('close');
             pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[tempAtletaJogo.uid] = tempAtletaJogo;
             tempJogo.atletasJogo = tempAtletaJogo;
+            console.log(tempJogo.atletasJogo);
         }
     } else {
+        tempAtletaJogo.uid = pageJogo.idAtletaField.value;
         tempAtletaJogo.gol = pageJogo.golField.value;
         tempAtletaJogo.assistencia = pageJogo.assistenciaField.value;
         tempAtletaJogo.cartaoamarelo = pageJogo.cartaoAmareloField.value;
@@ -250,8 +257,7 @@ pageJogo.salvarDadosBtn.addEventListener('click', function () {
         } else {
             swal("", "Dados salvos", "success");
             $('#modalAtletaJogo').modal('close');
-            pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[tempAtletaJogo.uid] = tempAtletaJogo;
-            tempJogo.atletasJogo = tempAtletaJogo;
+            pageJogo.atletasJogo[tempAtletaJogo.uid] = tempAtletaJogo;
         }
     }
 
@@ -275,7 +281,6 @@ pageJogo.salvarJogoBtn.addEventListener('click', function () {
         tempJogo.atletasTempJogo == '') {
         swal("Aviso!", "Todos os campos devem ser preenchidos!");
     } else {
-        console.log(pageJogo.idJogo)
         if (pageJogo.idJogoField.value) {
             salvarAlteracoesJogo(tempJogo);
             swal("", "Os dados do jogo foram alterados com sucesso!", "success");
