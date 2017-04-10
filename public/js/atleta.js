@@ -26,43 +26,44 @@ var pageAtleta = {
     atletasSideBtn: document.querySelector('#atletas-menu')
 }
 window.addEventListener('load', getAtletas);
-pageAtleta.atletasSideBtn.addEventListener('click', function(){
-    //getAtletas();
+pageAtleta.atletasSideBtn.addEventListener('click', function () {
+    getAtletas();
 });
 
 
 
 
-function getClubes(idAtleta){
+function getClubes(idAtleta) {
     atletaSel = pageAtleta.atletas[idAtleta];
-    if(idAtleta){
-    $(pageAtleta.clubeField).val(atletaSel.clube);
-    $(pageAtleta.clubeField).material_select();
-    }
-    else
-    {
-    var tempClube = pageClube.clubes;
-    
     $(pageAtleta.clubeField).empty();
-    for(var key in tempClube){
-        preencheCombo(tempClube[key]);
-    }
-    var newOption = document.createElement("option");
-    newOption.value = "Sem Clube";
-    newOption.innerHTML = "Sem Clube";
-    pageAtleta.clubeField.options.add(newOption);
-    }
-}
+    if (idAtleta) {
+        var tempClube = pageClube.clubes;
+        for (var key in tempClube) {
+            preencheCombo(tempClube[key]);
+        }
+    } else {
+        var tempClube = pageClube.clubes;
 
-function preencheCombo(tempClube){
+        for (var key in tempClube) {
+            preencheCombo(tempClube[key]);
+        }
         var newOption = document.createElement("option");
-        newOption.value = tempClube.nomeclube;
-        newOption.innerHTML = tempClube.nomeclube;
+        newOption.value = "Sem Clube";
+        newOption.innerHTML = "Sem Clube";
         pageAtleta.clubeField.options.add(newOption);
-
-        $(pageAtleta.clubeField).material_select();
-        
+    }
 }
+
+function preencheCombo(tempClube) {
+    var newOption = document.createElement("option");
+    newOption.value = tempClube.nomeclube;
+    newOption.innerHTML = tempClube.nomeclube;
+    pageAtleta.clubeField.options.add(newOption);
+
+    $(pageAtleta.clubeField).material_select();
+
+}
+
 function abreModalAtleta(idAtleta) {
     getClubes(idAtleta);
     if (idAtleta) {
@@ -77,7 +78,6 @@ function abreModalAtleta(idAtleta) {
         $(pageAtleta.categoriaField).material_select();
         $(pageAtleta.clubeField).val(atletaSel.clube);
         $(pageAtleta.clubeField).material_select();
-        $(pageAtleta.categoriaField).material_select();
         pageAtleta.cidadeField.value = atletaSel.cidade;
         pageAtleta.paisField.value = atletaSel.pais;
     } else {
@@ -89,6 +89,7 @@ function abreModalAtleta(idAtleta) {
         pageAtleta.idadeField.value = null;
         pageAtleta.categoriaField.value = null;
         $(pageAtleta.categoriaField).material_select();
+        pageAtleta.clubeField.value = null;
         $(pageAtleta.clubeField).material_select();
         pageAtleta.cidadeField.value = null;
         pageAtleta.paisField.value = null;
