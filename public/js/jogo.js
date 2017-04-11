@@ -308,7 +308,7 @@ function getAtletasCard(tempClube) {
     atletasNaTela.forEach(function (atletaHtml) {
         pageJogo.tableAtletasCard.innerHTML = '';
     });
-
+    console.log(tempClube);
     var tempAtletaClube = pageAtleta.atletas;
     for (var key in tempAtletaClube) {
         if (tempClube == tempAtletaClube[key].clube) {
@@ -326,9 +326,10 @@ function showClubeSelecionado() {
 
 $(pageJogo.meuClubeField).change(showClubeSelecionado);
 
-function getClubesCard(tempClube) {
-    $(pageJogo.meuClubeField).empty();
-    $(pageJogo.clubeAdversarioField).empty();
+function getClubesCard() {
+    
+    $(pageJogo.meuClubeField).val("-");
+    $(pageJogo.clubeAdversarioField).val("-");
     var tempClube = pageClube.clubes;
     for (var key in tempClube) {
         preencheSelectedClube(tempClube[key]);
@@ -345,8 +346,6 @@ function preencheSelectedClube(tempClube) {
     newOption2.innerHTML = tempClube.nomeclube;
     pageJogo.meuClubeField.options.add(newOption);
     pageJogo.clubeAdversarioField.options.add(newOption2);
-
+    
     showClubeSelecionado();
-    $(pageJogo.meuClubeField).material_select();
-    $(pageJogo.clubeAdversarioField).material_select();
 }
