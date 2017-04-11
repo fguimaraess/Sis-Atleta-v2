@@ -200,17 +200,6 @@ function getEstatisticasAtelta(idAtleta, idJogo){
     return jogoAtual.atletasTempJogo[idAtleta]
 }
 
-function estatisticasAtleta(idAtleta, idJogo) {
-    var idAlternativo = null;
-    atletaSel = pageAtleta.atletas[idAtleta];
-    var html = atletaSel.nome;
-    document.querySelector('#nomeAtleta').innerHTML = html;
-    $('#modalAtletaJogo').modal('open');
-    var jogoAtual = pageJogo.jogos[idJogo];
-    
-    if (idAlternativo != jogoAtual) {
-        participacaoAtletaJogo = pageJogo.jogos[idJogo].atletasTempJogo[idAtleta];
-        pageJogo.idAtletaField.value = participacaoAtletaJogo.uid;
         pageJogo.golField.value = participacaoAtletaJogo.gol;
         pageJogo.assistenciaField.value = participacaoAtletaJogo.assistencia;
         pageJogo.cartaoAmareloField.value = participacaoAtletaJogo.cartaoamarelo;
