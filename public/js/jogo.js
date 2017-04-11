@@ -113,7 +113,7 @@ function sortAtletas(atletas, clube) {
 }
 
 function novoJogo(jogo) {
-    pageJogo.database.ref(pageJogo.databaseRef).push(jogo);
+    pageJogo.database.ref(pageJogo.databaseRef).push(jogo).then(swal("", "Jogo cadastrado com sucesso", "success"));;
 }
 
 function excluirJogo(idJogo) {
