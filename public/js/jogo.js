@@ -204,7 +204,6 @@ function estatisticasAtleta(idAtleta, idJogo) {
     $('#modalAtletaJogo').modal('open');
     var jogoAtual = pageJogo.jogos[idJogo];
     
-    //var participacaoAtletaJogo = pageJogo.jogos[idJogo].atletasTempJogo[idAtleta];
     if (idAlternativo != jogoAtual) {
         participacaoAtletaJogo = pageJogo.jogos[idJogo].atletasTempJogo[idAtleta];
         pageJogo.idAtletaField.value = participacaoAtletaJogo.uid;
