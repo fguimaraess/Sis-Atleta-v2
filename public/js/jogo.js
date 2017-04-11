@@ -210,7 +210,6 @@ function abreModalEstatisticaJogador(idAtleta, idJogo){
         pageJogo.cartaoVermelhoField.value = participacaoAtletaJogo.cartaovermelho;
         pageJogo.minutosJogadosField.value = participacaoAtletaJogo.minutosjogados;
     } else {
-        console.log(idAtleta)
         pageJogo.idAtletaField.value = idAtleta;
         pageJogo.golField.value = null;
         pageJogo.assistenciaField.value = null;
