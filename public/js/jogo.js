@@ -32,7 +32,6 @@ var pageJogo = {
     clubeAdversarioField: document.querySelector('#clube2-field'),
     golsClubeAdversarioField: document.querySelector('#gols-clube2-field'),
     localField: document.querySelector('#local-field'),
-    jogoAtual: -1
     jogoAtual: null
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
