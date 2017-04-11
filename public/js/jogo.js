@@ -217,7 +217,9 @@ function abreModalEstatisticaJogador(idAtleta, idJogo){
         pageJogo.cartaoVermelhoField.value = null;
         pageJogo.minutosJogadosField.value = null;
     }
+    $('#modalAtletaJogo').modal('open');
 }
+
 pageJogo.salvarDadosBtn.addEventListener('click', function () {
     var tempAtletaJogo = {
         uid: pageJogo.idAtletaField.value,
