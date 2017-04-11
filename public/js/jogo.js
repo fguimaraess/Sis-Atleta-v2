@@ -200,6 +200,10 @@ function getEstatisticasAtelta(idAtleta, idJogo){
     return jogoAtual.atletasTempJogo[idAtleta]
 }
 
+function abreModalEstatisticaJogador(idAtleta, idJogo){
+    var estatisticasAtleta = getEstatisticasAtelta(idAtleta, idJogo);
+    pageJogo.idAtletaField.value = idAtleta;
+    if(estatisticasAtleta){    
         pageJogo.golField.value = participacaoAtletaJogo.gol;
         pageJogo.assistenciaField.value = participacaoAtletaJogo.assistencia;
         pageJogo.cartaoAmareloField.value = participacaoAtletaJogo.cartaoamarelo;
