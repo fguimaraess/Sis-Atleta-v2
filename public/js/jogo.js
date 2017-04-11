@@ -195,6 +195,10 @@ function addAtletaJogo(idAtleta) {
     $('#body-card-jogo').append(html);
 }
 
+function getEstatisticasAtelta(idAtleta, idJogo){
+    var jogoAtual = pageJogo.jogos[idJogo]
+    return jogoAtual.atletasTempJogo[idAtleta]
+}
 
 function estatisticasAtleta(idAtleta, idJogo) {
     var idAlternativo = null;
