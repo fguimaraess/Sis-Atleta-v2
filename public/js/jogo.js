@@ -67,11 +67,11 @@ function abreCardJogo(idJogo) {
         $(pageJogo.clubeAdversarioField).val(jogoSel.clubeadversario);
         $(pageJogo.clubeAdversarioField).material_select();
         pageJogo.golsClubeAdversarioField.value = jogoSel.golsclubeadversario;
-        var atletasDoClube = separaAtletasQueJogaram(sortAtletas(pageAtleta.atletas, jogoSel.meuclube), jogoSel.atletasTempJogo)
+        var atletasDoClube = separaAtletasQueJogaram(sortAtletas(pageAtleta.atletas, jogoSel.meuclube), jogoSel.atletastempjogo)
         for (var key in atletasDoClube) {
             preencheTabelaCard(atletasDoClube[key])
         }
-        for (var key in jogoSel.atletasTempJogo) {
+        for (var key in jogoSel.atletastempjogo) {
             addAtletaJogo(key)
         }
     } else {
@@ -131,7 +131,8 @@ function salvarAlteracoesJogo(tempJogo) {
     tempJogo.golsmeuclube = pageJogo.golsMeuClubeField.value;
     tempJogo.clubeadversario = pageJogo.clubeAdversarioField.value;
     tempJogo.golsclubeadversario = pageJogo.golsClubeAdversarioField.value;
-    tempJogo.atletasTempJogo = pageJogo.atletasJogo;
+    console.log(tempJogo)
+    tempJogo.atletastempjogo = pageJogo.atletasJogo[pageJogo.idJogoField.value];
 
     pageJogo.database.ref(pageJogo.databaseRef + '/' + idJogo).update(tempJogo).then(swal("", "Jogo atualizado com sucesso", "success"));
 }
@@ -184,6 +185,7 @@ function addAtletaJogo(idAtleta) {
     if (tempAtleta) {
         pageJogo.tableAtletasCard.removeChild(tempAtleta);
     }
+    pageJogo.jogoAtual = pageJogo.idJogoField.value;
     atletaSel = pageAtleta.atletas[idAtleta]
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
@@ -196,19 +198,31 @@ function addAtletaJogo(idAtleta) {
 }
 
 function getEstatisticasAtelta(idAtleta, idJogo){
-    var jogoAtual = pageJogo.jogos[idJogo]
-    return jogoAtual.atletasTempJogo[idAtleta]
+    
+    if(idJogo != null)
+    {
+        console.log(idJogo);
+        var jogoAtual = pageJogo.jogos[idJogo];
+        return jogoAtual.atletastempjogo[idAtleta];
+    } else {
+        var jogoAtual = -1;
+        return jogoAtual.atletastempjogo[idAtleta];
+    }
+        
 }
 
 function abreModalEstatisticaJogador(idAtleta, idJogo){
     var estatisticasAtleta = getEstatisticasAtelta(idAtleta, idJogo);
     pageJogo.idAtletaField.value = idAtleta;
-    if(estatisticasAtleta){    
-        pageJogo.golField.value = participacaoAtletaJogo.gol;
-        pageJogo.assistenciaField.value = participacaoAtletaJogo.assistencia;
-        pageJogo.cartaoAmareloField.value = participacaoAtletaJogo.cartaoamarelo;
-        pageJogo.cartaoVermelhoField.value = participacaoAtletaJogo.cartaovermelho;
-        pageJogo.minutosJogadosField.value = participacaoAtletaJogo.minutosjogados;
+    var atletaNoJogoAtual = null;
+    console.log(estatisticasAtleta, idAtleta, idJogo)
+    if(estatisticasAtleta){
+        console.log("Entrou")
+        pageJogo.golField.value = estatisticasAtleta.gol;
+        pageJogo.assistenciaField.value = estatisticasAtleta.assistencia;
+        pageJogo.cartaoAmareloField.value = estatisticasAtleta.cartaoamarelo;
+        pageJogo.cartaoVermelhoField.value = estatisticasAtleta.cartaovermelho;
+        pageJogo.minutosJogadosField.value = estatisticasAtleta.minutosjogados;
     } else {
         pageJogo.idAtletaField.value = idAtleta;
         pageJogo.golField.value = null;
@@ -232,15 +246,14 @@ pageJogo.salvarDadosBtn.addEventListener('click', function () {
     console.log(pageJogo.idJogoField.value);
     
     if (pageJogo.idJogoField.value) {
-        tempAtletaJogo.uid = pageJogo.idJogoField.value;
         if (tempAtletaJogo.gol == '' || tempAtletaJogo.assistencia == '' || tempAtletaJogo.cartaoamarelo == '' || tempAtletaJogo.cartaovermelho == '' || tempAtletaJogo.minutosjogados == '') {
             swal("", "Todos os campos devem ser preenchidos!", "error");
         } else {
             swal("", "Dados salvos", "success");
             $('#modalAtletaJogo').modal('close');
-            pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[tempAtletaJogo.uid] = tempAtletaJogo;
-            tempJogo.atletasJogo = tempAtletaJogo;
-            console.log(tempJogo.atletasJogo);
+            pageJogo.jogos[pageJogo.jogoAtual].atletastempjogo[tempAtletaJogo.uid] = tempAtletaJogo;
+            pageJogo.atletasJogo = tempAtletaJogo;
+            console.log(pageJogo.atletasJogo);
         }
     } else {
         tempAtletaJogo.uid = pageJogo.idAtletaField.value;
@@ -255,12 +268,14 @@ pageJogo.salvarDadosBtn.addEventListener('click', function () {
             swal("", "Dados salvos", "success");
             $('#modalAtletaJogo').modal('close');
             pageJogo.atletasJogo[tempAtletaJogo.uid] = tempAtletaJogo;
+            console.log(pageJogo.atleta[tempAtletaJogo.uid]);
         }
     }
 
 })
 pageJogo.salvarJogoBtn.addEventListener('click', function () {
     var tempJogo = {
+        uid: pageJogo.idJogoField.value,
         data: pageJogo.dataField.value,
         local: pageJogo.localField.value,
         campeonato: pageJogo.campeonatoField.value,
@@ -269,13 +284,14 @@ pageJogo.salvarJogoBtn.addEventListener('click', function () {
         golsmeuclube: pageJogo.golsMeuClubeField.value,
         clubeadversario: pageJogo.clubeAdversarioField.value,
         golsclubeadversario: pageJogo.golsClubeAdversarioField.value,
-        atletasTempJogo: pageJogo.atletasJogo
+        atletastempjogo: pageJogo.atletasJogo[pageJogo.idJogoField.value]
     }
+    
     if (tempJogo.data == '' ||
         tempJogo.local == '' || tempJogo.campeonato == '' ||
         tempJogo.melhorjogador == '' || tempJogo.meuclube == '' ||
         tempJogo.golsmeuclube == '' || tempJogo.clubeadversario == '' ||
-        tempJogo.atletasTempJogo == '') {
+        tempJogo.atletastempjogo == '') {
         swal("Aviso!", "Todos os campos devem ser preenchidos!");
     } else {
         if (pageJogo.idJogoField.value) {
@@ -308,7 +324,6 @@ function getAtletasCard(tempClube) {
     atletasNaTela.forEach(function (atletaHtml) {
         pageJogo.tableAtletasCard.innerHTML = '';
     });
-    console.log(tempClube);
     var tempAtletaClube = pageAtleta.atletas;
     for (var key in tempAtletaClube) {
         if (tempClube == tempAtletaClube[key].clube) {
