@@ -191,7 +191,7 @@ function addAtletaJogo(idAtleta) {
     html += '<td><a onclick="removeAtletaJogo(\'' + idAtleta + '\')" href="#" class="remove-jogador"><i class="material-icons">remove</i></a></td>'
     html += '<td class="nomeJogadorTabela">' + atletaSel.nome + " " + atletaSel.sobrenome + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + atletaSel.posicao + '</td>';
-    html += '<td><a onclick="estatisticasAtleta(\'' + atletaSel.uid + '\', \'' + pageJogo.jogoAtual + '\')" href="#" class="editar-dados-jogador"><i class="material-icons">mode_edit</i></a>';
+    html += '<td><a onclick="abreModalEstatisticaJogador(\'' + atletaSel.uid + '\', \'' + pageJogo.jogoAtual + '\')" href="#" class="editar-dados-jogador"><i class="material-icons">mode_edit</i></a>';
     html += '</tr>';
     $('#body-card-jogo').append(html);
 }
