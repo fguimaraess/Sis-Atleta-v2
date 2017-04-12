@@ -1,0 +1,21 @@
+Cenários para teste:
+Atletas:
+- Cria atleta
+- Altera todos os dados do atleta
+- Exclui atleta
+
+Clubes:
+- Cria clube
+- Edita clube
+- Cria um jogador para o novo clube e verificar se foi preenchido em "Ver atletas"
+- Exclui clube
+
+Jogo:
+- Cria jogo com um jogador
+- Edita jogo com o mesmo jogador alterando todos os dados e salva
+- Edita jogo inserindo um novo jogador e salva
+- Edita o mesmo jogo alterando os valores do novo jogador e salva
+- Exclui novo jogador do jogo e salva
+- Exclui o jogo
+- Cria jogo com 2 jogadores
+- Edita jogo com os mesmos jogadores alterando todos os dados e salva
