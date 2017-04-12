@@ -36,14 +36,14 @@ pageAtleta.atletasSideBtn.addEventListener('click', function () {
 function getClubes(idAtleta) {
     atletaSel = pageAtleta.atletas[idAtleta];
     $(pageAtleta.clubeField).empty();
+    var tempClube = [];
     if (idAtleta) {
-        var tempClube = pageClube.clubes;
+        tempClube = pageClube.clubes;
         for (var key in tempClube) {
             preencheCombo(tempClube[key]);
         }
     } else {
-        var tempClube = pageClube.clubes;
-
+        tempClube = pageClube.clubes;
         for (var key in tempClube) {
             preencheCombo(tempClube[key]);
         }
