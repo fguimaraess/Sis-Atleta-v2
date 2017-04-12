@@ -296,7 +296,6 @@ pageJogo.salvarJogoBtn.addEventListener('click', function () {
             }
     } else {
         tempJogo = {
-            uid: pageJogo.idJogoField.value,
             data: pageJogo.dataField.value,
             local: pageJogo.localField.value,
             campeonato: pageJogo.campeonatoField.value,
@@ -305,15 +304,15 @@ pageJogo.salvarJogoBtn.addEventListener('click', function () {
             golsmeuclube: pageJogo.golsMeuClubeField.value,
             clubeadversario: pageJogo.clubeAdversarioField.value,
             golsclubeadversario: pageJogo.golsClubeAdversarioField.value,
-            atletasTempJogo: pageJogo.atletasJogo[null]
+            atletasTempJogo: pageJogo.atletasJogo
             }
     }
     if (tempJogo.data == '' ||
         tempJogo.local == '' || tempJogo.campeonato == '' ||
         tempJogo.melhorjogador == '' || tempJogo.meuclube == '' ||
-        tempJogo.golsmeuclube == '' || tempJogo.clubeadversario == '' ||
-        tempJogo.atletasTempJogo == '') {
+        tempJogo.golsmeuclube == '' || tempJogo.clubeadversario == '') {
         swal("Aviso!", "Todos os campos devem ser preenchidos!");
+        console.log(tempJogo)
     } else {
         if (pageJogo.idJogoField.value) {
             salvarAlteracoesJogo(tempJogo);
