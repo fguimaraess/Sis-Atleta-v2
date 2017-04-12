@@ -219,12 +219,23 @@ function abreModalEstatisticaJogador(idAtleta, idJogo){
         pageJogo.minutosJogadosField.value = estatisticasAtleta.minutosjogados;
         pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[idAtleta] = estatisticasAtleta;
     } else {
-        pageJogo.idAtletaField.value = idAtleta;
-        pageJogo.golField.value = null;
-        pageJogo.assistenciaField.value = null;
-        pageJogo.cartaoAmareloField.value = null;
-        pageJogo.cartaoVermelhoField.value = null;
-        pageJogo.minutosJogadosField.value = null;
+        var tempAtleta = pageJogo.atletasJogo[idAtleta]
+        if(tempAtleta == null)
+        {
+            pageJogo.idAtletaField.value = idAtleta;
+            pageJogo.golField.value = null;
+            pageJogo.assistenciaField.value = null;
+            pageJogo.cartaoAmareloField.value = null;
+            pageJogo.cartaoVermelhoField.value = null;
+            pageJogo.minutosJogadosField.value = null;    
+        } else {
+            pageJogo.idAtletaField.value = idAtleta;
+            pageJogo.golField.value = tempAtleta.gol;
+            pageJogo.assistenciaField.value = tempAtleta.assistencia;
+            pageJogo.cartaoAmareloField.value = tempAtleta.cartaoamarelo;
+            pageJogo.cartaoVermelhoField.value = tempAtleta.cartaovermelho;
+            pageJogo.minutosJogadosField.value = tempAtleta.minutosjogados;
+    }
     }
     $('#modalAtletaJogo').modal('open');
 }
@@ -246,11 +257,9 @@ pageJogo.salvarDadosBtn.addEventListener('click', function () {
             swal("", "Dados salvos", "success");
             $('#modalAtletaJogo').modal('close');
             pageJogo.jogoAtual = pageJogo.idJogoField.value;
-            console.log(pageJogo.jogoAtual)
             pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[tempAtletaJogo.uid] = tempAtletaJogo;
         }
     } else {
-        console.log(tempAtletaJogo)
         tempAtletaJogo.uid = pageJogo.idAtletaField.value;
         tempAtletaJogo.gol = pageJogo.golField.value;
         tempAtletaJogo.assistencia = pageJogo.assistenciaField.value;
@@ -263,7 +272,8 @@ pageJogo.salvarDadosBtn.addEventListener('click', function () {
             swal("", "Dados salvos", "success");
             $('#modalAtletaJogo').modal('close');
             pageJogo.jogoAtual = pageJogo.idJogoField.value;
-            pageJogo.jogos[null].atletasTempJogo[tempAtletaJogo.uid] = tempAtletaJogo;
+            pageJogo.atletasJogo[tempAtletaJogo.uid] = tempAtletaJogo;
+            //pageJogo.jogos[null].atletasTempJogo[tempAtletaJogo.uid] = tempAtletaJogo;
         }
     }
 
