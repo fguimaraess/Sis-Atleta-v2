@@ -1,21 +1,25 @@
-Cenários para teste:
+﻿Cenários para teste: 
+ 
+# Colocar um getAtletas,clubes e jogos no ONLOAD DO DASHBOARD 
+# Colocar o getAtletas,clubes e jogos nos botões 
+
 Atletas:
-- Cria atleta
-- Altera todos os dados do atleta
-- Exclui atleta
+- Cria atleta - OK 
+- Altera todos os dados do atleta - OK 
+- Exclui atleta - OK 
 
 Clubes:
-- Cria clube
-- Edita clube
-- Cria um jogador para o novo clube e verificar se foi preenchido em "Ver atletas"
-- Exclui clube
+- Cria clube - OK 
+- Edita clube - OK 
+- Cria um jogador para o novo clube e verificar se foi preenchido em "Ver atletas" - N OK (Falta dar o getAtletas/Clubes) 
+- Exclui clube - OK 
 
 Jogo:
-- Cria jogo com um jogador
-- Edita jogo com o mesmo jogador alterando todos os dados e salva
-- Edita jogo inserindo um novo jogador e salva
-- Edita o mesmo jogo alterando os valores do novo jogador e salva
-- Exclui novo jogador do jogo e salva
-- Exclui o jogo
-- Cria jogo com 2 jogadores
-- Edita jogo com os mesmos jogadores alterando todos os dados e salva
+- Cria jogo com um jogador - OK 
+- Edita jogo com o mesmo jogador alterando todos os dados e salva - OK 
+- Edita jogo inserindo um novo jogador e salva - OK 
+- Edita o mesmo jogo alterando os valores do novo jogador e salva -  OK 
+- Exclui novo jogador do jogo e salva - OK
+- Exclui o jogo - OK 
+- Cria jogo com 2 jogadores - OK 
+- Edita jogo com os mesmos jogadores alterando todos os dados e salva - OK

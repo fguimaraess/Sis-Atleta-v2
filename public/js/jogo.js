@@ -168,6 +168,10 @@ function removeAtletaJogo(idAtleta) {
     tempAtleta = pageJogo.tableAtletasAdicionados.querySelector('#' + idAtleta);
     pageJogo.tableAtletasAdicionados.removeChild(tempAtleta);
     atletaSel = pageAtleta.atletas[idAtleta]
+    if(pageJogo.jogos[pageJogo.idJogoField.value].atletasTempJogo[idAtleta])
+    {
+        delete pageJogo.jogos[pageJogo.idJogoField.value].atletasTempJogo[idAtleta];
+    }
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
     html += '<td><a onclick="addAtletaJogo(\'' + atletaSel.uid + '\')" href="#" class="add-jogador"><i class="material-icons">add</i></a></td>'
