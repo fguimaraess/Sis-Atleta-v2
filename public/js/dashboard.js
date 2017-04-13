@@ -17,6 +17,9 @@ window.addEventListener('load', function () {
             window.location = '/index.html';
         }
     });
+    getAtletas();
+    getClubes();
+    getJogos();
 });
 pageBtn.logoutBtn.addEventListener('click', function () {
     swal({
@@ -70,6 +73,7 @@ $(document).ready(function () {
         $('.dash').hide();
     });
     $(pageBtn.clubesSideBtn).click(function () {
+        getAtletas();
         $('.view-clubes').show();
         $('.view-atletas').hide();
         $('.view-jogos').hide();

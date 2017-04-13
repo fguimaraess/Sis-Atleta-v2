@@ -13,7 +13,7 @@ var pageClube = {
     bodyAtletasClube: document.querySelector('#body-atletas-clube'),
     clubesSideBtn: document.querySelector('#clubes-menu')
 }
-window.addEventListener('load', getClubes);
+//window.addEventListener('load', getClubes);
 pageClube.clubesSideBtn.addEventListener('click', getClubes);
 
 function abreModalClube(idClube) {

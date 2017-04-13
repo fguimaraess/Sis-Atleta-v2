@@ -39,6 +39,8 @@ pageJogo.addJogoBtn.addEventListener('click', function () {
 });
 pageJogo.jogosSideBtn.addEventListener('click', function () {
     getJogos();
+    getAtletas();
+    getClubes();
 });
 
 function abreCardJogo(idJogo) {

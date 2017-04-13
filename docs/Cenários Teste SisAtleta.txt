@@ -1,34 +1,9 @@
-<<<<<<< HEAD
-﻿Cenários para teste: 
- 
-# Colocar um getAtletas,clubes e jogos no ONLOAD DO DASHBOARD 
-# Colocar o getAtletas,clubes e jogos nos botões 
+﻿﻿Cenários para teste:
 
-Atletas:
-- Cria atleta - OK 
-- Altera todos os dados do atleta - OK 
-- Exclui atleta - OK 
+# Colocar um getAtletas,clubes e jogos no ONLOAD DO DASHBOARD - FEITO
+# Colocar o getAtletas,clubes e jogos nos botões - FEITO
 
-Clubes:
-- Cria clube - OK 
-- Edita clube - OK 
-- Cria um jogador para o novo clube e verificar se foi preenchido em "Ver atletas" - N OK (Falta dar o getAtletas/Clubes) 
-- Exclui clube - OK 
-
-Jogo:
-- Cria jogo com um jogador - OK 
-- Edita jogo com o mesmo jogador alterando todos os dados e salva - OK 
-- Edita jogo inserindo um novo jogador e salva - OK 
-- Edita o mesmo jogo alterando os valores do novo jogador e salva -  OK 
-- Exclui novo jogador do jogo e salva - OK
-- Exclui o jogo - OK 
-- Cria jogo com 2 jogadores - OK 
-=======
-﻿Cenários para teste:
-
-# Colocar um getAtletas,clubes e jogos no ONLOAD DO DASHBOARD
-# Colocar o getAtletas,clubes e jogos nos botões
-
+Teste 1:
 Atletas:
 - Cria atleta - OK
 - Altera todos os dados do atleta - OK
@@ -37,7 +12,7 @@ Atletas:
 Clubes:
 - Cria clube - OK
 - Edita clube - OK
-- Cria um jogador para o novo clube e verificar se foi preenchido em "Ver atletas" - N OK (Falta dar o getAtletas/Clubes)
+- Cria um jogador para o novo clube e verificar se foi preenchido em "Ver atletas" - OK
 - Exclui clube - OK
 
 Jogo:
@@ -45,8 +20,6 @@ Jogo:
 - Edita jogo com o mesmo jogador alterando todos os dados e salva - OK
 - Edita jogo inserindo um novo jogador e salva - OK
 - Edita o mesmo jogo alterando os valores do novo jogador e salva -  OK
-- Exclui novo jogador do jogo e salva - N OK (Jogador não é excluído)
+- Exclui novo jogador do jogo e salva - OK
 - Exclui o jogo - OK
 - Cria jogo com 2 jogadores - OK
->>>>>>> master
-- Edita jogo com os mesmos jogadores alterando todos os dados e salva - OK
