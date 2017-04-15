@@ -7,7 +7,10 @@ var pageBtn = {
     logoutBtn: document.querySelector('#btn-logout'),
     addJogoBtn: document.querySelector('#addJogoBtn'),
     editarJogoBtn: document.querySelector('#editarJogo'),
-    voltarJogoBtn: document.querySelector('#voltarCardJogo')
+    voltarJogoBtn: document.querySelector('#voltarCardJogo'),
+    reportAtleta: document.querySelector('#report-atleta'),
+    reportClube: document.querySelector('#report-clube'),
+    voltarRelatorio: document.querySelector('#voltar-relatorio')
 }
 window.addEventListener('load', function () {
     var user = firebase.auth().currentUser;
@@ -42,6 +45,7 @@ $(".dropdown-button").dropdown();
 $(document).ready(function () {
     pageBtn.relatoriosSideBtn.addEventListener('click', function () {
         $('.view-relatorios').show();
+        $('.relatorios-fields').hide();
         $('.view-atletas').hide();
         $('.view-clubes').hide();
         $('.view-jogos').hide();
@@ -52,7 +56,15 @@ $(document).ready(function () {
 
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+        today: 'Hoje',
+        clear: 'Apagar',
+        close: 'Fechar',
+        monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+        weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
     });
 
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
@@ -69,6 +81,8 @@ $(document).ready(function () {
         $('.view-clubes').hide();
         $('.view-jogos').hide();
         $('.view-relatorios').hide();
+        $('.relatorios-fields').hide();
+        $('#report-atleta-field').hide();
     });
     $(pageBtn.atletasSideBtn).click(function () {
         //getAtletas();
@@ -77,6 +91,8 @@ $(document).ready(function () {
         $('.view-jogos').hide();
         $('.dash').hide();
         $('.view-relatorios').hide();
+        $('.relatorios-fields').hide();
+        $('#report-atleta-field').hide();
     });
     $(pageBtn.clubesSideBtn).click(function () {
         getAtletas();
@@ -85,6 +101,8 @@ $(document).ready(function () {
         $('.view-jogos').hide();
         $('.dash').hide();
         $('.view-relatorios').hide();
+        $('.relatorios-fields').hide();
+        $('#report-atleta-field').hide();
     });
     $(pageBtn.jogosSideBtn).click(function () {
         $('.view-jogos').show();
@@ -96,6 +114,8 @@ $(document).ready(function () {
         $('.view-atletas').hide();
         $('.dash').hide();
         $('.view-relatorios').hide();
+        $('.relatorios-fields').hide();
+        $('#report-atleta-field').hide();
     });
     $(pageBtn.addJogoBtn).click(function () {
         $('#cardJogo').show();
@@ -113,5 +133,36 @@ $(document).ready(function () {
         $('.view-atletas').hide();
         $('.dash').hide();
         $('.view-relatorios').hide();
+        $('.relatorios-fields').hide();
+        $('#report-atleta-field').hide();
     })
+    
+    $(pageBtn.reportAtleta).click(function () {
+        $('.relatorios-fields').show();
+        $('#report-atleta-field').show();
+        $('.view-relatorios').hide();
+        $('.view-atletas').hide();
+        $('.view-clubes').hide();
+        $('.view-jogos').hide();
+        $('.dash').hide();
+    });
+    
+    $(pageBtn.reportClube).click(function () {
+        $('.relatorios-fields').show();
+        $('#report-atleta-field').hide();
+        $('.view-relatorios').hide();
+        $('.view-atletas').hide();
+        $('.view-clubes').hide();
+        $('.view-jogos').hide();
+        $('.dash').hide();
+    });
+    
+    $(pageBtn.voltarRelatorio).click(function(){
+        $('.view-relatorios').show();
+        $('.relatorios-fields').hide();
+        $('.view-atletas').hide();
+        $('.view-clubes').hide();
+        $('.view-jogos').hide();
+        $('.dash').hide();
+    });
 });

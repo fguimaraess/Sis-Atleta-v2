@@ -409,41 +409,58 @@
                 <div class="row">
                     <div class="col s12">
                       
-                       <div class="col s4 m4">
-                        <div class="card-image">
-                            <img src="img/atleta.png" />
-                            <div class="card-action">
-                            <a id="report-atleta" href="#">Atletas</a>
-                            </div>
-                        </div>
+                       <div class="col s6 m6">
+                       <input id="report-atleta" type="image" src="img/atleta.png" alt="Atletas"/>
+                           <p>
+                            <a href="#" class="atleta">Atletas</a>
                         </div>
                         
-                        <div class="col s4 m4">
-                        <div class="card-image">
-                            <img src="img/clube.png" />
-                            <div class="card-action">
-                            <a id="report-clube" href="#">Clubes</a>
-                            </div>
+                        <div class="col s6 m6">
+                        <input id="report-clube" type="image" src="img/clube.png" alt="Atletas"/>
+                           <p>
+                            <a href="#" class="clube">Clubes</a>
                         </div>
-                    </div>
-                    
-                    <div class="col s4 m4">
-                        <div class="card-image">
-                            <img src="img/jogo.png" />
-                            <div class="card-action">
-                            <a id="report-jogo" href="#">Jogos</a>
-                            </div>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- DIV DE CAMPOS DE RELATÓRIO -->
+            <div class="relatorios-fields" hidden>
+                <div class="row">
+                   <div class="input-field col s4">
+                        <select>
+                            <option value="" disabled selected>Escolha uma opção</option>
+                        </select>
+                        <label>Clube: </label>
+                    </div>
+                    
+                    <div class="input-field col s4" id="report-atleta-field" hidden>
+                        <select>
+                            <option value="" disabled selected>Escolha uma opção</option>
+                        </select>
+                        <label>Atleta: </label>
+                    </div>
+                    
+                    <div class="input-field col s2">
+                        <input type="date" class="datepicker">
+                        <label>De: </label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input type="date" class="datepicker">
+                        <label>Até: </label>
+                    </div>
+                </div>
+                <a href="#" id="voltar-relatorio" class=".center-align"/>
+                <i class="material-icons .center-align">arrow_back</i>
+                </div>
+            
         </div>
     </div>
     <footer>
         <script src="js/clube.js" charset="utf-8"></script>
         <script src="js/atleta.js" charset="utf-8"></script>
         <script src="js/jogo.js" charset="utf-8"></script>
+        <script src="js/relatorio.js" charset="utf-8"></script>
         <script src="js/dashboard.js" charset="utf-8"></script>
     </footer>
 </body>
