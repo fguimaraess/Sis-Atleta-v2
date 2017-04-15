@@ -41,7 +41,11 @@ pageBtn.logoutBtn.addEventListener('click', function () {
 $(".dropdown-button").dropdown();
 $(document).ready(function () {
     pageBtn.relatoriosSideBtn.addEventListener('click', function () {
-        swal("Ops...", "Menu de Relatórios em desenvolvimento");
+        $('.view-relatorios').show();
+        $('.view-atletas').hide();
+        $('.view-clubes').hide();
+        $('.view-jogos').hide();
+        $('.dash').hide();
     });
 
     $('select').material_select();
@@ -64,6 +68,7 @@ $(document).ready(function () {
         $('.view-atletas').hide();
         $('.view-clubes').hide();
         $('.view-jogos').hide();
+        $('.view-relatorios').hide();
     });
     $(pageBtn.atletasSideBtn).click(function () {
         //getAtletas();
@@ -71,6 +76,7 @@ $(document).ready(function () {
         $('.view-clubes').hide();
         $('.view-jogos').hide();
         $('.dash').hide();
+        $('.view-relatorios').hide();
     });
     $(pageBtn.clubesSideBtn).click(function () {
         getAtletas();
@@ -78,6 +84,7 @@ $(document).ready(function () {
         $('.view-atletas').hide();
         $('.view-jogos').hide();
         $('.dash').hide();
+        $('.view-relatorios').hide();
     });
     $(pageBtn.jogosSideBtn).click(function () {
         $('.view-jogos').show();
@@ -88,6 +95,7 @@ $(document).ready(function () {
         $('.view-clubes').hide();
         $('.view-atletas').hide();
         $('.dash').hide();
+        $('.view-relatorios').hide();
     });
     $(pageBtn.addJogoBtn).click(function () {
         $('#cardJogo').show();
@@ -104,5 +112,6 @@ $(document).ready(function () {
         $('.view-clubes').hide();
         $('.view-atletas').hide();
         $('.dash').hide();
+        $('.view-relatorios').hide();
     })
 });

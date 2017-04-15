@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
     <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="apple-touch-icon" href="img/icon-app.png"/>
+    <link rel="icon" href="img/icon-app.png"/>
     <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
     <script src="js/firebase.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -47,7 +49,9 @@
                         <li>- Ideal para uso em palestras, aulas e treinamentos;</li>
                     </ul>
             </div>
+            <!-- DIV DE ATLETAS -->
             <div class="view-atletas" hidden>
+               ATLETAS
                 <table class="display" id="table-atletas">
                     <thead>
                         <tr id="template-linha">
@@ -161,6 +165,7 @@
             </div>
             <!-- DIV DE CLUBES -->
             <div class="view-clubes" style="display:none">
+               CLUBES
                 <!-- tabela com os clubes -->
                 <table class="display" id="table-clubes">
                     <thead>
@@ -238,6 +243,7 @@
             </div>
             <!-- DIV DE JOGOS -->
             <div class="view-jogos" style="display:none">
+               JOGOS
                 <table class="bordered responsive-table" id="table-jogos">
                     <thead>
                         <tr>
@@ -394,6 +400,43 @@
                         </div>
                         <div class="modal-footer"> <a href="#!" id="salvar-dados-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-dados-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                     </div>
+            </div>
+            
+            <!-- DIV DE RELATÓRIOS -->
+            <div class="view-relatorios" hidden style="display:none">
+                RELATÓRIOS
+                <p>
+                <div class="row">
+                    <div class="col s12">
+                      
+                       <div class="col s4 m4">
+                        <div class="card-image">
+                            <img src="img/atleta.png" />
+                            <div class="card-action">
+                            <a id="report-atleta" href="#">Atletas</a>
+                            </div>
+                        </div>
+                        </div>
+                        
+                        <div class="col s4 m4">
+                        <div class="card-image">
+                            <img src="img/clube.png" />
+                            <div class="card-action">
+                            <a id="report-clube" href="#">Clubes</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col s4 m4">
+                        <div class="card-image">
+                            <img src="img/jogo.png" />
+                            <div class="card-action">
+                            <a id="report-jogo" href="#">Jogos</a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
