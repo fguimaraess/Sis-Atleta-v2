@@ -38,9 +38,9 @@ pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
 });
 pageJogo.jogosSideBtn.addEventListener('click', function () {
-    getJogos();
     getAtletas();
     getClubes();
+    getJogos();
 });
 
 function abreCardJogo(idJogo) {
@@ -323,10 +323,20 @@ pageJogo.salvarJogoBtn.addEventListener('click', function () {
         if (pageJogo.idJogoField.value) {
             salvarAlteracoesJogo(tempJogo);
             swal("", "Os dados do jogo foram alterados com sucesso!", "success");
+            
+            $('#cardJogo').hide();
+            $('#cardAtletas').hide();
+            $('#table-jogos').show();
+            $('#addJogoBtn').show();
+            getJogos();
         } else {
             novoJogo(tempJogo);
             swal("", "Jogo cadastrado com sucesso!", "success");
-
+            $('#cardJogo').hide();
+            $('#cardAtletas').hide();
+            $('#table-jogos').show();
+            $('#addJogoBtn').show();
+            getJogos();
         }
     }
 });
