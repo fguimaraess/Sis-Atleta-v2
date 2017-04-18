@@ -6,7 +6,7 @@ var pageAtleta = {
     templateLinha: document.querySelector('#template-linha'), //VER C LUIZ
     nomeField: document.querySelector('#nomeatleta-field'),
     idAtletaField: document.querySelector('#idAtleta'),
-    sobrenomeField: document.querySelector('#sobrenomeatleta-field'),
+    apelidoField: document.querySelector('#apelidoatleta-field'),
     posicaoField: document.querySelector('#posicaoatleta-field'),
     idadeField: document.querySelector('#idadeatleta-field'),
     categoriaField: document.querySelector('#categoriaatleta-field'),
@@ -36,6 +36,10 @@ pageAtleta.atletasSideBtn.addEventListener('click', function () {
 function getClubes(idAtleta) {
     atletaSel = pageAtleta.atletas[idAtleta];
     $(pageAtleta.clubeField).empty();
+    var newOption = document.createElement("option");
+        newOption.value = "Sem Clube";
+        newOption.innerHTML = "Sem Clube";
+        pageAtleta.clubeField.options.add(newOption);
     var tempClube = [];
     if (idAtleta) {
         tempClube = pageClube.clubes;
@@ -47,10 +51,7 @@ function getClubes(idAtleta) {
         for (var key in tempClube) {
             preencheCombo(tempClube[key]);
         }
-        var newOption = document.createElement("option");
-        newOption.value = "Sem Clube";
-        newOption.innerHTML = "Sem Clube";
-        pageAtleta.clubeField.options.add(newOption);
+        
     }
 }
 
@@ -70,7 +71,7 @@ function abreModalAtleta(idAtleta) {
         atletaSel = pageAtleta.atletas[idAtleta]
         pageAtleta.idAtletaField.value = atletaSel.uid;
         pageAtleta.nomeField.value = atletaSel.nome;
-        pageAtleta.sobrenomeField.value = atletaSel.sobrenome;
+        pageAtleta.apelidoField.value = atletaSel.apelido;
         $(pageAtleta.posicaoField).val(atletaSel.posicao);
         $(pageAtleta.posicaoField).material_select();
         pageAtleta.idadeField.value = atletaSel.idade;
@@ -83,7 +84,7 @@ function abreModalAtleta(idAtleta) {
     } else {
         pageAtleta.idAtletaField.value = null;
         pageAtleta.nomeField.value = null;
-        pageAtleta.sobrenomeField.value = null;
+        pageAtleta.apelidoField.value = null;
         pageAtleta.posicaoField.value = null;
         $(pageAtleta.posicaoField).material_select();
         pageAtleta.idadeField.value = null;
@@ -102,7 +103,7 @@ pageAtleta.addAtletaBtn.addEventListener('click', function () {
 pageAtleta.atletaBtn.addEventListener('click', function () {
     var tempAtleta = {
         nome: pageAtleta.nomeField.value,
-        sobrenome: pageAtleta.sobrenomeField.value,
+        apelido: pageAtleta.apelidoField.value,
         posicao: pageAtleta.posicaoField.value,
         idade: pageAtleta.idadeField.value,
         categoria: pageAtleta.categoriaField.value,
@@ -110,7 +111,7 @@ pageAtleta.atletaBtn.addEventListener('click', function () {
         cidade: pageAtleta.cidadeField.value,
         pais: pageAtleta.paisField.value
     }
-    if (tempAtleta.nome == "" || tempAtleta.sobrenome == "" || tempAtleta.posicao == "" || tempAtleta.idade == "" || tempAtleta.categoria == "" || tempAtleta.cidade == "" || tempAtleta.pais == "") {
+    if (tempAtleta.nome == "" || tempAtleta.apelido == "" || tempAtleta.posicao == "" || tempAtleta.idade == "" || tempAtleta.categoria == "" || tempAtleta.cidade == "" || tempAtleta.pais == "") {
         swal("Ainda não...", "Preencha os dados do atleta.", "error");
     } else {
         if (pageAtleta.idAtletaField.value) {
@@ -144,7 +145,7 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
 function salvarAlteracoes(tempAtleta) {
     idAtleta = pageAtleta.idAtletaField.value;
     tempAtleta.nome = pageAtleta.nomeField.value;
-    tempAtleta.sobrenome = pageAtleta.sobrenomeField.value;
+    tempAtleta.apelido = pageAtleta.apelidoField.value;
     tempAtleta.posicao = pageAtleta.posicaoField.value;
     tempAtleta.idade = pageAtleta.idadeField.value;
     tempAtleta.categoria = pageAtleta.categoriaField.value;
@@ -155,7 +156,7 @@ function salvarAlteracoes(tempAtleta) {
     var jogadoresNaTela = document.querySelectorAll('.idDosAtletas');
     jogadoresNaTela.forEach(function (jogadorHtml) {
         if (jogadorHtml.id == idAtleta) {
-            jogadorHtml.querySelector('.nomeJogadorTabela').innerHTML = tempAtleta.nome + " " + tempAtleta.sobrenome;
+            jogadorHtml.querySelector('.nomeJogadorTabela').innerHTML = tempAtleta.nome + " " + tempAtleta.apelido;
             jogadorHtml.querySelector('.posicaoJogadorTabela').innerHTML = tempAtleta.posicao;
             jogadorHtml.querySelector('.idadeJogadorTabela').innerHTML = tempAtleta.idade;
             jogadorHtml.querySelector('.clubeJogadorTabela').innerHTML = tempAtleta.clube;
@@ -199,8 +200,9 @@ function preencheTabela(tempAtleta) {
     }
     var htmlAtleta = '';
     htmlAtleta += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
-    htmlAtleta += '<td class="fotoJogadorTabela">'+tempAtleta.foto+'"</td>';
-    htmlAtleta += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
+    htmlAtleta += '<td class="fotoJogadorTabela">'+tempAtleta.foto+'</td>';
+    htmlAtleta += '<td class="nomeJogadorTabela">' + tempAtleta.nome + '</a></td>';
+    htmlAtleta += '<td class="apelidoJogadorTabela">'+tempAtleta.apelido+'</td>';
     htmlAtleta += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
     htmlAtleta += '<td class="idadeJogadorTabela">' + tempAtleta.idade + '</td>';
     htmlAtleta += '<td class="clubeJogadorTabela">' + tempAtleta.clube + '</td>';
