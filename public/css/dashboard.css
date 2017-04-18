@@ -68,3 +68,7 @@ a#salvar-card, a#voltarCardJogo {
 a.add-jogador, a.remove-jogador, a.editar-dados-jogador, a.editar-jogo, a.excluir-jogo, a.atleta, a.clube, a#voltar-relatorio{
     color: lightseagreen;
 }
+
+a.btn-floating.btn-large.lightsagreen{
+    
+}

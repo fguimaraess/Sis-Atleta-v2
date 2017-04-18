@@ -36,6 +36,7 @@ var pageJogo = {
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
+    pageJogo.idJogoField.value = null;
 });
 pageJogo.jogosSideBtn.addEventListener('click', function () {
     getAtletas();
