@@ -119,8 +119,16 @@ function getAtletasByClube(idClube) {
                     snapshot.forEach(function (atletaRef) {
                         var tempAtletaClube = atletaRef.val();
                         if (tempClube.nomeclube == tempAtletaClube.clube) {
+                            if(tempAtletaClube.foto)
+                            {
+                                var htmlFoto = '<img width="32" height="32" src="'+tempAtletaClube.foto+'"/>';        
+                            } else {
+                                var htmlFoto = '<img width="32" height="32" src="img/mini_sem_foto.png"/>';
+                            }
+                            
                             html = '';
                             html += '<tr class="idDosAtletasClube" id="' + tempAtletaClube.uid + '">';
+                            html += '<td>'  + htmlFoto + '</td>';
                             html += '<td>' + tempAtletaClube.nome + '</td>';
                             html += '<td>' + tempAtletaClube.idade + '</td>';
                             html += '<td>' + tempAtletaClube.posicao + '</td>';
