@@ -191,8 +191,15 @@ function getAtletas() {
 }
 
 function preencheTabela(tempAtleta) {
+    if(tempAtleta.foto)
+    {
+        tempAtleta.foto = '<img src="'+tempAtleta.foto+'"/>'
+    } else {
+        tempAtleta.foto = '<img src="img/mini_sem_foto.png"/>';
+    }
     var htmlAtleta = '';
     htmlAtleta += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
+    htmlAtleta += '<td class="fotoJogadorTabela">'+tempAtleta.foto+'"</td>';
     htmlAtleta += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
     htmlAtleta += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
     htmlAtleta += '<td class="idadeJogadorTabela">' + tempAtleta.idade + '</td>';
