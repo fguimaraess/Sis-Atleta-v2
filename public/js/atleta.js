@@ -71,21 +71,25 @@ function abreModalAtleta(idAtleta) {
     getClubes(idAtleta);
     if (idAtleta) {
         atletaSel = pageAtleta.atletas[idAtleta]
-        console.log(atletaSel)
-        pageAtleta.idAtletaField.value = atletaSel.uid;
-        pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="'+atletaSel.foto+'">';
-        pageAtleta.nomeField.value = atletaSel.nome;
-        pageAtleta.apelidoField.value = atletaSel.apelido;
-        $(pageAtleta.posicaoField).val(atletaSel.posicao);
-        $(pageAtleta.posicaoField).material_select();
-        pageAtleta.idadeField.value = atletaSel.idade;
-        $(pageAtleta.categoriaField).val(atletaSel.categoria);
-        $(pageAtleta.categoriaField).material_select();
-        $(pageAtleta.clubeField).val(atletaSel.clube);
-        $(pageAtleta.clubeField).material_select();
-        pageAtleta.cidadeField.value = atletaSel.cidade;
-        pageAtleta.paisField.value = atletaSel.pais;
-        pageAtleta.fotoField = atletaSel.foto;
+        if(atletaSel.foto)
+        {
+            pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="'+atletaSel.foto+'">';
+        } else {
+            pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="img/sem_foto.png">';
+        }
+            pageAtleta.idAtletaField.value = atletaSel.uid;
+            pageAtleta.nomeField.value = atletaSel.nome;
+            pageAtleta.apelidoField.value = atletaSel.apelido;
+            $(pageAtleta.posicaoField).val(atletaSel.posicao);
+            $(pageAtleta.posicaoField).material_select();
+            pageAtleta.idadeField.value = atletaSel.idade;
+            $(pageAtleta.categoriaField).val(atletaSel.categoria);
+            $(pageAtleta.categoriaField).material_select();
+            $(pageAtleta.clubeField).val(atletaSel.clube);
+            $(pageAtleta.clubeField).material_select();
+            pageAtleta.cidadeField.value = atletaSel.cidade;
+            pageAtleta.paisField.value = atletaSel.pais;
+            pageAtleta.fotoField = atletaSel.foto;
     } else {
         pageAtleta.idAtletaField.value = null;
         pageAtleta.nomeField.value = null;
@@ -100,7 +104,7 @@ function abreModalAtleta(idAtleta) {
         pageAtleta.cidadeField.value = null;
         pageAtleta.paisField.value = null;
         pageAtleta.fotoField = null;
-        pageAtleta.mostraFoto.innerHTML = '';
+        pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="img/sem_foto.png">';
     }
     $('#modal-addatleta').modal('open');
 }
