@@ -23,7 +23,9 @@ var pageAtleta = {
     btnEditarAtleta: document.querySelector('#btn-editar-atleta'),
     addAtletaBtn: document.querySelector('#addAtletaBtn'),
     bodyAtleta: document.querySelector('#body-atleta'),
-    atletasSideBtn: document.querySelector('#atletas-menu')
+    atletasSideBtn: document.querySelector('#atletas-menu'),
+    mostraFoto: document.querySelector('#mostra-foto'),
+    carregarFoto: document.querySelector('#btnCarregar')
 }
 window.addEventListener('load', getClubes);
 pageAtleta.atletasSideBtn.addEventListener('click', function () {
@@ -69,7 +71,9 @@ function abreModalAtleta(idAtleta) {
     getClubes(idAtleta);
     if (idAtleta) {
         atletaSel = pageAtleta.atletas[idAtleta]
+        console.log(atletaSel)
         pageAtleta.idAtletaField.value = atletaSel.uid;
+        pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="'+atletaSel.foto+'">';
         pageAtleta.nomeField.value = atletaSel.nome;
         pageAtleta.apelidoField.value = atletaSel.apelido;
         $(pageAtleta.posicaoField).val(atletaSel.posicao);
@@ -81,7 +85,7 @@ function abreModalAtleta(idAtleta) {
         $(pageAtleta.clubeField).material_select();
         pageAtleta.cidadeField.value = atletaSel.cidade;
         pageAtleta.paisField.value = atletaSel.pais;
-        //pageAtleta.fotoField.value = atletaSel.foto;
+        pageAtleta.fotoField = atletaSel.foto;
     } else {
         pageAtleta.idAtletaField.value = null;
         pageAtleta.nomeField.value = null;
@@ -96,6 +100,7 @@ function abreModalAtleta(idAtleta) {
         pageAtleta.cidadeField.value = null;
         pageAtleta.paisField.value = null;
         pageAtleta.fotoField = null;
+        pageAtleta.mostraFoto.innerHTML = '';
     }
     $('#modal-addatleta').modal('open');
 }
@@ -204,13 +209,14 @@ function getAtletas() {
 function preencheTabela(tempAtleta) {
     if(tempAtleta.foto)
     {
-        tempAtleta.foto = '<img width="32" height="32" src="'+tempAtleta.foto+'"/>'
+        var htmlFoto = '<img width="32" height="32" src="'+tempAtleta.foto+'"/>';
+        
     } else {
-        tempAtleta.foto = '<img width="32" height="32" src="img/mini_sem_foto.png"/>';
+        var htmlFoto = '<img width="32" height="32" src="img/mini_sem_foto.png"/>';
     }
     var htmlAtleta = '';
     htmlAtleta += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
-    htmlAtleta += '<td class="fotoJogadorTabela">'+tempAtleta.foto+'</td>';
+    htmlAtleta += '<td class="fotoJogadorTabela">'+htmlFoto+'</td>';
     htmlAtleta += '<td class="nomeJogadorTabela">' + tempAtleta.nome + '</a></td>';
     htmlAtleta += '<td class="apelidoJogadorTabela">'+tempAtleta.apelido+'</td>';
     htmlAtleta += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
