@@ -81,6 +81,7 @@ function abreModalAtleta(idAtleta) {
         $(pageAtleta.clubeField).material_select();
         pageAtleta.cidadeField.value = atletaSel.cidade;
         pageAtleta.paisField.value = atletaSel.pais;
+        //pageAtleta.fotoField.value = atletaSel.foto;
     } else {
         pageAtleta.idAtletaField.value = null;
         pageAtleta.nomeField.value = null;
@@ -94,6 +95,7 @@ function abreModalAtleta(idAtleta) {
         $(pageAtleta.clubeField).material_select();
         pageAtleta.cidadeField.value = null;
         pageAtleta.paisField.value = null;
+        pageAtleta.fotoField = null;
     }
     $('#modal-addatleta').modal('open');
 }
@@ -109,7 +111,8 @@ pageAtleta.atletaBtn.addEventListener('click', function () {
         categoria: pageAtleta.categoriaField.value,
         clube: pageAtleta.clubeField.value,
         cidade: pageAtleta.cidadeField.value,
-        pais: pageAtleta.paisField.value
+        pais: pageAtleta.paisField.value,
+        foto: pageAtleta.fotoField
     }
     if (tempAtleta.nome == "" || tempAtleta.apelido == "" || tempAtleta.posicao == "" || tempAtleta.idade == "" || tempAtleta.categoria == "" || tempAtleta.cidade == "" || tempAtleta.pais == "") {
         swal("Ainda não...", "Preencha os dados do atleta.", "error");
@@ -139,6 +142,12 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
         console.log(err);
     }, function complete() {
         swal('Sucesso!', "Foto carregada com sucesso", "success");
+        var fotoTempAtleta = task.snapshot.downloadURL;
+        atletaSel = pageAtleta.atletas[pageAtleta.idAtletaField.value]
+        atletaSel.foto = fotoTempAtleta;
+        pageAtleta.fotoField = fotoTempAtleta;
+        //console.log(fotoTempAtleta)
+        //console.log(pageAtleta.idAtletaField.value)
     })
 });
 
@@ -152,6 +161,7 @@ function salvarAlteracoes(tempAtleta) {
     tempAtleta.clube = pageAtleta.clubeField.value;
     tempAtleta.cidade = pageAtleta.cidadeField.value;
     tempAtleta.pais = pageAtleta.paisField.value;
+    tempAtleta.foto = pageAtleta.fotoField;
     pageAtleta.database.ref(pageAtleta.databaseRef + '/' + idAtleta).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
     var jogadoresNaTela = document.querySelectorAll('.idDosAtletas');
     jogadoresNaTela.forEach(function (jogadorHtml) {
@@ -194,9 +204,9 @@ function getAtletas() {
 function preencheTabela(tempAtleta) {
     if(tempAtleta.foto)
     {
-        tempAtleta.foto = '<img src="'+tempAtleta.foto+'"/>'
+        tempAtleta.foto = '<img width="32" height="32" src="'+tempAtleta.foto+'"/>'
     } else {
-        tempAtleta.foto = '<img src="img/mini_sem_foto.png"/>';
+        tempAtleta.foto = '<img width="32" height="32" src="img/mini_sem_foto.png"/>';
     }
     var htmlAtleta = '';
     htmlAtleta += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
