@@ -171,9 +171,13 @@ function removeAtletaJogo(idAtleta) {
     tempAtleta = pageJogo.tableAtletasAdicionados.querySelector('#' + idAtleta);
     pageJogo.tableAtletasAdicionados.removeChild(tempAtleta);
     atletaSel = pageAtleta.atletas[idAtleta]
-    if(pageJogo.jogos[pageJogo.idJogoField.value].atletasTempJogo[idAtleta])
+
+    if(pageJogo.idJogoField.value)
     {
-        delete pageJogo.jogos[pageJogo.idJogoField.value].atletasTempJogo[idAtleta];
+        if(pageJogo.jogos[pageJogo.idJogoField.value].atletasTempJogo[idAtleta])
+        {
+            delete pageJogo.jogos[pageJogo.idJogoField.value].atletasTempJogo[idAtleta];
+        }
     }
     if(atletaSel.foto)
     {
