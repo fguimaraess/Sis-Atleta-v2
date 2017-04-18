@@ -175,11 +175,18 @@ function removeAtletaJogo(idAtleta) {
     {
         delete pageJogo.jogos[pageJogo.idJogoField.value].atletasTempJogo[idAtleta];
     }
+    if(atletaSel.foto)
+    {
+        var htmlFoto = '<img width="32" height="32" src="'+atletaSel.foto+'"/>';
+    } else {
+        var htmlFoto = '<img width="32" height="32" src="img/mini_sem_foto.png"/>';
+     }
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
     html += '<td><a onclick="addAtletaJogo(\'' + atletaSel.uid + '\')" href="#" class="add-jogador"><i class="material-icons">add</i></a></td>'
     html += '<td class="nomeJogadorTabela">' + atletaSel.nome + " - " + atletaSel.apelido + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + atletaSel.posicao + '</td>';
+    html += '<td class="fotoJogadorTabela">'+htmlFoto+'</td>';
     html += '</tr>';
     $('#body-card').append(html);
 }
@@ -194,7 +201,7 @@ function addAtletaJogo(idAtleta) {
     atletaSel = pageAtleta.atletas[idAtleta]
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
-    html += '<td><a onclick="removeAtletaJogo(\'' + idAtleta + '\')" href="#" class="remove-jogador"><i class="material-icons">remove</i></a></td>'
+    html += '<td><a onclick="removeAtletaJogo(\'' + idAtleta + '\')" href="#" class="remove-jogador"><i class="material-icons">remove</i></a></td>';
     html += '<td class="nomeJogadorTabela">' + atletaSel.nome + " - " + atletaSel.apelido + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + atletaSel.posicao + '</td>';
     html += '<td><a onclick="abreModalEstatisticaJogador(\'' + atletaSel.uid + '\', \'' + pageJogo.jogoAtual + '\')" href="#" class="editar-dados-jogador"><i class="material-icons">mode_edit</i></a>';
@@ -343,12 +350,19 @@ pageJogo.salvarJogoBtn.addEventListener('click', function () {
 });
 
 function preencheTabelaCard(tempAtleta) {
-    
+    if(tempAtleta.foto)
+    {
+        var htmlFoto = '<img width="32" height="32" src="'+tempAtleta.foto+'"/>';
+        
+    } else {
+        var htmlFoto = '<img width="32" height="32" src="img/mini_sem_foto.png"/>';
+    }
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
     html += '<td><a onclick="addAtletaJogo(\'' + tempAtleta.uid + '\')" href="#" class="add-jogador"><i class="material-icons">add</i></a></td>'
     html += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " - " + tempAtleta.apelido + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
+    html += '<td class="fotoJogadorTabela">'+htmlFoto+'</td>';
     html += '</tr>';
     $('#body-card').append(html);
 }
