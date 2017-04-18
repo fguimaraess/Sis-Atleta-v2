@@ -178,7 +178,7 @@ function removeAtletaJogo(idAtleta) {
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
     html += '<td><a onclick="addAtletaJogo(\'' + atletaSel.uid + '\')" href="#" class="add-jogador"><i class="material-icons">add</i></a></td>'
-    html += '<td class="nomeJogadorTabela">' + atletaSel.nome + " " + atletaSel.sobrenome + '</a></td>';
+    html += '<td class="nomeJogadorTabela">' + atletaSel.nome + " - " + atletaSel.apelido + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + atletaSel.posicao + '</td>';
     html += '</tr>';
     $('#body-card').append(html);
@@ -195,7 +195,7 @@ function addAtletaJogo(idAtleta) {
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + idAtleta + '">';
     html += '<td><a onclick="removeAtletaJogo(\'' + idAtleta + '\')" href="#" class="remove-jogador"><i class="material-icons">remove</i></a></td>'
-    html += '<td class="nomeJogadorTabela">' + atletaSel.nome + " " + atletaSel.sobrenome + '</a></td>';
+    html += '<td class="nomeJogadorTabela">' + atletaSel.nome + " - " + atletaSel.apelido + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + atletaSel.posicao + '</td>';
     html += '<td><a onclick="abreModalEstatisticaJogador(\'' + atletaSel.uid + '\', \'' + pageJogo.jogoAtual + '\')" href="#" class="editar-dados-jogador"><i class="material-icons">mode_edit</i></a>';
     html += '</tr>';
@@ -347,7 +347,7 @@ function preencheTabelaCard(tempAtleta) {
     var html = '';
     html += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
     html += '<td><a onclick="addAtletaJogo(\'' + tempAtleta.uid + '\')" href="#" class="add-jogador"><i class="material-icons">add</i></a></td>'
-    html += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " " + tempAtleta.sobrenome + '</a></td>';
+    html += '<td class="nomeJogadorTabela">' + tempAtleta.nome + " - " + tempAtleta.apelido + '</a></td>';
     html += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
     html += '</tr>';
     $('#body-card').append(html);
