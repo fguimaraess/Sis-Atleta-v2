@@ -69,6 +69,7 @@ a.add-jogador, a.remove-jogador, a.editar-dados-jogador, a.editar-jogo, a.exclui
     color: lightseagreen;
 }
 
-a.btn-floating.btn-large.lightsagreen{
-    
+a#btnCarregar{
+    position: absolute !important;
+        -webkit-appearance: initial;
 }

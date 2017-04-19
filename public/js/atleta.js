@@ -25,7 +25,8 @@ var pageAtleta = {
     bodyAtleta: document.querySelector('#body-atleta'),
     atletasSideBtn: document.querySelector('#atletas-menu'),
     mostraFoto: document.querySelector('#mostra-foto'),
-    carregarFoto: document.querySelector('#btnCarregar')
+    carregarFoto: document.querySelector('#btnCarregar'),
+    caminhoFoto: document.querySelector('#file-path')
 }
 window.addEventListener('load', getClubes);
 pageAtleta.atletasSideBtn.addEventListener('click', function () {
@@ -90,6 +91,7 @@ function abreModalAtleta(idAtleta) {
             pageAtleta.cidadeField.value = atletaSel.cidade;
             pageAtleta.paisField.value = atletaSel.pais;
             pageAtleta.fotoField = atletaSel.foto;
+            pageAtleta.caminhoFoto.value = '';
     } else {
         pageAtleta.idAtletaField.value = null;
         pageAtleta.nomeField.value = null;
@@ -105,6 +107,7 @@ function abreModalAtleta(idAtleta) {
         pageAtleta.paisField.value = null;
         pageAtleta.fotoField = null;
         pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="img/sem_foto.png">';
+        pageAtleta.caminhoFoto.value = '';
     }
     $('#modal-addatleta').modal('open');
 }
@@ -137,6 +140,9 @@ pageAtleta.atletaBtn.addEventListener('click', function () {
 })
 //pageAtleta.tableAtletas.addEventListener('click', getLinha);
 pageAtleta.fileButton.addEventListener('change', function (e) {
+    pageAtleta.carregarFoto.addEventListener('click', function(){
+        
+    
     //Pega o arquivo
     var file = e.target.files[0];
     //Referencia Storage
@@ -145,8 +151,8 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
     var task = storageRef.put(file);
     //Atualiza progress bar
     task.on('state_changed', function progress(snapshot) {
-        var porcentagem = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        pageAtleta.uploader = porcentagem;
+        //var porcentagem = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        //pageAtleta.uploader = porcentagem;
     }, function error(err) {
         console.log(err);
     }, function complete() {
@@ -157,6 +163,7 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
         pageAtleta.fotoField = fotoTempAtleta;
         //console.log(fotoTempAtleta)
         //console.log(pageAtleta.idAtletaField.value)
+        })
     })
 });
 
@@ -179,6 +186,7 @@ function salvarAlteracoes(tempAtleta) {
             jogadorHtml.querySelector('.posicaoJogadorTabela').innerHTML = tempAtleta.posicao;
             jogadorHtml.querySelector('.idadeJogadorTabela').innerHTML = tempAtleta.idade;
             jogadorHtml.querySelector('.clubeJogadorTabela').innerHTML = tempAtleta.clube;
+            jogadorHtml.querySelector('.fotoJogadorTabela').innerHTML = '<input width="32" height="32" type="image" src="'+tempAtleta.foto+'">';
         }
     });
 }
