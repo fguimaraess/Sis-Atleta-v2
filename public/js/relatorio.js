@@ -34,6 +34,12 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
         pageRelatorio.derrotas = 0;
         pageRelatorio.empates = 0;
     
+    var dataInicio = $(pageRelatorio.dataInicioField).val().split("/");
+    var dataInicioFormatada = new Date(dataInicio[2], dataInicio[1] - 1, dataInicio[0]);
+    var dataFim = $(pageRelatorio.dataFimField).val().split("/");
+    var dataFimFormatada = new Date(dataFim[2], dataFim[1] - 1, dataFim[0]);
+    console.log(dataInicioFormatada,dataFimFormatada)
+    
     var clubeSelecionado = $(pageRelatorio.clubeField).val();
     getDadosClube(clubeSelecionado);
     var tempDados = {
