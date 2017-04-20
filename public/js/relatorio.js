@@ -1,10 +1,10 @@
 var pageRelatorio = {
-    golsPro: 0,
-    golsContra: 0,
-    vitorias: 0,
-    derrotas: 0,
-    empates: 0,
-    reportAtleta: document.querySelector('#report-atleta')
+    golsPro: 0
+    , golsContra: 0
+    , vitorias: 0
+    , derrotas: 0
+    , empates: 0
+    , reportAtleta: document.querySelector('#report-atleta')
     , reportClube: document.querySelector('#report-clube')
     , atletaField: document.querySelector('#report-atleta-combo')
     , clubeField: document.querySelector('#report-clube-combo')
@@ -12,18 +12,18 @@ var pageRelatorio = {
     , dataFimField: document.querySelector('#data-fim-field')
     , searchBtn: document.querySelector('#search-btn')
     , bodyDadosClubes: document.querySelector('#body-dados-clube')
-    , limparBtn: document.querySelector('#limpar-relatorio'),
-    estatisticasClube: document.querySelector('#estatisticas-clube'),
-    divEstatisticasClube: document.querySelector('#div-estatistica-clube'),
-    jogosClubeField: document.querySelector('#jogos-clube'),
-    vitoriasClubeField: document.querySelector('#vitorias-clube'),
-    empatesClubeField: document.querySelector('#empates-clube'),
-    derrotasClubeField: document.querySelector('#derrotas-clube'),
-    golsProClubeField: document.querySelector('#golspro-clube'),
-    golsContraClubeField: document.querySelector('#golscontra-clube'),
-    saldoDeGolsClubeField: document.querySelector('#saldodegols-clube'),
-    aproveitamentoClubeField: document.querySelector('#aproveitamento-clube'),
-    btnExport: document.querySelector('#btnExport')
+    , limparBtn: document.querySelector('#limpar-relatorio')
+    , estatisticasClube: document.querySelector('#estatisticas-clube')
+    , divEstatisticasClube: document.querySelector('#div-estatistica-clube')
+    , jogosClubeField: document.querySelector('#jogos-clube')
+    , vitoriasClubeField: document.querySelector('#vitorias-clube')
+    , empatesClubeField: document.querySelector('#empates-clube')
+    , derrotasClubeField: document.querySelector('#derrotas-clube')
+    , golsProClubeField: document.querySelector('#golspro-clube')
+    , golsContraClubeField: document.querySelector('#golscontra-clube')
+    , saldoDeGolsClubeField: document.querySelector('#saldodegols-clube')
+    , aproveitamentoClubeField: document.querySelector('#aproveitamento-clube')
+    , btnExport: document.querySelector('#btnExport')
 }
 pageRelatorio.reportAtleta.addEventListener('click', function () {
     $(pageRelatorio.divEstatisticasClube).hide();
@@ -40,37 +40,34 @@ pageRelatorio.reportClube.addEventListener('click', function () {
 pageRelatorio.searchBtn.addEventListener('click', function () {
     $(pageRelatorio.divEstatisticasClube).show();
     pageRelatorio.golsPro = 0;
-        pageRelatorio.golsContra = 0;
-        pageRelatorio.vitorias = 0;
-        pageRelatorio.derrotas = 0;
-        pageRelatorio.empates = 0;
-    
+    pageRelatorio.golsContra = 0;
+    pageRelatorio.vitorias = 0;
+    pageRelatorio.derrotas = 0;
+    pageRelatorio.empates = 0;
     var dataInicio = $(pageRelatorio.dataInicioField).val().split("/");
     var dataInicioFormatada = new Date(dataInicio[2], dataInicio[1] - 1, dataInicio[0]);
     var dataFim = $(pageRelatorio.dataFimField).val().split("/");
     var dataFimFormatada = new Date(dataFim[2], dataFim[1] - 1, dataFim[0]);
-    console.log(dataInicioFormatada,dataFimFormatada)
-    
+    console.log(dataInicioFormatada, dataFimFormatada)
     var clubeSelecionado = $(pageRelatorio.clubeField).val();
     getDadosClube(clubeSelecionado);
     var tempDados = {
-        golsPro: pageRelatorio.golsPro,
-        golsContra: pageRelatorio.golsContra,
-        vitorias: pageRelatorio.vitorias,
-        derrotas: pageRelatorio.derrotas,
-        empates: pageRelatorio.empates
+        golsPro: pageRelatorio.golsPro
+        , golsContra: pageRelatorio.golsContra
+        , vitorias: pageRelatorio.vitorias
+        , derrotas: pageRelatorio.derrotas
+        , empates: pageRelatorio.empates
     }
     getEstatisticasClube(tempDados);
 })
 
-function getEstatisticasClube(tempDados)
-{
+function getEstatisticasClube(tempDados) {
     var qtdJogos = tempDados.vitorias + tempDados.derrotas + tempDados.empates;
     var saldoDeGols = tempDados.golsPro - tempDados.golsContra;
     var ptsClube = (tempDados.vitorias * 3) + (tempDados.empates * 1);
-    var aproveitamentoClube = (ptsClube/(qtdJogos*3) * 100).toFixed(2) + "%";
-    if (aproveitamentoClube == "NaN%")    {
-        aproveitamentoClube = 0        
+    var aproveitamentoClube = (ptsClube / (qtdJogos * 3) * 100).toFixed(2) + "%";
+    if (aproveitamentoClube == "NaN%") {
+        aproveitamentoClube = 0
     }
     pageRelatorio.jogosClubeField.innerHTML = '<td>' + qtdJogos + '</td>';
     pageRelatorio.vitoriasClubeField.innerHTML = '<td>' + tempDados.vitorias + '</td>';
@@ -117,12 +114,13 @@ function preencheReportClube(tempJogosClube) {
     var dadosClube = tempJogosClube;
     pageRelatorio.golsPro += parseInt(tempJogosClube.golsPro);
     pageRelatorio.golsContra += parseInt(tempJogosClube.golsContra);
-    
-    if(tempJogosClube.golsmeuclube > tempJogosClube.golsclubeadversario){
+    if (tempJogosClube.golsmeuclube > tempJogosClube.golsclubeadversario) {
         pageRelatorio.vitorias++;
-    } else if(tempJogosClube.golsmeuclube < tempJogosClube.golsclubeadversario){
+    }
+    else if (tempJogosClube.golsmeuclube < tempJogosClube.golsclubeadversario) {
         pageRelatorio.derrotas++;
-    } else {
+    }
+    else {
         pageRelatorio.empates++;
     }
     var html = '';
@@ -156,38 +154,39 @@ function preencheComboClubeReport(tempClube) {
     pageRelatorio.clubeField.options.add(newOption);
     $(pageRelatorio.clubeField).material_select();
 }
-
 pageRelatorio.btnExport.addEventListener('click', exportRelatorioClube);
-function exportRelatorioClube(){
+
+function exportRelatorioClube() {
     if (pageRelatorio.bodyDadosClubes.innerHTML == '') {
-    alert("Selecione um clube!");
-    }else {
-    var tab_text = "<table border='2px'><tr bgcolor='#2bbbad'>                            <th>Clube</th><th>Placar</th><th>Adversário</th><th>Local</th>                            <th>Data</th></tr><tr>";
-    var textRange;
-    var j = 0;
-    tab = pageRelatorio.bodyDadosClubes; // id of table
-    for (j = 0; j < tab.rows.length; j++) {
-        tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
-        //tab_text=tab_text+"</tr>";
+        alert("Selecione uma opção!!");
     }
-    tab_text = tab_text + "</table>";
-    tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
-    tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
-    tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
-    var ua = window.navigator.userAgent;
-    var msie = ua.indexOf("MSIE ");
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
-    {
-        txtArea1.document.open("txt/html", "replace");
-        txtArea1.document.write(tab_text);
-        txtArea1.document.close();
-        txtArea1.focus();
-        sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+    else {
+        var tab_text = "<table border='2px'><tr bgcolor='#2bbbad'>                            <th>Clube</th><th>Placar</th><th>Adversário</th><th>Local</th>                            <th>Data</th></tr><tr>";
+        var textRange;
+        var j = 0;
+        tab = pageRelatorio.bodyDadosClubes; // id of table
+        for (j = 0; j < tab.rows.length; j++) {
+            tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
+        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+        }
+        else //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + escape(tab_text));
+        return (sa);
     }
-    else //other browser not tested on IE 11
-        sa = window.open('data:application/vnd.ms-excel,' + escape(tab_text));
-    return (sa);
-}
 }
 pageRelatorio.limparBtn.addEventListener('click', function () {
     var jogosNaTela = document.querySelectorAll('.idDosJogosFiltrados');

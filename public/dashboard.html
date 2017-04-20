@@ -78,10 +78,9 @@
                             <!-- Formulário Novo Atleta -->
                             <div class="row">
                                 <form class="col s12">
-                                   <div class="row">
-                                        <div class="input-field col s6" id="mostra-foto">
-                                        </div>
-                                   </div>
+                                    <div class="row">
+                                        <div class="input-field col s6" id="mostra-foto"> </div>
+                                    </div>
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <input id="nomeatleta-field" type="text" class="validate" placeholder="">
@@ -151,24 +150,17 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                       <div class="input-field col s6">
-                                       <!--<input type="file" value="Procurar Foto" id="fileButton">-->
-                                       
-                                       <div class="file-field input-field">
-                                          <div class="btn">
-                                            <span>Imagem</span>
-                                            <input type="file" id="fileButton">
-                                      </div>
-                                      <div class="file-path-wrapper">
-                                        <input class="file-path validate" id="file-path" type="text">
-                                      </div>
-                                    </div>
-
+                                        <div class="input-field col s6">
+                                            <!--<input type="file" value="Procurar Foto" id="fileButton">-->
+                                            <div class="file-field input-field">
+                                                <div class="btn"> <span>Imagem</span>
+                                                    <input type="file" id="fileButton"> </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" id="file-path" type="text"> </div>
+                                            </div>
                                         </div>
                                         <div class="input-field col s6">
-                                        <button class="waves-effect waves-light btn-large" id="btnCarregar">Upload
-                                        <i class="material-icons right">send</i>
-                                        </button>
+                                            <button class="waves-effect waves-light btn-large" id="btnCarregar">Upload <i class="material-icons right">send</i> </button>
                                         </div>
                                     </div>
                                 </form>
@@ -430,98 +422,73 @@
                     </div>
             </div>
             <!-- DIV DE CAMPOS DE RELATÓRIO -->
-            <div class="relatorios-fields" hidden>
-               RELATÓRIOS
-               <p>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <select id="report-clube-combo">
-                            <option value="" disabled selected>Escolha uma opção</option>
-                        </select>
-                        <label>Clube: </label>
+            <div class="relatorios-fields" hidden> RELATÓRIOS
+                <p>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="report-clube-combo">
+                                <option value="" disabled selected>Escolha uma opção</option>
+                            </select>
+                            <label>Clube: </label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s5" id="report-atleta-field" hidden>
-                        <select id="report-atleta-combo">
-                            <option value="" disabled selected>Escolha uma opção</option>
-                        </select>
-                        <label>Atleta: </label>
+                    <div class="row">
+                        <div class="input-field col s5" id="report-atleta-field" hidden>
+                            <select id="report-atleta-combo">
+                                <option value="" disabled selected>Escolha uma opção</option>
+                            </select>
+                            <label>Atleta: </label>
+                        </div>
+                        <div class="input-field col s2">
+                            <input type="date" class="datepicker" id="data-inicio-field">
+                            <label>De: </label>
+                        </div>
+                        <div class="input-field col s2">
+                            <input type="date" class="datepicker" id="data-fim-field">
+                            <label>Até: </label>
+                        </div>
+                        <div class="input-field col s1">
+                            <a class="btn-floating btn-small waves-effect waves-light lightsagreen" id="search-btn"> <i class="material-icons">search</i> </a>
+                        </div>
+                        <div class="input-field col s1">
+                            <a class="btn-floating btn-small lightsagreen" id="voltar-relatorio"> <i class="material-icons">arrow_back</i> </a>
+                        </div>
+                        <div class="input-field col s1">
+                            <a class="btn-floating btn-small lightsagreen" id="limpar-relatorio"> <i class="material-icons">clear</i> </a>
+                        </div>
                     </div>
-                    <div class="input-field col s2">
-                        <input type="date" class="datepicker" id="data-inicio-field">
-                        <label>De: </label>
-                    </div>
-                    <div class="input-field col s2">
-                        <input type="date" class="datepicker" id="data-fim-field">
-                        <label>Até: </label>
-                    </div>
-                    <div class="input-field col s1">
-                        <a class="btn-floating btn-small waves-effect waves-light lightsagreen" id="search-btn"> <i class="material-icons">search</i> </a>
-                    </div>
-                    <div class="input-field col s1">
-                        <a class="btn-floating btn-small lightsagreen" id="voltar-relatorio"> <i class="material-icons">arrow_back</i> </a>
-                    </div>
-                    <div class="input-field col s1">
-                        <a class="btn-floating btn-small lightsagreen" id="limpar-relatorio"> <i class="material-icons">clear</i> </a>
-                    </div>
-                </div>
-                
-                
-                
                     <div class="row" id="div-estatistica-clube">
-                    <div class="col s2 center-align" style="border:3px solid black;">
-                        <b>Jogos</b><p>
-                        <span class="flow-text" id="jogos-clube"></span>
+                        <div class="col s2 center-align" style="border:3px solid black;"> <b>Jogos</b>
+                            <p> <span class="flow-text" id="jogos-clube"></span> </div>
+                        <div class="col s1 center-align" style="border:3px solid black;"> <b>Vitórias</b>
+                            <p> <span class="flow-text" id="vitorias-clube"></span> </div>
+                        <div class="col s1 center-align" style="border:3px solid black;"> <b>Empates</b>
+                            <p> <span class="flow-text" id="empates-clube"></span> </div>
+                        <div class="col s1 center-align" style="border:3px solid black;"> <b>Derrotas</b>
+                            <p> <span class="flow-text" id="derrotas-clube"></span> </div>
+                        <div class="col s1 center-align" style="border:3px solid black;"> <b>Gols Pro</b>
+                            <p> <span class="flow-text" id="golspro-clube"></span> </div>
+                        <div class="col s1.5 center-align" style="border:3px solid black;"> <b>Gols Contra</b>
+                            <p> <span class="flow-text" id="golscontra-clube"></span> </div>
+                        <div class="col s2.5 center-align" style="border:3px solid black;"> <b>Saldo de Gols</b>
+                            <p> <span class="flow-text" id="saldodegols-clube"></span> </div>
+                        <div class="col s2 center-align" style="border:3px solid black;"> <b>Aproveitamento</b>
+                            <p> <span class="flow-text" id="aproveitamento-clube"></span> </div>
                     </div>
-                    <div class="col s1 center-align" style="border:3px solid black;">
-                        <b>Vitórias</b><p>
-                        <span class="flow-text" id="vitorias-clube"></span>
-                    </div>
-                    <div class="col s1 center-align" style="border:3px solid black;">
-                        <b>Empates</b><p>
-                        <span class="flow-text" id="empates-clube"></span>
-                    </div>
-                    <div class="col s1 center-align" style="border:3px solid black;">
-                        <b>Derrotas</b><p>
-                        <span class="flow-text" id="derrotas-clube"></span>
-                    </div>
-                    <div class="col s1 center-align" style="border:3px solid black;">
-                        <b>Gols Pro</b><p>
-                        <span class="flow-text" id="golspro-clube"></span>
-                    </div>
-                    <div class="col s1.5 center-align" style="border:3px solid black;">
-                        <b>Gols Contra</b><p>
-                        <span class="flow-text" id="golscontra-clube"></span>
-                    </div>
-                    <div class="col s2.5 center-align" style="border:3px solid black;">
-                        <b>Saldo de Gols</b><p>
-                        <span class="flow-text" id="saldodegols-clube"></span>
-                    </div>
-                    <div class="col s2 center-align" style="border:3px solid black;">
-                        <b>Aproveitamento</b><p>
-                        <span class="flow-text" id="aproveitamento-clube"></span>
-                    </div>
-                </div>
-                
-                <table id="table-dados-clubes" class="responsive-table">
-                    <div class="row"><b>Lista de Jogos</b>
-                       
-                        
-                    </div>
-                    <a id="btnExport" class="waves-effect waves-light btn"><i class="material-icons right">file_download</i>Exportar Jogos</a>
-                    <thead>
-                        <tr>
-                            <th hidden>ID</th>
-                            <th>Clube</th>
-                            <th>Placar</th>
-                            <th>Adversário</th>
-                            <th>Local</th>
-                            <th>Data</th>
-                        </tr>
-                    </thead>
-                    <tbody id="body-dados-clube"> </tbody>
-                </table>
+                    <table id="table-dados-clubes" class="responsive-table">
+                        <div class="row"><b>Lista de Jogos</b> </div> <a id="btnExport" class="waves-effect waves-light btn"><i class="material-icons right">file_download</i>Exportar Jogos</a>
+                        <thead>
+                            <tr>
+                                <th hidden>ID</th>
+                                <th>Clube</th>
+                                <th>Placar</th>
+                                <th>Adversário</th>
+                                <th>Local</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-dados-clube"> </tbody>
+                    </table>
             </div>
         </div>
     </div>
