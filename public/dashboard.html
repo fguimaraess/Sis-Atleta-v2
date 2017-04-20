@@ -431,6 +431,8 @@
             </div>
             <!-- DIV DE CAMPOS DE RELATÓRIO -->
             <div class="relatorios-fields" hidden>
+               RELATÓRIOS
+               <p>
                 <div class="row">
                     <div class="input-field col s6">
                         <select id="report-clube-combo">
@@ -465,24 +467,49 @@
                     </div>
                 </div>
                 
-                <table id="table-estatistica-clube" class="responsive-table" hidden>
-                    <div class="row"></div>
-                    <thead>
-                       <tr>
-                        <th>Jogos</th>
-                        <th>Vitórias</th>
-                        <th>Empates</th>
-                        <th>Derrotas</th>
-                        <th>Gols Pro</th>
-                        <th>Gols Contra</th>
-                        <th >Saldo de Gols</th>
-                       </tr>
-                    </thead>
-                    <tbody id="estatisticas-clube"> </tbody>
-                </table>
+                
+                
+                    <div class="row" id="div-estatistica-clube">
+                    <div class="col s2 center-align" style="border:3px solid black;">
+                        <b>Jogos</b><p>
+                        <span class="flow-text" id="jogos-clube"></span>
+                    </div>
+                    <div class="col s1 center-align" style="border:3px solid black;">
+                        <b>Vitórias</b><p>
+                        <span class="flow-text" id="vitorias-clube"></span>
+                    </div>
+                    <div class="col s1 center-align" style="border:3px solid black;">
+                        <b>Empates</b><p>
+                        <span class="flow-text" id="empates-clube"></span>
+                    </div>
+                    <div class="col s1 center-align" style="border:3px solid black;">
+                        <b>Derrotas</b><p>
+                        <span class="flow-text" id="derrotas-clube"></span>
+                    </div>
+                    <div class="col s1 center-align" style="border:3px solid black;">
+                        <b>Gols Pro</b><p>
+                        <span class="flow-text" id="golspro-clube"></span>
+                    </div>
+                    <div class="col s1.5 center-align" style="border:3px solid black;">
+                        <b>Gols Contra</b><p>
+                        <span class="flow-text" id="golscontra-clube"></span>
+                    </div>
+                    <div class="col s2.5 center-align" style="border:3px solid black;">
+                        <b>Saldo de Gols</b><p>
+                        <span class="flow-text" id="saldodegols-clube"></span>
+                    </div>
+                    <div class="col s2 center-align" style="border:3px solid black;">
+                        <b>Aproveitamento</b><p>
+                        <span class="flow-text" id="aproveitamento-clube"></span>
+                    </div>
+                </div>
                 
                 <table id="table-dados-clubes" class="responsive-table">
-                    <div class="row">Jogos</div>
+                    <div class="row"><b>Lista de Jogos</b>
+                       
+                        
+                    </div>
+                    <a id="btnExport" class="waves-effect waves-light btn"><i class="material-icons right">file_download</i>Exportar Jogos</a>
                     <thead>
                         <tr>
                             <th hidden>ID</th>
