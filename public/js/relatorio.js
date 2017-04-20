@@ -22,13 +22,20 @@ var pageRelatorio = {
     , golsProClubeField: document.querySelector('#golspro-clube')
     , golsContraClubeField: document.querySelector('#golscontra-clube')
     , saldoDeGolsClubeField: document.querySelector('#saldodegols-clube')
-    , aproveitamentoClubeField: document.querySelector('#aproveitamento-clube'),
-    listaReportSpan: document.querySelector('#lista-report'),
-    tableDadosClube: document.querySelector('#table-dados-clubes')
-    , btnExport: document.querySelector('#btnExport'),
-    labelExport: document.querySelector('#label-export')
-    
+    , aproveitamentoClubeField: document.querySelector('#aproveitamento-clube')
+    , listaReportSpan: document.querySelector('#lista-report')
+    , tableDadosClube: document.querySelector('#table-dados-clubes')
+    , btnExport: document.querySelector('#btnExport')
+    , labelExport: document.querySelector('#label-export')
 }
+pageRelatorio.btnExport.addEventListener('click', function () {
+    if (pageRelatorio.labelExport.innerHTML == 'Exportar Jogos') {
+        exportRelatorioClube();
+    }
+    else {
+        swal("", "Nao tem função pra clube ainda", "error");
+    }
+})
 pageRelatorio.reportAtleta.addEventListener('click', function () {
     $(pageRelatorio.divEstatisticasClube).hide();
     $(pageRelatorio.tableDadosClube).hide();
@@ -48,17 +55,11 @@ pageRelatorio.reportClube.addEventListener('click', function () {
     getJogos();
 })
 pageRelatorio.searchBtn.addEventListener('click', function () {
-    $(pageRelatorio.divEstatisticasClube).show();
     pageRelatorio.golsPro = 0;
     pageRelatorio.golsContra = 0;
     pageRelatorio.vitorias = 0;
     pageRelatorio.derrotas = 0;
     pageRelatorio.empates = 0;
-    var dataInicio = $(pageRelatorio.dataInicioField).val().split("/");
-    var dataInicioFormatada = new Date(dataInicio[2], dataInicio[1] - 1, dataInicio[0]);
-    var dataFim = $(pageRelatorio.dataFimField).val().split("/");
-    var dataFimFormatada = new Date(dataFim[2], dataFim[1] - 1, dataFim[0]);
-    console.log(dataInicioFormatada, dataFimFormatada)
     var clubeSelecionado = $(pageRelatorio.clubeField).val();
     getDadosClube(clubeSelecionado);
     var tempDados = {
@@ -87,7 +88,6 @@ function getEstatisticasClube(tempDados) {
     pageRelatorio.golsContraClubeField.innerHTML = '<td>' + tempDados.golsContra + '</td>';
     pageRelatorio.saldoDeGolsClubeField.innerHTML = '<td>' + saldoDeGols + '</td>';
     pageRelatorio.aproveitamentoClubeField.innerHTML = '<td>' + aproveitamentoClube + '</td>';
-    //pageRelatorio.estatisticasClube.innerHTML = htmlDados;
 }
 
 function getDadosClube(tempClube) {
@@ -98,24 +98,49 @@ function getDadosClube(tempClube) {
     tempJogosClube = pageJogo.jogos;
     var dadosClube = [];
     var trocaDados = [];
-    for (var key in tempJogosClube) {
-        if (tempClube == tempJogosClube[key].meuclube) {
-            dadosClube = tempJogosClube[key];
-            dadosClube.golsPro = tempJogosClube[key].golsmeuclube;
-            dadosClube.golsContra = tempJogosClube[key].golsclubeadversario;
-            preencheReportClube(dadosClube);
-        }
-        if (tempClube == tempJogosClube[key].clubeadversario) {
-            trocaDados.meuclube = tempJogosClube[key].clubeadversario;
-            trocaDados.golsmeuclube = tempJogosClube[key].golsclubeadversario;
-            trocaDados.clubeadversario = tempJogosClube[key].meuclube;
-            trocaDados.golsclubeadversario = tempJogosClube[key].golsmeuclube;
-            trocaDados.local = tempJogosClube[key].local;
-            trocaDados.data = tempJogosClube[key].data;
-            trocaDados.uid = tempJogosClube[key].uid;
-            trocaDados.golsPro = trocaDados.golsmeuclube;
-            trocaDados.golsContra = trocaDados.golsclubeadversario;
-            preencheReportClube(trocaDados);
+    //FORMATAR DATAS PREENCHIDAS NO RELATORIO
+    var dataInicio = $(pageRelatorio.dataInicioField).val().split("/");
+    var dataInicioFormat = new Date(dataInicio[2], dataInicio[1] - 1, dataInicio[0]);
+    var dataFim = $(pageRelatorio.dataFimField).val().split("/");
+    var dataFimFormat = new Date(dataFim[2], dataFim[1] - 1, dataFim[0]);
+    if (dataInicioFormat > dataFimFormat) {
+        swal("", "A data final não pode ser menor que a inicial", "error");
+    }
+    else {
+        $(pageRelatorio.divEstatisticasClube).show();
+        for (var key in tempJogosClube) {
+            if (tempClube == tempJogosClube[key].meuclube) {
+                var dataJogo = tempJogosClube[key].data.split("/");
+                var dataJogoFormat = new Date(dataJogo[2], dataJogo[1] - 1, dataJogo[0]);
+                dadosClube = tempJogosClube[key];
+                dadosClube.golsPro = tempJogosClube[key].golsmeuclube;
+                dadosClube.golsContra = tempJogosClube[key].golsclubeadversario;
+                if (dataJogoFormat >= dataInicioFormat && dataJogoFormat <= dataFimFormat) {
+                    preencheReportClube(dadosClube);
+                }
+                if (dataInicio == '' && dataFim == '') {
+                    preencheReportClube(dadosClube);
+                }
+            }
+            if (tempClube == tempJogosClube[key].clubeadversario) {
+                var dataJogo = tempJogosClube[key].data.split("/");
+                var dataJogoFormat = new Date(dataJogo[2], dataJogo[1] - 1, dataJogo[0]);
+                trocaDados.meuclube = tempJogosClube[key].clubeadversario;
+                trocaDados.golsmeuclube = tempJogosClube[key].golsclubeadversario;
+                trocaDados.clubeadversario = tempJogosClube[key].meuclube;
+                trocaDados.golsclubeadversario = tempJogosClube[key].golsmeuclube;
+                trocaDados.local = tempJogosClube[key].local;
+                trocaDados.data = tempJogosClube[key].data;
+                trocaDados.uid = tempJogosClube[key].uid;
+                trocaDados.golsPro = trocaDados.golsmeuclube;
+                trocaDados.golsContra = trocaDados.golsclubeadversario;
+                if (dataJogoFormat >= dataInicioFormat && dataJogoFormat <= dataFimFormat) {
+                    preencheReportClube(trocaDados);
+                }
+                if (dataInicio == '' && dataFim == '') {
+                    preencheReportClube(trocaDados);
+                }
+            }
         }
     }
 }
@@ -164,11 +189,10 @@ function preencheComboClubeReport(tempClube) {
     pageRelatorio.clubeField.options.add(newOption);
     $(pageRelatorio.clubeField).material_select();
 }
-pageRelatorio.btnExport.addEventListener('click', exportRelatorioClube);
 
 function exportRelatorioClube() {
     if (pageRelatorio.bodyDadosClubes.innerHTML == '') {
-        alert("Selecione uma opção!!");
+        swal("", "Selecione uma opção!", "error");
     }
     else {
         var tab_text = "<table border='2px'><tr>                            <th>Clube</th><th>Placar</th><th>Adversário</th><th>Local</th>                            <th>Data</th></tr><tr>";
