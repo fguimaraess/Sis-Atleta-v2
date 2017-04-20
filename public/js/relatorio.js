@@ -22,19 +22,29 @@ var pageRelatorio = {
     , golsProClubeField: document.querySelector('#golspro-clube')
     , golsContraClubeField: document.querySelector('#golscontra-clube')
     , saldoDeGolsClubeField: document.querySelector('#saldodegols-clube')
-    , aproveitamentoClubeField: document.querySelector('#aproveitamento-clube')
-    , btnExport: document.querySelector('#btnExport')
+    , aproveitamentoClubeField: document.querySelector('#aproveitamento-clube'),
+    listaReportSpan: document.querySelector('#lista-report'),
+    tableDadosClube: document.querySelector('#table-dados-clubes')
+    , btnExport: document.querySelector('#btnExport'),
+    labelExport: document.querySelector('#label-export')
+    
 }
 pageRelatorio.reportAtleta.addEventListener('click', function () {
     $(pageRelatorio.divEstatisticasClube).hide();
+    $(pageRelatorio.tableDadosClube).hide();
+    pageRelatorio.listaReportSpan.innerHTML = 'Lista de Atletas';
     pageRelatorio.bodyDadosClubes.innerHTML = '';
-    getClubesReport();
+    pageRelatorio.labelExport.innerHTML = 'Exportar Dados';
+    getClubesCombo();
     getJogos();
 })
 pageRelatorio.reportClube.addEventListener('click', function () {
     $(pageRelatorio.divEstatisticasClube).hide();
+    $(pageRelatorio.tableDadosClube).show();
+    pageRelatorio.listaReportSpan.innerHTML = 'Lista de Jogos';
     pageRelatorio.bodyDadosClubes.innerHTML = '';
-    getClubesReport();
+    pageRelatorio.labelExport.innerHTML = 'Exportar Jogos';
+    getClubesCombo();
     getJogos();
 })
 pageRelatorio.searchBtn.addEventListener('click', function () {
@@ -134,7 +144,7 @@ function preencheReportClube(tempJogosClube) {
     $('#body-dados-clube').append(html);
 }
 
-function getClubesReport() {
+function getClubesCombo() {
     $(pageRelatorio.clubeField).empty();
     var newOption = document.createElement("option");
     newOption.value = "Sem Clube";
@@ -161,7 +171,7 @@ function exportRelatorioClube() {
         alert("Selecione uma opção!!");
     }
     else {
-        var tab_text = "<table border='2px'><tr bgcolor='#2bbbad'>                            <th>Clube</th><th>Placar</th><th>Adversário</th><th>Local</th>                            <th>Data</th></tr><tr>";
+        var tab_text = "<table border='2px'><tr>                            <th>Clube</th><th>Placar</th><th>Adversário</th><th>Local</th>                            <th>Data</th></tr><tr>";
         var textRange;
         var j = 0;
         tab = pageRelatorio.bodyDadosClubes; // id of table
