@@ -104,8 +104,13 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
     pageRelatorio.jogosAtleta = 0;
     var clubeSelecionado = $(pageRelatorio.clubeField).val();
     getDadosClube(clubeSelecionado);
+    
     var atletaSelecionado = $(pageRelatorio.atletaField).val();
-    getEstatisticasAtleta(atletaSelecionado);
+    if(atletaSelecionado == "-"){
+        swal("","Selecione um atleta!", "error");
+    } else {
+        getEstatisticasAtleta(atletaSelecionado);    
+    }
     var tempDados = {
         golsPro: pageRelatorio.golsPro
         , golsContra: pageRelatorio.golsContra
@@ -126,28 +131,33 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
         getEstatisticasClube(tempDados);
     }
     else {
-        $(pageRelatorio.divEstatisticasAtleta).show();
-        getDadosAtleta(tempDadosAtleta);
+        //$(pageRelatorio.divEstatisticasAtleta).show();
+        getDadosAtleta();
         preencheEstatisticasAtleta(tempDadosAtleta);
     }
 })
 
-function getDadosAtleta(tempDadosAtleta) {
+function getDadosAtleta() {
     atletaSel = pageAtleta.atletas[pageRelatorio.atletaField.value];
-    if (atletaSel.foto) {
-        var htmlFoto = '<img width="240" height="240" src="' + atletaSel.foto + '"/>';
+    if(atletaSel == undefined){
+        atletaSel = "";
+    } else {
+        $(pageRelatorio.divEstatisticasAtleta).show();
+        if (atletaSel.foto) {
+            var htmlFoto = '<img width="240" height="240" src="' + atletaSel.foto + '"/>';
+        }
+        else {
+            var htmlFoto = '<img width="240" height="240" src="img/sem_foto.png"/>';
+        }
+        pageRelatorio.fotoAtletaField.innerHTML = htmlFoto;
+        pageRelatorio.nomeAtletaField.innerHTML = '<b>' + atletaSel.nome + '</b>';
+        pageRelatorio.apelidoAtletaField.innerHTML = '<b>' + atletaSel.apelido + '</b>';
+        pageRelatorio.categoriaAtletaField.innerHTML = '<b>' + atletaSel.categoria + '</b>';
+        pageRelatorio.posicaoAtletaField.innerHTML = '<b>' + atletaSel.posicao + '</b>';
+        pageRelatorio.idadeAtletaField.innerHTML = '<b>' + atletaSel.idade + '</b>';
+        pageRelatorio.cidadeAtletaField.innerHTML = '<b>' + atletaSel.cidade + '</b>';
+        pageRelatorio.paisAtletaField.innerHTML = '<b>' + atletaSel.pais + '</b>';
     }
-    else {
-        var htmlFoto = '<img width="240" height="240" src="img/sem_foto.png"/>';
-    }
-    pageRelatorio.fotoAtletaField.innerHTML = htmlFoto;
-    pageRelatorio.nomeAtletaField.innerHTML = '<b>' + atletaSel.nome + '</b>';
-    pageRelatorio.apelidoAtletaField.innerHTML = '<b>' + atletaSel.apelido + '</b>';
-    pageRelatorio.categoriaAtletaField.innerHTML = '<b>' + atletaSel.categoria + '</b>';
-    pageRelatorio.posicaoAtletaField.innerHTML = '<b>' + atletaSel.posicao + '</b>';
-    pageRelatorio.idadeAtletaField.innerHTML = '<b>' + atletaSel.idade + '</b>';
-    pageRelatorio.cidadeAtletaField.innerHTML = '<b>' + atletaSel.cidade + '</b>';
-    pageRelatorio.paisAtletaField.innerHTML = '<b>' + atletaSel.pais + '</b>';
 }
 
 function getEstatisticasAtleta(idAtleta) {
