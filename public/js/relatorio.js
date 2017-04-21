@@ -106,11 +106,7 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
     getDadosClube(clubeSelecionado);
     
     var atletaSelecionado = $(pageRelatorio.atletaField).val();
-    if(atletaSelecionado == "-"){
-        swal("","Selecione um atleta!", "error");
-    } else {
-        getEstatisticasAtleta(atletaSelecionado);    
-    }
+    
     var tempDados = {
         golsPro: pageRelatorio.golsPro
         , golsContra: pageRelatorio.golsContra
@@ -131,7 +127,11 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
         getEstatisticasClube(tempDados);
     }
     else {
-        //$(pageRelatorio.divEstatisticasAtleta).show();
+        if(atletaSelecionado == "-"){
+            swal("","Selecione um atleta!", "error");
+        } else {
+        getEstatisticasAtleta(atletaSelecionado);    
+        }
         getDadosAtleta();
         preencheEstatisticasAtleta(tempDadosAtleta);
     }
