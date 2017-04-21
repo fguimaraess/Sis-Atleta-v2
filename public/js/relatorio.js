@@ -4,6 +4,16 @@ var pageRelatorio = {
     , vitorias: 0
     , derrotas: 0
     , empates: 0
+    , assistenciaAtleta: 0
+    , golAtleta: 0
+    , cartaoAmareloAtleta: 0
+    , cartaoVermelhoAtleta: 0
+    , minutosJogadosAtleta: 0
+    , jogosAtleta: 0
+    , golsPorJogo: 0
+    , assistenciasPorJogo: 0
+    , cAmareloPorJogo: 0
+    , cVermelhoPorJogo: 0
     , reportAtleta: document.querySelector('#report-atleta')
     , reportClube: document.querySelector('#report-clube')
     , atletaField: document.querySelector('#report-atleta-combo')
@@ -15,6 +25,7 @@ var pageRelatorio = {
     , limparBtn: document.querySelector('#limpar-relatorio')
     , estatisticasClube: document.querySelector('#estatisticas-clube')
     , divEstatisticasClube: document.querySelector('#div-estatistica-clube')
+    , divEstatisticasAtleta: document.querySelector('#div-estatistica-atleta')
     , jogosClubeField: document.querySelector('#jogos-clube')
     , vitoriasClubeField: document.querySelector('#vitorias-clube')
     , empatesClubeField: document.querySelector('#empates-clube')
@@ -23,12 +34,30 @@ var pageRelatorio = {
     , golsContraClubeField: document.querySelector('#golscontra-clube')
     , saldoDeGolsClubeField: document.querySelector('#saldodegols-clube')
     , aproveitamentoClubeField: document.querySelector('#aproveitamento-clube')
+    , golAtletaField: document.querySelector('#gols-atleta')
+    , assistenciaAtletaField: document.querySelector('#assistencias-atleta')
+    , cartaoAmareloAtletaField: document.querySelector('#cartao-amarelo-atleta')
+    , cartaoVermelhoAtletaField: document.querySelector('#cartao-vermelho-atleta')
+    , minutosJogadosAtletaField: document.querySelector('#minutosjogados-atleta')
     , listaReportSpan: document.querySelector('#lista-report')
     , tableDadosClube: document.querySelector('#table-dados-clubes')
     , btnExport: document.querySelector('#btnExport')
     , labelExport: document.querySelector('#label-export')
     , atletaAtual: -1
     , clubeAtual: -1
+    , fotoAtletaField: document.querySelector('#foto-atleta')
+    , nomeAtletaField: document.querySelector('#nome-atleta')
+    , apelidoAtletaField: document.querySelector('#apelido-atleta')
+    , categoriaAtletaField: document.querySelector('#categoria-atleta')
+    , posicaoAtletaField: document.querySelector('#posicao-atleta')
+    , idadeAtletaField: document.querySelector('#idade-atleta')
+    , cidadeAtletaField: document.querySelector('#cidade-atleta')
+    , paisAtletaField: document.querySelector('#pais-atleta')
+    , jogosAtletaField: document.querySelector('#jogos-atleta')
+    , golsPorJogoField: document.querySelector('#gols-por-jogo')
+    , assistenciaPorJogoField: document.querySelector('#assistencia-por-jogo')
+    , cAmareloPorJogoField: document.querySelector('#cartaoamarelo-por-jogo')
+    , cVermelhoPorJogoField: document.querySelector('#cartaovermelho-por-jogo')
 }
 pageRelatorio.btnExport.addEventListener('click', function () {
     if (pageRelatorio.labelExport.innerHTML == 'Exportar Jogos') {
@@ -47,11 +76,11 @@ pageRelatorio.reportAtleta.addEventListener('click', function () {
     pageRelatorio.atletaAtual = 1;
     pageRelatorio.clubeAtual = 0;
     getClubesCombo();
-    
     getJogos();
 })
 pageRelatorio.reportClube.addEventListener('click', function () {
     $(pageRelatorio.divEstatisticasClube).hide();
+    $(pageRelatorio.divEstatisticasAtleta).hide();
     $(pageRelatorio.tableDadosClube).show();
     pageRelatorio.listaReportSpan.innerHTML = 'Lista de Jogos';
     pageRelatorio.bodyDadosClubes.innerHTML = '';
@@ -67,10 +96,16 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
     pageRelatorio.vitorias = 0;
     pageRelatorio.derrotas = 0;
     pageRelatorio.empates = 0;
-    
+    pageRelatorio.golAtleta = 0;
+    pageRelatorio.assistenciaAtleta = 0;
+    pageRelatorio.cartaoAmareloAtleta = 0;
+    pageRelatorio.cartaoVermelhoAtleta = 0;
+    pageRelatorio.minutosJogadosAtleta = 0;
+    pageRelatorio.jogosAtleta = 0;
     var clubeSelecionado = $(pageRelatorio.clubeField).val();
     getDadosClube(clubeSelecionado);
-    
+    var atletaSelecionado = $(pageRelatorio.atletaField).val();
+    getEstatisticasAtleta(atletaSelecionado);
     var tempDados = {
         golsPro: pageRelatorio.golsPro
         , golsContra: pageRelatorio.golsContra
@@ -78,29 +113,88 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
         , derrotas: pageRelatorio.derrotas
         , empates: pageRelatorio.empates
     }
-    
-    if(pageRelatorio.clubeAtual == 1)
-    {
+    var tempDadosAtleta = {
+        gol: pageRelatorio.golAtleta,
+        assistencia: pageRelatorio.assistenciaAtleta,
+        cartaoAmarelo: pageRelatorio.cartaoAmareloAtleta,
+        cartaoVermelho: pageRelatorio.cartaoVermelhoAtleta,
+        minutosJogados: pageRelatorio.minutosJogadosAtleta,
+        jogos: pageRelatorio.jogosAtleta
+    }
+    if (pageRelatorio.clubeAtual == 1) {
         $(pageRelatorio.divEstatisticasClube).show();
         getEstatisticasClube(tempDados);
-    } else {
-        getEstatisticasAtleta();
+    }
+    else {
+        $(pageRelatorio.divEstatisticasAtleta).show();
+        getDadosAtleta(tempDadosAtleta);
+        preencheEstatisticasAtleta(tempDadosAtleta);
     }
 })
 
-function getEstatisticasAtleta()
-{
-        atletaSel = pageAtleta.atletas[pageRelatorio.atletaField.value];
-        atletaSel.clube;
-        console.log(atletaSel)
+function getDadosAtleta(tempDadosAtleta) {
+    atletaSel = pageAtleta.atletas[pageRelatorio.atletaField.value];
+    if (atletaSel.foto) {
+        var htmlFoto = '<img width="240" height="240" src="' + atletaSel.foto + '"/>';
+    }
+    else {
+        var htmlFoto = '<img width="240" height="240" src="img/sem_foto.png"/>';
+    }
+    pageRelatorio.fotoAtletaField.innerHTML = htmlFoto;
+    pageRelatorio.nomeAtletaField.innerHTML = '<b>' + atletaSel.nome + '</b>';
+    pageRelatorio.apelidoAtletaField.innerHTML = '<b>' + atletaSel.apelido + '</b>';
+    pageRelatorio.categoriaAtletaField.innerHTML = '<b>' + atletaSel.categoria + '</b>';
+    pageRelatorio.posicaoAtletaField.innerHTML = '<b>' + atletaSel.posicao + '</b>';
+    pageRelatorio.idadeAtletaField.innerHTML = '<b>' + atletaSel.idade + '</b>';
+    pageRelatorio.cidadeAtletaField.innerHTML = '<b>' + atletaSel.cidade + '</b>';
+    pageRelatorio.paisAtletaField.innerHTML = '<b>' + atletaSel.pais + '</b>';
 }
 
+function getEstatisticasAtleta(idAtleta) {
+    atletaSel = pageAtleta.atletas[idAtleta];
+    tempJogos = pageJogo.jogos;
+    var jogos = [];
+    for (var key in tempJogos) {
+        jogos = tempJogos[key].atletasTempJogo;
+        for (var id in jogos) {
+            if (atletaSel.uid == jogos[id].uid) {
+                pageRelatorio.golAtleta += parseInt(jogos[id].gol);
+                pageRelatorio.assistenciaAtleta += parseInt(jogos[id].assistencia);
+                pageRelatorio.cartaoAmareloAtleta += parseInt(jogos[id].cartaoamarelo);
+                pageRelatorio.cartaoVermelhoAtleta += parseInt(jogos[id].cartaovermelho);
+                pageRelatorio.minutosJogadosAtleta += parseInt(jogos[id].minutosjogados);
+                pageRelatorio.jogosAtleta++;
+            }
+        }
+    }
+}
+
+function preencheEstatisticasAtleta(tempDadosAtleta)
+{
+    var golsPorJogo = (pageRelatorio.golAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+    var assistenciasPorJogo = (pageRelatorio.assistenciaAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+    var cAmareloPorJogo = (pageRelatorio.cartaoAmareloAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+    var cVermelhoPorJogo = (pageRelatorio.cartaoVermelhoAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+    if (golsPorJogo == "NaN") { golsPorJogo = 0;}
+    if (assistenciasPorJogo == "NaN") { assistenciasPorJogo = 0;}
+    if (cAmareloPorJogo == "NaN") { cAmareloPorJogo = 0;}
+    if (cVermelhoPorJogo == "NaN") { cVermelhoPorJogo = 0;}
+    pageRelatorio.golAtletaField.innerHTML = '<b>' + pageRelatorio.golAtleta + '</b>';
+    pageRelatorio.assistenciaAtletaField.innerHTML = '<b>' + pageRelatorio.assistenciaAtleta + '</b>';
+    pageRelatorio.cartaoAmareloAtletaField.innerHTML = '<b>' + pageRelatorio.cartaoAmareloAtleta + '</b>';
+    pageRelatorio.cartaoVermelhoAtletaField.innerHTML = '<b>' + pageRelatorio.cartaoVermelhoAtleta + '</b>';
+    pageRelatorio.minutosJogadosAtletaField.innerHTML = '<b>' + pageRelatorio.minutosJogadosAtleta + '</b>';
+    pageRelatorio.jogosAtletaField.innerHTML = '<b>' + pageRelatorio.jogosAtleta + '</b>';
+    pageRelatorio.golsPorJogoField.innerHTML = '<b>' + golsPorJogo + '</b>'
+    pageRelatorio.assistenciaPorJogoField.innerHTML = '<b>' + assistenciasPorJogo + '</b>'
+    pageRelatorio.cAmareloPorJogoField.innerHTML = '<b>' + cAmareloPorJogo + '</b>'
+    pageRelatorio.cVermelhoPorJogoField.innerHTML = '<b>' + cVermelhoPorJogo + '</b>'
+}
 
 function showClube() {
     var clube1 = $(pageRelatorio.clubeField).val();
     getAtletasCombo(clube1);
 }
-
 $(pageRelatorio.clubeField).change(showClube);
 
 function getAtletasCombo(tempClube) {
@@ -111,10 +205,8 @@ function getAtletasCombo(tempClube) {
     pageRelatorio.atletaField.options.add(newOption);
     var tempAtletasClube = [];
     tempAtleta = pageAtleta.atletas;
-    
     for (var key in tempAtleta) {
-        if(tempAtleta[key].clube == tempClube)
-        {
+        if (tempAtleta[key].clube == tempClube) {
             preencheComboAtletaReport(tempAtleta[key]);
         }
     }
@@ -137,7 +229,6 @@ function getEstatisticasClube(tempDados) {
     if (aproveitamentoClube == "NaN%") {
         aproveitamentoClube = 0
     }
-    
     pageRelatorio.jogosClubeField.innerHTML = '<td>' + qtdJogos + '</td>';
     pageRelatorio.vitoriasClubeField.innerHTML = '<td>' + tempDados.vitorias + '</td>';
     pageRelatorio.empatesClubeField.innerHTML = '<td>' + tempDados.empates + '</td>';
@@ -165,7 +256,6 @@ function getDadosClube(tempClube) {
         swal("", "A data final não pode ser menor que a inicial", "error");
     }
     else {
-        
         for (var key in tempJogosClube) {
             if (tempClube == tempJogosClube[key].meuclube) {
                 var dataJogo = tempJogosClube[key].data.split("/");
@@ -238,11 +328,9 @@ function getClubesCombo() {
     for (var key in tempClube) {
         preencheComboClubeReport(tempClube[key]);
     }
-    if(pageRelatorio.atletaAtual == 1)
-    {
+    if (pageRelatorio.atletaAtual == 1) {
         getAtletasCombo();
     }
-    
 }
 
 function preencheComboClubeReport(tempClube) {
@@ -286,18 +374,23 @@ function exportRelatorioClube() {
     }
 }
 pageRelatorio.limparBtn.addEventListener('click', function () {
-    if(pageRelatorio.jogoAtual == 1)
-    {
+    $(pageRelatorio.clubeField).val("Sem Clube");
+    $(pageRelatorio.clubeField).material_select();
+    $(pageRelatorio.atletaField).val("-");
+    $(pageRelatorio.atletaField).material_select();
+    if (pageRelatorio.clubeAtual == 1) {
+        $(pageRelatorio.divEstatisticasClube).hide();
         var jogosNaTela = document.querySelectorAll('.idDosJogosFiltrados');
         jogosNaTela.forEach(function (jogosHtml) {
             pageRelatorio.bodyDadosClubes.innerHTML = '';
         });
-        $(pageRelatorio.clubeField).material_select();
         pageRelatorio.dataInicioField.value = '';
         pageRelatorio.dataFimField.value = '';
-        $(pageRelatorio.divEstatisticasClube).hide();
-    } else {
+    }
+    else if (pageRelatorio.atletaAtual == 1) {
         pageRelatorio.dataInicioField.value = '';
         pageRelatorio.dataFimField.value = '';
+        $(pageRelatorio.clubeField).val("Sem Clube");
+        $(pageRelatorio.divEstatisticasAtleta).hide();
     }
 })

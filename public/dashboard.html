@@ -457,26 +457,27 @@
                             <a class="btn-floating btn-small lightsagreen" id="limpar-relatorio"> <i class="material-icons">clear</i> </a>
                         </div>
                     </div>
+                    <!-- DIV DE RELATORIO DE CLUBE -->
                     <div class="row" id="div-estatistica-clube">
-                        <div class="col s1.5 center-align" style="border:3px solid black;"> <b>Jogos</b>
+                        <div class="col s1.5 center-align" style="border:1px solid black;"> <b>Jogos</b>
                             <p> <span class="flow-text" id="jogos-clube"></span> </div>
-                        <div class="col s1 center-align" style="border:3px solid black;"> <b>Vitórias</b>
+                        <div class="col s1 center-align" style="border:1px solid black;"> <b>Vitórias</b>
                             <p> <span class="flow-text" id="vitorias-clube"></span> </div>
-                        <div class="col s1 center-align" style="border:3px solid black;"> <b>Empates</b>
+                        <div class="col s1 center-align" style="border:1px solid black;"> <b>Empates</b>
                             <p> <span class="flow-text" id="empates-clube"></span> </div>
-                        <div class="col s1 center-align" style="border:3px solid black;"> <b>Derrotas</b>
+                        <div class="col s1 center-align" style="border:1px solid black;"> <b>Derrotas</b>
                             <p> <span class="flow-text" id="derrotas-clube"></span> </div>
-                        <div class="col s1.5 center-align" style="border:3px solid black;"> <b>Gols Pro</b>
+                        <div class="col s1.5 center-align" style="border:1px solid black;"> <b>Gols Pro</b>
                             <p> <span class="flow-text" id="golspro-clube"></span> </div>
-                        <div class="col s1.5 center-align" style="border:3px solid black;"> <b>Gols Contra</b>
+                        <div class="col s1.5 center-align" style="border:1px solid black;"> <b>Gols Contra</b>
                             <p> <span class="flow-text" id="golscontra-clube"></span> </div>
-                        <div class="col s2.5 center-align" style="border:3px solid black;"> <b>Saldo de Gols</b>
+                        <div class="col s2.5 center-align" style="border:1px solid black;"> <b>Saldo de Gols</b>
                             <p> <span class="flow-text" id="saldodegols-clube"></span> </div>
-                        <div class="col s2 center-align" style="border:3px solid black;"> <b>Aproveitamento</b>
+                        <div class="col s2 center-align" style="border:1px solid black;"> <b>Aproveitamento</b>
                             <p> <span class="flow-text" id="aproveitamento-clube"></span> </div>
                     </div>
+                    <div class="row"><b><span id="lista-report"></span></b> </div> <a id="btnExport" class="waves-effect waves-light btn"><i class="material-icons right">file_download</i><span id="label-export"></span></a>
                     <table id="table-dados-clubes" class="responsive-table">
-                        <div class="row"><b><span id="lista-report"></span></b> </div> <a id="btnExport" class="waves-effect waves-light btn"><i class="material-icons right">file_download</i><span id="label-export"></span></a>
                         <thead>
                             <tr>
                                 <th hidden>ID</th>
@@ -489,6 +490,47 @@
                         </thead>
                         <tbody id="body-dados-clube"> </tbody>
                     </table>
+                    <!-- DIV DE RELATORIO DE ATLETA -->
+                    <div class="row" id="div-estatistica-atleta" hidden>
+                        <div class="row">
+                            <br>
+                            <p>
+                                <div class="col s2.5"> <span id="foto-atleta"></span> </div>
+                                <br>
+                                <p>
+                                    <div class="col s2.5">
+                                        <div>Nome: <span id="nome-atleta"></span> </div>
+                                        <div>Apelido: <span id="apelido-atleta"></span> </div>
+                                        <div>Categoria: <span id="categoria-atleta"></span> </div>
+                                        <div>Posição: <span id="posicao-atleta"></span> </div>
+                                        <div>Idade: <span id="idade-atleta"></span> </div>
+                                        <div>Cidade de Nascimento: <span id="cidade-atleta"></span> </div>
+                                        <div>País: <span id="pais-atleta"></span> </div>
+                                    </div>
+                                    <p>
+                        </div> Números do Atleta
+                        
+                            <div class="row">
+                               
+                                <div class="col s2 center-align" style="border:1px solid;">Jogos <p><span class="flow-text" id="jogos-atleta"></span></div>
+                                <div class="col s2 center-align" style="border:1px solid;">Minutos Jogados <p><span class="flow-text" id="minutosjogados-atleta"></span></div>
+                                <div class="col s2 center-align" style="border:1px solid;">Gols <p><span class="flow-text" id="gols-atleta"></span></div>
+                                <div class="col s2 center-align" style="border:1px solid;">Assistências <p><span class="flow-text" id="assistencias-atleta"></span></div>
+                                <div class="col s2 center-align" style="border:1px solid;">Cartão Amarelo <p><span class="flow-text" id="cartao-amarelo-atleta"></span></div>
+                                <div class="col s2 center-align" style="border:1px solid;">Cartão Vermelho <p><span class="flow-text" id="cartao-vermelho-atleta"></span></div>
+                            </div>
+                            Médias por Jogo:
+                            <div class="row">
+                                <div class="col s2 center-align" style="border:1px solid;">Gols<p>
+                                <span class="flow-text" id="gols-por-jogo"></span></div>
+                                <div class="col s2 center-align" style="border:1px solid;">Assistências<p>
+                                <span class="flow-text" id="assistencia-por-jogo"></span></div>
+                                <div class="col s2 center-align" style="border:1px solid;">Cartão Amarelo<p>
+                                <span class="flow-text" id="cartaoamarelo-por-jogo"></span></div>
+                                <div class="col s2 center-align" style="border:1px solid;">Cartão Vermelho<p>
+                                <span class="flow-text" id="cartaovermelho-por-jogo"></span></div>
+                            </div>
+                    </div>
             </div>
         </div>
     </div>
