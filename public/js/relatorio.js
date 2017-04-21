@@ -27,6 +27,8 @@ var pageRelatorio = {
     , tableDadosClube: document.querySelector('#table-dados-clubes')
     , btnExport: document.querySelector('#btnExport')
     , labelExport: document.querySelector('#label-export')
+    , atletaAtual: -1
+    , clubeAtual: -1
 }
 pageRelatorio.btnExport.addEventListener('click', function () {
     if (pageRelatorio.labelExport.innerHTML == 'Exportar Jogos') {
@@ -42,7 +44,10 @@ pageRelatorio.reportAtleta.addEventListener('click', function () {
     pageRelatorio.listaReportSpan.innerHTML = 'Lista de Atletas';
     pageRelatorio.bodyDadosClubes.innerHTML = '';
     pageRelatorio.labelExport.innerHTML = 'Exportar Dados';
+    pageRelatorio.atletaAtual = 1;
+    pageRelatorio.clubeAtual = 0;
     getClubesCombo();
+    
     getJogos();
 })
 pageRelatorio.reportClube.addEventListener('click', function () {
@@ -51,17 +56,12 @@ pageRelatorio.reportClube.addEventListener('click', function () {
     pageRelatorio.listaReportSpan.innerHTML = 'Lista de Jogos';
     pageRelatorio.bodyDadosClubes.innerHTML = '';
     pageRelatorio.labelExport.innerHTML = 'Exportar Jogos';
+    pageRelatorio.atletaAtual = 0;
+    pageRelatorio.clubeAtual = 1;
     getClubesCombo();
     getJogos();
 })
 pageRelatorio.searchBtn.addEventListener('click', function () {
-    pageRelatorio.golsPro = 0;
-    pageRelatorio.golsContra = 0;
-    pageRelatorio.vitorias = 0;
-    pageRelatorio.derrotas = 0;
-    pageRelatorio.empates = 0;
-    var clubeSelecionado = $(pageRelatorio.clubeField).val();
-    getDadosClube(clubeSelecionado);
     var tempDados = {
         golsPro: pageRelatorio.golsPro
         , golsContra: pageRelatorio.golsContra
@@ -69,8 +69,64 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
         , derrotas: pageRelatorio.derrotas
         , empates: pageRelatorio.empates
     }
-    getEstatisticasClube(tempDados);
+    
+    pageRelatorio.golsPro = 0;
+    pageRelatorio.golsContra = 0;
+    pageRelatorio.vitorias = 0;
+    pageRelatorio.derrotas = 0;
+    pageRelatorio.empates = 0;
+    
+    var clubeSelecionado = $(pageRelatorio.clubeField).val();
+    getDadosClube(clubeSelecionado);
+    
+    if(pageRelatorio.clubeAtual == 1)
+    {
+        getEstatisticasClube(tempDados);
+        $(pageRelatorio.divEstatisticasClube).show();
+    } else {
+        //console.log(pageRelatorio.atletaField.value)
+        //atletaSel = pageAtleta.atletas[pageRelatorio.atletaField.value];
+       // atletaSel.clube;
+        //console.log(atletaSel)
+        getEstatisticasAtleta(tempDadosAtleta, clubeSelecionado);
+    }
 })
+function showClube() {
+    var clube1 = $(pageRelatorio.clubeField).val();
+    getAtletasCombo(clube1);
+}
+
+
+$(pageRelatorio.clubeField).change(showClube);
+
+function getEstatisticasAtleta(tempAtleta, tempClube)
+{
+    
+}
+
+function getAtletasCombo(tempClube) {
+    $(pageRelatorio.atletaField).empty();
+    var newOption = document.createElement("option");
+    newOption.value = "-";
+    newOption.innerHTML = "-";
+    pageRelatorio.atletaField.options.add(newOption);
+    var tempAtleta = [];
+    tempAtleta = pageAtleta.atletas;
+    for (var key in tempAtleta) {
+        if(tempAtleta[key].clube == tempClube)
+        {
+            preencheComboAtletaReport(tempAtleta[key]);
+        }
+    }
+}
+
+function preencheComboAtletaReport(tempAtleta) {
+    var newOption = document.createElement("option");
+    newOption.value = tempAtleta.uid;
+    newOption.innerHTML = tempAtleta.nome + " - " + tempAtleta.apelido;
+    pageRelatorio.atletaField.options.add(newOption);
+    $(pageRelatorio.atletaField).material_select();
+}
 
 function getEstatisticasClube(tempDados) {
     var qtdJogos = tempDados.vitorias + tempDados.derrotas + tempDados.empates;
@@ -107,7 +163,7 @@ function getDadosClube(tempClube) {
         swal("", "A data final não pode ser menor que a inicial", "error");
     }
     else {
-        $(pageRelatorio.divEstatisticasClube).show();
+        
         for (var key in tempJogosClube) {
             if (tempClube == tempJogosClube[key].meuclube) {
                 var dataJogo = tempJogosClube[key].data.split("/");
@@ -180,6 +236,11 @@ function getClubesCombo() {
     for (var key in tempClube) {
         preencheComboClubeReport(tempClube[key]);
     }
+    if(pageRelatorio.atletaAtual == 1)
+    {
+        getAtletasCombo();
+    }
+    
 }
 
 function preencheComboClubeReport(tempClube) {
