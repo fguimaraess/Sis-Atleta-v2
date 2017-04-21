@@ -110,14 +110,16 @@ function getAtletasCombo(tempClube) {
     newOption.value = "-";
     newOption.innerHTML = "-";
     pageRelatorio.atletaField.options.add(newOption);
-    var tempAtleta = [];
+    var tempAtletasClube = [];
     tempAtleta = pageAtleta.atletas;
+    
     for (var key in tempAtleta) {
         if(tempAtleta[key].clube == tempClube)
         {
             preencheComboAtletaReport(tempAtleta[key]);
         }
     }
+    $(pageRelatorio.atletaField).material_select();
 }
 
 function preencheComboAtletaReport(tempAtleta) {
