@@ -33,7 +33,7 @@ var pageJogo = {
     golsClubeAdversarioField: document.querySelector('#gols-clube2-field'),
     localField: document.querySelector('#local-field'),
     nomeAtletaField: document.querySelector('#nomeAtleta'),
-    fotoAtletaField: document.querySelector('#foto-atleta'),
+    fotoAtletaField: document.querySelector('#foto-atleta-jogo'),
     jogoAtual: null
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {

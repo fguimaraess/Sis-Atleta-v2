@@ -158,9 +158,10 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
     }, function complete() {
         swal('Sucesso!', "Foto carregada com sucesso", "success");
         var fotoTempAtleta = task.snapshot.downloadURL;
-        atletaSel = pageAtleta.atletas[pageAtleta.idAtletaField.value]
-        if(atletaSel){
-            atletaSel.foto = fotoTempAtleta;
+        pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="'+fotoTempAtleta+'">';
+        atletaSelecionado = pageAtleta.atletas[pageAtleta.idAtletaField.value]
+        if(atletaSelecionado){
+            atletaSelecionado.foto = fotoTempAtleta;
         }
         pageAtleta.fotoField = fotoTempAtleta;
         })

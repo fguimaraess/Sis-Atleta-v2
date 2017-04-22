@@ -138,25 +138,26 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
 })
 
 function getDadosAtleta() {
-    atletaSel = pageAtleta.atletas[pageRelatorio.atletaField.value];
-    if(atletaSel == undefined){
-        atletaSel = "";
+    atletaAtual = pageAtleta.atletas[pageRelatorio.atletaField.value];
+    if(atletaAtual == undefined){
+        atletaAtual = "";
     } else {
         $(pageRelatorio.divEstatisticasAtleta).show();
-        if (atletaSel.foto) {
-            var htmlFoto = '<img width="240" height="240" src="' + atletaSel.foto + '"/>';
+        if (atletaAtual.foto) {
+            var htmlFoto = '<img width="240" height="240" src="' + atletaAtual.foto + '"/>';
         }
         else {
             var htmlFoto = '<img width="240" height="240" src="img/sem_foto.png"/>';
         }
+        console.log(htmlFoto)
         pageRelatorio.fotoAtletaField.innerHTML = htmlFoto;
-        pageRelatorio.nomeAtletaField.innerHTML = '<b>' + atletaSel.nome + '</b>';
-        pageRelatorio.apelidoAtletaField.innerHTML = '<b>' + atletaSel.apelido + '</b>';
-        pageRelatorio.categoriaAtletaField.innerHTML = '<b>' + atletaSel.categoria + '</b>';
-        pageRelatorio.posicaoAtletaField.innerHTML = '<b>' + atletaSel.posicao + '</b>';
-        pageRelatorio.idadeAtletaField.innerHTML = '<b>' + atletaSel.idade + '</b>';
-        pageRelatorio.cidadeAtletaField.innerHTML = '<b>' + atletaSel.cidade + '</b>';
-        pageRelatorio.paisAtletaField.innerHTML = '<b>' + atletaSel.pais + '</b>';
+        pageRelatorio.nomeAtletaField.innerHTML = '<b>' + atletaAtual.nome + '</b>';
+        pageRelatorio.apelidoAtletaField.innerHTML = '<b>' + atletaAtual.apelido + '</b>';
+        pageRelatorio.categoriaAtletaField.innerHTML = '<b>' + atletaAtual.categoria + '</b>';
+        pageRelatorio.posicaoAtletaField.innerHTML = '<b>' + atletaAtual.posicao + '</b>';
+        pageRelatorio.idadeAtletaField.innerHTML = '<b>' + atletaAtual.idade + '</b>';
+        pageRelatorio.cidadeAtletaField.innerHTML = '<b>' + atletaAtual.cidade + '</b>';
+        pageRelatorio.paisAtletaField.innerHTML = '<b>' + atletaAtual.pais + '</b>';
     }
 }
 
