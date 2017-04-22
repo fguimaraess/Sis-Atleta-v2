@@ -159,10 +159,10 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
         swal('Sucesso!', "Foto carregada com sucesso", "success");
         var fotoTempAtleta = task.snapshot.downloadURL;
         atletaSel = pageAtleta.atletas[pageAtleta.idAtletaField.value]
-        atletaSel.foto = fotoTempAtleta;
-        //pageAtleta.fotoField = fotoTempAtleta;
-        //console.log(fotoTempAtleta)
-        //console.log(pageAtleta.idAtletaField.value)
+        if(atletaSel){
+            atletaSel.foto = fotoTempAtleta;
+        }
+        pageAtleta.fotoField = fotoTempAtleta;
         })
     })
 });

@@ -32,6 +32,8 @@ var pageJogo = {
     clubeAdversarioField: document.querySelector('#clube2-field'),
     golsClubeAdversarioField: document.querySelector('#gols-clube2-field'),
     localField: document.querySelector('#local-field'),
+    nomeAtletaField: document.querySelector('#nomeAtleta'),
+    fotoAtletaField: document.querySelector('#foto-atleta'),
     jogoAtual: null
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
@@ -213,8 +215,11 @@ function addAtletaJogo(idAtleta) {
     $('#body-card-jogo').append(html);
 }
 
-function getEstatisticasAtelta(idAtleta, idJogo){
-    if(pageJogo.jogoAtual === idJogo)
+function getEstatisticasAtletas(idAtleta, idJogo){
+    if(pageJogo.jogoAtual == null)
+    {
+        return null;
+    } else if(pageJogo.jogoAtual === idJogo)
     {
         var jogoAtual = pageJogo.jogos[idJogo];
         return jogoAtual.atletasTempJogo[idAtleta];
@@ -225,11 +230,20 @@ function getEstatisticasAtelta(idAtleta, idJogo){
 }
 
 function abreModalEstatisticaJogador(idAtleta, idJogo){
-    var estatisticasAtleta = getEstatisticasAtelta(idAtleta, idJogo);
+    var estatisticasAtleta = getEstatisticasAtletas(idAtleta, idJogo);
     pageJogo.idAtletaField.value = idAtleta;
-    pageJogo.jogoAtual = idJogo;
-    console.log(estatisticasAtleta, idAtleta, idJogo)
+    atletaSel = pageAtleta.atletas[idAtleta];
+    if(atletaSel.foto)
+    {
+        var htmlFoto = '<img width="80" height="80" src="'+atletaSel.foto+'"/>';
+    } else {
+        var htmlFoto = '<img width="80" height="80" src="img/mini_sem_foto.png"/>';
+    }
+    pageJogo.nomeAtletaField.innerHTML = atletaSel.nome;
+    pageJogo.fotoAtletaField.innerHTML = htmlFoto;
+    //console.log(estatisticasAtleta, idAtleta, idJogo)
     if(estatisticasAtleta){
+        pageJogo.jogoAtual = idJogo;
         pageJogo.golField.value = estatisticasAtleta.gol;
         pageJogo.assistenciaField.value = estatisticasAtleta.assistencia;
         pageJogo.cartaoAmareloField.value = estatisticasAtleta.cartaoamarelo;
