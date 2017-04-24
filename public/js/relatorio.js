@@ -77,6 +77,7 @@ pageRelatorio.reportAtleta.addEventListener('click', function () {
     pageRelatorio.labelExport.innerHTML = 'Exportar Dados';
     pageRelatorio.atletaAtual = 1;
     pageRelatorio.clubeAtual = 0;
+    
     getClubesCombo();
     getJogos();
 })
