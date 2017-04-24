@@ -408,7 +408,8 @@ function showClubeSelecionado() {
 $(pageJogo.meuClubeField).change(showClubeSelecionado);
 
 function getClubesCard() {
-    
+    $(pageJogo.meuClubeField).empty();
+    $(pageJogo.clubeAdversarioField).empty();
     $(pageJogo.meuClubeField).val("-");
     $(pageJogo.clubeAdversarioField).val("-");
     var tempClube = pageClube.clubes;
