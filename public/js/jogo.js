@@ -57,7 +57,11 @@ function abreCardJogo(idJogo) {
     $('#cardAtletas').show();
     $('#table-jogos').hide();
     $('#addJogoBtn').hide();
+    
+    $(pageJogo.meuClubeField).empty();
+    $(pageJogo.clubeAdversarioField).empty();
     getClubesCard();
+    
     if (idJogo) {
         jogoSel = pageJogo.jogos[idJogo]
         pageJogo.idJogoField.value = idJogo;
@@ -239,7 +243,7 @@ function abreModalEstatisticaJogador(idAtleta, idJogo){
     } else {
         var htmlFoto = '<img width="80" height="80" src="img/mini_sem_foto.png"/>';
     }
-    pageJogo.nomeAtletaField.innerHTML = atletaSel.nome;
+    pageJogo.nomeAtletaField.innerHTML = atletaSel.apelido;
     pageJogo.fotoAtletaField.innerHTML = htmlFoto;
     //console.log(estatisticasAtleta, idAtleta, idJogo)
     if(estatisticasAtleta){
@@ -390,6 +394,7 @@ function getAtletasCard(tempClube) {
     atletasNaTela.forEach(function (atletaHtml) {
         pageJogo.tableAtletasCard.innerHTML = '';
     });
+    
     var tempAtletaClube = pageAtleta.atletas;
     for (var key in tempAtletaClube) {
         if (tempClube == tempAtletaClube[key].clube) {
@@ -400,18 +405,22 @@ function getAtletasCard(tempClube) {
 
 
 function showClubeSelecionado() {
+    
     var clube1 = $(pageJogo.meuClubeField).val();
     getAtletasCard(clube1);
+    
 }
 
 
 $(pageJogo.meuClubeField).change(showClubeSelecionado);
 
 function getClubesCard() {
-    $(pageJogo.meuClubeField).empty();
-    $(pageJogo.clubeAdversarioField).empty();
-    $(pageJogo.meuClubeField).val("-");
-    $(pageJogo.clubeAdversarioField).val("-");
+    var newOption = document.createElement("option");
+    newOption.value = "-";
+    newOption.innerHTML = "-";
+    pageJogo.meuClubeField.options.add(newOption);
+    //pageJogo.clubeAdversarioField.options.add(newOption);
+    
     var tempClube = pageClube.clubes;
     for (var key in tempClube) {
         preencheSelectedClube(tempClube[key]);
