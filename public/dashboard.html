@@ -496,7 +496,7 @@
                         <div class="row">
                             <br>
                             <p>
-                                <div class="col s2.5"> <span id="foto-atleta"></span> </div>
+                                <div class="col s2.5" id="div-foto-atleta"> <span id="foto-atleta"></span> </div>
                                 <br>
                                 <p>
                                     <div class="col s2.5">
@@ -531,6 +531,19 @@
                                 <div class="col s2 center-align" style="border:1px solid;">Cartão Vermelho<p>
                                 <span class="flow-text" id="cartaovermelho-por-jogo"></span></div>
                             </div>
+                            <table id="table-dados-atletas" class="responsive-table" hidden>
+                        <thead>
+                            <tr>
+                                <th hidden>Foto</th>
+                                <th hidden>Nome</th>
+                                <th hidden>Gols</th>
+                                <th hidden>Assistências</th>
+                                <th hidden>Cartão Amarelo</th>
+                                <th hidden>Cartão Vermelho</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-dados-atleta" hidden> </tbody>
+                    </table>
                     </div>
             </div>
         </div>

@@ -22,6 +22,7 @@ var pageRelatorio = {
     , dataFimField: document.querySelector('#data-fim-field')
     , searchBtn: document.querySelector('#search-btn')
     , bodyDadosClubes: document.querySelector('#body-dados-clube')
+    , bodyDadosAtletas: document.querySelector('#body-dados-atleta')
     , limparBtn: document.querySelector('#limpar-relatorio')
     , estatisticasClube: document.querySelector('#estatisticas-clube')
     , divEstatisticasClube: document.querySelector('#div-estatistica-clube')
@@ -58,13 +59,14 @@ var pageRelatorio = {
     , assistenciaPorJogoField: document.querySelector('#assistencia-por-jogo')
     , cAmareloPorJogoField: document.querySelector('#cartaoamarelo-por-jogo')
     , cVermelhoPorJogoField: document.querySelector('#cartaovermelho-por-jogo')
+    , dadosPorJogo: []
 }
 pageRelatorio.btnExport.addEventListener('click', function () {
     if (pageRelatorio.labelExport.innerHTML == 'Exportar Jogos') {
         exportRelatorioClube();
     }
     else {
-        swal("", "Nao tem função pra clube ainda", "error");
+        exportRelatorioAtleta();
     }
 })
 pageRelatorio.reportAtleta.addEventListener('click', function () {
@@ -149,7 +151,6 @@ function getDadosAtleta() {
         else {
             var htmlFoto = '<img width="240" height="240" src="img/sem_foto.png"/>';
         }
-        console.log(htmlFoto)
         pageRelatorio.fotoAtletaField.innerHTML = htmlFoto;
         pageRelatorio.nomeAtletaField.innerHTML = '<b>' + atletaAtual.nome + '</b>';
         pageRelatorio.apelidoAtletaField.innerHTML = '<b>' + atletaAtual.apelido + '</b>';
@@ -182,24 +183,30 @@ function getEstatisticasAtleta(idAtleta) {
 
 function preencheEstatisticasAtleta(tempDadosAtleta)
 {
-    var golsPorJogo = (pageRelatorio.golAtleta / pageRelatorio.jogosAtleta).toFixed(2);
-    var assistenciasPorJogo = (pageRelatorio.assistenciaAtleta / pageRelatorio.jogosAtleta).toFixed(2);
-    var cAmareloPorJogo = (pageRelatorio.cartaoAmareloAtleta / pageRelatorio.jogosAtleta).toFixed(2);
-    var cVermelhoPorJogo = (pageRelatorio.cartaoVermelhoAtleta / pageRelatorio.jogosAtleta).toFixed(2);
-    if (golsPorJogo == "NaN") { golsPorJogo = 0;}
-    if (assistenciasPorJogo == "NaN") { assistenciasPorJogo = 0;}
-    if (cAmareloPorJogo == "NaN") { cAmareloPorJogo = 0;}
-    if (cVermelhoPorJogo == "NaN") { cVermelhoPorJogo = 0;}
+    dadosPorJogo = {
+        golsPorJogo: (pageRelatorio.golAtleta / pageRelatorio.jogosAtleta).toFixed(2),
+        assistenciasPorJogo: (pageRelatorio.assistenciaAtleta / pageRelatorio.jogosAtleta).toFixed(2),
+        cAmareloPorJogo: (pageRelatorio.cartaoAmareloAtleta / pageRelatorio.jogosAtleta).toFixed(2),
+        cVermelhoPorJogo: (pageRelatorio.cartaoVermelhoAtleta / pageRelatorio.jogosAtleta).toFixed(2)
+    }
+    //var golsPorJogo = (pageRelatorio.golAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+    //var assistenciasPorJogo = (pageRelatorio.assistenciaAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+    //var cAmareloPorJogo = (pageRelatorio.cartaoAmareloAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+    //var cVermelhoPorJogo = (pageRelatorio.cartaoVermelhoAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+    if (dadosPorJogo.golsPorJogo == "NaN") { dadosPorJogo.golsPorJogo = 0;}
+    if (dadosPorJogo.assistenciasPorJogo == "NaN") { dadosPorJogo.assistenciasPorJogo = 0;}
+    if (dadosPorJogo.cAmareloPorJogo == "NaN") { dadosPorJogo.cAmareloPorJogo = 0;}
+    if (dadosPorJogo.cVermelhoPorJogo == "NaN") { dadosPorJogo.cVermelhoPorJogo = 0;}
     pageRelatorio.golAtletaField.innerHTML = '<b>' + pageRelatorio.golAtleta + '</b>';
     pageRelatorio.assistenciaAtletaField.innerHTML = '<b>' + pageRelatorio.assistenciaAtleta + '</b>';
     pageRelatorio.cartaoAmareloAtletaField.innerHTML = '<b>' + pageRelatorio.cartaoAmareloAtleta + '</b>';
     pageRelatorio.cartaoVermelhoAtletaField.innerHTML = '<b>' + pageRelatorio.cartaoVermelhoAtleta + '</b>';
     pageRelatorio.minutosJogadosAtletaField.innerHTML = '<b>' + pageRelatorio.minutosJogadosAtleta + '</b>';
     pageRelatorio.jogosAtletaField.innerHTML = '<b>' + pageRelatorio.jogosAtleta + '</b>';
-    pageRelatorio.golsPorJogoField.innerHTML = '<b>' + golsPorJogo + '</b>'
-    pageRelatorio.assistenciaPorJogoField.innerHTML = '<b>' + assistenciasPorJogo + '</b>'
-    pageRelatorio.cAmareloPorJogoField.innerHTML = '<b>' + cAmareloPorJogo + '</b>'
-    pageRelatorio.cVermelhoPorJogoField.innerHTML = '<b>' + cVermelhoPorJogo + '</b>'
+    pageRelatorio.golsPorJogoField.innerHTML = '<b>' + dadosPorJogo.golsPorJogo + '</b>'
+    pageRelatorio.assistenciaPorJogoField.innerHTML = '<b>' + dadosPorJogo.assistenciasPorJogo + '</b>'
+    pageRelatorio.cAmareloPorJogoField.innerHTML = '<b>' + dadosPorJogo.cAmareloPorJogo + '</b>'
+    pageRelatorio.cVermelhoPorJogoField.innerHTML = '<b>' + dadosPorJogo.cVermelhoPorJogo + '</b>'
 }
 
 function showClube() {
@@ -384,6 +391,56 @@ function exportRelatorioClube() {
         return (sa);
     }
 }
+
+function exportRelatorioAtleta(){
+    if(pageRelatorio.atletaField.value == '-'){
+        swal("", "Selecione uma opção!", "error");
+    } else {
+        atletaSel = pageAtleta.atletas[pageRelatorio.atletaField.value];
+        var html = '<tr>';
+        html += '<td class="nomeAtleta">' + atletaSel.nome + '</td>';
+        html += '<td class="minutosJogadosAtleta">' + pageRelatorio.minutosJogadosAtleta + '</td>';
+        html += '<td class="golsAtleta">' + pageRelatorio.golAtleta + '</td>';
+        html += '<td class="assistAtleta">' + pageRelatorio.assistenciaAtleta + '</td>';
+        html += '<td class="cAmareloAtleta">' + pageRelatorio.cartaoAmareloAtleta + '</td>';
+        html += '<td class="cVermelhoAtleta">' + pageRelatorio.cartaoVermelhoAtleta + '</td>';
+        
+        html += '<td class="golsPorJogoAtleta">' + dadosPorJogo.golsPorJogo + '</td>';
+        html += '<td class="assistenciasPorJogoAtleta">' + dadosPorJogo.assistenciasPorJogo + '</td>';
+        html += '<td class="cAmareloPorJogoAtleta">' + dadosPorJogo.cAmareloPorJogo + '</td>';
+        html += '<td class="cVermelhoPorJogoAtleta">' + dadosPorJogo.cVermelhoPorJogo + '</td>';
+        html += '</tr>';
+        $('#body-dados-atleta').append(html);
+        
+        var tab_text = "<table border='2px'>";
+        tab_text += "<tr><th>Nome</th><th>Minutos Jogados</th><th>Gols</th><th>Assistências</th><th>Cartão Amarelo</th><th>Cartão Vermelho</th><th>Gols Por Jogo</th><th>Assistências Por Jogo</th><th>Cartão Amarelo Por Jogo</th><th>Cartão Vermelho Por Jogo</th></tr><tr>";
+        var textRange;
+        var j = 0;
+        tab = pageRelatorio.bodyDadosAtletas; // id of table
+        for (j = 0; j < tab.rows.length; j++) {
+            tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
+        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+        }
+        else //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent( $('div[id$=div-foto-atleta]').html() ) + escape(tab_text));
+        return (sa);
+    }
+}
+
 pageRelatorio.limparBtn.addEventListener('click', function () {
     $(pageRelatorio.clubeField).val("Sem Clube");
     $(pageRelatorio.clubeField).material_select();
