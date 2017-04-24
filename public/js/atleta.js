@@ -91,6 +91,7 @@ function abreModalAtleta(idAtleta) {
             pageAtleta.cidadeField.value = atletaSel.cidade;
             pageAtleta.paisField.value = atletaSel.pais;
             pageAtleta.fotoField = atletaSel.foto;
+            pageAtleta.uploader.value = 0;
             pageAtleta.caminhoFoto.value = '';
     } else {
         pageAtleta.idAtletaField.value = null;
@@ -106,6 +107,7 @@ function abreModalAtleta(idAtleta) {
         pageAtleta.cidadeField.value = null;
         pageAtleta.paisField.value = null;
         pageAtleta.fotoField = null;
+        pageAtleta.uploader.value = 0;
         pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="img/sem_foto.png">';
         pageAtleta.caminhoFoto.value = '';
     }
@@ -140,7 +142,7 @@ pageAtleta.atletaBtn.addEventListener('click', function () {
 })
 //pageAtleta.tableAtletas.addEventListener('click', getLinha);
 pageAtleta.fileButton.addEventListener('change', function (e) {
-    pageAtleta.carregarFoto.addEventListener('click', function(){
+    
         
     
     //Pega o arquivo
@@ -151,22 +153,26 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
     var task = storageRef.put(file);
     //Atualiza progress bar
     task.on('state_changed', function progress(snapshot) {
-        //var porcentagem = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        //pageAtleta.uploader = porcentagem;
+        var porcentagem = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        pageAtleta.uploader.value = porcentagem;
     }, function error(err) {
         console.log(err);
     }, function complete() {
+        pageAtleta.carregarFoto.addEventListener('click', function(){
         swal('Sucesso!', "Foto carregada com sucesso", "success");
-        var fotoTempAtleta = task.snapshot.downloadURL;
+            var fotoTempAtleta = task.snapshot.downloadURL;
         pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="'+fotoTempAtleta+'">';
         atletaSelecionado = pageAtleta.atletas[pageAtleta.idAtletaField.value]
         if(atletaSelecionado){
             atletaSelecionado.foto = fotoTempAtleta;
         }
         pageAtleta.fotoField = fotoTempAtleta;
-        })
+        })}) 
     })
-});
+        
+        
+        
+    
 
 function salvarAlteracoes(tempAtleta) {
     idAtleta = pageAtleta.idAtletaField.value;
