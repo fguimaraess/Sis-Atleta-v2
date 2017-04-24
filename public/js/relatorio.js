@@ -106,9 +106,7 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
     pageRelatorio.jogosAtleta = 0;
     var clubeSelecionado = $(pageRelatorio.clubeField).val();
     getDadosClube(clubeSelecionado);
-    
     var atletaSelecionado = $(pageRelatorio.atletaField).val();
-    
     var tempDados = {
         golsPro: pageRelatorio.golsPro
         , golsContra: pageRelatorio.golsContra
@@ -117,22 +115,23 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
         , empates: pageRelatorio.empates
     }
     var tempDadosAtleta = {
-        gol: pageRelatorio.golAtleta,
-        assistencia: pageRelatorio.assistenciaAtleta,
-        cartaoAmarelo: pageRelatorio.cartaoAmareloAtleta,
-        cartaoVermelho: pageRelatorio.cartaoVermelhoAtleta,
-        minutosJogados: pageRelatorio.minutosJogadosAtleta,
-        jogos: pageRelatorio.jogosAtleta
+        gol: pageRelatorio.golAtleta
+        , assistencia: pageRelatorio.assistenciaAtleta
+        , cartaoAmarelo: pageRelatorio.cartaoAmareloAtleta
+        , cartaoVermelho: pageRelatorio.cartaoVermelhoAtleta
+        , minutosJogados: pageRelatorio.minutosJogadosAtleta
+        , jogos: pageRelatorio.jogosAtleta
     }
     if (pageRelatorio.clubeAtual == 1) {
         $(pageRelatorio.divEstatisticasClube).show();
         getEstatisticasClube(tempDados);
     }
     else {
-        if(atletaSelecionado == "-"){
-            swal("","Selecione um atleta!", "error");
-        } else {
-        getEstatisticasAtleta(atletaSelecionado);    
+        if (atletaSelecionado == "-") {
+            swal("", "Selecione um atleta!", "error");
+        }
+        else {
+            getEstatisticasAtleta(atletaSelecionado);
         }
         getDadosAtleta();
         preencheEstatisticasAtleta(tempDadosAtleta);
@@ -141,9 +140,10 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
 
 function getDadosAtleta() {
     atletaAtual = pageAtleta.atletas[pageRelatorio.atletaField.value];
-    if(atletaAtual == undefined){
+    if (atletaAtual == undefined) {
         atletaAtual = "";
-    } else {
+    }
+    else {
         $(pageRelatorio.divEstatisticasAtleta).show();
         if (atletaAtual.foto) {
             var htmlFoto = '<img width="240" height="240" src="' + atletaAtual.foto + '"/>';
@@ -181,22 +181,29 @@ function getEstatisticasAtleta(idAtleta) {
     }
 }
 
-function preencheEstatisticasAtleta(tempDadosAtleta)
-{
+function preencheEstatisticasAtleta(tempDadosAtleta) {
     dadosPorJogo = {
-        golsPorJogo: (pageRelatorio.golAtleta / pageRelatorio.jogosAtleta).toFixed(2),
-        assistenciasPorJogo: (pageRelatorio.assistenciaAtleta / pageRelatorio.jogosAtleta).toFixed(2),
-        cAmareloPorJogo: (pageRelatorio.cartaoAmareloAtleta / pageRelatorio.jogosAtleta).toFixed(2),
-        cVermelhoPorJogo: (pageRelatorio.cartaoVermelhoAtleta / pageRelatorio.jogosAtleta).toFixed(2)
+            golsPorJogo: (pageRelatorio.golAtleta / pageRelatorio.jogosAtleta).toFixed(2)
+            , assistenciasPorJogo: (pageRelatorio.assistenciaAtleta / pageRelatorio.jogosAtleta).toFixed(2)
+            , cAmareloPorJogo: (pageRelatorio.cartaoAmareloAtleta / pageRelatorio.jogosAtleta).toFixed(2)
+            , cVermelhoPorJogo: (pageRelatorio.cartaoVermelhoAtleta / pageRelatorio.jogosAtleta).toFixed(2)
+        }
+        //var golsPorJogo = (pageRelatorio.golAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+        //var assistenciasPorJogo = (pageRelatorio.assistenciaAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+        //var cAmareloPorJogo = (pageRelatorio.cartaoAmareloAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+        //var cVermelhoPorJogo = (pageRelatorio.cartaoVermelhoAtleta / pageRelatorio.jogosAtleta).toFixed(2);
+    if (dadosPorJogo.golsPorJogo == "NaN") {
+        dadosPorJogo.golsPorJogo = 0;
     }
-    //var golsPorJogo = (pageRelatorio.golAtleta / pageRelatorio.jogosAtleta).toFixed(2);
-    //var assistenciasPorJogo = (pageRelatorio.assistenciaAtleta / pageRelatorio.jogosAtleta).toFixed(2);
-    //var cAmareloPorJogo = (pageRelatorio.cartaoAmareloAtleta / pageRelatorio.jogosAtleta).toFixed(2);
-    //var cVermelhoPorJogo = (pageRelatorio.cartaoVermelhoAtleta / pageRelatorio.jogosAtleta).toFixed(2);
-    if (dadosPorJogo.golsPorJogo == "NaN") { dadosPorJogo.golsPorJogo = 0;}
-    if (dadosPorJogo.assistenciasPorJogo == "NaN") { dadosPorJogo.assistenciasPorJogo = 0;}
-    if (dadosPorJogo.cAmareloPorJogo == "NaN") { dadosPorJogo.cAmareloPorJogo = 0;}
-    if (dadosPorJogo.cVermelhoPorJogo == "NaN") { dadosPorJogo.cVermelhoPorJogo = 0;}
+    if (dadosPorJogo.assistenciasPorJogo == "NaN") {
+        dadosPorJogo.assistenciasPorJogo = 0;
+    }
+    if (dadosPorJogo.cAmareloPorJogo == "NaN") {
+        dadosPorJogo.cAmareloPorJogo = 0;
+    }
+    if (dadosPorJogo.cVermelhoPorJogo == "NaN") {
+        dadosPorJogo.cVermelhoPorJogo = 0;
+    }
     pageRelatorio.golAtletaField.innerHTML = '<b>' + pageRelatorio.golAtleta + '</b>';
     pageRelatorio.assistenciaAtletaField.innerHTML = '<b>' + pageRelatorio.assistenciaAtleta + '</b>';
     pageRelatorio.cartaoAmareloAtletaField.innerHTML = '<b>' + pageRelatorio.cartaoAmareloAtleta + '</b>';
@@ -360,6 +367,7 @@ function preencheComboClubeReport(tempClube) {
 }
 
 function exportRelatorioClube() {
+    pageRelatorio.bodyDadosClubes.innerHTML == '';
     if (pageRelatorio.bodyDadosClubes.innerHTML == '') {
         swal("", "Selecione uma opção!", "error");
     }
@@ -392,10 +400,12 @@ function exportRelatorioClube() {
     }
 }
 
-function exportRelatorioAtleta(){
-    if(pageRelatorio.atletaField.value == '-'){
+function exportRelatorioAtleta() {
+    pageRelatorio.bodyDadosAtletas.innerHTML = '';
+    if (pageRelatorio.atletaField.value == '-') {
         swal("", "Selecione uma opção!", "error");
-    } else {
+    }
+    else {
         atletaSel = pageAtleta.atletas[pageRelatorio.atletaField.value];
         var html = '<tr>';
         html += '<td class="nomeAtleta">' + atletaSel.nome + '</td>';
@@ -404,14 +414,12 @@ function exportRelatorioAtleta(){
         html += '<td class="assistAtleta">' + pageRelatorio.assistenciaAtleta + '</td>';
         html += '<td class="cAmareloAtleta">' + pageRelatorio.cartaoAmareloAtleta + '</td>';
         html += '<td class="cVermelhoAtleta">' + pageRelatorio.cartaoVermelhoAtleta + '</td>';
-        
         html += '<td class="golsPorJogoAtleta">' + dadosPorJogo.golsPorJogo + '</td>';
         html += '<td class="assistenciasPorJogoAtleta">' + dadosPorJogo.assistenciasPorJogo + '</td>';
         html += '<td class="cAmareloPorJogoAtleta">' + dadosPorJogo.cAmareloPorJogo + '</td>';
         html += '<td class="cVermelhoPorJogoAtleta">' + dadosPorJogo.cVermelhoPorJogo + '</td>';
         html += '</tr>';
         $('#body-dados-atleta').append(html);
-        
         var tab_text = "<table border='2px'>";
         tab_text += "<tr><th>Nome</th><th>Minutos Jogados</th><th>Gols</th><th>Assistências</th><th>Cartão Amarelo</th><th>Cartão Vermelho</th><th>Gols Por Jogo</th><th>Assistências Por Jogo</th><th>Cartão Amarelo Por Jogo</th><th>Cartão Vermelho Por Jogo</th></tr><tr>";
         var textRange;
@@ -435,12 +443,17 @@ function exportRelatorioAtleta(){
             txtArea1.focus();
             sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
         }
-        else //other browser not tested on IE 11
-            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent( $('div[id$=div-foto-atleta]').html() ) + escape(tab_text));
+        else { //other browser not tested on IE 11
+            if (atletaSel.foto) {
+                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('div[id$=div-foto-atleta]').html()) + escape(tab_text));
+            }
+            else {
+                sa = window.open('data:application/vnd.ms-excel,' + escape(tab_text));
+            }
+        }
         return (sa);
     }
 }
-
 pageRelatorio.limparBtn.addEventListener('click', function () {
     $(pageRelatorio.clubeField).val("Sem Clube");
     $(pageRelatorio.clubeField).material_select();

@@ -36,7 +36,8 @@
     <!--Layout-->
     <div class="row" style="padding-top: 30px;">
         <div class="col s3 navigation">
-            <div class="collection"> <a href="#!" class="collection-item active" id="dashboard-menu">Dashboard</a> <a href="#!" class="collection-item" id="atletas-menu">Atletas</a> <a href="#!" class="collection-item" id="clubes-menu">Clubes</a> <a href="#!" class="collection-item" id="jogos-menu">Jogos</a> <a href="#!" class="collection-item" id="relatorios-menu">Relatórios</a> </div>
+            <div class="collection"> <a href="#" class="collection-item active" id="dashboard-menu">Dashboard</a> <a href="#" class="collection-item" id="atletas-menu">Atletas</a> <a href="#" class="collection-item" id="clubes-menu">Clubes</a> <a href="#" class="collection-item" id="jogos-menu">Jogos</a> <a href="#" class="collection-item" id="relatorios-menu">Relatórios</a></li>
+            </div>
         </div>
         <div class="col s9 content-page">
             <div class="dash">
@@ -510,40 +511,43 @@
                                     </div>
                                     <p>
                         </div> Números do Atleta
-                        
-                            <div class="row">
-                               
-                                <div class="col s2 center-align" style="border:1px solid;">Jogos <p><span class="flow-text" id="jogos-atleta"></span></div>
-                                <div class="col s2 center-align" style="border:1px solid;">Minutos Jogados <p><span class="flow-text" id="minutosjogados-atleta"></span></div>
-                                <div class="col s2 center-align" style="border:1px solid;">Gols <p><span class="flow-text" id="gols-atleta"></span></div>
-                                <div class="col s2 center-align" style="border:1px solid;">Assistências <p><span class="flow-text" id="assistencias-atleta"></span></div>
-                                <div class="col s2 center-align" style="border:1px solid;">Cartão Amarelo <p><span class="flow-text" id="cartao-amarelo-atleta"></span></div>
-                                <div class="col s2 center-align" style="border:1px solid;">Cartão Vermelho <p><span class="flow-text" id="cartao-vermelho-atleta"></span></div>
-                            </div>
-                            Médias por Jogo:
-                            <div class="row">
-                                <div class="col s2 center-align" style="border:1px solid;">Gols<p>
-                                <span class="flow-text" id="gols-por-jogo"></span></div>
-                                <div class="col s2 center-align" style="border:1px solid;">Assistências<p>
-                                <span class="flow-text" id="assistencia-por-jogo"></span></div>
-                                <div class="col s2 center-align" style="border:1px solid;">Cartão Amarelo<p>
-                                <span class="flow-text" id="cartaoamarelo-por-jogo"></span></div>
-                                <div class="col s2 center-align" style="border:1px solid;">Cartão Vermelho<p>
-                                <span class="flow-text" id="cartaovermelho-por-jogo"></span></div>
-                            </div>
-                            <table id="table-dados-atletas" class="responsive-table" hidden>
-                        <thead>
-                            <tr>
-                                <th hidden>Foto</th>
-                                <th hidden>Nome</th>
-                                <th hidden>Gols</th>
-                                <th hidden>Assistências</th>
-                                <th hidden>Cartão Amarelo</th>
-                                <th hidden>Cartão Vermelho</th>
-                            </tr>
-                        </thead>
-                        <tbody id="body-dados-atleta" hidden> </tbody>
-                    </table>
+                        <div class="row">
+                            <div class="col s2 center-align" style="border:1px solid;">Jogos
+                                <p><span class="flow-text" id="jogos-atleta"></span></div>
+                            <div class="col s2 center-align" style="border:1px solid;">Minutos Jogados
+                                <p><span class="flow-text" id="minutosjogados-atleta"></span></div>
+                            <div class="col s2 center-align" style="border:1px solid;">Gols
+                                <p><span class="flow-text" id="gols-atleta"></span></div>
+                            <div class="col s2 center-align" style="border:1px solid;">Assistências
+                                <p><span class="flow-text" id="assistencias-atleta"></span></div>
+                            <div class="col s2 center-align" style="border:1px solid;">Cartão Amarelo
+                                <p><span class="flow-text" id="cartao-amarelo-atleta"></span></div>
+                            <div class="col s2 center-align" style="border:1px solid;">Cartão Vermelho
+                                <p><span class="flow-text" id="cartao-vermelho-atleta"></span></div>
+                        </div> Médias por Jogo:
+                        <div class="row">
+                            <div class="col s2 center-align" style="border:1px solid;">Gols
+                                <p> <span class="flow-text" id="gols-por-jogo"></span></div>
+                            <div class="col s2 center-align" style="border:1px solid;">Assistências
+                                <p> <span class="flow-text" id="assistencia-por-jogo"></span></div>
+                            <div class="col s2 center-align" style="border:1px solid;">Cartão Amarelo
+                                <p> <span class="flow-text" id="cartaoamarelo-por-jogo"></span></div>
+                            <div class="col s2 center-align" style="border:1px solid;">Cartão Vermelho
+                                <p> <span class="flow-text" id="cartaovermelho-por-jogo"></span></div>
+                        </div>
+                        <table id="table-dados-atletas" class="responsive-table" hidden>
+                            <thead>
+                                <tr>
+                                    <th hidden>Foto</th>
+                                    <th hidden>Nome</th>
+                                    <th hidden>Gols</th>
+                                    <th hidden>Assistências</th>
+                                    <th hidden>Cartão Amarelo</th>
+                                    <th hidden>Cartão Vermelho</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body-dados-atleta" hidden> </tbody>
+                        </table>
                     </div>
             </div>
         </div>

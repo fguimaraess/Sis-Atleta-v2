@@ -1,17 +1,22 @@
 var pageBtn = {
-    dashboardSideBtn: document.querySelector('#dashboard-menu'),
-    atletasSideBtn: document.querySelector('#atletas-menu'),
-    clubesSideBtn: document.querySelector('#clubes-menu'),
-    jogosSideBtn: document.querySelector('#jogos-menu'),
-    relatoriosSideBtn: document.querySelector('#relatorios-menu'),
-    logoutBtn: document.querySelector('#btn-logout'),
-    addJogoBtn: document.querySelector('#addJogoBtn'),
-    editarJogoBtn: document.querySelector('#editarJogo'),
-    voltarJogoBtn: document.querySelector('#voltarCardJogo'),
-    reportAtleta: document.querySelector('#report-atleta'),
-    reportClube: document.querySelector('#report-clube'),
-    voltarRelatorio: document.querySelector('#voltar-relatorio')
-}
+        dashboardSideBtn: document.querySelector('#dashboard-menu')
+        , atletasSideBtn: document.querySelector('#atletas-menu')
+        , clubesSideBtn: document.querySelector('#clubes-menu')
+        , jogosSideBtn: document.querySelector('#jogos-menu')
+        , relatoriosSideBtn: document.querySelector('#relatorios-menu')
+        , logoutBtn: document.querySelector('#btn-logout')
+        , addJogoBtn: document.querySelector('#addJogoBtn')
+        , editarJogoBtn: document.querySelector('#editarJogo')
+        , voltarJogoBtn: document.querySelector('#voltarCardJogo')
+        , reportAtleta: document.querySelector('#report-atleta')
+        , reportClube: document.querySelector('#report-clube')
+        , voltarRelatorio: document.querySelector('#voltar-relatorio')
+    }
+    //Mostra menu clicado
+$('.collection a').click(function () {
+    $(this).siblings('a').removeClass('active');
+    $(this).addClass('collection-item active');
+});
 window.addEventListener('load', function () {
     var user = firebase.auth().currentUser;
     firebase.auth().onAuthStateChanged(function (user) {
@@ -26,12 +31,12 @@ window.addEventListener('load', function () {
 });
 pageBtn.logoutBtn.addEventListener('click', function () {
     swal({
-        title: "Deseja sair?",
-        type: "warning",
-        showCancelButton: true,
-        cancelButtonText: "Cancelar",
-        confirmButtonText: "Sim, desejo sair",
-        closeOnConfirm: false
+        title: "Deseja sair?"
+        , type: "warning"
+        , showCancelButton: true
+        , cancelButtonText: "Cancelar"
+        , confirmButtonText: "Sim, desejo sair"
+        , closeOnConfirm: false
     }, function () {
         //swal("", "Logout efetuado com sucesso", "success");
         firebase.auth().signOut().then(function () {
@@ -51,31 +56,25 @@ $(document).ready(function () {
         $('.view-jogos').hide();
         $('.dash').hide();
     });
-
     $('select').material_select();
-
     $('.datepicker').pickadate({
-        format: 'dd/mm/yyyy',
-        selectMonths: true, // Creates a dropdown to control month
+        format: 'dd/mm/yyyy'
+        , selectMonths: true, // Creates a dropdown to control month
         selectYears: 15, // Creates a dropdown of 15 years to control year
-        today: 'Hoje',
-        clear: '',
-        close: 'Fechar',
-        monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-        weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
+        today: 'Hoje'
+        , clear: ''
+        , close: 'Fechar'
+        , monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+        , monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        , weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
+        , weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+        , weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
     });
-
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
-
     $('#posicaoatleta-field').material_select();
-
     $('#categoriaatleta-field').material_select();
     Materialize.updateTextFields();
-
     $(pageBtn.dashboardSideBtn).click(function () {
         $('.dash').show();
         $('.view-atletas').hide();
@@ -137,7 +136,6 @@ $(document).ready(function () {
         $('.relatorios-fields').hide();
         $('#report-atleta-field').hide();
     })
-    
     $(pageBtn.reportAtleta).click(function () {
         $('.relatorios-fields').show();
         $('#report-atleta-field').show();
@@ -147,7 +145,6 @@ $(document).ready(function () {
         $('.view-jogos').hide();
         $('.dash').hide();
     });
-    
     $(pageBtn.reportClube).click(function () {
         $('.relatorios-fields').show();
         $('#report-atleta-field').hide();
@@ -157,8 +154,7 @@ $(document).ready(function () {
         $('.view-jogos').hide();
         $('.dash').hide();
     });
-    
-    $(pageBtn.voltarRelatorio).click(function(){
+    $(pageBtn.voltarRelatorio).click(function () {
         $('.view-relatorios').show();
         $('.relatorios-fields').hide();
         $('.view-atletas').hide();
