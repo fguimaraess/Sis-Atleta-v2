@@ -90,7 +90,6 @@ function abreModalAtleta(idAtleta) {
             pageAtleta.idadeField.value = atletaSel.idade;
             $(pageAtleta.categoriaField).val(atletaSel.categoria);
             $(pageAtleta.categoriaField).material_select();
-            console.log(atletaSel.clube)
             $(pageAtleta.clubeField).val(atletaSel.clube);
             $(pageAtleta.clubeField).material_select();
             pageAtleta.cidadeField.value = atletaSel.cidade;
