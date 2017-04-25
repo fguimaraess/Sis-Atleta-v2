@@ -245,7 +245,7 @@ function preencheTabela(tempAtleta) {
     var htmlAtleta = '';
     htmlAtleta += '<tr  class="idDosAtletas" id="' + tempAtleta.uid + '">';
     htmlAtleta += '<td class="fotoJogadorTabela">'+htmlFoto+'</td>';
-    htmlAtleta += '<td class="nomeJogadorTabela">' + tempAtleta.nome + '</a></td>';
+    htmlAtleta += '<td class="nomeJogadorTabela">' + tempAtleta.nome + '</td>';
     htmlAtleta += '<td class="apelidoJogadorTabela">'+tempAtleta.apelido+'</td>';
     htmlAtleta += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
     htmlAtleta += '<td class="idadeJogadorTabela">' + tempAtleta.idade + '</td>';
