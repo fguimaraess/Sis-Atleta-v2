@@ -14,6 +14,13 @@ var pageRelatorio = {
     , assistenciasPorJogo: 0
     , cAmareloPorJogo: 0
     , cVermelhoPorJogo: 0
+    , golsNoJogo: 0
+    , assistenciasNoJogo: 0
+    , cAmareloNoJogo: 0
+    , cVermelhoNoJogo: 0
+    , minutosJogadosNoJogo: 0
+    , tableDadosAtletasJogo: document.querySelector('#table-dados-atletas-jogo')
+    , bodyDadosAtletasJogo: document.querySelector('#body-dados-atleta-jogo')
     , reportAtleta: document.querySelector('#report-atleta')
     , reportClube: document.querySelector('#report-clube')
     , atletaField: document.querySelector('#report-atleta-combo')
@@ -71,9 +78,11 @@ pageRelatorio.btnExport.addEventListener('click', function () {
 })
 pageRelatorio.reportAtleta.addEventListener('click', function () {
     $(pageRelatorio.divEstatisticasClube).hide();
+    $(pageRelatorio.divEstatisticasAtleta).hide();
     $(pageRelatorio.tableDadosClube).hide();
     pageRelatorio.listaReportSpan.innerHTML = 'Lista de Atletas';
     pageRelatorio.bodyDadosClubes.innerHTML = '';
+    pageRelatorio.bodyDadosAtletas.innerHTML = '';
     pageRelatorio.labelExport.innerHTML = 'Exportar Dados';
     pageRelatorio.atletaAtual = 1;
     pageRelatorio.clubeAtual = 0;
@@ -132,6 +141,7 @@ pageRelatorio.searchBtn.addEventListener('click', function () {
             swal("", "Selecione um atleta!", "error");
         }
         else {
+            $(pageRelatorio.divEstatisticasAtleta).show();
             getEstatisticasAtleta(atletaSelecionado);
         }
         getDadosAtleta();
@@ -166,11 +176,25 @@ function getDadosAtleta() {
 function getEstatisticasAtleta(idAtleta) {
     atletaSel = pageAtleta.atletas[idAtleta];
     tempJogos = pageJogo.jogos;
+    pageRelatorio.bodyDadosAtletasJogo.innerHTML = '';
     var jogos = [];
     for (var key in tempJogos) {
         jogos = tempJogos[key].atletasTempJogo;
         for (var id in jogos) {
             if (atletaSel.uid == jogos[id].uid) {
+                console.log(tempJogos[key])
+                var html = '';
+                html += '<tr>'
+                html += '<td class="meuClube">' + tempJogos[key].meuclube + '</a></td>';
+                html += '<td class="placar">' + tempJogos[key].golsmeuclube + "x" + tempJogos[key].golsclubeadversario + '</td>';
+                html += '<td class="clubeAdversario">' + tempJogos[key].clubeadversario + '</td>';
+                html += '<td class="golsNoJogo">' + jogos[id].gol + '</td>';
+                html += '<td class="assistNoJogo">' + jogos[id].assistencia + '</td>';
+                html += '<td class="cAmareloNoJogo">' + jogos[id].cartaoamarelo + '</td>';
+                html += '<td class="cVermelhoNoJogo">' + jogos[id].cartaovermelho + '</td>';
+                html += '<td class="minutosJogadosNoJogo">' + jogos[id].minutosjogados + '</td>';
+                html += '</tr>';
+                $('#body-dados-atleta-jogo').append(html);
                 pageRelatorio.golAtleta += parseInt(jogos[id].gol);
                 pageRelatorio.assistenciaAtleta += parseInt(jogos[id].assistencia);
                 pageRelatorio.cartaoAmareloAtleta += parseInt(jogos[id].cartaoamarelo);
