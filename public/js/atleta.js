@@ -2,8 +2,7 @@ var pageAtleta = {
     atletas: [],
     database: firebase.database(),
     databaseRef: '/atletas/',
-    linhasAtleta: document.querySelector('#linhas-atleta'), //VER C LUIZ
-    templateLinha: document.querySelector('#template-linha'), //VER C LUIZ
+    dataBaseClube: '/clubes/',
     nomeField: document.querySelector('#nomeatleta-field'),
     idAtletaField: document.querySelector('#idAtleta'),
     apelidoField: document.querySelector('#apelidoatleta-field'),
@@ -28,8 +27,16 @@ var pageAtleta = {
     carregarFoto: document.querySelector('#btnCarregar'),
     caminhoFoto: document.querySelector('#file-path')
 }
-window.addEventListener('load', getClubes);
+//window.addEventListener('load', getClubes);
 pageAtleta.atletasSideBtn.addEventListener('click', function () {
+    pageAtleta.database.ref(pageAtleta.dataBaseClube).once('value').then(function (snapshot) {
+        snapshot.forEach(function (clubeRef) {
+            var tempClube = clubeRef.val();
+            tempClube.uid = clubeRef.key;
+            pageClube.clubes[clubeRef.key] = (tempClube);
+            preencheTabelaClube(tempClube);
+        });
+    })
     getAtletas();
 });
 
@@ -39,10 +46,7 @@ pageAtleta.atletasSideBtn.addEventListener('click', function () {
 function getClubes(idAtleta) {
     atletaSel = pageAtleta.atletas[idAtleta];
     $(pageAtleta.clubeField).empty();
-    var newOption = document.createElement("option");
-        newOption.value = "Sem Clube";
-        newOption.innerHTML = "Sem Clube";
-        pageAtleta.clubeField.options.add(newOption);
+    
     var tempClube = [];
     if (idAtleta) {
         tempClube = pageClube.clubes;
@@ -60,7 +64,7 @@ function getClubes(idAtleta) {
 
 function preencheCombo(tempClube) {
     var newOption = document.createElement("option");
-    newOption.value = tempClube.nomeclube;
+    newOption.value = tempClube.uid;
     newOption.innerHTML = tempClube.nomeclube;
     pageAtleta.clubeField.options.add(newOption);
 
@@ -86,6 +90,7 @@ function abreModalAtleta(idAtleta) {
             pageAtleta.idadeField.value = atletaSel.idade;
             $(pageAtleta.categoriaField).val(atletaSel.categoria);
             $(pageAtleta.categoriaField).material_select();
+            console.log(atletaSel.clube)
             $(pageAtleta.clubeField).val(atletaSel.clube);
             $(pageAtleta.clubeField).material_select();
             pageAtleta.cidadeField.value = atletaSel.cidade;
@@ -192,7 +197,7 @@ function salvarAlteracoes(tempAtleta) {
             jogadorHtml.querySelector('.nomeJogadorTabela').innerHTML = tempAtleta.nome + " " + tempAtleta.apelido;
             jogadorHtml.querySelector('.posicaoJogadorTabela').innerHTML = tempAtleta.posicao;
             jogadorHtml.querySelector('.idadeJogadorTabela').innerHTML = tempAtleta.idade;
-            jogadorHtml.querySelector('.clubeJogadorTabela').innerHTML = tempAtleta.clube;
+            jogadorHtml.querySelector('.clubeJogadorTabela').innerHTML = pageClube.clubes[tempAtleta.clube].nomeclube;
             if(pageAtleta.fotoField)
             {
                 jogadorHtml.querySelector('.fotoJogadorTabela').innerHTML = '<input width="32" height="32" type="image" src="'+tempAtleta.foto+'">';
@@ -245,7 +250,7 @@ function preencheTabela(tempAtleta) {
     htmlAtleta += '<td class="apelidoJogadorTabela">'+tempAtleta.apelido+'</td>';
     htmlAtleta += '<td class="posicaoJogadorTabela">' + tempAtleta.posicao + '</td>';
     htmlAtleta += '<td class="idadeJogadorTabela">' + tempAtleta.idade + '</td>';
-    htmlAtleta += '<td class="clubeJogadorTabela">' + tempAtleta.clube + '</td>';
+    htmlAtleta += '<td class="clubeJogadorTabela">' + pageClube.clubes[tempAtleta.clube].nomeclube + '</td>';
     htmlAtleta += '<td><a onclick="abreModalAtleta(\'' + tempAtleta.uid + '\')" href="#" class="editar-jogador"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a onclick="excluirAtleta(\'' + tempAtleta.uid + '\' )" href="#" class="excluir-jogador"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
     htmlAtleta += '</tr>';
     $('#body-atleta').append(htmlAtleta);
