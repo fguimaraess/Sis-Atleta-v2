@@ -118,7 +118,8 @@ function getAtletasByClube(idClube) {
                 pageClube.database.ref(pageClube.databaseAtletas).once('value').then(function (snapshot) {
                     snapshot.forEach(function (atletaRef) {
                         var tempAtletaClube = atletaRef.val();
-                        if (tempClube.nomeclube == tempAtletaClube.clube) {
+                        
+                        if (tempClube.uid == tempAtletaClube.clube) {
                             if(tempAtletaClube.foto)
                             {
                                 var htmlFoto = '<img width="32" height="32" src="'+tempAtletaClube.foto+'"/>';        
