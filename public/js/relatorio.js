@@ -182,7 +182,6 @@ function getEstatisticasAtleta(idAtleta) {
         jogos = tempJogos[key].atletasTempJogo;
         for (var id in jogos) {
             if (atletaSel.uid == jogos[id].uid) {
-                console.log(tempJogos[key])
                 var html = '';
                 html += '<tr>'
                 html += '<td class="meuClube">' + tempJogos[key].meuclube + '</a></td>';
@@ -419,9 +418,15 @@ function exportRelatorioClube() {
             txtArea1.focus();
             sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
         }
-        else //other browser not tested on IE 11
-            sa = window.open('data:application/vnd.ms-excel,' + escape(tab_text));
-        return (sa);
+        else { //other browser not tested on IE 11
+            sa = ('data:application/vnd.ms-excel,' + escape(tab_text));
+        }
+        var a = document.createElement('a');
+        var data_type = sa;
+        a.href = data_type;
+        a.download = pageRelatorio.clubeField.value + '.xls';
+        a.click();
+        return (a);
     }
 }
 
@@ -445,14 +450,19 @@ function exportRelatorioAtleta() {
         html += '<td class="cVermelhoPorJogoAtleta">' + dadosPorJogo.cVermelhoPorJogo + '</td>';
         html += '</tr>';
         $('#body-dados-atleta').append(html);
+        
         var tab_text = "<table border='2px'>";
-        tab_text += "<tr><th>Nome</th><th>Minutos Jogados</th><th>Gols</th><th>Assistências</th><th>Cartão Amarelo</th><th>Cartão Vermelho</th><th>Gols Por Jogo</th><th>Assistências Por Jogo</th><th>Cartão Amarelo Por Jogo</th><th>Cartão Vermelho Por Jogo</th></tr><tr>";
+        //tab_text += "<tr><th>Nome</th><th>Minutos Jogados</th><th>Gols</th><th>Assistências</th><th>Cartão Amarelo</th><th>Cartão Vermelho</th><th>Gols Por Jogo</th><th>Assistências Por Jogo</th><th>Cartão Amarelo Por Jogo</th><th>Cartão Vermelho Por Jogo</th></tr><tr>";
+        tab = pageRelatorio.bodyDadosAtletasJogo; // id of table
+        tab2 = pageRelatorio.bodyDadosAtletas;
+        tab_text += '<tr><th>Nome</th><th>Minutos Jogados</th><th>Gols</th><th>Assistências</th><th>Cartão Amarelo</th><th>Cartão Vermelho</th><th>Gols Por Jogo</th><th>Assistências Por Jogo</th><th>Cartão Amarelo Por Jogo</th><th>Cartão Vermelho Por Jogo</th></tr>';
+        tab_text = tab_text + tab2.innerHTML + "</tr>";
+        tab_text += '<tr></tr>';
+        tab_text += "<tr><th>Clube</th><th>Placar</th><th>Adversário</th><th>Gols</th><th>Assistências</th><th>Cartão Amarelo</th><th>Cartão Vermelho</th><th>Minutos Jogados</th></tr><tr>";
         var textRange;
         var j = 0;
-        tab = pageRelatorio.bodyDadosAtletas; // id of table
         for (j = 0; j < tab.rows.length; j++) {
             tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
-            //tab_text=tab_text+"</tr>";
         }
         tab_text = tab_text + "</table>";
         tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
@@ -470,14 +480,21 @@ function exportRelatorioAtleta() {
         }
         else { //other browser not tested on IE 11
             if (atletaSel.foto) {
-                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('div[id$=div-foto-atleta]').html()) + escape(tab_text));
+                sa = ('data:application/vnd.ms-excel,' + encodeURIComponent($('div[id$=div-foto-atleta]').html()) + escape(tab_text));
             }
             else {
-                sa = window.open('data:application/vnd.ms-excel,' + escape(tab_text));
+                sa = ('data:application/vnd.ms-excel,' + escape(tab_text));
             }
         }
-        return (sa);
+        var a = document.createElement('a');
+        var data_type = sa;
+        a.href = data_type;
+        a.download = pageAtleta.atletas[pageRelatorio.atletaField.value].nome +"_"+ pageAtleta.atletas[pageRelatorio.atletaField.value].clube + '.xls';
+        a.click();
+        return (a);
     }
+    
+    
 }
 pageRelatorio.limparBtn.addEventListener('click', function () {
     $(pageRelatorio.clubeField).val("Sem Clube");
