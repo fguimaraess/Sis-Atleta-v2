@@ -183,9 +183,9 @@ function getEstatisticasAtleta(idAtleta) {
             if (atletaSel.uid == jogos[id].uid) {
                 var html = '';
                 html += '<tr>'
-                html += '<td class="meuClube">' + tempJogos[key].meuclube + '</a></td>';
+                html += '<td class="meuClube">' + pageClube.clubes[tempJogos[key].meuclube].nomeclube + '</a></td>';
                 html += '<td class="placar">' + tempJogos[key].golsmeuclube + "x" + tempJogos[key].golsclubeadversario + '</td>';
-                html += '<td class="clubeAdversario">' + tempJogos[key].clubeadversario + '</td>';
+                html += '<td class="clubeAdversario">' + pageClube.clubes[tempJogos[key].clubeadversario].nomeclube + '</td>';
                 html += '<td class="golsNoJogo">' + jogos[id].gol + '</td>';
                 html += '<td class="assistNoJogo">' + jogos[id].assistencia + '</td>';
                 html += '<td class="cAmareloNoJogo">' + jogos[id].cartaoamarelo + '</td>';
@@ -254,8 +254,7 @@ function getAtletasCombo(tempClube) {
     var tempAtletasClube = [];
     tempAtleta = pageAtleta.atletas;
     for (var key in tempAtleta) {
-        nomeClube = pageClube.clubes[tempAtleta[key].clube].nomeclube;
-        if (nomeClube == tempClube) {
+        if (tempAtleta[key].clube == tempClube) {
             preencheComboAtletaReport(tempAtleta[key]);
         }
     }
@@ -357,9 +356,9 @@ function preencheReportClube(tempJogosClube) {
     }
     var html = '';
     html += '<tr  class="idDosJogosFiltrados" id="' + dadosClube.uid + '">';
-    html += '<td class="meuClube">' + dadosClube.meuclube + '</a></td>';
+    html += '<td class="meuClube">' + pageClube.clubes[dadosClube.meuclube].nomeclube + '</a></td>';
     html += '<td class="placar">' + dadosClube.golsmeuclube + "x" + dadosClube.golsclubeadversario + '</td>';
-    html += '<td class="clubeAdversario">' + dadosClube.clubeadversario + '</td>';
+    html += '<td class="clubeAdversario">' + pageClube.clubes[dadosClube.clubeadversario].nomeclube + '</td>';
     html += '<td class="localJogo">' + dadosClube.local + '</td>';
     html += '<td class="dataJogo">' + dadosClube.data + '</td>';
     html += '</tr>';
@@ -369,8 +368,8 @@ function preencheReportClube(tempJogosClube) {
 function getClubesCombo() {
     $(pageRelatorio.clubeField).empty();
     var newOption = document.createElement("option");
-    newOption.value = "Sem Clube";
-    newOption.innerHTML = "Sem Clube";
+    newOption.value = "-";
+    newOption.innerHTML = "-";
     pageRelatorio.clubeField.options.add(newOption);
     var tempClube = [];
     tempClube = pageClube.clubes;
@@ -384,7 +383,7 @@ function getClubesCombo() {
 
 function preencheComboClubeReport(tempClube) {
     var newOption = document.createElement("option");
-    newOption.value = tempClube.nomeclube;
+    newOption.value = tempClube.uid;
     newOption.innerHTML = tempClube.nomeclube;
     pageRelatorio.clubeField.options.add(newOption);
     $(pageRelatorio.clubeField).material_select();
@@ -424,7 +423,7 @@ function exportRelatorioClube() {
         var a = document.createElement('a');
         var data_type = sa;
         a.href = data_type;
-        a.download = pageRelatorio.clubeField.value + '.xls';
+        a.download = pageClube.clubes[pageRelatorio.clubeField.value].nomeclube + '.xls';
         a.click();
         return (a);
     }

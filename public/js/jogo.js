@@ -161,9 +161,9 @@ function preencheTabelaJogo(tempJogo) {
     var htmlJogo = '';
     htmlJogo += '<tr class="idDosJogos" id="' + tempJogo.uid + '">';
     htmlJogo += '<td class="dataJogoTabela">' + tempJogo.data;
-    htmlJogo += '<td class="meuClubeTabela">' + tempJogo.meuclube;
+    htmlJogo += '<td class="meuClubeTabela">' + pageClube.clubes[tempJogo.meuclube].nomeclube;
     htmlJogo += '<td class="placarJogoTabela">' + tempJogo.golsmeuclube + " x " + tempJogo.golsclubeadversario;
-    htmlJogo += '<td class="clubeAdversarioTabela">' + tempJogo.clubeadversario;
+    htmlJogo += '<td class="clubeAdversarioTabela">' + pageClube.clubes[tempJogo.clubeadversario].nomeclube;
     htmlJogo += '<td class="campeonatoTabela">' + tempJogo.campeonato;
     htmlJogo += '<td class="localTabela">' + tempJogo.local;
     htmlJogo += '<td><a onclick="abreCardJogo(\'' + tempJogo.uid + '\')" href="#" class="editar-jogo" id="editarJogo"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a onclick="excluirJogo(\'' + tempJogo.uid + '\' )" href="#" class="excluir-jogo"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
@@ -417,9 +417,9 @@ function getClubesCard() {
 function preencheSelectedClube(tempClube) {
     var newOption = document.createElement("option");
     var newOption2 = document.createElement("option");
-    newOption.value = tempClube.nomeclube;
+    newOption.value = tempClube.uid;
     newOption.innerHTML = tempClube.nomeclube;
-    newOption2.value = tempClube.nomeclube;
+    newOption2.value = tempClube.uid;
     newOption2.innerHTML = tempClube.nomeclube;
     pageJogo.meuClubeField.options.add(newOption);
     pageJogo.clubeAdversarioField.options.add(newOption2);
