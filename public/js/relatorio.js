@@ -254,7 +254,8 @@ function getAtletasCombo(tempClube) {
     var tempAtletasClube = [];
     tempAtleta = pageAtleta.atletas;
     for (var key in tempAtleta) {
-        if (tempAtleta[key].clube == tempClube) {
+        nomeClube = pageClube.clubes[tempAtleta[key].clube].nomeclube;
+        if (nomeClube == tempClube) {
             preencheComboAtletaReport(tempAtleta[key]);
         }
     }
@@ -487,7 +488,7 @@ function exportRelatorioAtleta() {
         var a = document.createElement('a');
         var data_type = sa;
         a.href = data_type;
-        a.download = pageAtleta.atletas[pageRelatorio.atletaField.value].nome + "_" + pageAtleta.atletas[pageRelatorio.atletaField.value].clube + '.xls';
+        a.download = pageAtleta.atletas[pageRelatorio.atletaField.value].nome + "_" + pageClube.clubes[pageAtleta.atletas[pageRelatorio.atletaField.value].clube].nomeclube + '.xls';
         a.click();
         return (a);
     }
