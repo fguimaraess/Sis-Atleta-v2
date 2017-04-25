@@ -86,7 +86,6 @@ pageRelatorio.reportAtleta.addEventListener('click', function () {
     pageRelatorio.labelExport.innerHTML = 'Exportar Dados';
     pageRelatorio.atletaAtual = 1;
     pageRelatorio.clubeAtual = 0;
-    
     getClubesCombo();
     getJogos();
 })
@@ -450,7 +449,6 @@ function exportRelatorioAtleta() {
         html += '<td class="cVermelhoPorJogoAtleta">' + dadosPorJogo.cVermelhoPorJogo + '</td>';
         html += '</tr>';
         $('#body-dados-atleta').append(html);
-        
         var tab_text = "<table border='2px'>";
         //tab_text += "<tr><th>Nome</th><th>Minutos Jogados</th><th>Gols</th><th>Assistências</th><th>Cartão Amarelo</th><th>Cartão Vermelho</th><th>Gols Por Jogo</th><th>Assistências Por Jogo</th><th>Cartão Amarelo Por Jogo</th><th>Cartão Vermelho Por Jogo</th></tr><tr>";
         tab = pageRelatorio.bodyDadosAtletasJogo; // id of table
@@ -489,12 +487,10 @@ function exportRelatorioAtleta() {
         var a = document.createElement('a');
         var data_type = sa;
         a.href = data_type;
-        a.download = pageAtleta.atletas[pageRelatorio.atletaField.value].nome +"_"+ pageAtleta.atletas[pageRelatorio.atletaField.value].clube + '.xls';
+        a.download = pageAtleta.atletas[pageRelatorio.atletaField.value].nome + "_" + pageAtleta.atletas[pageRelatorio.atletaField.value].clube + '.xls';
         a.click();
         return (a);
     }
-    
-    
 }
 pageRelatorio.limparBtn.addEventListener('click', function () {
     $(pageRelatorio.clubeField).val("Sem Clube");

@@ -1,17 +1,17 @@
 var pageClube = {
-    clubes: [],
-    atletas: [],
-    database: firebase.database(),
-    databaseRef: '/clubes/',
-    databaseAtletas: '/atletas/',
-    nomeClubeField: document.querySelector('#nome-clube-field'),
-    siglaClubeField: document.querySelector('#sigla-clube-field'),
-    idClubeField: document.querySelector('#idClube'),
-    clubeBtn: document.querySelector('#salvar-clube-btn'),
-    addClubeBtn: document.querySelector('#addClubeBtn'),
-    tableClubes: document.querySelector('#table-clubes'),
-    bodyAtletasClube: document.querySelector('#body-atletas-clube'),
-    clubesSideBtn: document.querySelector('#clubes-menu')
+    clubes: []
+    , atletas: []
+    , database: firebase.database()
+    , databaseRef: '/clubes/'
+    , databaseAtletas: '/atletas/'
+    , nomeClubeField: document.querySelector('#nome-clube-field')
+    , siglaClubeField: document.querySelector('#sigla-clube-field')
+    , idClubeField: document.querySelector('#idClube')
+    , clubeBtn: document.querySelector('#salvar-clube-btn')
+    , addClubeBtn: document.querySelector('#addClubeBtn')
+    , tableClubes: document.querySelector('#table-clubes')
+    , bodyAtletasClube: document.querySelector('#body-atletas-clube')
+    , clubesSideBtn: document.querySelector('#clubes-menu')
 }
 window.addEventListener('load', getClubes);
 pageClube.clubesSideBtn.addEventListener('click', getClubes);
@@ -22,7 +22,8 @@ function abreModalClube(idClube) {
         pageClube.idClubeField.value = clubeSel.uid;
         pageClube.nomeClubeField.value = clubeSel.nomeclube;
         pageClube.siglaClubeField.value = clubeSel.siglaclube;
-    } else {
+    }
+    else {
         pageClube.idClubeField.value = null;
         pageClube.nomeClubeField.value = null;
         pageClube.siglaClubeField.value = null;
@@ -34,16 +35,18 @@ pageClube.addClubeBtn.addEventListener('click', function () {
 })
 pageClube.clubeBtn.addEventListener('click', function () {
     var tempClube = {
-        nomeclube: pageClube.nomeClubeField.value,
-        siglaclube: pageClube.siglaClubeField.value
+        nomeclube: pageClube.nomeClubeField.value
+        , siglaclube: pageClube.siglaClubeField.value
     }
     if (tempClube.nomeclube == "" || tempClube.siglaclube == "") {
         swal("Aviso!", "O nome e a sigla devem ser preenchidos!");
-    } else {
+    }
+    else {
         if (pageClube.idClubeField.value) {
             salvarAlteracoesClube(tempClube);
             $('#modal-addclube').modal('close');
-        } else {
+        }
+        else {
             novoClube(tempClube);
             $('#modal-addclube').modal('close');
         }
@@ -118,18 +121,16 @@ function getAtletasByClube(idClube) {
                 pageClube.database.ref(pageClube.databaseAtletas).once('value').then(function (snapshot) {
                     snapshot.forEach(function (atletaRef) {
                         var tempAtletaClube = atletaRef.val();
-                        
                         if (tempClube.uid == tempAtletaClube.clube) {
-                            if(tempAtletaClube.foto)
-                            {
-                                var htmlFoto = '<img width="32" height="32" src="'+tempAtletaClube.foto+'"/>';        
-                            } else {
+                            if (tempAtletaClube.foto) {
+                                var htmlFoto = '<img width="32" height="32" src="' + tempAtletaClube.foto + '"/>';
+                            }
+                            else {
                                 var htmlFoto = '<img width="32" height="32" src="img/mini_sem_foto.png"/>';
                             }
-                            
                             html = '';
                             html += '<tr class="idDosAtletasClube" id="' + tempAtletaClube.uid + '">';
-                            html += '<td>'  + htmlFoto + '</td>';
+                            html += '<td>' + htmlFoto + '</td>';
                             html += '<td>' + tempAtletaClube.nome + '</td>';
                             html += '<td>' + tempAtletaClube.idade + '</td>';
                             html += '<td>' + tempAtletaClube.posicao + '</td>';

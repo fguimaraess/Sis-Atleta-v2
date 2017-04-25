@@ -255,17 +255,3 @@ function preencheTabela(tempAtleta) {
     htmlAtleta += '</tr>';
     $('#body-atleta').append(htmlAtleta);
 }
-//NOK
-function getAtletasByNome(nome) {
-    var atletas = [];
-    pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {
-        snapshot.forEach(function (atletaRef) {
-            if (nome == atletaRef.val().nome) {
-                var tempAtleta = atletaRef.val();
-                tempAtleta.uid = atletaRef.key;
-                atletas.push(tempAtleta);
-            }
-        });
-        console.log(atletas);
-    });
-}
