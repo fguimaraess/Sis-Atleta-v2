@@ -188,12 +188,17 @@ function salvarAlteracoes(tempAtleta) {
     tempAtleta.clube = pageAtleta.clubeField.value;
     tempAtleta.cidade = pageAtleta.cidadeField.value;
     tempAtleta.pais = pageAtleta.paisField.value;
-    tempAtleta.foto = pageAtleta.fotoField; 
+    if(tempAtleta.foto){
+        tempAtleta.foto = pageAtleta.fotoField;
+    } else {
+        tempAtleta.foto = null;
+    }
     pageAtleta.database.ref(pageAtleta.databaseRef + '/' + idAtleta).update(tempAtleta).then(swal("", "Atleta atualizado com sucesso", "success"));
     var jogadoresNaTela = document.querySelectorAll('.idDosAtletas');
     jogadoresNaTela.forEach(function (jogadorHtml) {
         if (jogadorHtml.id == idAtleta) {
-            jogadorHtml.querySelector('.nomeJogadorTabela').innerHTML = tempAtleta.nome + " " + tempAtleta.apelido;
+            jogadorHtml.querySelector('.nomeJogadorTabela').innerHTML = tempAtleta.nome;
+            jogadorHtml.querySelector('.apelidoJogadorTabela').innerHTML = tempAtleta.apelido;
             jogadorHtml.querySelector('.posicaoJogadorTabela').innerHTML = tempAtleta.posicao;
             jogadorHtml.querySelector('.idadeJogadorTabela').innerHTML = tempAtleta.idade;
             jogadorHtml.querySelector('.clubeJogadorTabela').innerHTML = pageClube.clubes[tempAtleta.clube].nomeclube;
