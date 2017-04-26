@@ -29,14 +29,7 @@ var pageAtleta = {
 }
 //window.addEventListener('load', getClubes);
 pageAtleta.atletasSideBtn.addEventListener('click', function () {
-    pageAtleta.database.ref(pageAtleta.dataBaseClube).once('value').then(function (snapshot) {
-        snapshot.forEach(function (clubeRef) {
-            var tempClube = clubeRef.val();
-            tempClube.uid = clubeRef.key;
-            pageClube.clubes[clubeRef.key] = (tempClube);
-            preencheTabelaClube(tempClube);
-        });
-    })
+    getClubesAtt();
     getAtletas();
 });
 

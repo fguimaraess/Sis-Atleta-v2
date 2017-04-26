@@ -144,3 +144,13 @@ function getAtletasByClube(idClube) {
         });
     });
 }
+
+    function getClubesAtt() {
+        pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
+            snapshot.forEach(function (clubeRef) {
+                var tempClube = clubeRef.val();
+                tempClube.uid = clubeRef.key;
+                pageClube.clubes[clubeRef.key] = (tempClube);
+            });
+        })
+}

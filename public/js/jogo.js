@@ -5,6 +5,8 @@ var pageJogo = {
     , clubes: []
     , database: firebase.database()
     , databaseRef: '/jogos/'
+    , dataBaseClube: '/clubes/'
+    , dataBaseAtleta: '/atletas/'
     , jogosSideBtn: document.querySelector('#jogos-menu')
     , addAtletaJogoBtn: document.querySelector('#addAtletaJogoBtn')
     , addJogoBtn: document.querySelector('#addJogoBtn')
@@ -36,13 +38,14 @@ var pageJogo = {
     , fotoAtletaField: document.querySelector('#foto-atleta-jogo')
     , jogoAtual: null
 }
+
 pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
     pageJogo.idJogoField.value = null;
 });
 pageJogo.jogosSideBtn.addEventListener('click', function () {
+    getClubesAtt();
     getAtletas();
-    getClubes();
     getJogos();
 });
 
@@ -143,6 +146,7 @@ function salvarAlteracoesJogo(tempJogo) {
 }
 
 function getJogos() {
+    getClubes();
     var jogosNaTela = document.querySelectorAll('.idDosJogos');
     jogosNaTela.forEach(function () {
         pageJogo.tableJogos.querySelector('#body-jogos').innerHTML = '';

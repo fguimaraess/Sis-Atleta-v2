@@ -69,6 +69,7 @@ var pageRelatorio = {
     , dadosPorJogo: []
 }
 pageRelatorio.btnExport.addEventListener('click', function () {
+    
     if (pageRelatorio.labelExport.innerHTML == 'Exportar Jogos') {
         exportRelatorioClube();
     }
@@ -88,6 +89,7 @@ pageRelatorio.reportAtleta.addEventListener('click', function () {
     pageRelatorio.dataFimField.value = '';
     pageRelatorio.atletaAtual = 1;
     pageRelatorio.clubeAtual = 0;
+    
     getClubesCombo();
     getJogos();
 })
@@ -102,6 +104,7 @@ pageRelatorio.reportClube.addEventListener('click', function () {
     pageRelatorio.dataFimField.value = '';
     pageRelatorio.atletaAtual = 0;
     pageRelatorio.clubeAtual = 1;
+    getClubesAtt();
     getClubesCombo();
     getJogos();
 })

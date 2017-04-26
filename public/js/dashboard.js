@@ -49,6 +49,7 @@ pageBtn.logoutBtn.addEventListener('click', function () {
 $(".dropdown-button").dropdown();
 $(document).ready(function () {
     pageBtn.relatoriosSideBtn.addEventListener('click', function () {
+        getClubesAtt();
         $('.view-relatorios').show();
         $('.relatorios-fields').hide();
         $('.view-atletas').hide();
