@@ -146,9 +146,6 @@ pageAtleta.atletaBtn.addEventListener('click', function () {
 })
 //pageAtleta.tableAtletas.addEventListener('click', getLinha);
 pageAtleta.fileButton.addEventListener('change', function (e) {
-    
-        
-    
     //Pega o arquivo
     var file = e.target.files[0];
     //Referencia Storage
@@ -159,19 +156,22 @@ pageAtleta.fileButton.addEventListener('change', function (e) {
     task.on('state_changed', function progress(snapshot) {
         var porcentagem = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         pageAtleta.uploader.value = porcentagem;
+        if(porcentagem == 100){
+            swal('Sucesso!', "", "success");
+        }
     }, function error(err) {
         console.log(err);
     }, function complete() {
         pageAtleta.carregarFoto.addEventListener('click', function(){
-        swal('Sucesso!', "Foto carregada com sucesso", "success");
+            swal('Sucesso!', "Foto adiciona ao atleta", "success");
             var fotoTempAtleta = task.snapshot.downloadURL;
-        pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="'+fotoTempAtleta+'">';
-        atletaSelecionado = pageAtleta.atletas[pageAtleta.idAtletaField.value]
-        if(atletaSelecionado){
-            atletaSelecionado.foto = fotoTempAtleta;
-        }
-        pageAtleta.fotoField = fotoTempAtleta;
-        })}) 
+            pageAtleta.mostraFoto.innerHTML = '<input width="130" height="130" type="image" src="'+fotoTempAtleta+'">';
+            atletaSelecionado = pageAtleta.atletas[pageAtleta.idAtletaField.value]
+            if(atletaSelecionado){
+                atletaSelecionado.foto = fotoTempAtleta;
+            }
+            pageAtleta.fotoField = fotoTempAtleta;
+            })}) 
     })
         
         
