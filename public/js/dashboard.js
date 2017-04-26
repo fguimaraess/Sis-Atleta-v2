@@ -50,6 +50,7 @@ $(".dropdown-button").dropdown();
 $(document).ready(function () {
     pageBtn.relatoriosSideBtn.addEventListener('click', function () {
         getClubesAtt();
+        getAtletas();
         $('.view-relatorios').show();
         $('.relatorios-fields').hide();
         $('.view-atletas').hide();
