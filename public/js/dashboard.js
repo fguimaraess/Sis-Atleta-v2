@@ -17,8 +17,6 @@ $('.collection a').click(function () {
     $(this).siblings('a').removeClass('active');
     $(this).addClass('collection-item active');
 });
-
-
 window.addEventListener('load', function () {
     var user = firebase.auth().currentUser;
     firebase.auth().onAuthStateChanged(function (user) {
@@ -168,4 +166,3 @@ $(document).ready(function () {
         $('.dash').hide();
     });
 });
-

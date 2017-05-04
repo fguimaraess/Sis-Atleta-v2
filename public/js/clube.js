@@ -17,14 +17,14 @@ var pageClube = {
     , apagarBuscaClube: document.querySelector('#apagar-busca-clube-btn')
 }
 window.addEventListener('load', getClubes);
-pageClube.clubesSideBtn.addEventListener('click', function(){
+pageClube.clubesSideBtn.addEventListener('click', function () {
     getClubes();
     pageClube.buscaClubeField.value = "";
 });
-pageClube.buscaClubeBtn.addEventListener('click', function(){
+pageClube.buscaClubeBtn.addEventListener('click', function () {
     getClubesPorNome(pageClube.buscaClubeField.value);
 });
-pageClube.apagarBuscaClube.addEventListener('click', function(){
+pageClube.apagarBuscaClube.addEventListener('click', function () {
     pageClube.buscaClubeField.value = "";
     getClubesPorNome(pageClube.buscaClubeField.value);
 })
@@ -155,30 +155,30 @@ function getAtletasByClube(idClube) {
     });
 }
 
-    function getClubesAtt() {
-        pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
-            snapshot.forEach(function (clubeRef) {
-                var tempClube = clubeRef.val();
-                tempClube.uid = clubeRef.key;
-                pageClube.clubes[clubeRef.key] = (tempClube);
-            });
-        })
+function getClubesAtt() {
+    pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
+        snapshot.forEach(function (clubeRef) {
+            var tempClube = clubeRef.val();
+            tempClube.uid = clubeRef.key;
+            pageClube.clubes[clubeRef.key] = (tempClube);
+        });
+    })
 }
 
-function getClubesPorNome(nomeClube){
-    limparTabela();    
-    for(var key in pageClube.clubes){
+function getClubesPorNome(nomeClube) {
+    limparTabela();
+    for (var key in pageClube.clubes) {
         var str = pageClube.clubes[key];
         var strNome = str.nomeclube.toLowerCase();
         var strUid = str.uid;
-        if(strNome.search(nomeClube.toLowerCase()) != -1){
+        if (strNome.search(nomeClube.toLowerCase()) != -1) {
             clubeSel = pageClube.clubes[strUid];
             preencheTabelaClube(clubeSel);
         }
     }
 }
 
-function limparTabela(){
+function limparTabela() {
     var clubesNaTela = document.querySelectorAll('.idDosClubes');
     clubesNaTela.forEach(function () {
         pageClube.tableClubes.querySelector('#body-clube').innerHTML = '';

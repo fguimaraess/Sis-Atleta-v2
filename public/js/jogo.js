@@ -42,7 +42,6 @@ var pageJogo = {
     , apagarBuscaJogo: document.querySelector('#apagar-busca-jogo-btn')
     , fecharCardNovoJogo: document.querySelector('#voltarCardJogo')
 }
-
 pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
     pageJogo.idJogoField.value = null;
@@ -54,15 +53,14 @@ pageJogo.jogosSideBtn.addEventListener('click', function () {
     getJogos();
     pageJogo.buscaJogoField.value = "";
 });
-pageJogo.buscaJogoBtn.addEventListener('click', function(){
+pageJogo.buscaJogoBtn.addEventListener('click', function () {
     getJogoPorNome(pageJogo.buscaJogoField.value);
 });
-
-pageJogo.apagarBuscaJogo.addEventListener('click', function(){
+pageJogo.apagarBuscaJogo.addEventListener('click', function () {
     pageJogo.buscaJogoField.value = "";
     getJogoPorNome(pageJogo.buscaJogoField.value);
 });
-pageJogo.fecharCardNovoJogo.addEventListener('click', function(){
+pageJogo.fecharCardNovoJogo.addEventListener('click', function () {
     $('#buscaJogo').show();
 })
 
@@ -447,21 +445,21 @@ function preencheSelectedClube(tempClube) {
     showClubeSelecionado();
 }
 
-function getJogoPorNome(nomeJogo){
+function getJogoPorNome(nomeJogo) {
     limparTabelaJogo();
-    for(var key in pageJogo.jogos){
+    for (var key in pageJogo.jogos) {
         idJogo = pageJogo.jogos[key];
         idMeuClube = pageJogo.jogos[key].meuclube;
         idClubeAdversario = pageJogo.jogos[key].clubeadversario;
         meuClube = pageClube.clubes[idMeuClube];
         clubeAdversario = pageClube.clubes[idClubeAdversario];
-        if(meuClube.nomeclube.toLowerCase().search(nomeJogo.toLowerCase()) != -1 || clubeAdversario.nomeclube.toLowerCase().search(nomeJogo.toLowerCase()) != -1){
+        if (meuClube.nomeclube.toLowerCase().search(nomeJogo.toLowerCase()) != -1 || clubeAdversario.nomeclube.toLowerCase().search(nomeJogo.toLowerCase()) != -1) {
             preencheTabelaJogo(idJogo);
         }
     }
 }
 
-function limparTabelaJogo(){
+function limparTabelaJogo() {
     var jogosNaTela = document.querySelectorAll('.idDosJogos');
     jogosNaTela.forEach(function () {
         pageJogo.tableJogos.querySelector('#body-jogos').innerHTML = '';
