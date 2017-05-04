@@ -12,32 +12,22 @@ var pageClube = {
     , tableClubes: document.querySelector('#table-clubes')
     , bodyAtletasClube: document.querySelector('#body-atletas-clube')
     , clubesSideBtn: document.querySelector('#clubes-menu')
+    , buscaClubeBtn: document.querySelector('#busca-clube-btn')
+    , buscaClubeField: document.querySelector('#busca-clube-field')
+    , apagarBuscaClube: document.querySelector('#apagar-busca-clube-btn')
 }
 window.addEventListener('load', getClubes);
-pageClube.clubesSideBtn.addEventListener('click', getClubes);
-
-    var fakedata = ['test1','test2','test3','test4','ietsanders'];
-    var clubesEx = pageClube.clubes;
-    for(var key in clubesEx)
-    {
-        clubesEx[key].nome = clubesEx[key].nomeclube;
-    }
-        
-    
-    var dataClube = [
-        clubesEx.nome
-    ]
-$('#busca-clube-field').autocomplete({
-    source: dataClube,
-
-    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-    onAutocomplete: function(val) {
-      // Callback function when value is autcompleted.
-    },
-    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-  });
-
-
+pageClube.clubesSideBtn.addEventListener('click', function(){
+    getClubes();
+    pageClube.buscaClubeField.value = "";
+});
+pageClube.buscaClubeBtn.addEventListener('click', function(){
+    getClubessPorNome(pageClube.buscaClubeField.value);
+});
+pageClube.apagarBuscaClube.addEventListener('click', function(){
+    pageClube.buscaClubeField.value = "";
+    getClubessPorNome(pageClube.buscaClubeField.value);
+})
 
 function abreModalClube(idClube) {
     if (idClube) {
@@ -115,10 +105,7 @@ function preencheTabelaClube(tempClube) {
 }
 
 function getClubes() {
-    var clubesNaTela = document.querySelectorAll('.idDosClubes');
-    clubesNaTela.forEach(function () {
-        pageClube.tableClubes.querySelector('#body-clube').innerHTML = '';
-    });
+    limparTabela();
     pageClube.database.ref(pageClube.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (clubeRef) {
             var tempClube = clubeRef.val();
@@ -176,4 +163,24 @@ function getAtletasByClube(idClube) {
                 pageClube.clubes[clubeRef.key] = (tempClube);
             });
         })
+}
+
+function getClubessPorNome(nomeClube){
+    limparTabela();    
+    for(var key in pageClube.clubes){
+        var str = pageClube.clubes[key];
+        var strNome = str.nomeclube.toLowerCase();
+        var strUid = str.uid;
+        if(strNome.search(nomeClube.toLowerCase()) != -1){
+            clubeSel = pageClube.clubes[strUid];
+            preencheTabelaClube(clubeSel);
+        }
+    }
+}
+
+function limparTabela(){
+    var clubesNaTela = document.querySelectorAll('.idDosClubes');
+    clubesNaTela.forEach(function () {
+        pageClube.tableClubes.querySelector('#body-clube').innerHTML = '';
+    });
 }
