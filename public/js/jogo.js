@@ -51,6 +51,7 @@ pageJogo.jogosSideBtn.addEventListener('click', function () {
     getClubesAtt();
     getAtletas();
     getJogos();
+    $('#buscaJogo').show();
     pageJogo.buscaJogoField.value = "";
 });
 pageJogo.buscaJogoBtn.addEventListener('click', function () {

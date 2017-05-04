@@ -107,7 +107,6 @@ $(document).ready(function () {
         $('#report-atleta-field').hide();
     });
     $(pageBtn.jogosSideBtn).click(function () {
-        $('#buscaJogo').show();
         $('.view-jogos').show();
         $('#table-jogos').show();
         $('#addJogoBtn').show();
