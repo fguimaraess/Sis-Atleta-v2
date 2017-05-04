@@ -25,14 +25,26 @@ var pageAtleta = {
     atletasSideBtn: document.querySelector('#atletas-menu'),
     mostraFoto: document.querySelector('#mostra-foto'),
     carregarFoto: document.querySelector('#btnCarregar'),
-    caminhoFoto: document.querySelector('#file-path')
+    caminhoFoto: document.querySelector('#file-path'),
+    apagaBuscaAtleta: document.querySelector('#apagar-busca-atleta-btn'),
+    buscaAtletaBtn: document.querySelector('#busca-atleta-btn'),
+    buscaAtletaField: document.querySelector('#busca-atleta-field')
 }
 //window.addEventListener('load', getClubes);
 pageAtleta.atletasSideBtn.addEventListener('click', function () {
     getClubesAtt();
     getAtletas();
+    pageAtleta.buscaAtletaField.value = "";
 });
 
+pageAtleta.buscaAtletaBtn.addEventListener('click', function(){
+    getAtletasPorNome(pageAtleta.buscaAtletaField.value);
+});
+
+pageAtleta.apagaBuscaAtleta.addEventListener('click', function(){
+    pageAtleta.buscaAtletaField.value = "";
+    getAtletasPorNome(pageAtleta.buscaAtletaField.value);
+});
 
 
 
@@ -218,10 +230,7 @@ function excluirAtleta(idAtleta) {
 }
 
 function getAtletas() {
-    var atletasNaTela = document.querySelectorAll('.idDosAtletas');
-    atletasNaTela.forEach(function () {
-        pageAtleta.tableAtletas.querySelector('#body-atleta').innerHTML = '';
-    })
+    limparTabelaAtleta();
     pageAtleta.database.ref(pageAtleta.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (atletaRef) {
             var tempAtleta = atletaRef.val();
@@ -251,4 +260,24 @@ function preencheTabela(tempAtleta) {
     htmlAtleta += '<td><a onclick="abreModalAtleta(\'' + tempAtleta.uid + '\')" href="#" class="editar-jogador"><i class="material-icons">mode_edit</i></a>' + '&nbsp;&nbsp;' + '<a onclick="excluirAtleta(\'' + tempAtleta.uid + '\' )" href="#" class="excluir-jogador"><i class="material-icons"><i class="material-icons">remove_circle</i></td>';
     htmlAtleta += '</tr>';
     $('#body-atleta').append(htmlAtleta);
+}
+
+function getAtletasPorNome(nomeAtleta){
+    limparTabelaAtleta();
+    for(var key in pageAtleta.atletas){
+        var str = pageAtleta.atletas[key];
+        var strNome = str.nome.toLowerCase();
+        var strUid = str.uid;
+        if(strNome.search(nomeAtleta.toLowerCase()) != -1){
+            atletaSel = pageAtleta.atletas[strUid];
+            preencheTabela(atletaSel);
+        }
+    }
+}
+
+function limparTabelaAtleta(){
+    var atletasNaTela = document.querySelectorAll('.idDosAtletas');
+    atletasNaTela.forEach(function () {
+        pageAtleta.tableAtletas.querySelector('#body-atleta').innerHTML = '';
+    })
 }

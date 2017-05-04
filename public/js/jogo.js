@@ -37,6 +37,9 @@ var pageJogo = {
     , nomeAtletaField: document.querySelector('#nomeAtleta')
     , fotoAtletaField: document.querySelector('#foto-atleta-jogo')
     , jogoAtual: null
+    , buscaJogoBtn: document.querySelector('#busca-jogo-btn')
+    , buscaJogoField: document.querySelector('#busca-jogo-field')
+    , apagarBuscaJogo: document.querySelector('#apagar-busca-jogo-btn')
 }
 
 pageJogo.addJogoBtn.addEventListener('click', function () {
@@ -47,6 +50,15 @@ pageJogo.jogosSideBtn.addEventListener('click', function () {
     getClubesAtt();
     getAtletas();
     getJogos();
+    pageJogo.buscaJogoField.value = "";
+});
+pageJogo.buscaJogoBtn.addEventListener('click', function(){
+    getJogoPorNome(pageJogo.buscaJogoField.value);
+});
+
+pageJogo.apagarBuscaJogo.addEventListener('click', function(){
+    pageJogo.buscaJogoField.value = "";
+    getJogoPorNome(pageJogo.buscaJogoField.value);
 });
 
 function abreCardJogo(idJogo) {
@@ -147,10 +159,7 @@ function salvarAlteracoesJogo(tempJogo) {
 
 function getJogos() {
     getClubes();
-    var jogosNaTela = document.querySelectorAll('.idDosJogos');
-    jogosNaTela.forEach(function () {
-        pageJogo.tableJogos.querySelector('#body-jogos').innerHTML = '';
-    });
+    limparTabelaJogo();
     pageJogo.database.ref(pageJogo.databaseRef).once('value').then(function (snapshot) {
         snapshot.forEach(function (jogoRef) {
             var tempJogo = jogoRef.val();
@@ -428,4 +437,25 @@ function preencheSelectedClube(tempClube) {
     pageJogo.meuClubeField.options.add(newOption);
     pageJogo.clubeAdversarioField.options.add(newOption2);
     showClubeSelecionado();
+}
+
+function getJogoPorNome(nomeJogo){
+    limparTabelaJogo();
+    for(var key in pageJogo.jogos){
+        idJogo = pageJogo.jogos[key];
+        idMeuClube = pageJogo.jogos[key].meuclube;
+        idClubeAdversario = pageJogo.jogos[key].clubeadversario;
+        meuClube = pageClube.clubes[idMeuClube];
+        clubeAdversario = pageClube.clubes[idClubeAdversario];
+        if(meuClube.nomeclube.toLowerCase().search(nomeJogo.toLowerCase()) != -1 || clubeAdversario.nomeclube.toLowerCase().search(nomeJogo.toLowerCase()) != -1){
+            preencheTabelaJogo(idJogo);
+        }
+    }
+}
+
+function limparTabelaJogo(){
+    var jogosNaTela = document.querySelectorAll('.idDosJogos');
+    jogosNaTela.forEach(function () {
+        pageJogo.tableJogos.querySelector('#body-jogos').innerHTML = '';
+    });
 }

@@ -22,11 +22,11 @@ pageClube.clubesSideBtn.addEventListener('click', function(){
     pageClube.buscaClubeField.value = "";
 });
 pageClube.buscaClubeBtn.addEventListener('click', function(){
-    getClubessPorNome(pageClube.buscaClubeField.value);
+    getClubesPorNome(pageClube.buscaClubeField.value);
 });
 pageClube.apagarBuscaClube.addEventListener('click', function(){
     pageClube.buscaClubeField.value = "";
-    getClubessPorNome(pageClube.buscaClubeField.value);
+    getClubesPorNome(pageClube.buscaClubeField.value);
 })
 
 function abreModalClube(idClube) {
@@ -165,7 +165,7 @@ function getAtletasByClube(idClube) {
         })
 }
 
-function getClubessPorNome(nomeClube){
+function getClubesPorNome(nomeClube){
     limparTabela();    
     for(var key in pageClube.clubes){
         var str = pageClube.clubes[key];
