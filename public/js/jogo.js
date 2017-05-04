@@ -40,11 +40,13 @@ var pageJogo = {
     , buscaJogoBtn: document.querySelector('#busca-jogo-btn')
     , buscaJogoField: document.querySelector('#busca-jogo-field')
     , apagarBuscaJogo: document.querySelector('#apagar-busca-jogo-btn')
+    , fecharCardNovoJogo: document.querySelector('#voltarCardJogo')
 }
 
 pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
     pageJogo.idJogoField.value = null;
+    $('#buscaJogo').hide();
 });
 pageJogo.jogosSideBtn.addEventListener('click', function () {
     getClubesAtt();
@@ -60,8 +62,12 @@ pageJogo.apagarBuscaJogo.addEventListener('click', function(){
     pageJogo.buscaJogoField.value = "";
     getJogoPorNome(pageJogo.buscaJogoField.value);
 });
+pageJogo.fecharCardNovoJogo.addEventListener('click', function(){
+    $('#buscaJogo').show();
+})
 
 function abreCardJogo(idJogo) {
+    $('#buscaJogo').hide();
     var atletasNaTela = document.querySelectorAll('.idDosAtletas');
     atletasNaTela.forEach(function (atletaHtml) {
         pageJogo.tableAtletasAdicionados.innerHTML = '';
@@ -322,6 +328,8 @@ pageJogo.salvarDadosBtn.addEventListener('click', function () {
     }
 })
 pageJogo.salvarJogoBtn.addEventListener('click', function () {
+    pageJogo.buscaJogoField.value = "";
+    $('#buscaJogo').show();
     var tempJogo = [];
     if (pageJogo.idJogoField.value) {
         tempJogo = {
