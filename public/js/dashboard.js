@@ -17,6 +17,8 @@ $('.collection a').click(function () {
     $(this).siblings('a').removeClass('active');
     $(this).addClass('collection-item active');
 });
+
+
 window.addEventListener('load', function () {
     var user = firebase.auth().currentUser;
     firebase.auth().onAuthStateChanged(function (user) {
@@ -46,7 +48,7 @@ pageBtn.logoutBtn.addEventListener('click', function () {
         });
     });
 });
-$(".dropdown-button").dropdown();
+//$(".dropdown-button").dropdown();
 $(document).ready(function () {
     pageBtn.relatoriosSideBtn.addEventListener('click', function () {
         getClubesAtt();
@@ -165,3 +167,4 @@ $(document).ready(function () {
         $('.dash').hide();
     });
 });
+

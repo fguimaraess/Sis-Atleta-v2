@@ -16,11 +16,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/sweetalert.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script src="js/sweetalert.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="/css/dashboard.css"> </head>
+    <script src="js/jquery-ui.min.js" charset="utf-8"></script>
+    <script src="js/jquery-ui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    </head>
 
 <body>
     <!--Navbar-->
@@ -155,14 +157,11 @@
                                             <!--<input type="file" value="Procurar Foto" id="fileButton">-->
                                             <progress value="0" max="100" id="uploader"></progress>
                                             <div class="file-field input-field">
-                                               
                                                 <div class="btn"> <span>Imagem</span>
                                                     <input type="file" id="fileButton"> </div>
-                                                    
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" id="file-path" type="text"> </div>
                                             </div>
-                                           
                                         </div>
                                         <div class="input-field col s6">
                                             <button class="waves-effect waves-light btn-large" id="btnCarregar">Salvar Foto<i class="material-icons right">send</i> </button>
@@ -176,44 +175,53 @@
             </div>
             <!-- DIV DE CLUBES -->
             <div class="view-clubes" style="display:none"> CLUBES
-                <!-- tabela com os clubes -->
-                <table class="display" id="table-clubes">
-                    <thead>
-                        <tr id="template-linha-clube">
-                            <th data-field="id" hidden>Id</th>
-                            <th data-field="nome-clube">Nome</th>
-                            <th data-field="sigla-clube">Sigla</th>
-                            <th data-field="atletas-clube">Atletas</th>
-                            <th data-field="atletas-acoes">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="body-clube"> </tbody>
-                    <!--<tr>
+                <p>
+                    <div class="row">
+                        <div class="col s12">
+                                <div class="input-field col s8"> <i class="material-icons prefix">textsms</i>
+                                    <input type="text" id="busca-clube-field" class="autocomplete">
+                                    <label for="busca-clube-field">Buscar Clube</label>
+                                </div>
+                        </div>
+                    </div>
+                    <!-- tabela com os clubes -->
+                    <table class="display" id="table-clubes">
+                        <thead>
+                            <tr id="template-linha-clube">
+                                <th data-field="id" hidden>Id</th>
+                                <th data-field="nome-clube">Nome</th>
+                                <th data-field="sigla-clube">Sigla</th>
+                                <th data-field="atletas-clube">Atletas</th>
+                                <th data-field="atletas-acoes">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-clube"> </tbody>
+                        <!--<tr>
                             <td hidden>12345</td>
                             <td>Improvável F.C</td>
                             <td>IMP</td>
                             <td><a href="#modal-veratletas">Ver Atletas</a></td>
                         </tr>-->
-                </table>
-                <!-- Modal Ver Atletas -->
-                <div id="modal-veratletas" class="modal">
-                    <div class="modal-content">
-                        <h4>Atletas do Clube</h4>
-                        <p>Lista de Atletas</p>
-                        <!-- GetAtletasByClube -->
-                        <table class="bordered responsive-table">
-                            <thead>
-                                <tr>
-                                    <th data-field="id" hidden>Id</th>
-                                    <th data-field="foto-atleta"></th>
-                                    <th data-field="nome-atleta">Nome</th>
-                                    <th data-field="idade-atleta">Idade</th>
-                                    <th data-field="posicao-atleta">Posição</th>
-                                    <th data-field="categoria-atleta">Categoria</th>
-                                </tr>
-                            </thead>
-                            <tbody id="body-atletas-clube"> </tbody>
-                            <!-- <tr>
+                    </table>
+                    <!-- Modal Ver Atletas -->
+                    <div id="modal-veratletas" class="modal">
+                        <div class="modal-content">
+                            <h4>Atletas do Clube</h4>
+                            <p>Lista de Atletas</p>
+                            <!-- GetAtletasByClube -->
+                            <table class="bordered responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th data-field="id" hidden>Id</th>
+                                        <th data-field="foto-atleta"></th>
+                                        <th data-field="nome-atleta">Nome</th>
+                                        <th data-field="idade-atleta">Idade</th>
+                                        <th data-field="posicao-atleta">Posição</th>
+                                        <th data-field="categoria-atleta">Categoria</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="body-atletas-clube"> </tbody>
+                                <!-- <tr>
                                     <td hidden>0001</td>
                                     <td>Felipe</td>
                                     <td>24</td>
@@ -221,36 +229,36 @@
                                     <td>Profissional</td>
                                 </tr>
                             </tbody>-->
-                        </table>
-                    </div>
-                    <div class="modal-footer"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
-                </div>
-                <p>
-                    <div class="right-align">
-                        <!--<a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> --><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#" id="addClubeBtn"><i class="material-icons">add</i></a></div>
-                    <!-- Modal Add Clube-->
-                    <div id="modal-addclube" class="modal">
-                        <div class="modal-content">
-                            <div id="idClube" hidden>ID</div>
-                            <h4>Adicionar Clube</h4>
-                            <p>Preencha os campos abaixo</p>
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s6">
-                                            <input type="text" id="nome-clube-field" class="validate" placeholder="">
-                                            <label class="active" for="nome-clube-field">Nome *</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input type="text" id="sigla-clube-field" class="validate" placeholder="">
-                                            <label class="active" for="sigla-clube-field">Sigla *</label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                            </table>
                         </div>
-                        <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
+                        <div class="modal-footer"> <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
                     </div>
+                    <p>
+                        <div class="right-align">
+                            <!--<a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#modal-editclube"><i class="material-icons">mode_edit</i></a> --><a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#" id="addClubeBtn"><i class="material-icons">add</i></a></div>
+                        <!-- Modal Add Clube-->
+                        <div id="modal-addclube" class="modal">
+                            <div class="modal-content">
+                                <div id="idClube" hidden>ID</div>
+                                <h4>Adicionar Clube</h4>
+                                <p>Preencha os campos abaixo</p>
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="text" id="nome-clube-field" class="validate" placeholder="">
+                                                <label class="active" for="nome-clube-field">Nome *</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" id="sigla-clube-field" class="validate" placeholder="">
+                                                <label class="active" for="sigla-clube-field">Sigla *</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer"> <a href="#!" id="salvar-clube-btn" class="modal-action waves-effect waves-green btn-flat">Salvar</a> <a href="#!" id="fechar-clube-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a> </div>
+                        </div>
             </div>
             <!-- DIV DE JOGOS -->
             <div class="view-jogos" style="display:none"> JOGOS
@@ -551,35 +559,34 @@
                             </thead>
                             <tbody id="body-dados-atleta"> </tbody>
                         </table>
-                          <p>
-                          <br>
-                           <b>Participações</b>
+                        <p>
+                            <br> <b>Participações</b>
                             <table id="table-dados-atletas-jogo" class="responsive-table">
-                            <thead>
-                                <tr>
-                                    <th >Clube</th>
-                                    <th >Placar</th>
-                                    <th >Adversário</th>
-                                    <th >Data</th>
-                                    <th >Gols</th>
-                                    <th >Assistências</th>
-                                    <th >Cartão Amarelo</th>
-                                    <th >Cartão Vermelho</th>
-                                    <th >Minutos Jogados</th>
-                                </tr>
-                            </thead>
-                            <tbody id="body-dados-atleta-jogo"> </tbody>
-                        </table>
+                                <thead>
+                                    <tr>
+                                        <th>Clube</th>
+                                        <th>Placar</th>
+                                        <th>Adversário</th>
+                                        <th>Data</th>
+                                        <th>Gols</th>
+                                        <th>Assistências</th>
+                                        <th>Cartão Amarelo</th>
+                                        <th>Cartão Vermelho</th>
+                                        <th>Minutos Jogados</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="body-dados-atleta-jogo"> </tbody>
+                            </table>
                     </div>
             </div>
         </div>
-    <footer>
-        <script src="js/clube.js" charset="utf-8"></script>
-        <script src="js/atleta.js" charset="utf-8"></script>
-        <script src="js/jogo.js" charset="utf-8"></script>
-        <script src="js/relatorio.js" charset="utf-8"></script>
-        <script src="js/dashboard.js" charset="utf-8"></script>
-    </footer>
+        <footer>
+            <script src="js/clube.js" charset="utf-8"></script>
+            <script src="js/atleta.js" charset="utf-8"></script>
+            <script src="js/jogo.js" charset="utf-8"></script>
+            <script src="js/relatorio.js" charset="utf-8"></script>
+            <script src="js/dashboard.js" charset="utf-8"></script>
+        </footer>
 </body>
 
 </html>

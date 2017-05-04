@@ -16,6 +16,29 @@ var pageClube = {
 window.addEventListener('load', getClubes);
 pageClube.clubesSideBtn.addEventListener('click', getClubes);
 
+    var fakedata = ['test1','test2','test3','test4','ietsanders'];
+    var clubesEx = pageClube.clubes;
+    for(var key in clubesEx)
+    {
+        clubesEx[key].nome = clubesEx[key].nomeclube;
+    }
+        
+    
+    var dataClube = [
+        clubesEx.nome
+    ]
+$('#busca-clube-field').autocomplete({
+    source: dataClube,
+
+    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+    onAutocomplete: function(val) {
+      // Callback function when value is autcompleted.
+    },
+    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+  });
+
+
+
 function abreModalClube(idClube) {
     if (idClube) {
         clubeSel = pageClube.clubes[idClube]
