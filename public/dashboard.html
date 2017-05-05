@@ -19,8 +19,6 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script src="js/sweetalert.min.js" charset="utf-8"></script>
-    <script src="js/jquery-ui.min.js" charset="utf-8"></script>
-    <script src="js/jquery-ui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/css/dashboard.css"> </head>
 
 <body>
@@ -67,10 +65,10 @@
                             </div>
                         </div>
                     </div>
-                    <table class="display" id="table-atletas">
+                    <table class="display highlight" id="table-atletas">
                         <thead>
                             <tr id="template-linha">
-                                <th hidden>Id</th>
+                                <th hidden style="display:none">Id</th>
                                 <th></th>
                                 <th>Nome</th>
                                 <th>Apelido</th>
@@ -205,10 +203,10 @@
                         </div>
                     </div>
                     <!-- tabela com os clubes -->
-                    <table class="display" id="table-clubes">
+                    <table class="display highlight" id="table-clubes">
                         <thead>
                             <tr id="template-linha-clube">
-                                <th data-field="id" hidden>Id</th>
+                                <th data-field="id" hidden style="display:none">Id</th>
                                 <th data-field="nome-clube">Nome</th>
                                 <th data-field="sigla-clube">Sigla</th>
                                 <th data-field="atletas-clube">Atletas</th>
@@ -229,10 +227,10 @@
                             <h4>Atletas do Clube</h4>
                             <p>Lista de Atletas</p>
                             <!-- GetAtletasByClube -->
-                            <table class="bordered responsive-table">
+                            <table class="responsive-table highlight">
                                 <thead>
                                     <tr>
-                                        <th data-field="id" hidden>Id</th>
+                                        <th data-field="id" hidden style="display:none">Id</th>
                                         <th data-field="foto-atleta"></th>
                                         <th data-field="nome-atleta">Nome</th>
                                         <th data-field="idade-atleta">Idade</th>
@@ -297,21 +295,20 @@
                             </div>
                         </div>
                     </div>
-                    <table class="bordered responsive-table" id="table-jogos">
+                    <table class="responsive-table highlight" id="table-jogos">
                         <thead>
-                            <tr>
-                                <tr id="template-linha-jogo">
-                                    <th data-field="idJogo" id="id-jogo" hidden>Id</th>
-                                    <th data-field="data-jogo">Data</th>
-                                    <th data-field="clube1">Meu Clube</th>
-                                    <th data-field="placar">Placar</th>
-                                    <th data-field="clube2">Clube Adversário</th>
-                                    <th data-field="campeonato">Campeonato</th>
-                                    <th data-field="campeonato">Local</th>
-                                    <th data-field="jogos-acoes">Ações</th>
-                                </tr>
+                            <tr id="template-linha-jogo">
+                                <th data-field="id" hidden style="display:none">Id</th>
+                                <th data-field="data-jogo">Data</th>
+                                <th data-field="clube1">Meu Clube</th>
+                                <th data-field="placar">Placar</th>
+                                <th data-field="clube2">Clube Adversário</th>
+                                <th data-field="campeonato">Campeonato</th>
+                                <th data-field="local">Local</th>
+                                <th data-field="jogos-acoes">Ações</th>
+                            </tr>
                         </thead>
-                        <tbody id="body-jogos"> </tbody>
+                        <tbody id="body-jogos"></tbody>
                     </table>
                     <p>
                         <div class="right-align"> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#" id="addJogoBtn"><i class="material-icons">add</i></a></div>
@@ -368,7 +365,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <table id="table-card-jogo" class="responsive-table">Adicionar Atletas
+                                                    <table id="table-card-jogo" class="responsive-table highlight">Adicionar Atletas
                                                         <thead>
                                                             <tr>
                                                                 <th hidden>ID</th>
@@ -394,7 +391,7 @@
                                 <div class="col s12 m5">
                                     <div class="card-panel large">
                                         <div class="card-content">
-                                            <table id="table-card-atletas-jogo" class="responsive-table">
+                                            <table id="table-card-atletas-jogo" class="responsive-table highlight">
                                                 <div class="row"> Atletas Adicionados </div>
                                                 <thead>
                                                     <tr>
@@ -526,7 +523,24 @@
                             <p> <span class="flow-text" id="aproveitamento-clube"></span> </div>
                     </div>
                     <div class="row"><b><span id="lista-report"></span></b> </div> <a id="btnExport" class="waves-effect waves-light btn"><i class="material-icons right">file_download</i><span id="label-export"></span></a>
-                    <table id="table-dados-clubes" class="responsive-table">
+                    <div id="modal-analise" class="modal">
+                        <div class="modal-content">
+                            <h4>Análise</h4>
+                            <p>Adicione uma observação, caso necessário</p>
+                            <div class="row">
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea id="analise-field" class="materialize-textarea"></textarea>
+                                            <label for="analise-field">Adicionar análise</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><a href="#" id="btn-export-analise" class="modal-action modal-close waves-effect waves-green btn-flat">Exportar</a> </div>
+                    </div>
+                    <table id="table-dados-clubes" class="responsive-table highlight">
                         <thead>
                             <tr>
                                 <th hidden>ID</th>
@@ -582,7 +596,7 @@
                             <div class="col s2 center-align" style="border:1px solid;">Cartão Vermelho
                                 <p> <span class="flow-text" id="cartaovermelho-por-jogo"></span></div>
                         </div>
-                        <table id="table-dados-atletas" class="responsive-table" hidden>
+                        <table id="table-dados-atletas" class="responsive-table highlight" hidden>
                             <thead>
                                 <tr>
                                     <th hidden>Nome</th>
@@ -596,7 +610,7 @@
                         </table>
                         <p>
                             <br> <b>Participações</b>
-                            <table id="table-dados-atletas-jogo" class="responsive-table">
+                            <table id="table-dados-atletas-jogo" class="responsive-table highlight">
                                 <thead>
                                     <tr>
                                         <th>Clube</th>
