@@ -164,4 +164,7 @@ $(document).ready(function () {
         $('.view-jogos').hide();
         $('.dash').hide();
     });
+    
+    $('#analise-field').val('');
+    $('#analise-field').trigger('autoresize');    
 });

@@ -67,14 +67,16 @@ var pageRelatorio = {
     , cAmareloPorJogoField: document.querySelector('#cartaoamarelo-por-jogo')
     , cVermelhoPorJogoField: document.querySelector('#cartaovermelho-por-jogo')
     , dadosPorJogo: []
+    , analiseAtletaBtn: document.querySelector('#btn-export-analise')
+    , analiseAtletaField: document.querySelector('#analise-field')
+    , analiseAdicionada: 0
 }
 pageRelatorio.btnExport.addEventListener('click', function () {
-    
     if (pageRelatorio.labelExport.innerHTML == 'Exportar Jogos') {
         exportRelatorioClube();
     }
     else {
-        exportRelatorioAtleta();
+        adicionarAnalise();
     }
 })
 pageRelatorio.reportAtleta.addEventListener('click', function () {
@@ -89,7 +91,6 @@ pageRelatorio.reportAtleta.addEventListener('click', function () {
     pageRelatorio.dataFimField.value = '';
     pageRelatorio.atletaAtual = 1;
     pageRelatorio.clubeAtual = 0;
-    
     getClubesCombo();
     getJogos();
 })
@@ -187,42 +188,41 @@ function getEstatisticasAtleta(idAtleta) {
     var dataInicioFormat = new Date(dataInicio[2], dataInicio[1] - 1, dataInicio[0]);
     var dataFim = $(pageRelatorio.dataFimField).val().split("/");
     var dataFimFormat = new Date(dataFim[2], dataFim[1] - 1, dataFim[0]);
-    console.log(dataInicioFormat, dataFimFormat)
     var jogos = [];
     if (dataInicioFormat > dataFimFormat) {
         swal("", "A data final não pode ser menor que a inicial", "error");
-    } else {
-        
-            for (var key in tempJogos) {
+    }
+    else {
+        for (var key in tempJogos) {
             jogos = tempJogos[key].atletasTempJogo;
             var dataJogo = tempJogosClube[key].data.split("/");
             var dataJogoFormat = new Date(dataJogo[2], dataJogo[1] - 1, dataJogo[0]);
             for (var id in jogos) {
-                if ((dataJogoFormat >= dataInicioFormat && dataJogoFormat <= dataFimFormat) || dataInicio == '' && dataFim == ''){
-                if (atletaSel.uid == jogos[id].uid) {
-                    var html = '';
-                    html += '<tr>'
-                    html += '<td class="meuClube">' + pageClube.clubes[tempJogos[key].meuclube].nomeclube + '</a></td>';
-                    html += '<td class="placar">' + tempJogos[key].golsmeuclube + "x" + tempJogos[key].golsclubeadversario + '</td>';
-                    html += '<td class="clubeAdversario">' + pageClube.clubes[tempJogos[key].clubeadversario].nomeclube + '</td>';
-                    html += '<td class="dataJogo">' + tempJogos[key].data + '</td>';
-                    html += '<td class="golsNoJogo">' + jogos[id].gol + '</td>';
-                    html += '<td class="assistNoJogo">' + jogos[id].assistencia + '</td>';
-                    html += '<td class="cAmareloNoJogo">' + jogos[id].cartaoamarelo + '</td>';
-                    html += '<td class="cVermelhoNoJogo">' + jogos[id].cartaovermelho + '</td>';
-                    html += '<td class="minutosJogadosNoJogo">' + jogos[id].minutosjogados + '</td>';
-                    html += '</tr>';
-                    $('#body-dados-atleta-jogo').append(html);
-                    pageRelatorio.golAtleta += parseInt(jogos[id].gol);
-                    pageRelatorio.assistenciaAtleta += parseInt(jogos[id].assistencia);
-                    pageRelatorio.cartaoAmareloAtleta += parseInt(jogos[id].cartaoamarelo);
-                    pageRelatorio.cartaoVermelhoAtleta += parseInt(jogos[id].cartaovermelho);
-                    pageRelatorio.minutosJogadosAtleta += parseInt(jogos[id].minutosjogados);
-                    pageRelatorio.jogosAtleta++;
+                if ((dataJogoFormat >= dataInicioFormat && dataJogoFormat <= dataFimFormat) || dataInicio == '' && dataFim == '') {
+                    if (atletaSel.uid == jogos[id].uid) {
+                        var html = '';
+                        html += '<tr>'
+                        html += '<td class="meuClube">' + pageClube.clubes[tempJogos[key].meuclube].nomeclube + '</a></td>';
+                        html += '<td class="placar">' + tempJogos[key].golsmeuclube + "x" + tempJogos[key].golsclubeadversario + '</td>';
+                        html += '<td class="clubeAdversario">' + pageClube.clubes[tempJogos[key].clubeadversario].nomeclube + '</td>';
+                        html += '<td class="dataJogo">' + tempJogos[key].data + '</td>';
+                        html += '<td class="golsNoJogo">' + jogos[id].gol + '</td>';
+                        html += '<td class="assistNoJogo">' + jogos[id].assistencia + '</td>';
+                        html += '<td class="cAmareloNoJogo">' + jogos[id].cartaoamarelo + '</td>';
+                        html += '<td class="cVermelhoNoJogo">' + jogos[id].cartaovermelho + '</td>';
+                        html += '<td class="minutosJogadosNoJogo">' + jogos[id].minutosjogados + '</td>';
+                        html += '</tr>';
+                        $('#body-dados-atleta-jogo').append(html);
+                        pageRelatorio.golAtleta += parseInt(jogos[id].gol);
+                        pageRelatorio.assistenciaAtleta += parseInt(jogos[id].assistencia);
+                        pageRelatorio.cartaoAmareloAtleta += parseInt(jogos[id].cartaoamarelo);
+                        pageRelatorio.cartaoVermelhoAtleta += parseInt(jogos[id].cartaovermelho);
+                        pageRelatorio.minutosJogadosAtleta += parseInt(jogos[id].minutosjogados);
+                        pageRelatorio.jogosAtleta++;
+                    }
                 }
+            }
         }
-    }
-    }
     }
 }
 
@@ -451,6 +451,15 @@ function exportRelatorioClube() {
     }
 }
 
+function adicionarAnalise(){
+    $('#modal-analise').modal('open');
+    pageRelatorio.analiseAtletaField.value = '';
+    pageRelatorio.analiseAtletaBtn.addEventListener('click', function(){
+        pageRelatorio.analiseAdicionada = pageRelatorio.analiseAtletaField.value;
+        exportRelatorioAtleta();
+    });
+    
+}
 function exportRelatorioAtleta() {
     pageRelatorio.bodyDadosAtletas.innerHTML = '';
     if (pageRelatorio.atletaField.value == '-') {
@@ -485,6 +494,11 @@ function exportRelatorioAtleta() {
             tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
         }
         tab_text = tab_text + "</table>";
+        tab_text += "<table border='2px'>";
+        tab_text += '<tr></tr>';
+        tab_text += '<tr><th>Análise</th></tr>';
+        tab_text += '<th style="font-weight:normal">'+pageRelatorio.analiseAdicionada+'</th>';
+        tab_text += "</table>";
         tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
         tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
         tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
@@ -514,6 +528,40 @@ function exportRelatorioAtleta() {
         return (a);
     }
 }
+
+//EXPORT EM PDF
+//pageRelatorio.btnExportPdf.addEventListener("click", function () {
+//    pageRelatorio.bodyDadosAtletas.innerHTML = '';
+//    if (pageRelatorio.atletaField.value == '-') {
+//        swal("", "Selecione uma opção!", "error");
+//    }
+//    else {
+//        atletaSel = pageAtleta.atletas[pageRelatorio.atletaField.value];
+//        var doc = new jsPDF('p', 'pt', 'letter')
+//            , source = $('#div-estatistica-atleta')[0]
+//            , margins = {
+//                top: 0
+//                , bottom: 0
+//                , left: 0
+//                , right: 0
+//                , width: 522
+//            };
+//        doc.fromHTML(
+//        source,
+//        margins.left,
+//        margins.top,
+//        {
+//        'width': margins.width 
+//        },
+//        function (dispose) {
+//            doc.save('Test.pdf');
+//        },
+//        margins
+//   );
+//            //doc.save(atletaSel.nome + '_' + pageClube.clubes[pageAtleta.atletas[pageRelatorio.atletaField.value].clube].nomeclube + '.pdf');
+//    }
+//});
+
 pageRelatorio.limparBtn.addEventListener('click', function () {
     $(pageRelatorio.clubeField).val("-");
     $(pageRelatorio.clubeField).material_select();
