@@ -4,7 +4,7 @@
   "theme_color": "#90ee90",
   "background_color": "#2196f3",
   "display": "browser",
-  "start_url": "/https://sis-atleta-4a38f.firebaseapp.com/index.html",
+  "start_url": "/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
