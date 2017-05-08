@@ -3,7 +3,7 @@
   "short_name": "Sis-Atleta",
   "theme_color": "#90ee90",
   "background_color": "#2196f3",
-  "display": "browser",
+  "display": "standalone",
   "start_url": "/",
   "icons": [
     {
