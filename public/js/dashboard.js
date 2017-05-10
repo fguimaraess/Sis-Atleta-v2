@@ -28,6 +28,7 @@ window.addEventListener('load', function () {
     getAtletas();
     getClubes();
     getJogos();
+    
 });
 pageBtn.logoutBtn.addEventListener('click', function () {
     swal({
@@ -166,5 +167,5 @@ $(document).ready(function () {
     });
     
     $('#analise-field').val('');
-    $('#analise-field').trigger('autoresize');    
+    $('#analise-field').trigger('autoresize');  
 });

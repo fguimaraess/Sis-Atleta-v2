@@ -41,6 +41,8 @@ var pageJogo = {
     , buscaJogoField: document.querySelector('#busca-jogo-field')
     , apagarBuscaJogo: document.querySelector('#apagar-busca-jogo-btn')
     , fecharCardNovoJogo: document.querySelector('#voltarCardJogo')
+    , contadorJogos: 0
+    , jogosDash: document.querySelector('#jogos-dash')
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
@@ -171,6 +173,8 @@ function getJogos() {
             tempJogo.uid = jogoRef.key;
             pageJogo.jogos[jogoRef.key] = (tempJogo);
             preencheTabelaJogo(tempJogo);
+            pageJogo.contadorJogos++;
+            pageJogo.jogosDash.innerHTML = pageJogo.contadorJogos;
         });
     })
 }
@@ -465,4 +469,6 @@ function limparTabelaJogo() {
     jogosNaTela.forEach(function () {
         pageJogo.tableJogos.querySelector('#body-jogos').innerHTML = '';
     });
+    pageJogo.jogosDash.innerHTML = '';
+    pageJogo.contadorJogos = 0;
 }

@@ -29,8 +29,12 @@ var pageAtleta = {
         , apagaBuscaAtleta: document.querySelector('#apagar-busca-atleta-btn')
         , buscaAtletaBtn: document.querySelector('#busca-atleta-btn')
         , buscaAtletaField: document.querySelector('#busca-atleta-field')
+        , contadorAtletas: 0,
+        atletasDash: document.querySelector('#atletas-dash')
     }
-    //window.addEventListener('load', getClubes);
+window.addEventListener('load', function(){
+    
+});
 pageAtleta.atletasSideBtn.addEventListener('click', function () {
     getClubesAtt();
     getAtletas();
@@ -231,6 +235,8 @@ function getAtletas() {
             tempAtleta.uid = atletaRef.key;
             pageAtleta.atletas[atletaRef.key] = (tempAtleta);
             preencheTabela(tempAtleta);
+            pageAtleta.contadorAtletas++;
+            pageAtleta.atletasDash.innerHTML = pageAtleta.contadorAtletas;
         });
     })
 }
@@ -273,4 +279,6 @@ function limparTabelaAtleta() {
     atletasNaTela.forEach(function () {
         pageAtleta.tableAtletas.querySelector('#body-atleta').innerHTML = '';
     })
+    pageAtleta.atletasDash.innerHTML = '';
+    pageAtleta.contadorAtletas = 0;
 }

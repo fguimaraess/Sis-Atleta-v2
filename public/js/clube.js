@@ -15,6 +15,8 @@ var pageClube = {
     , buscaClubeBtn: document.querySelector('#busca-clube-btn')
     , buscaClubeField: document.querySelector('#busca-clube-field')
     , apagarBuscaClube: document.querySelector('#apagar-busca-clube-btn')
+    , contadorClubes: 0
+    , clubesDash: document.querySelector('#clubes-dash')
 }
 window.addEventListener('load', getClubes);
 pageClube.clubesSideBtn.addEventListener('click', function () {
@@ -112,6 +114,8 @@ function getClubes() {
             tempClube.uid = clubeRef.key;
             pageClube.clubes[clubeRef.key] = (tempClube);
             preencheTabelaClube(tempClube);
+            pageClube.contadorClubes++;
+            pageClube.clubesDash.innerHTML = pageClube.contadorClubes;
         });
     })
 }
@@ -183,4 +187,6 @@ function limparTabela() {
     clubesNaTela.forEach(function () {
         pageClube.tableClubes.querySelector('#body-clube').innerHTML = '';
     });
+    pageClube.clubesDash.innerHTML = '';
+    pageClube.contadorClubes = 0;
 }
