@@ -221,10 +221,14 @@ function novoAtleta(atleta) {
         pageAtleta.atletas[atletaRef.key] = (atleta);
         preencheTabela(atleta);
     }).then(swal("", "Atleta criado com sucesso", "success"))
+    pageAtleta.contadorAtletas++;
+    pageAtleta.atletasDash.innerHTML = pageAtleta.contadorAtletas;
 }
 
 function excluirAtleta(idAtleta) {
     pageAtleta.database.ref(pageAtleta.databaseRef + idAtleta).remove().then(pageAtleta.tableAtletas.querySelector('#' + idAtleta).innerHTML = '').then(swal("", "Atleta removido com sucesso", "success"));
+    pageAtleta.contadorAtletas--;
+    pageAtleta.atletasDash.innerHTML = pageAtleta.contadorAtletas;
 }
 
 function getAtletas() {

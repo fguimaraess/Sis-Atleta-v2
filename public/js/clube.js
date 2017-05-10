@@ -88,11 +88,16 @@ function novoClube(clube) {
         pageClube.clubes[clubeRef.key] = (clube);
         preencheTabelaClube(clube);
     }).then(swal("", "Clube criado com sucesso", "success"));
+    pageClube.contadorClubes++;
+    pageClube.clubesDash.innerHTML = pageClube.contadorClubes;
+    
 }
 
 function excluirClube(idClube) {
     pageClube.database.ref(pageClube.databaseRef + idClube).remove().then(swal("", "Clube removido com sucesso", "success"));
     pageClube.tableClubes.querySelector('#' + idClube).innerHTML = '';
+    pageClube.contadorClubes--;
+    pageClube.clubesDash.innerHTML = pageClube.contadorClubes;
 }
 
 function preencheTabelaClube(tempClube) {

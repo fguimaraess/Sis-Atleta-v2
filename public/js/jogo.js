@@ -143,11 +143,15 @@ function sortAtletas(atletas, clube) {
 
 function novoJogo(jogo) {
     pageJogo.database.ref(pageJogo.databaseRef).push(jogo).then(swal("", "Jogo cadastrado com sucesso", "success"));;
+    pageJogo.contadorJogos++;
+    pageJogo.jogosDash.innerHTML = pageJogo.contadorJogos;
 }
 
 function excluirJogo(idJogo) {
     pageJogo.database.ref(pageJogo.databaseRef + idJogo).remove().then(swal("", "Jogo removido com sucesso", "success"));
     pageJogo.tableJogos.querySelector('#' + idJogo).innerHTML = '';
+    pageJogo.contadorJogos--;
+    pageJogo.jogosDash.innerHTML = pageJogo.contadorJogos;
 }
 
 function salvarAlteracoesJogo(tempJogo) {
