@@ -25,10 +25,12 @@
     <link rel="stylesheet" href="/css/dashboard.css"> </head>
 
 <body>
+    <!--Navbar-->
+    <!-- <div class="row center-align navbar"> Sis-Atleta </div> -->
     <nav>
-        <div class="nav-wrapper teal lighten-2">
-            <a href="#" class="brand-logo left"><img src="img/logo_sisatleta.png" /></a>
+        <div class="nav-wrapper teal lighten-2"> <a href="#" class="brand-logo"><img src="img/logo_sisatleta.png"/></a>
             <ul class="right hide-on-med-and-down">
+                <!-- Dropdown Trigger -->
                 <li><a id="btn-logout" href="#">Logout<i class="material-icons right">exit_to_app</i></a></li>
             </ul>
         </div>
@@ -47,26 +49,21 @@
                         <li>Fácil de usar;</li>
                         <li>Melhore a sua comunicação com os atletas e membros da comissão técnica;</li>
                         <li>Ideal para uso em palestras, aulas e treinamentos;</li>
-                    </ul> O Sis-Atleta possui, atualmente:
+                    </ul>
+                    O Sis-Atleta possui, atualmente:
                     <p>
-                        <div class="row">
-                            <div class="col s2 center-align">
-                                <p><span class="flow-text" id="atletas-dash"></span>
-                                    <p><img src="img/atleta.png" width="50px" title="Atletas Cadastrados" /></div>
-                            <div class="col s2 center-align">
-                                <p><span class="flow-text" id="clubes-dash"></span>
-                                    <p><img src="img/clube.png" width="50px" title="Clubes Cadastrados" /></div>
-                            <div class="col s2 center-align">
-                                <p><span class="flow-text" id="jogos-dash"></span>
-                                    <p><img src="img/jogo.png" width="50px" title="Jogos Cadastrados" /></div>
-                        </div>
+                    <div class="row">
+                    <div class="col s2 center-align"><p><span class="flow-text" id="atletas-dash"></span><p><img src="img/atleta.png" width="50px" title="Atletas Cadastrados"/></div>
+                    <div class="col s2 center-align"><p><span class="flow-text" id="clubes-dash"></span><p><img src="img/clube.png" width="50px" title="Clubes Cadastrados"/></div>
+                    <div class="col s2 center-align"><p><span class="flow-text" id="jogos-dash"></span><p><img src="img/jogo.png" width="50px" title="Jogos Cadastrados"/></div>
+                </div>
             </div>
             <!-- DIV DE ATLETAS -->
             <div class="view-atletas" hidden> ATLETAS
                 <p>
                     <div class="row">
                         <div class="col s12">
-                            <div class="input-field col s8 m4">
+                            <div class="input-field col s8">
                                 <input type="text" id="busca-atleta-field" class="validate" placeholder="">
                                 <label class="active" for="busca-atleta-field">Buscar Atleta</label>
                             </div>
@@ -327,52 +324,52 @@
                         <div class="right-align"> <a class="btn-floating btn-large waves-effect waves-light lightseagreen" href="#" id="addJogoBtn"><i class="material-icons">add</i></a></div>
                         <!-- Card de Jogos -->
                         <div class="row" id="cardJogo" hidden>
-                            <div class="col s12">
+                            <div class="col s7 m7">
                                 <div class="card-panel darken-1 large">
                                     <div class="card-content">
                                         <div class="row"> Novo Jogo </div>
                                         <div class="row">
                                             <form class="col s12">
                                                 <div class="row">
-                                                    <div class="input-field col s6 m3">
+                                                    <div class="input-field col s6">
                                                         <input type="date" id="datajogo-field" class="datepicker" placeholder="">
                                                         <label class="active" for="data-jogo-field">Data *</label>
                                                     </div>
-                                                    <div class="input-field col s6 m3">
+                                                    <div class="input-field col s6">
                                                         <input type="text" id="melhor-jogador-field" class="validate" placeholder="">
                                                         <label for="melhor-jogador-field">Melhor Jogador*</label>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="input-field col s6 m3">
+                                                    <div class="input-field col s6">
                                                         <input type="text" id="campeonato-field" class="validate" placeholder="">
                                                         <label for="campeonato-field">Campeonato *</label>
                                                     </div>
-                                                    <div class="input-field col s6 m3">
+                                                    <div class="input-field col s6">
                                                         <input type="text" id="local-field" class="validate" placeholder="">
                                                         <label for="local-field">Local *</label>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="input-field col s6 m3 idDosClubesField">
+                                                    <div class="input-field col s6 idDosClubesField">
                                                         <select id="clube1-field">
                                                             <option value="clube1">-</option>
                                                         </select>
                                                         <label for="clube1-field">Meu Clube *</label>
                                                     </div>
-                                                    <div class="input-field col s6 m3">
+                                                    <div class="input-field col s6">
                                                         <input type="text" id="gols-clube1-field" class="validate" placeholder="">
                                                         <label for="gols-clube1-field">Gols *</label>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="input-field col s6 m3">
+                                                    <div class="input-field col s6">
                                                         <select id="clube2-field">
                                                             <option value="clube2">-</option>
                                                         </select>
                                                         <label for="clube2-field">Clube Adversário *</label>
                                                     </div>
-                                                    <div class="input-field col s6 m3">
+                                                    <div class="input-field col s6">
                                                         <input type="text" id="gols-clube2-field" class="validate" placeholder="">
                                                         <label for="gols-clube2-field">Gols *</label>
                                                     </div>
@@ -401,7 +398,7 @@
                                 </div>
                             </div>
                             <div class="row" id="cardAtletas" hidden>
-                                <div class="col s12">
+                                <div class="col s5 m5">
                                     <div class="card-panel large">
                                         <div class="card-content">
                                             <table id="table-card-atletas-jogo" class="responsive-table highlight">
@@ -421,6 +418,8 @@
                                                 <tbody id="body-card-jogo"> </tbody>
                                             </table>
                                         </div>
+                                        <p>
+                                        <div class="card-action"> <a href="#" id="visao-geral">Visão Geral</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -471,10 +470,10 @@
                 <p>
                     <div class="row">
                         <div class="col s12">
-                            <div class="col s6">
+                            <div class="col s6 m6">
                                 <input id="report-atleta" type="image" src="img/atleta.png" alt="Atletas" />
                                 <p> <a href="#" class="atleta">Atletas</a> </div>
-                            <div class="col s6">
+                            <div class="col s6 m6">
                                 <input id="report-clube" type="image" src="img/clube.png" alt="Atletas" />
                                 <p> <a href="#" class="clube">Clubes</a> </div>
                         </div>

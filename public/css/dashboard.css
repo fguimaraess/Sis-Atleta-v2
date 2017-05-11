@@ -59,7 +59,7 @@ ul, menu, dir {
     color: lightseagreen;
 }
 
-a#salvar-card, a#voltarCardJogo {
+a#salvar-card, a#voltarCardJogo, a#visao-geral {
     text-transform: uppercase !important;
     margin-right: 24px;
     color: lightseagreen;
