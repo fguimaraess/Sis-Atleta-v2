@@ -112,20 +112,22 @@ function addAtletaJogoVisaoGeral(idAtleta, dadosAtleta) {
     }
     pageJogo.jogoAtual = pageJogo.idJogoField.value;
     atletaSel = pageAtleta.atletas[idAtleta]
-    var html = '';
-    html += '<tr class="idAtletasDoJogo" id="' + idAtleta + '">';
-    html += '<td class="nome-atleta-visao col s1"><p>' + atletaSel.apelido + '</td>';
-    html += '<td class="gol-atleta-visao col s1">';
-    html += '<input id="gol-atleta-visao" type="text" value="' + dadosAtleta.gol + '"/></td>';
-    html += '<td class="assistencia-atleta-visao col s2">';
-    html += '<input id="assistencia-atleta-visao" type="text" value="' + dadosAtleta.assistencia + '"></td>';
-    html += '<td class="cartaoamarelo-atleta-visao col s2">';
-    html += '<input id="cartaoamarelo-atleta-visao" type="text" value="' + dadosAtleta.cartaoamarelo + '"></td>';
-    html += '<td class="cartaovermelho-atleta-visao col s2">';
-    html += '<input id="cartaovermelho-atleta-visao" type="text" value="' + dadosAtleta.cartaovermelho + '"></td>';
-    html += '<td class="minutosjogados-atleta-visao col s2">';
-    html += '<input id="minutosjogados-atleta-visao" type="text" value="' + dadosAtleta.minutosjogados + '"></td>';
-    html += '</tr>';
+    if (dadosAtleta) {
+        var html = '';
+        html += '<tr class="idAtletasDoJogo" id="' + idAtleta + '">';
+        html += '<td class="nome-atleta-visao col s1"><p>' + atletaSel.apelido + '</td>';
+        html += '<td class="gol-atleta-visao col s1">';
+        html += '<input id="gol-atleta-visao" type="text" value="' + dadosAtleta.gol + '"/></td>';
+        html += '<td class="assistencia-atleta-visao col s2">';
+        html += '<input id="assistencia-atleta-visao" type="text" value="' + dadosAtleta.assistencia + '"></td>';
+        html += '<td class="cartaoamarelo-atleta-visao col s2">';
+        html += '<input id="cartaoamarelo-atleta-visao" type="text" value="' + dadosAtleta.cartaoamarelo + '"></td>';
+        html += '<td class="cartaovermelho-atleta-visao col s2">';
+        html += '<input id="cartaovermelho-atleta-visao" type="text" value="' + dadosAtleta.cartaovermelho + '"></td>';
+        html += '<td class="minutosjogados-atleta-visao col s2">';
+        html += '<input id="minutosjogados-atleta-visao" type="text" value="' + dadosAtleta.minutosjogados + '"></td>';
+        html += '</tr>';
+    }
     $('#body-visao-geral').append(html);
 }
 
