@@ -48,6 +48,8 @@ pageAtleta.apagaBuscaAtleta.addEventListener('click', function () {
     getAtletasPorNome(pageAtleta.buscaAtletaField.value);
 });
 
+
+
 function getClubes(idAtleta) {
     atletaSel = pageAtleta.atletas[idAtleta];
     $(pageAtleta.clubeField).empty();

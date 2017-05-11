@@ -22,6 +22,11 @@ var pageJogo = {
     , cartaoAmareloField: document.querySelector('#cartaoamarelo-field')
     , cartaoVermelhoField: document.querySelector('#cartaovermelho-field')
     , minutosJogadosField: document.querySelector('#minutos-field')
+    , visaoGolField: document.querySelector('#gol-atleta-visao')
+    , visaoAssistenciaField: document.querySelector('#assistencia-atleta-visao')
+    , visaoCartaoAmareloField: document.querySelector('#cartaoamarelo-atleta-visao')
+    , visaoCartaoVermelhoField: document.querySelector('#cartaovermelho-atleta-visao')
+    , visaoMinutosJogadosField: document.querySelector('#minutos-atleta-visao')
     , idJogoField: document.querySelector('#id-jogo')
     , idAtletaField: document.querySelector('#idAtleta')
     , salvarDadosBtn: document.querySelector('#salvar-dados-btn')
@@ -43,6 +48,9 @@ var pageJogo = {
     , fecharCardNovoJogo: document.querySelector('#voltarCardJogo')
     , contadorJogos: 0
     , jogosDash: document.querySelector('#jogos-dash')
+    , modalVisaoGeralBtn: document.querySelector('#visao-geral')
+    , tableVisaoGeral: document.querySelector('#tabela-visao-geral')
+    , btnSalvarVisaoGeral: document.querySelector('#salvar-visao-geral')
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
@@ -66,6 +74,60 @@ pageJogo.apagarBuscaJogo.addEventListener('click', function () {
 pageJogo.fecharCardNovoJogo.addEventListener('click', function () {
     $('#buscaJogo').show();
 })
+pageJogo.modalVisaoGeralBtn.addEventListener('click', function () {
+    $('#modalVisaoGeral').modal('open');
+    abreModalVisaoGeral();
+});
+pageJogo.btnSalvarVisaoGeral.addEventListener('click', function () {
+    var dadosVisaoTemp = {
+        gol: pageJogo.visaoGolField.value
+        , assistencia: pageJogo.visaoAssistenciaField.value
+        , cartaoamarelo: pageJogo.visaoCartaoAmareloField.value
+        , cartaovermelho: pageJogo.visaoCartaoVermelhoField.value
+        , minutosjogados: pageJogo.visaoMinutosJogadosField.value
+    }
+    console.log(dadosVisaoTemp)
+});
+
+function abreModalVisaoGeral() {
+    var atletasNaVisaoGeral = document.querySelectorAll('.idAtletasDoJogo');
+    if (atletasNaVisaoGeral) {
+        atletasNaVisaoGeral.forEach(function () {
+            pageJogo.tableVisaoGeral.querySelector('#body-visao-geral').innerHTML = '';
+        })
+    }
+    var atletasDoClube = separaAtletasQueJogaram(sortAtletas(pageAtleta.atletas, jogoSel.meuclube), jogoSel.atletasTempJogo)
+    if (atletasDoClube) {
+        for (var key in jogoSel.atletasTempJogo) {
+            var dadosAtleta = getEstatisticasAtletas(jogoSel.atletasTempJogo[key].uid, pageJogo.jogoAtual)
+            addAtletaJogoVisaoGeral(key, dadosAtleta);
+        }
+    }
+};
+
+function addAtletaJogoVisaoGeral(idAtleta, dadosAtleta) {
+    tempAtleta = pageJogo.tableAtletasCard.querySelector('#' + idAtleta);
+    if (tempAtleta) {
+        pageJogo.tableAtletasCard.removeChild(tempAtleta);
+    }
+    pageJogo.jogoAtual = pageJogo.idJogoField.value;
+    atletaSel = pageAtleta.atletas[idAtleta]
+    var html = '';
+    html += '<tr class="idAtletasDoJogo" id="' + idAtleta + '">';
+    html += '<td class="nome-atleta-visao col s1"><p>' + atletaSel.apelido + '</td>';
+    html += '<td class="gol-atleta-visao col s1">';
+    html += '<input id="gol-atleta-visao" type="text" value="' + dadosAtleta.gol + '"/></td>';
+    html += '<td class="assistencia-atleta-visao col s2">';
+    html += '<input id="assistencia-atleta-visao" type="text" value="' + dadosAtleta.assistencia + '"></td>';
+    html += '<td class="cartaoamarelo-atleta-visao col s2">';
+    html += '<input id="cartaoamarelo-atleta-visao" type="text" value="' + dadosAtleta.cartaoamarelo + '"></td>';
+    html += '<td class="cartaovermelho-atleta-visao col s2">';
+    html += '<input id="cartaovermelho-atleta-visao" type="text" value="' + dadosAtleta.cartaovermelho + '"></td>';
+    html += '<td class="minutosjogados-atleta-visao col s2">';
+    html += '<input id="minutosjogados-atleta-visao" type="text" value="' + dadosAtleta.minutosjogados + '"></td>';
+    html += '</tr>';
+    $('#body-visao-geral').append(html);
+}
 
 function abreCardJogo(idJogo) {
     $('#buscaJogo').hide();
