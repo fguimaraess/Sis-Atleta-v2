@@ -82,6 +82,7 @@ pageJogo.modalVisaoGeralBtn.addEventListener('click', function () {
 pageJogo.btnSalvarVisaoGeral.addEventListener('click', function () {
     //swal("", "Funcionalidade em desenvolvimento!", "warning")
     var dadosVisaoTemp = []
+    pageJogo.jogoAtual = pageJogo.idJogoField.value;
     table = pageJogo.bodyVisaoGeral;
     rows = pageJogo.bodyVisaoGeral.getElementsByTagName("tr");
     for (var i = 0; i < rows.length; i++) {
@@ -94,9 +95,11 @@ pageJogo.btnSalvarVisaoGeral.addEventListener('click', function () {
             , uid: table.rows[i].querySelector('#id-atleta-visao').value
         }
         pageJogo.atletasJogo = dadosVisaoTemp;
+        console.log(pageJogo.atletasJogo)
+        
         for (var key in jogoSel.atletasTempJogo) {
             if (jogoSel.atletasTempJogo[key].uid == pageJogo.atletasJogo.uid) {
-                console.log(pageJogo.atletasJogo)
+                pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[pageJogo.atletasJogo.uid] = pageJogo.atletasJogo;
             }
         }
     }
