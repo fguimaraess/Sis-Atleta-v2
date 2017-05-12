@@ -26,7 +26,7 @@ var pageJogo = {
     , visaoAssistenciaField: document.querySelector('#assistencia-atleta-visao')
     , visaoCartaoAmareloField: document.querySelector('#cartaoamarelo-atleta-visao')
     , visaoCartaoVermelhoField: document.querySelector('#cartaovermelho-atleta-visao')
-    , visaoMinutosJogadosField: document.querySelector('#minutos-atleta-visao')
+    , visaoMinutosJogadosField: document.querySelector('#minutosjogados-atleta-visao')
     , idJogoField: document.querySelector('#id-jogo')
     , idAtletaField: document.querySelector('#idAtleta')
     , salvarDadosBtn: document.querySelector('#salvar-dados-btn')
@@ -50,6 +50,7 @@ var pageJogo = {
     , jogosDash: document.querySelector('#jogos-dash')
     , modalVisaoGeralBtn: document.querySelector('#visao-geral')
     , tableVisaoGeral: document.querySelector('#tabela-visao-geral')
+    , bodyVisaoGeral: document.querySelector('#body-visao-geral')
     , btnSalvarVisaoGeral: document.querySelector('#salvar-visao-geral')
 }
 pageJogo.addJogoBtn.addEventListener('click', function () {
@@ -79,14 +80,26 @@ pageJogo.modalVisaoGeralBtn.addEventListener('click', function () {
     abreModalVisaoGeral();
 });
 pageJogo.btnSalvarVisaoGeral.addEventListener('click', function () {
-    var dadosVisaoTemp = {
-        gol: pageJogo.visaoGolField.value
-        , assistencia: pageJogo.visaoAssistenciaField.value
-        , cartaoamarelo: pageJogo.visaoCartaoAmareloField.value
-        , cartaovermelho: pageJogo.visaoCartaoVermelhoField.value
-        , minutosjogados: pageJogo.visaoMinutosJogadosField.value
+    //swal("", "Funcionalidade em desenvolvimento!", "warning")
+    var dadosVisaoTemp = []
+    table = pageJogo.bodyVisaoGeral;
+    rows = pageJogo.bodyVisaoGeral.getElementsByTagName("tr");
+    for (var i = 0; i < rows.length; i++) {
+        dadosVisaoTemp = {
+            gol: table.rows[i].querySelector('#gol-atleta-visao').value
+            , assistencia: table.rows[i].querySelector('#assistencia-atleta-visao').value
+            , cartaoamarelo: table.rows[i].querySelector('#cartaoamarelo-atleta-visao').value
+            , cartaovermelho: table.rows[i].querySelector('#cartaovermelho-atleta-visao').value
+            , minutosjogados: table.rows[i].querySelector('#minutosjogados-atleta-visao').value
+            , uid: table.rows[i].querySelector('#id-atleta-visao').value
+        }
+        pageJogo.atletasJogo = dadosVisaoTemp;
+        for (var key in jogoSel.atletasTempJogo) {
+            if (jogoSel.atletasTempJogo[key].uid == pageJogo.atletasJogo.uid) {
+                console.log(pageJogo.atletasJogo)
+            }
+        }
     }
-    console.log(dadosVisaoTemp)
 });
 
 function abreModalVisaoGeral() {
@@ -115,6 +128,8 @@ function addAtletaJogoVisaoGeral(idAtleta, dadosAtleta) {
     if (dadosAtleta) {
         var html = '';
         html += '<tr class="idAtletasDoJogo" id="' + idAtleta + '">';
+        html += '<td class="id-atleta-visao" hidden>';
+        html += '<input id="id-atleta-visao" value="' + dadosAtleta.uid + '"></td>';
         html += '<td class="nome-atleta-visao col s1"><p>' + atletaSel.apelido + '</td>';
         html += '<td class="gol-atleta-visao col s1">';
         html += '<input id="gol-atleta-visao" type="text" value="' + dadosAtleta.gol + '"/></td>';
