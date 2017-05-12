@@ -95,18 +95,10 @@ pageJogo.btnSalvarVisaoGeral.addEventListener('click', function () {
             , uid: table.rows[i].querySelector('#id-atleta-visao').value
         }
         pageJogo.atletasJogo = dadosVisaoTemp;
-        
         for (var key in jogoSel.atletasTempJogo) {
             if (jogoSel.atletasTempJogo[key].uid == pageJogo.atletasJogo.uid) {
-                if (dadosVisaoTemp.gol == "" || dadosVisaoTemp.assistencia == "" || dadosVisaoTemp.cartaoamarelo == "" || dadosVisaoTemp.cartaovermelho == "" || dadosVisaoTemp.minutosjogados == "") {
-                    swal("", "Todos os campos devem ser preenchidos!", "error");
-                }
-                else {
-                    pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[pageJogo.atletasJogo.uid] = pageJogo.atletasJogo;
-                    swal("", "Dados salvos", "success");
-                    $('#modalVisaoGeral').modal('close');
-                }
-                
+                pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[pageJogo.atletasJogo.uid] = pageJogo.atletasJogo;
+                swal("", "Dados salvos", "success");
             }
         }
     }
