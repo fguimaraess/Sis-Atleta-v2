@@ -304,6 +304,15 @@ function removeAtletaJogo(idAtleta) {
 }
 
 function addAtletaJogo(idAtleta) {
+    pageJogo.atletasJogo = {
+        gol: "",
+        assistencia: "",
+        cartaoamarelo: "",
+        cartaovermelho: "",
+        minutosjogados: "",
+        uid: idAtleta
+    };
+    console.log(pageJogo.atletasJogo)
     tempAtleta = pageJogo.tableAtletasCard.querySelector('#' + idAtleta);
     if (tempAtleta) {
         pageJogo.tableAtletasCard.removeChild(tempAtleta);
