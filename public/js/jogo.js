@@ -109,10 +109,9 @@ pageJogo.btnSalvarVisaoGeral.addEventListener('click', function () {
                 }
             }
         } else {
+            console.log(pageJogo.atletasJogo)
         for (var key in pageJogo.atletasJogo) {
-            console.log(key, pageJogo.atletasJogo[key])
-            pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[pageJogo.atletasJogo[key].uid] = pageJogo.atletasJogo;
-                    swal("", "Dados salvos", "success");
+            console.log(pageJogo.atletasJogo[key].uid);
         }
     }
     }
