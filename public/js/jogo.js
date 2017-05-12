@@ -56,7 +56,9 @@ var pageJogo = {
 pageJogo.addJogoBtn.addEventListener('click', function () {
     abreCardJogo(null);
     pageJogo.idJogoField.value = null;
+    pageJogo.jogoAtual = null;
     $('#buscaJogo').hide();
+    
 });
 pageJogo.jogosSideBtn.addEventListener('click', function () {
     getClubesAtt();
@@ -76,6 +78,10 @@ pageJogo.fecharCardNovoJogo.addEventListener('click', function () {
     $('#buscaJogo').show();
 })
 pageJogo.modalVisaoGeralBtn.addEventListener('click', function () {
+    var atletasNaVisaoGeral = document.querySelectorAll('.idAtletasDoJogo');
+    atletasNaVisaoGeral.forEach(function () {
+            pageJogo.tableVisaoGeral.querySelector('#body-visao-geral').innerHTML = ''
+    });
     $('#modalVisaoGeral').modal('open');
     abreModalVisaoGeral();
 });
@@ -95,43 +101,55 @@ pageJogo.btnSalvarVisaoGeral.addEventListener('click', function () {
             , uid: table.rows[i].querySelector('#id-atleta-visao').value
         }
         pageJogo.atletasJogo = dadosVisaoTemp;
-        for (var key in jogoSel.atletasTempJogo) {
-            if (jogoSel.atletasTempJogo[key].uid == pageJogo.atletasJogo.uid) {
-                pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[pageJogo.atletasJogo.uid] = pageJogo.atletasJogo;
-                swal("", "Dados salvos", "success");
+        if (pageJogo.jogoAtual) {
+            for (var key in jogoSel.atletasTempJogo) {
+                if (jogoSel.atletasTempJogo[key].uid == pageJogo.atletasJogo.uid) {
+                    pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[pageJogo.atletasJogo.uid] = pageJogo.atletasJogo;
+                    swal("", "Dados salvos", "success");
+                }
             }
+        } else {
+        for (var key in pageJogo.atletasJogo) {
+            console.log(key, pageJogo.atletasJogo[key])
+            pageJogo.jogos[pageJogo.jogoAtual].atletasTempJogo[pageJogo.atletasJogo[key].uid] = pageJogo.atletasJogo;
+                    swal("", "Dados salvos", "success");
         }
     }
+    }
+    
+
 });
 
 function abreModalVisaoGeral() {
     var atletasNaVisaoGeral = document.querySelectorAll('.idAtletasDoJogo');
     if (atletasNaVisaoGeral) {
         atletasNaVisaoGeral.forEach(function () {
-            pageJogo.tableVisaoGeral.querySelector('#body-visao-geral').innerHTML = '';
+            console.log(pageJogo.tableVisaoGeral.querySelector('#body-visao-geral').innerHTML = '');
         })
     }
-    var atletasDoClube = separaAtletasQueJogaram(sortAtletas(pageAtleta.atletas, jogoSel.meuclube), jogoSel.atletasTempJogo)
-    if (atletasDoClube) {
+    if (pageJogo.jogoAtual) {
+        var atletasDoClube = separaAtletasQueJogaram(sortAtletas(pageAtleta.atletas, jogoSel.meuclube), jogoSel.atletasTempJogo)
         for (var key in jogoSel.atletasTempJogo) {
             var dadosAtleta = getEstatisticasAtletas(jogoSel.atletasTempJogo[key].uid, pageJogo.jogoAtual)
             addAtletaJogoVisaoGeral(key, dadosAtleta);
         }
     }
+    else {
+        for (var key in pageJogo.atletasJogo) {
+            addAtletaJogoVisaoGeral(pageJogo.atletasJogo[key].uid, pageJogo.atletasJogo[key]);
+        }
+    }
 };
 
 function addAtletaJogoVisaoGeral(idAtleta, dadosAtleta) {
-    tempAtleta = pageJogo.tableAtletasCard.querySelector('#' + idAtleta);
-    if (tempAtleta) {
-        pageJogo.tableAtletasCard.removeChild(tempAtleta);
-    }
+    console.log(dadosAtleta)
     pageJogo.jogoAtual = pageJogo.idJogoField.value;
     atletaSel = pageAtleta.atletas[idAtleta]
     if (dadosAtleta) {
         var html = '';
         html += '<tr class="idAtletasDoJogo" id="' + idAtleta + '">';
         html += '<td class="id-atleta-visao" hidden>';
-        html += '<input id="id-atleta-visao" value="' + dadosAtleta.uid + '"></td>';
+        html += '<input id="id-atleta-visao" value="' + atletaSel.uid + '"></td>';
         html += '<td class="nome-atleta-visao col s1"><p>' + atletaSel.apelido + '</td>';
         html += '<td class="gol-atleta-visao col s1">';
         html += '<input id="gol-atleta-visao" type="text" value="' + dadosAtleta.gol + '"/></td>';
@@ -144,8 +162,9 @@ function addAtletaJogoVisaoGeral(idAtleta, dadosAtleta) {
         html += '<td class="minutosjogados-atleta-visao col s2">';
         html += '<input id="minutosjogados-atleta-visao" type="text" value="' + dadosAtleta.minutosjogados + '"></td>';
         html += '</tr>';
+        $('#body-visao-geral').append(html);
     }
-    $('#body-visao-geral').append(html);
+    
 }
 
 function abreCardJogo(idJogo) {
@@ -304,15 +323,14 @@ function removeAtletaJogo(idAtleta) {
 }
 
 function addAtletaJogo(idAtleta) {
-    pageJogo.atletasJogo = {
-        gol: "",
-        assistencia: "",
-        cartaoamarelo: "",
-        cartaovermelho: "",
-        minutosjogados: "",
-        uid: idAtleta
+    pageJogo.atletasJogo[idAtleta] = {
+        gol: ""
+        , assistencia: ""
+        , cartaoamarelo: ""
+        , cartaovermelho: ""
+        , minutosjogados: ""
+        , uid: idAtleta
     };
-    console.log(pageJogo.atletasJogo)
     tempAtleta = pageJogo.tableAtletasCard.querySelector('#' + idAtleta);
     if (tempAtleta) {
         pageJogo.tableAtletasCard.removeChild(tempAtleta);
@@ -368,11 +386,11 @@ function abreModalEstatisticaJogador(idAtleta, idJogo) {
         var tempAtleta = pageJogo.atletasJogo[idAtleta]
         if (tempAtleta == null) {
             pageJogo.idAtletaField.value = idAtleta;
-            pageJogo.golField.value = null;
-            pageJogo.assistenciaField.value = null;
-            pageJogo.cartaoAmareloField.value = null;
-            pageJogo.cartaoVermelhoField.value = null;
-            pageJogo.minutosJogadosField.value = null;
+            pageJogo.golField.value = "";
+            pageJogo.assistenciaField.value = "";
+            pageJogo.cartaoAmareloField.value = "";
+            pageJogo.cartaoVermelhoField.value = "";
+            pageJogo.minutosJogadosField.value = "";
         }
         else {
             pageJogo.idAtletaField.value = idAtleta;
