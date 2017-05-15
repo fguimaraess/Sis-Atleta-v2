@@ -77,6 +77,7 @@ pageJogo.apagarBuscaJogo.addEventListener('click', function () {
 pageJogo.fecharCardNovoJogo.addEventListener('click', function () {
     $('#buscaJogo').show();
 })
+/*
 pageJogo.modalVisaoGeralBtn.addEventListener('click', function () {
     var atletasNaVisaoGeral = document.querySelectorAll('.idAtletasDoJogo');
     atletasNaVisaoGeral.forEach(function () {
@@ -85,6 +86,8 @@ pageJogo.modalVisaoGeralBtn.addEventListener('click', function () {
     $('#modalVisaoGeral').modal('open');
     abreModalVisaoGeral();
 });
+*/
+/*
 pageJogo.btnSalvarVisaoGeral.addEventListener('click', function () {
     //swal("", "Funcionalidade em desenvolvimento!", "warning")
     var dadosVisaoTemp = []
@@ -118,7 +121,8 @@ pageJogo.btnSalvarVisaoGeral.addEventListener('click', function () {
     
 
 });
-
+*/
+/*
 function abreModalVisaoGeral() {
     var atletasNaVisaoGeral = document.querySelectorAll('.idAtletasDoJogo');
     if (atletasNaVisaoGeral) {
@@ -165,7 +169,7 @@ function addAtletaJogoVisaoGeral(idAtleta, dadosAtleta) {
     }
     
 }
-
+*/
 function abreCardJogo(idJogo) {
     $('#buscaJogo').hide();
     var atletasNaTela = document.querySelectorAll('.idDosAtletas');
